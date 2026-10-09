@@ -1,0 +1,78 @@
+# Auto-deploy Pitchside Forum to AlmaLinux VPS on every push to main.
+#
+# Required GitHub Secrets (repo Settings -> Secrets and variables -> Actions -> New secret):
+#   SSH_HOST = 162.254.38.190
+#   SSH_USER = deploy
+#   SSH_PORT = 22
+#   SSH_KEY  = contents of deploy_key (private ED25519 key, see server.md)
+#
+# Flow:
+#   1. Copy public/ to /home/deploy/pitchside-release/ via SCP
+#   2. SSH in: backup current /var/www/pitchside, rsync release -> live, fix perms, reload nginx
+name: Deploy to VPS
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch: # allow manual "Run workflow" from Actions tab
+
+concurrency:
+  group: deploy-main
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Verify site source exists
+        run: |
+          ls -la
+          test -f public/index.html || (echo "public/index.html missing — repo root must contain public/" && exit 1)
+          du -sh public/
+
+      - name: Copy files to VPS
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          port: ${{ secrets.SSH_PORT }}
+          key: ${{ secrets.SSH_KEY }}
+          source: "public/*"
+          target: "/home/deploy/pitchside-release/"
+          strip_components: 1
+          overwrite: true
+
+      - name: Publish + reload nginx
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          port: ${{ secrets.SSH_PORT }}
+          key: ${{ secrets.SSH_KEY }}
+          script: |
+            set -euo pipefail
+            STAMP=$(date +%Y%m%d-%H%M%S)
+            mkdir -p /var/www/pitchside-backups
+            if [ -d /var/www/pitchside ]; then
+              tar -czf "/var/www/pitchside-backups/pitchside-$STAMP.tar.gz" -C /var/www pitchside
+              ls -1t /var/www/pitchside-backups/*.tar.gz | tail -n +11 | xargs -r rm -f
+              echo "Backup: /var/www/pitchside-backups/pitchside-$STAMP.tar.gz"
+            fi
+            mkdir -p /var/www/pitchside
+            /usr/bin/rsync -a --delete /home/deploy/pitchside-release/ /var/www/pitchside/
+            sudo -n /bin/tar --version >/dev/null || true
+            # perms: nginx owns files, deploy group can write next time
+            sudo chown -R nginx:nginx /var/www/pitchside
+            sudo chgrp -R deploy /var/www/pitchside || true
+            sudo chmod 775 /var/www/pitchside
+            sudo find /var/www/pitchside -type d -exec chmod 755 {} \;
+            sudo find /var/www/pitchside -type f -exec chmod 644 {} \;
+            if command -v restorecon >/dev/null 2>&1; then sudo restorecon -Rv /var/www/pitchside || true; fi
+            sudo /usr/sbin/nginx -t
+            sudo /usr/bin/systemctl reload nginx
+            echo "Deployed $GITHUB_SHA at $STAMP"
+            curl -s -o /dev/null -w "Local check HTTP %{http_code}\n" http://127.0.0.1/

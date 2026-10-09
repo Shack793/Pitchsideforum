@@ -1,0 +1,5 @@
+# never commit keys
+*_key
+*_key.pub
+*.pem
+.env
