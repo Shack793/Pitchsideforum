@@ -1,30 +1,40 @@
-# Pitchside Forum on a Namecheap Quasar VPS
+# Pitchside Forum: live site for a Namecheap Quasar VPS
 
-This folder contains the latest Pitchside Forum build (version 34) ready to serve from your VPS with Nginx and free HTTPS.
+This is the working Pitchside Forum: real accounts, a real database (MariaDB, which is MySQL-compatible) and a PHP backend, ready to run on your VPS with Nginx and free HTTPS.
 
-## What's inside
+## What works in this version (Phase 1)
 
-| Path | What it is |
+| Area | What members and staff can do |
 | --- | --- |
-| `public/` | The website: `index.html`, favicons and app icons, `robots.txt` |
-| `nginx/pitchside.conf` | Nginx site config: compression, caching, security headers, every app page served by `index.html` |
-| `setup.sh` | First-time setup: installs Nginx, Certbot and the firewall, copies the site, gets HTTPS |
-| `update.sh` | Publishes a new version and keeps a backup of the old one |
+| Accounts | Join, confirm email, sign in, reset a forgotten password, two-factor sign-in codes, change password or email, see where they're signed in, sign out other devices, export their data, delete their account (30-day grace period) |
+| Profiles | Avatar upload (cropped and re-saved by the server), initial colour, signature (200 characters, 3 lines), about, website, favourite teams, privacy and notification settings |
+| Forum | Every board and sub-board, new topics, replies, quotes, @mentions, likes, edit history, polls, tags, follow, bookmarks, unread markers, search, New Member limits, flood control, blocked link domains |
+| Sports | The Sports page with every sport, region, league and team; each league has its own board; match threads open automatically 2 hours before kick-off once the fixtures feed is connected; predictions |
+| Crypto and Community | All coin boards and community boards |
+| Messages | Direct messages, group chats, contacting staff, attachments (images and PDFs, private to the conversation), blocking, official moderator notices |
+| Notifications | On the site (they appear within about 25 seconds without reloading) and by email, at most one email per hour per member |
+| Moderation | The moderation queue, reports, hide posts, pin, lock, move, merge, split, delete, warn, suspend (ends automatically), ban, appeals, moderator templates and per-person permissions, full audit log |
+| Admin | Every Admin tab: users and roles, moderators, boards and categories, permissions, sports/leagues/teams with logos, navigation, SEO, ad spots, ticker, banners, affiliate links, system settings. Changes save as you make them |
+| Ads | Homepage banner, right side slot, ad under the first post, bottom ticker, scheduling, rotation, Clean look switch, real impression and click counts |
+| Affiliates | Tracked `/go/{link}` redirects that log each click, postback URL for partner conversions, reports and CSV export |
+| Search engines | Each page arrives with its title, description and a readable copy of the content; `/sitemap.xml`; hidden from Google until you switch indexing on |
+
+**Opening in later phases.** Casinos & Sportsbooks, Complaints, the Blacklist, the Marketplace, seller verification and escrow show an "Opening soon" page for now. The Gambling discussion boards are open.
 
 ## Before you start
 
-1. In Namecheap, choose **Ubuntu 22.04 or 24.04** as the VPS operating system.
-2. Point your domain at the VPS: in Domain List → Manage → Advanced DNS, add two **A records**, `@` and `www`, both set to the VPS IP address. DNS can take up to an hour to update.
+1. In Namecheap, choose **Ubuntu 22.04 or 24.04** for the VPS. Quasar's 2 CPU / 2–4 GB plans are plenty to start.
+2. Point your domain at the VPS: Domain List → Manage → Advanced DNS → add two **A records**, `@` and `www`, set to the VPS IP address. DNS can take up to an hour.
 
-## First-time setup (about 5 minutes)
+## Setup (about 10 minutes)
 
-From your computer, upload the folder (replace the IP):
+From your computer, upload the zip (replace the IP):
 
 ```
 scp pitchside-vps.zip root@YOUR_VPS_IP:/root/
 ```
 
-Then log in and run the setup (replace the domain and email):
+Log in and run the setup (replace the domain and email):
 
 ```
 ssh root@YOUR_VPS_IP
@@ -33,21 +43,71 @@ unzip pitchside-vps.zip && cd pitchside-vps
 sudo bash setup.sh yourdomain.com you@youremail.com
 ```
 
-When it finishes, the site is live at `https://yourdomain.com`. The HTTPS certificate renews itself.
+It asks for your **Super Admin** username and password (you sign in with these), and whether to load sample topics. Say **no** for the real launch; sample content is only for trying things out.
 
-## Publishing a new version later
+The script installs Nginx, PHP, MariaDB, the firewall and SSH brute-force protection, creates the database with a random password, makes your account, runs a self-test (every line should say `ok`), sets up nightly backups and background jobs, and gets the HTTPS certificate.
 
-Upload the new zip, unzip it over the old folder, then:
+## After setup
+
+1. Visit `https://yourdomain.com` and sign in.
+2. **Admin → System**: set the **Live scores site** address and the **Fixtures feed** (see below).
+3. **Email**: open `/var/www/pitchside/app/config.php` and fill in the SMTP settings from your email provider (Brevo has a free tier; Amazon SES and Postmark also work). Then run `sudo systemctl reload 'php*-fpm'`. Until email is set up, new accounts are confirmed automatically and emails are written to `app/storage/mail.log`.
+4. **Human check on sign-up (recommended)**: create a free Cloudflare Turnstile widget for your domain and paste its site key and secret into `config.php`.
+5. **Legal pages**: Terms, Privacy and Cookies still contain placeholder text. Have them written for your business before launch.
+6. **At launch**: Admin → System → tick **Let Google and other search engines index the forum**.
+
+## Fixtures feed (from the live scores site)
+
+Every 5 minutes the forum reads a JSON list of matches from the address in Admin → System. Your live scores site should publish it like this:
+
+```json
+[
+  {"slug": "arsenal-vs-chelsea-2026-10-18", "league": "premier-league", "home": "arsenal", "away": "chelsea",
+   "at": "2026-10-18T15:00:00Z", "status": "upcoming"}
+]
+```
+
+`league`, `home` and `away` use the same slugs as Admin → Sports. A team the forum doesn't know can be sent with `"homeName"` / `"awayName"` instead. `status` is `upcoming`, `live`, `finished` or `postponed`.
+
+## Backups
+
+Every night at 03:15 the database, uploaded images and your settings file are saved to `/var/backups/pitchside` (kept 14 days). Admin → System shows when the last one ran.
+
+To also copy them off the server (strongly recommended, so a broken VPS can't take your forum with it):
+
+```
+sudo apt-get install -y rclone
+sudo rclone config        # add a remote named "offsite", e.g. Backblaze B2
+```
+
+The nightly backup uploads to it automatically from then on.
+
+To restore a database backup: `gunzip -c /var/backups/pitchside/db-DATE.sql.gz | sudo mysql pitchside`
+
+## Publishing a new version
+
+Upload and unzip the new `pitchside-vps.zip` over the old folder, then:
 
 ```
 cd pitchside-vps && sudo bash update.sh
 ```
 
-Each update saves the previous version in `/var/www/pitchside-backups` (last 10 kept).
+It backs up first, keeps your settings, uploads and database, adds any new tables, runs the self-test and tells you how to roll back.
 
-## Good to know
+## If something isn't right
 
-- **This is still the clickable prototype.** All data is sample data held in the visitor's browser, and changes reset on reload. Accounts, posts, payments, escrow and verification need a backend (database and server code) before launch. The VPS is ready to host that backend next to the site.
-- **Hidden from search engines for now.** `robots.txt` and a `noindex` tag keep the prototype out of Google. Remove both at launch.
-- **Testing roles:** add `?demo=1` to the address for the demo role switcher.
-- **Live scores** links point to a placeholder address (scores.pitchside.example) until the real scores site exists.
+| Check | Command |
+| --- | --- |
+| Run the self-test | `sudo -u www-data php /var/www/pitchside/app/selftest.php` |
+| Server errors | `sudo tail -50 /var/www/pitchside/app/storage/php-error.log` |
+| Background jobs | `sudo tail -50 /var/www/pitchside/app/storage/cron.log` |
+| Emails (when SMTP isn't set) | `sudo tail -50 /var/www/pitchside/app/storage/mail.log` |
+| Web server | `sudo tail -50 /var/log/nginx/error.log` |
+
+## Security notes
+
+- `app/config.php` holds the database password. It's readable only by root and the web server. Don't share it.
+- Passwords are hashed with Argon2id. Every change on the site is checked again on the server for permissions, and needs the session's security token.
+- Uploaded images are re-saved by the server (which strips hidden data and photo locations). Message attachments are private to the conversation.
+- Sign-in, sign-up, posting, messaging and searching are rate-limited.
+- Ubuntu installs security updates automatically. The firewall allows only SSH, HTTP and HTTPS.

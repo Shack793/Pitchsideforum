@@ -1,4 +1,4 @@
-# Auto-deploy Pitchside Forum to AlmaLinux VPS on every push to main.
+# Auto-deploy Pitchside Forum (full PHP app) to VPS on every push to main.
 #
 # Required GitHub Secrets (repo Settings -> Secrets and variables -> Actions -> New secret):
 #   SSH_HOST = 162.254.38.190
@@ -6,9 +6,15 @@
 #   SSH_PORT = 22
 #   SSH_KEY  = contents of deploy_key (private ED25519 key, see server.md)
 #
+# IMPORTANT for the new PHP backend: the 'deploy' user needs extra sudo rights.
+# On the server (as root) extend /etc/sudoers.d/deploy-nginx to include:
+#   deploy ALL=(root) NOPASSWD: /usr/bin/systemctl reload nginx, /usr/sbin/nginx -t, /usr/bin/rsync, /bin/tar, /usr/bin/tar, /usr/bin/chown, /usr/bin/chgrp, /usr/bin/chmod, /usr/bin/find, /usr/sbin/restorecon, /usr/bin/systemctl reload php*-fpm, /usr/sbin/php*, /usr/bin/php
+# Or simply (least hassle): deploy ALL=(root) NOPASSWD: ALL  -- then restrict later.
+# Also allow running PHP as the web user: deploy ALL=(www-data,nginx) NOPASSWD: /usr/bin/php
+#
 # Flow:
-#   1. Copy public/ to /home/deploy/pitchside-release/ via SCP
-#   2. SSH in: backup current /var/www/pitchside, rsync release -> live, fix perms, reload nginx
+#   1. Copy app/, public/, backup.sh, update.sh, deploy/ to /home/deploy/pitchside-release/ via SCP
+#   2. SSH in: backup code, rsync release -> /var/www/pitchside (keeping config.php/uploads/storage), migrate DB, reload php-fpm + nginx
 name: Deploy to VPS
 
 on:
@@ -31,8 +37,11 @@ jobs:
       - name: Verify site source exists
         run: |
           ls -la
-          test -f public/index.html || (echo "public/index.html missing — repo root must contain public/" && exit 1)
-          du -sh public/
+          test -f public/index.php || (echo "public/index.php missing — repo root must contain app/ + public/" && exit 1)
+          test -f app/install.php || (echo "app/install.php missing" && exit 1)
+          test -f app/schema.sql || (echo "app/schema.sql missing" && exit 1)
+          test -f deploy/nginx.conf || (echo "deploy/nginx.conf missing" && exit 1)
+          du -sh app/ public/
 
       - name: Copy files to VPS
         uses: appleboy/scp-action@v0.1.7
@@ -41,12 +50,11 @@ jobs:
           username: ${{ secrets.SSH_USER }}
           port: ${{ secrets.SSH_PORT }}
           key: ${{ secrets.SSH_KEY }}
-          source: "public/*"
+          source: "app,public,backup.sh,update.sh,deploy"
           target: "/home/deploy/pitchside-release/"
-          strip_components: 1
           overwrite: true
 
-      - name: Publish + reload nginx
+      - name: Publish + migrate + reload
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.SSH_HOST }}
@@ -56,23 +64,42 @@ jobs:
           script: |
             set -euo pipefail
             STAMP=$(date +%Y%m%d-%H%M%S)
-            mkdir -p /var/www/pitchside-backups
-            if [ -d /var/www/pitchside ]; then
-              tar -czf "/var/www/pitchside-backups/pitchside-$STAMP.tar.gz" -C /var/www pitchside
-              ls -1t /var/www/pitchside-backups/*.tar.gz | tail -n +11 | xargs -r rm -f
+            APP=/var/www/pitchside
+            REL=/home/deploy/pitchside-release
+            mkdir -p /var/www/pitchside-backups /var/backups/pitchside/code
+            if [ -d $APP ]; then
+              tar -czf "/var/www/pitchside-backups/pitchside-$STAMP.tar.gz" -C /var/www pitchside || true
+              ls -1t /var/www/pitchside-backups/*.tar.gz | tail -n +11 | xargs -r rm -f || true
+              tar -czf "/var/backups/pitchside/code/code-$STAMP.tar.gz" -C "$APP" --exclude 'public/uploads' --exclude 'app/storage' app public 2>/dev/null || true
               echo "Backup: /var/www/pitchside-backups/pitchside-$STAMP.tar.gz"
             fi
-            mkdir -p /var/www/pitchside
-            /usr/bin/rsync -a --delete /home/deploy/pitchside-release/ /var/www/pitchside/
-            sudo -n /bin/tar --version >/dev/null || true
-            # perms: nginx owns files, deploy group can write next time
-            sudo chown -R nginx:nginx /var/www/pitchside
-            sudo chgrp -R deploy /var/www/pitchside || true
-            sudo chmod 775 /var/www/pitchside
-            sudo find /var/www/pitchside -type d -exec chmod 755 {} \;
-            sudo find /var/www/pitchside -type f -exec chmod 644 {} \;
-            if command -v restorecon >/dev/null 2>&1; then sudo restorecon -Rv /var/www/pitchside || true; fi
+            # nightly DB+uploads backup first (new backup.sh location)
+            if [ -f $APP/backup.sh ]; then sudo bash $APP/backup.sh || true; fi
+            mkdir -p $APP
+            # web user differs: AlmaLinux=nginx, Ubuntu=www-data
+            WEBUSER=www-data; id nginx >/dev/null 2>&1 && [ -d /etc/nginx/conf.d ] && WEBUSER=nginx
+            echo "Web user: $WEBUSER"
+            sudo /usr/bin/rsync -a --delete --exclude 'app/config.php' --exclude 'app/storage/' --exclude 'public/uploads/' "$REL/app" "$REL/public" "$APP/"
+            sudo cp "$REL/backup.sh" "$REL/update.sh" "$APP/" 2>/dev/null || true
+            # refresh nginx config from deploy/nginx.conf (DOMAIN + PHP_SOCK filled in)
+            if [ -f "$REL/deploy/nginx.conf" ]; then
+              PHPV=$(php -r 'echo PHP_MAJOR_VERSION.".".PHP_MINOR_VERSION;' 2>/dev/null || echo "8.3")
+              PHPSOCK="/run/php/php${PHPV}-fpm.sock"; [ -S "/run/php-fpm/www.sock" ] && PHPSOCK="/run/php-fpm/www.sock"
+              DOMAIN=$(grep -m1 server_name /etc/nginx/conf.d/pitchside.conf /etc/nginx/sites-enabled/pitchside /etc/nginx/sites-available/pitchside 2>/dev/null | grep -oE '[a-z0-9.-]+\.[a-z]+' | head -1 || echo "pitchsideforum.com")
+              sudo sed -e "s/DOMAIN/$DOMAIN/g" -e "s#PHP_SOCK#$PHPSOCK#g" "$REL/deploy/nginx.conf" > /tmp/pitchside.new
+              if [ -d /etc/nginx/conf.d ]; then sudo cp /tmp/pitchside.new /etc/nginx/conf.d/pitchside.conf; else sudo cp /tmp/pitchside.new /etc/nginx/sites-available/pitchside; fi
+            fi
+            sudo chown -R root:$WEBUSER "$APP/app" "$APP/public"; sudo chown -R $WEBUSER:$WEBUSER "$APP/app/storage" "$APP/public/uploads" 2>/dev/null || sudo mkdir -p "$APP/app/storage" "$APP/public/uploads"
+            sudo chmod 640 "$APP/app/config.php" 2>/dev/null || true
+            sudo find "$APP/app/storage" "$APP/public/uploads" -type d -exec chmod 750 {} \; 2>/dev/null || true
+            if command -v restorecon >/dev/null 2>&1; then sudo restorecon -Rv $APP || true; fi
+            # DB migrate (adds new tables/settings only) + self-test
+            sudo -u $WEBUSER php "$APP/app/install.php" || sudo php "$APP/app/install.php"
+            sudo -u $WEBUSER php "$APP/app/selftest.php" || sudo php "$APP/app/selftest.php" || echo "!! self-test reported a problem — check output above"
+            PHPV=$(php -r 'echo PHP_MAJOR_VERSION.".".PHP_MINOR_VERSION;' 2>/dev/null || echo "")
+            if [ -n "$PHPV" ]; then sudo /usr/bin/systemctl reload "php$PHPV-fpm" 2>/dev/null || sudo /usr/bin/systemctl reload php-fpm 2>/dev/null || true; fi
             sudo /usr/sbin/nginx -t
             sudo /usr/bin/systemctl reload nginx
+            sudo rm -f "$APP/app/storage/cache/"*.json || true
             echo "Deployed $GITHUB_SHA at $STAMP"
             curl -s -o /dev/null -w "Local check HTTP %{http_code}\n" http://127.0.0.1/

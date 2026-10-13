@@ -3,3 +3,9 @@
 *_key.pub
 *.pem
 .env
+# local install secrets / runtime data (server-only, preserved by update.sh)
+app/config.php
+app/storage/*
+!app/storage/.keep
+public/uploads/*
+!public/uploads/.keep
