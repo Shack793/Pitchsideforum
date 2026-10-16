@@ -952,7 +952,7 @@ let ADS = [
 ];
 let AFFILIATES = [{partner:"Stakeline", op:"stakeline", since:ago(60*DAY), clicks:1932, disclosed:true},{partner:"Golden Reel", op:"golden-reel", since:ago(40*DAY), clicks:610, disclosed:true}];
 // Live scores run on a separate site with its own data feed, so the forum stays fast. Set the real address in Admin → System.
-let SETTINGS = {scoresUrl:"https://scores.pitchside.example", scoresUtm:true, bannerSecs:6, ageGate:true, matchThreadLeadHrs:2, archiveAfterDays:30, provider:"SportsDataStub v1", providerOk:true, cacheTtl:30, bannedDomains:["bet-tips-guaranteed.example","free-crypto-x.example"]};
+let SETTINGS = {scoresUrl:"https://livescorenow.xyz", scoresUtm:true, bannerSecs:6, ageGate:true, matchThreadLeadHrs:2, archiveAfterDays:30, provider:"SportsDataStub v1", providerOk:true, cacheTtl:30, bannedDomains:["bet-tips-guaranteed.example","free-crypto-x.example"]};
 
 
 /* =====================================================================
