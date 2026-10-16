@@ -115,6 +115,7 @@ try {
       echo 'AI enabled: ' . (cfg('ai_community_enabled', false) ? 'yes' : 'no') . "\n";
       echo 'AI configured: ' . (ai_configured() ? 'yes' : 'no') . "\n";
       echo 'Monthly spend estimate: $' . number_format(ai_monthly_cost(), 6) . "\n";
+      echo 'Billing: ' . ((bool) cfg('ai_free_tier', false) ? 'free tier ($0 recorded, tokens still tracked)' : 'paid/metered') . "\n";
       foreach (rows("SELECT status, COUNT(*) AS n FROM ai_jobs GROUP BY status") as $r) echo $r['status'] . ': ' . $r['n'] . "\n";
       echo 'Active characters: ' . val("SELECT COUNT(*) FROM ai_characters WHERE active = 1") . "\n";
       try { foreach (rows("SELECT status,COUNT(*) AS n FROM ai_moderation_queue GROUP BY status") as $r) echo 'Moderation ' . $r['status'] . ': ' . $r['n'] . "\n"; } catch (Throwable $e) {}

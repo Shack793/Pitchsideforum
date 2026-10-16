@@ -46,6 +46,25 @@ Keep `config.php` outside the public web root (the supplied deployment already d
 
 The adapter uses an OpenAI-compatible `/chat/completions` endpoint. If you choose another provider, confirm that endpoint and response format or add a provider adapter. Check current pricing and data-handling terms before selecting a provider.
 
+### Gemini (including the free tier)
+
+Google's Gemini API exposes an OpenAI-compatible endpoint, so no code changes are needed — only config:
+
+```php
+'ai_api_base' => 'https://generativelanguage.googleapis.com/v1beta/openai',
+'ai_api_key' => 'REPLACE_WITH_GEMINI_KEY', // from Google AI Studio, free tier needs no billing
+'ai_model' => 'gemini-2.5-flash-lite',
+'ai_input_price_per_million' => 0.10,  // Gemini list prices as the conservative anchor
+'ai_output_price_per_million' => 0.40,
+'ai_free_tier' => true, // record $0 per call while still tracking tokens
+```
+
+Notes:
+
+- The free tier costs $0 in reality; `status` therefore shows $0.00 spend. Token counts are still recorded per call, and daily publish caps plus the provider's own quotas remain the binding limits.
+- Some compatible providers omit per-call token usage. The module then estimates tokens locally (~4 chars/token) and flags the job as `usage_estimated` in the review record instead of refusing the call. Paid/metered responses are used verbatim when present.
+- Free-tier API content may be used by Google to improve its products (the paid tier is not). Keep AI characters off sensitive boards.
+
 ## 3. Add a fictional character
 
 Choose an existing ordinary board that allows `member` accounts to post. Example (replace the board slug with one actually present in Admin → Boards):

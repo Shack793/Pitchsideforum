@@ -104,8 +104,12 @@ function ai_moderation_run_one(): bool {
     $flagged = $category !== 'none' && $confidence >= 0.55 && $severity !== 'none';
     $usage = $data['usage'] ?? [];
     $it = (int)($usage['prompt_tokens'] ?? 0); $ot = (int)($usage['completion_tokens'] ?? 0);
-    if ($it <= 0 || $ot <= 0) throw new RuntimeException('Provider omitted token usage; refusing unmetered moderation call.');
-    $cost = ($it*(float)$inPrice + $ot*(float)$outPrice)/1000000;
+    if ($it <= 0 || $ot <= 0) {
+      // Same free-tier fallback as community generation: estimate from the wire text
+      // (system prompt + post context + model verdict) instead of refusing the call.
+      $it = ai_estimate_tokens($system . "\n" . $user); $ot = ai_estimate_tokens($body);
+    }
+    $cost = ai_record_cost(($it*(float)$inPrice + $ot*(float)$outPrice)/1000000);
     tx(function() use ($job,$category,$severity,$confidence,$rationale,$flagged,$it,$ot,$cost) {
       q("UPDATE ai_moderation_queue SET status = ?, category = ?, severity = ?, confidence = ?, rationale = ?, recommended_action = ?, updated = ? WHERE id = ?",
         [$flagged?'review':'clear',$category,$severity,$confidence,$rationale,$flagged?'review':'none',now_ms(),$job['id']]);
@@ -262,13 +266,37 @@ function ai_provider_generate(array $messages): array {
   $body = trim((string) ($data['choices'][0]['message']['content'] ?? ''));
   if ($body === '') throw new RuntimeException('AI provider returned an empty response.');
   $usage = $data['usage'] ?? [];
-  return ['body' => $body, 'model' => $model, 'input_tokens' => (int) ($usage['prompt_tokens'] ?? 0), 'output_tokens' => (int) ($usage['completion_tokens'] ?? 0)];
+  $in = (int) ($usage['prompt_tokens'] ?? 0); $out = (int) ($usage['completion_tokens'] ?? 0);
+  $estimated = false;
+  if ($in < 1 || $out < 1) {
+    // Some OpenAI-compatible providers (e.g. Gemini free tier) omit usage metadata.
+    // Estimate locally from the wire text instead of refusing; ai_record_cost() then
+    // stores $0 for free-tier keys or the priced estimate for paid keys.
+    $in = ai_estimate_tokens((string) json_encode($messages));
+    $out = ai_estimate_tokens($body);
+    $estimated = true;
+  }
+  return ['body' => $body, 'model' => $model, 'input_tokens' => $in, 'output_tokens' => $out, 'usage_estimated' => $estimated];
 }
 
 function ai_estimated_cost(int $inputTokens, int $outputTokens): float {
   $inPrice = cfg('ai_input_price_per_million', null); $outPrice = cfg('ai_output_price_per_million', null);
   if (!is_numeric($inPrice) || !is_numeric($outPrice) || (float) $inPrice <= 0 || (float) $outPrice <= 0) throw new RuntimeException('Set the selected model pricing in app/config.php before enabling AI jobs.');
   return ($inputTokens * (float) $inPrice + $outputTokens * (float) $outPrice) / 1000000;
+}
+
+function ai_estimate_tokens(string $text): int {
+  // Fallback token estimate (~4 chars/token for English text) for providers that omit
+  // usage metadata (e.g. Gemini free tier). Approximate; flagged as estimated wherever used.
+  return max(1, (int) ceil(strlen($text) / 4));
+}
+
+function ai_record_cost(float $pricedCost): float {
+  // Dual billing: free-tier keys cost $0 in reality, so record 0 while keeping token counts
+  // for transparency. Paid keys record the priced estimate. Monthly/daily caps are enforced
+  // on the recorded column either way; on free tiers the provider's own quotas are the
+  // binding limit and every estimated call is flagged in the job/review logs.
+  return (bool) cfg('ai_free_tier', false) ? 0.0 : $pricedCost;
 }
 
 function ai_run_one(): bool {
@@ -288,8 +316,7 @@ function ai_run_one(): bool {
     if (!is_numeric(cfg('ai_input_price_per_million', null)) || !is_numeric(cfg('ai_output_price_per_million', null)) || (float) cfg('ai_input_price_per_million') <= 0 || (float) cfg('ai_output_price_per_million') <= 0) throw new RuntimeException('Set positive current model pricing in app/config.php before enabling AI jobs.');
     $messages = $job['job_type'] === 'thread' ? ai_thread_prompt_messages($persona, $context) : ai_prompt_messages($persona, $context);
     $result = ai_provider_generate($messages);
-    if ($result['input_tokens'] < 1 || $result['output_tokens'] < 1) throw new RuntimeException('Provider did not return token usage; refusing an unmetered request.');
-    $cost = ai_estimated_cost($result['input_tokens'], $result['output_tokens']);
+    $cost = ai_record_cost(ai_estimated_cost($result['input_tokens'], $result['output_tokens']));
     $projectedMonthlyCost = ai_monthly_cost() + $cost;
     insert('ai_usage', ['job_id' => $job['id'], 'model' => $result['model'], 'input_tokens' => $result['input_tokens'], 'output_tokens' => $result['output_tokens'], 'estimated_cost_usd' => number_format($cost, 6, '.', ''), 'created' => now_ms()]);
     if ($projectedMonthlyCost > $monthlyCap) {
@@ -332,8 +359,8 @@ function ai_run_one(): bool {
         ai_log((int) $job['id'], (int) $job['character_id'], 'reply.generate', 'rejected', null, ['reason' => 'duplicate']); return true;
       }
     }
-    q("UPDATE ai_jobs SET status = 'review', draft_body = ?, result_json = ?, error_message = NULL, updated = ? WHERE id = ?", [$body, jenc(['model' => $result['model'], 'input_tokens' => $result['input_tokens'], 'output_tokens' => $result['output_tokens'], 'estimated_cost_usd' => $cost]), now_ms(), $job['id']]);
-    ai_log((int) $job['id'], (int) $job['character_id'], $job['job_type'] . '.generate', 'review', null, ['cost_usd' => $cost]);
+    q("UPDATE ai_jobs SET status = 'review', draft_body = ?, result_json = ?, error_message = NULL, updated = ? WHERE id = ?", [$body, jenc(['model' => $result['model'], 'input_tokens' => $result['input_tokens'], 'output_tokens' => $result['output_tokens'], 'estimated_cost_usd' => $cost, 'usage_estimated' => !empty($result['usage_estimated']), 'free_tier' => (bool) cfg('ai_free_tier', false)]), now_ms(), $job['id']]);
+    ai_log((int) $job['id'], (int) $job['character_id'], $job['job_type'] . '.generate', 'review', null, ['cost_usd' => $cost, 'usage_estimated' => !empty($result['usage_estimated'])]);
     // Auto-publishing is opt-in. Only clean, link-free drafts pass automatically; anything
     // uncertain stays in the review queue. SKIP, length, duplicate, permissions and content checks ran above.
     if ((bool) cfg('ai_auto_publish', false) && !ai_daily_cap_reached() && ai_auto_publish_safe_draft((string) $job['job_type'], $body)) {

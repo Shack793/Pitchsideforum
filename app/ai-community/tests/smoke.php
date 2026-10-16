@@ -50,6 +50,12 @@ $thrown = false;
 try { ai_estimated_cost(100, 100); } catch (RuntimeException $e) { $thrown = true; }
 check($thrown, 'cost calculation refuses missing/zero prices');
 check(ai_configured() === false, 'generation remains disabled by default in test configuration');
+check(ai_estimate_tokens('abcd') === 1, 'token estimator floors at one token');
+check(ai_estimate_tokens(str_repeat('a', 9)) === 3, 'token estimator scales with text length');
+$GLOBALS['TEST_CFG']['ai_free_tier'] = true;
+check(ai_record_cost(0.5) === 0.0, 'free tier records zero cost');
+$GLOBALS['TEST_CFG']['ai_free_tier'] = false;
+check(ai_record_cost(0.5) === 0.5, 'paid tier records the priced estimate');
 check(ai_moderation_configured() === false, 'moderation remains disabled by default in test configuration');
 
 $root = dirname(__DIR__, 2); // app/
@@ -69,6 +75,8 @@ check(str_contains((string)$cli, "case 'queue-thread':") && str_contains((string
 check(str_contains((string)$cron, 'ai_community_cron();') && str_contains((string)$cron, 'ai_moderation_cron();'), 'existing cron hook contains both workers');
 check(str_contains((string)$service, "cfg('ai_auto_publish', false)"), 'automatic publishing is explicitly opt-in');
 check(str_contains((string)$service, 'ai_daily_publish_cap') && str_contains((string)$service, 'ai_daily_cap_reached'), 'global daily publishing ceiling is enforced');
+check(str_contains((string)$service, 'ai_estimate_tokens') && str_contains((string)$service, 'usage_estimated'), 'providers omitting usage fall back to flagged local estimates');
+check(str_contains((string)$service, "cfg('ai_free_tier', false)"), 'free-tier billing records zero cost while tracking tokens');
 check(str_contains((string)$service, 'function ai_discover_reply_candidate'), 'cron can discover replies to recent member discussions');
 check(str_contains((string)$service, 'ai_review_backlog_limit'), 'review backlog is bounded so uncertain drafts do not accumulate indefinitely');
 
