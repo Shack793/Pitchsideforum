@@ -60,6 +60,16 @@ if ($archive > 0) q("UPDATE topics SET archived = 1, pinned = 0, updated = ? WHE
 // Match threads stay pinned only around the game
 q("UPDATE topics SET pinned = 0, updated = ? WHERE auto = 1 AND pinned = 1 AND at < ?", [$now, $now - 2 * DAY_MS]);
 
+/* ---------- 2b. Complaints: operators get 7 days to answer ---------- */
+if (function_exists('set_case_status')) foreach (rows("SELECT * FROM complaints WHERE status = 'Awaiting Business' AND deadline IS NOT NULL AND deadline < ?", [$now]) as $c) {
+  try {
+    case_msg($c['id'], 'system', 'No operator response in 7 days. A specialist will decide the case.', 'system');
+    set_case_status($c, 'Under Investigation', null, 'Operator missed the 7-day deadline');
+    insert('reports', ['queue' => 'complaints', 'kind' => 'complaint', 'target' => jenc(['complaint' => $c['id']]), 'board' => null, 'reason' => 'Operator missed the 7-day deadline: record an outcome (No Response?)', 'by_user' => 'system', 'at' => $now, 'status' => 'open', 'updated' => $now]);
+    $log("complaint {$c['id']}: operator deadline passed");
+  } catch (Throwable $x) { $log('complaint deadline failed: ' . $x->getMessage()); }
+}
+
 /* ---------- 3. Email notifications (at most one email per member per hour) ---------- */
 if (mail_ready()) {
   $due = rows("SELECT DISTINCT to_user FROM notifs WHERE is_read = 0 AND emailed = 0 AND at < ? AND at > ?", [$now - 10 * 60000, $now - 3 * DAY_MS]);
@@ -95,7 +105,12 @@ foreach (rows("SELECT * FROM users WHERE delete_after IS NOT NULL AND delete_aft
   $log("deleted account #{$r['id']}");
 }
 
-/* ---------- 5. Housekeeping ---------- */
+/* ---------- 5. AI Community pilot (disabled unless explicitly configured) ---------- */
+require_once APP_DIR . '/ai-community/service.php';
+ai_community_cron();
+ai_moderation_cron();
+
+/* ---------- 6. Housekeeping ---------- */
 q("DELETE FROM sessions WHERE last_seen < ?", [$now - SESSION_DAYS * DAY_MS]);
 q("DELETE FROM sessions WHERE pending_2fa = 1 AND created < ?", [$now - 3600000]);
 q("DELETE FROM tokens WHERE expires < ?", [$now]);

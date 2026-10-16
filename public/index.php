@@ -63,6 +63,17 @@ try {
     $title = $seg[1] . " | $site member"; $index = false;
   } elseif (in_array($seg[0] ?? '', ['messages', 'settings', 'admin', 'mod', 'notifications', 'reset', 'verify', 'search'], true)) {
     $index = false;
+  } elseif (in_array($seg[0] ?? '', ['casinos', 'sportsbooks'], true) && isset($seg[1]) && feature_on('casinos')) {
+    $r = row("SELECT data FROM operators WHERE slug = ?", [$seg[1]]);
+    if (!$r) { $status = 404; $index = false; }
+    else { $o = jdec($r['data'], []); $n = (int) val("SELECT COUNT(*) FROM reviews WHERE op = ? AND status <> 'removed'", [$seg[1]]);
+      $title = "{$o['name']} review: payouts, complaints, Safety Index | $site"; $desc = "Member reviews ($n), complaints and licence details for {$o['name']}. " . ($o['license'] ?? '');
+      $body = '<h1>' . $h($o['name']) . '</h1><p>' . $h($o['license'] ?? '') . '</p>'; }
+  } elseif (($seg[0] ?? '') === 'complaints' && isset($seg[1]) && feature_on('complaints')) {
+    $c = row("SELECT * FROM complaints WHERE id = ?", [$seg[1]]);
+    if (!$c) { $status = 404; $index = false; }
+    else { $title = "{$c['title']} ({$c['id']}) | Complaints | $site"; $desc = $excerpt($c['statement']);
+      $body = '<article><h1>' . $h($c['title']) . '</h1><p>' . $h($c['id']) . ' · ' . $h($c['status']) . '</p><div>' . $postHtml($c['statement']) . '</div></article>'; }
   } elseif (($seg[0] ?? '') === 'teams' || ($seg[0] ?? '') === 'leagues') {
     $list = doc($seg[0] === 'teams' ? 'TEAMS' : 'LEAGUES');
     foreach ($list as $x) if (($x['slug'] ?? '') === ($seg[1] ?? '')) { $title = $x['name'] . ($seg[0] === 'teams' ? ' fans forum' : ' forum') . " | $site"; $desc = "{$x['name']} discussion, fixtures and match threads on $site."; $body = '<h1>' . $h($x['name']) . '</h1>'; }

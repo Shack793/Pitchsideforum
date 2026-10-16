@@ -91,6 +91,12 @@ op('post.edit', function (array $in, array $u) {
   if ($body === $p['body']) return [];
   $rev = jdec($p['revisions'], []); $rev[] = ['at' => now_ms(), 'body' => $p['body'], 'by' => $u['name']];
   q("UPDATE posts SET body = ?, revisions = ? WHERE id = ?", [$body, jenc($rev), $p['id']]);
+  // The first post of a review topic is the review itself
+  if (!empty($t['review_id']) && (int) val("SELECT MIN(id) FROM posts WHERE topic_id = ?", [$t['id']]) === (int) $p['id']) {
+    $r = row("SELECT * FROM reviews WHERE id = ?", [(int) $t['review_id']]);
+    if ($r) { $h = jdec($r['history'], []); $h[] = ['at' => now_ms(), 'stars' => (int) $r['stars'], 'body' => $r['body']];
+      q("UPDATE reviews SET body = ?, history = ?, updated = ? WHERE id = ?", [$body, jenc($h), now_ms(), $r['id']]); }
+  }
   touch_topic((int) $t['id']);
   if (!$own) audit($u, 'Edited content', "post #{$p['id']} in topic #{$t['id']}", 'Moderator edit', 'previous revision', 'edited');
   return [];

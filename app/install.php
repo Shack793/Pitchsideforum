@@ -17,6 +17,13 @@ foreach ($statements as $st) {
   if (cfg('db_driver') === 'sqlite') foreach (sqlite_statements($st) as $s2) db()->exec($s2);
   else db()->exec($st);
 }
+// Columns added after the first release (safe to run again)
+function has_column(string $table, string $col): bool {
+  if (cfg('db_driver') === 'sqlite') { foreach (rows("PRAGMA table_info($table)") as $c) if ($c['name'] === $col) return true; return false; }
+  return (bool) row("SHOW COLUMNS FROM $table LIKE ?", [$col]);
+}
+foreach ([['topics', 'review_id', 'INT NULL'], ['topics', 'complaint_id', 'VARCHAR(16) NULL']] as [$t, $c, $type])
+  if (!has_column($t, $c)) db()->exec("ALTER TABLE $t ADD COLUMN $c $type");
 $say('Tables ready.');
 
 // Turns the MySQL schema into SQLite (used only for local testing).
@@ -53,6 +60,14 @@ foreach (DOC_KEYS as $k) {
   $say("Loaded default settings: $k");
 }
 
+/* ---------- Upgrades for sites installed with an earlier phase ---------- */
+$phase = (int) (meta_get('phase', '1'));
+if ($phase < 2) {
+  // Phase 2 opens Casinos & Sportsbooks, reviews, complaints and the blacklist
+  $s = doc('SETTINGS'); $s['features'] = array_merge(['marketplace' => false, 'escrow' => false, 'verification' => false], $s['features'] ?? [], ['casinos' => true, 'complaints' => true]);
+  save_doc('SETTINGS', $s); meta_set('phase', '2'); $say('Upgraded to Phase 2: casinos, reviews, complaints and the blacklist are open.');
+}
+
 /* ---------- 3. First Super Admin ---------- */
 if (!val("SELECT 1 FROM users WHERE role = 'super_admin'")) {
   $name = strtolower(preg_replace('/[^A-Za-z0-9_]/', '_', (string) ($opt['admin'] ?? '')));
@@ -83,7 +98,7 @@ if (isset($opt['demo'])) {
     foreach ($d['topics'] as $t) {
       $last = max(array_map(fn($p) => $T($p['at']), $t['posts']));
       $poll = $t['poll'] ? ['q' => $t['poll']['q'], 'multi' => $t['poll']['multi'], 'publicResults' => $t['poll']['publicResults'], 'closes' => $T($t['poll']['closes']), 'options' => array_map(fn($o) => ['t' => $o['t']], $t['poll']['options'])] : null;
-      insert('topics', ['id' => $t['id'], 'board' => $t['board'], 'title' => $t['title'], 'author' => $t['author'], 'at' => $T($t['at']), 'last_at' => $last, 'pinned' => $t['pinned'] ? 1 : 0,
+      insert('topics', ['id' => $t['id'], 'review_id' => $t['review'] ?? null, 'complaint_id' => $t['complaint'] ?? null, 'board' => $t['board'], 'title' => $t['title'], 'author' => $t['author'], 'at' => $T($t['at']), 'last_at' => $last, 'pinned' => $t['pinned'] ? 1 : 0,
         'locked' => $t['locked'] ? 1 : 0, 'archived' => $t['archived'] ? 1 : 0, 'auto' => $t['auto'] ? 1 : 0, 'tags' => jenc($t['tags']), 'teams' => jenc($t['teams']),
         'league' => $t['league'], 'event' => $t['event'], 'views' => (int) $t['views'], 'poll' => $poll ? jenc($poll) : null, 'updated' => $now]);
       if ($t['poll']) foreach ($t['poll']['options'] as $i => $o) foreach ($o['v'] as $voter) insert_ignore('poll_votes', ['topic_id' => $t['id'], 'user' => $voter, 'opt' => $i]);
@@ -112,6 +127,25 @@ if (isset($opt['demo'])) {
     }
     foreach ($d['audit'] as $a) insert('audit', ['at' => $T($a['at']), 'actor' => $a['actor'], 'action' => $a['action'], 'object' => $a['object'], 'reason' => $a['reason'], 'prev' => (string) $a['prev'], 'next' => (string) $a['next']]);
     foreach ($d['predictions'] as $ev => $ps) foreach ($ps as $u => $v) insert_ignore('predictions', ['event' => $ev, 'user' => $u, 'v' => $v, 'at' => $now]);
+    // Sample casinos, sportsbooks, reviews and complaints (fictional, for a staging site)
+    foreach ($d['operators'] as $o) { $o['reps'] = array_values(array_filter($o['reps'] ?? [], fn($r) => (bool) val("SELECT 1 FROM users WHERE name = ?", [$r]))); $o['pendingClaim'] = null;
+      if (!empty($o['blacklist']['at'])) $o['blacklist']['at'] = $T($o['blacklist']['at']); insert('operators', ['slug' => $o['slug'], 'data' => jenc($o), 'created' => $now, 'updated' => $now]); }
+    foreach ($d['reviews'] as $r) {
+      insert('reviews', ['id' => $r['id'], 'op' => $r['op'], 'user' => $r['user'], 'stars' => $r['stars'], 'scores' => jenc($r['scores']), 'title' => $r['title'], 'body' => $r['body'], 'status' => $r['status'],
+        'at' => $T($r['at']), 'response' => $r['response'] ? jenc(array_merge($r['response'], ['at' => $T($r['response']['at'])])) : null,
+        'history' => jenc(array_map(fn($h) => array_merge($h, ['at' => $T($h['at'])]), $r['history'])), 'thread' => $r['thread'] ?? null, 'updated' => $now]);
+      foreach ($r['helpful'] as $v) insert_ignore('review_votes', ['review_id' => $r['id'], 'user' => $v, 'v' => 1]);
+      foreach ($r['unhelpful'] as $v) insert_ignore('review_votes', ['review_id' => $r['id'], 'user' => $v, 'v' => -1]);
+    }
+    foreach ($d['complaints'] as $c) {
+      $seq = (int) substr($c['id'], 3);
+      insert('complaints', ['id' => $c['id'], 'seq' => $seq, 'op' => $c['op'], 'user' => $c['user'], 'title' => $c['title'], 'cat' => $c['cat'], 'amount' => (int) $c['amount'], 'refunded' => (int) $c['refunded'],
+        'status' => $c['status'], 'at' => $T($c['at']), 'deadline' => $c['status'] === 'Awaiting Business' ? $now + 2 * DAY_MS : null, 'specialist' => $c['specialist'], 'statement' => $c['statement'],
+        'evidence' => jenc(array_map(fn($e) => ['name' => $e['name'], 'public' => $e['public']], $c['evidence'])), 'mod_notes' => jenc(array_map(fn($n) => array_merge($n, ['at' => $T($n['at'])]), $c['modNotes'])),
+        'support' => 1, 'thread' => $c['thread'] ?? null, 'updated' => $now]);
+      foreach ($c['messages'] as $m) insert('complaint_msgs', ['complaint_id' => $c['id'], 'by_user' => $m['by'], 'body' => $m['body'], 'at' => $T($m['at']), 'role' => $m['role']]);
+      foreach ($c['followers'] as $f) insert_ignore('complaint_follows', ['complaint_id' => $c['id'], 'user' => $f]);
+    }
     save_doc('MOD_PROFILES', (object) $d['docs']['MOD_PROFILES']);
     $boards = doc('BOARDS'); foreach ($boards as &$b) $b['mods'] = $d['docs']['BOARD_MODS'][$b['slug']] ?? []; unset($b); save_doc('BOARDS', $boards);
     save_doc('EVENTS', array_map(function ($e) use ($T) { $e['at'] = $T($e['at']); return $e; }, $d['docs']['EVENTS']));

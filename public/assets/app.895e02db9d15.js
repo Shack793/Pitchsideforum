@@ -962,7 +962,7 @@ let SETTINGS = {scoresUrl:"https://scores.pitchside.example", scoresUtm:true, ba
    escrow.arbitrate decide disputes. Buyer pays the platform fee on top.
    ===================================================================== */
 let ESCROW_SETTINGS = {
-  feePct: 1, feeMin: 10,    // platform fee: 1% or $10, whichever is higher; paid by the buyer, taken by the contract on release
+  feePct: 2.5, feeMin: 10,  // platform fee: 2.5% or $10, whichever is higher; paid by the buyer, taken by the contract on release
   minUsd: 10, maxUsd: 5000, // per-deal limits
   autoReleaseDays: 5,       // after the seller marks it shipped/delivered
   depositHours: 24,         // unpaid deals expire
@@ -2198,7 +2198,7 @@ function vHub(qs={}){
         <label class="row" style="gap:6px;font-size:.92rem">Country <select class="inp" style="width:auto" data-change="hubCountry" id="hubCountry"><option value="all">Any</option>${countries.map(c=>`<option ${f.country===c?"selected":""}>${c}</option>`).join("")}</select></label>
         <label class="row" style="gap:6px;font-size:.92rem">Sort <select class="inp" style="width:auto" data-change="hubSort" id="hubSort">${[["safety","Safety Index"],["feedback","User feedback"],["complaints","Most complaints"],["newest","Newest"]].map(([v,t])=>`<option value="${v}" ${f.sort===v?"selected":""}>${t}</option>`).join("")}</select></label>
       </form>
-      ${list.map((o,i) => opCard(o, i+1)).join("") || `<div class="panel empty">Nothing matches these filters.</div>`}
+      ${list.map((o,i) => opCard(o, i+1)).join("") || `<div class="panel empty">${OPERATORS.length ? "Nothing matches these filters." : `No casinos or sportsbooks have been added yet.${can("manageCategories") ? ` ${link("/admin/businesses","Add the first one")}.` : ""}`}</div>`}
       ${nBlack ? `<div class="notice red"><strong>${nBlack} blacklisted operator${nBlack>1?"s are":" is"} not listed here.</strong><span>${link("/blacklist","See the blacklist")} and why we warn players to avoid them.</span></div>` : ""}
     </div><aside class="stack">
       <section class="panel"><h3 class="ph">Complaint Center</h3>
@@ -2410,7 +2410,7 @@ function vComplaint(id, qs={}){
       <dt>Issue</dt><dd>${esc(c.cat)}</dd><dt>Status</dt><dd>${statusPill(c.status)}</dd><dt>Specialist</dt><dd>${c.specialist?ulink(c.specialist):'<span class="muted">Not assigned yet</span>'}</dd>
       <dt>Opened</dt><dd>${dday(c.at)}</dd><dt>Last update</dt><dd>${rel(lastCaseAt(c))}</dd><dt>Contacted support</dt><dd>${c.contactedSupport?"Yes":"No"}</dd></dl></section>
     <section class="panel"><h3 class="ph">Evidence ${mine && open ? `<button class="btn small" type="button" data-act="addEvidence" data-id="${c.id}">Add</button>`:""}</h3>
-      ${c.evidence.map((e,i)=>seeEv(e)?`<div class="spread" style="padding:6px 0;border-top:1px solid var(--line)"><span class="mono" style="font-size:.85rem;overflow-wrap:anywhere">📎 ${esc(e.name)}</span><span class="row">${e.public?'<span class="pill green">Public</span>':'<span class="pill">Private</span>'}${mine?`<button class="btn small ghost" type="button" data-act="toggleEvidence" data-id="${c.id}" data-i="${i}">Make ${e.public?"private":"public"}</button>`:""}</span></div>`:"").join("") || '<p class="muted" style="margin:0;font-size:.9rem">No evidence uploaded.</p>'}
+      ${c.evidence.map((e,i)=>seeEv(e)?`<div class="spread" style="padding:6px 0;border-top:1px solid var(--line)"><span class="mono" style="font-size:.85rem;overflow-wrap:anywhere">📎 ${e.url ? `<a href="${esc(e.url)}" target="_blank" rel="noopener">${esc(e.name)}</a>` : esc(e.name)}</span><span class="row">${e.public?'<span class="pill green">Public</span>':'<span class="pill">Private</span>'}${mine?`<button class="btn small ghost" type="button" data-act="toggleEvidence" data-id="${c.id}" data-i="${i}">Make ${e.public?"private":"public"}</button>`:""}</span></div>`:"").join("") || '<p class="muted" style="margin:0;font-size:.9rem">No evidence uploaded.</p>'}
       ${c.evidence.some(e=>!seeEv(e))?`<p class="muted" style="font-size:.85rem;margin:8px 0 0">${c.evidence.filter(e=>!seeEv(e)).length} private file(s) visible only to the player and specialists.</p>`:""}</section>
     ${specTools}
     <section class="panel"><h3 class="ph">Effect on the Safety Index</h3><p class="muted" style="margin:0;font-size:.9rem">${{Resolved:"Resolved cases improve the operator's complaint-handling score.","Partially Resolved":"A partial resolution counts slightly against the operator.",Unresolved:"Unresolved cases lower the Safety Index, more so for larger amounts.","No Response":"Ignoring a complaint is the biggest penalty in the Safety Index.",Rejected:"Rejected cases don't affect the Safety Index.",Closed:"Withdrawn cases don't affect the Safety Index.",Escalated:"Escalated cases count against the operator until decided."}[c.status] || "Open cases don't affect the score until there's an outcome."}</p></section>
@@ -4672,13 +4672,13 @@ Object.assign(ACT, {
    ===================================================================== */
 const PS = {since:0, csrf:null, docVers:{}, docSnap:{}, impBase:{}, clickAdd:{}, viewed:{}, convRead:{}, loading:{}, missing:{}, searched:null, firstApply:true, pushing:false};
 const LIVE_DOCS = ["CATEGORIES","BOARDS","TAGS","NAV","SEO","SETTINGS","LAYOUT","BANNERS","SIDE_SLOTS","SIDE_ADS","TICKER","POST_ADS","AFF_LINKS",
-  "SPORTS","LEAGUES","TEAMS","SPORT_BOARD","PERMS","LIMITS","RANKS","MOD_TEMPLATES","MOD_PROFILES","EVENTS"];
+  "SPORTS","LEAGUES","TEAMS","SPORT_BOARD","PERMS","LIMITS","RANKS","MOD_TEMPLATES","MOD_PROFILES","EVENTS","SAFETY_W","WEIGHTS"];
 const PUSHABLE = LIVE_DOCS.filter(k => k !== "EVENTS");
 const AD_KIND = {BANNERS:"banner", SIDE_ADS:"side", POST_ADS:"post"};
 
 /* ---------- Settings documents: read, replace, compare ---------- */
 function docGet(k){ return ({CATEGORIES, BOARDS, TAGS, NAV, SEO, SETTINGS, LAYOUT, BANNERS, SIDE_SLOTS, SIDE_ADS, TICKER, POST_ADS, AFF_LINKS,
-  SPORTS, LEAGUES, TEAMS, SPORT_BOARD, PERMS, LIMITS, RANKS, MOD_TEMPLATES, MOD_PROFILES, EVENTS})[k]; }
+  SPORTS, LEAGUES, TEAMS, SPORT_BOARD, PERMS, LIMITS, RANKS, MOD_TEMPLATES, MOD_PROFILES, EVENTS, SAFETY_W, WEIGHTS})[k]; }
 function replaceObj(target, src){ Object.keys(target).forEach(x => delete target[x]); Object.assign(target, src); }
 function docSet(k, v){
   switch (k){
@@ -4688,6 +4688,7 @@ function docSet(k, v){
     case "AFF_LINKS": AFF_LINKS = v; break; case "SPORTS": SPORTS = v; break; case "LEAGUES": LEAGUES = v; break; case "TEAMS": TEAMS = v; break;
     case "RANKS": RANKS = v; break; case "MOD_TEMPLATES": MOD_TEMPLATES = v; break; case "MOD_PROFILES": MOD_PROFILES = Array.isArray(v) ? {} : v; break;
     case "EVENTS": EVENTS = v; break;
+    case "SAFETY_W": SAFETY_W = v; break; case "WEIGHTS": WEIGHTS = v; break;
     case "SPORT_BOARD": replaceObj(SPORT_BOARD, Array.isArray(v) ? {} : v); break;
     case "PERMS": replaceObj(PERMS, v); break; case "LIMITS": replaceObj(LIMITS, v); break;
   }
@@ -4709,8 +4710,9 @@ function apply(d){
     TOPICS = []; CONVS = []; NOTIFS = []; REPORTS = []; AUDIT = []; FOLLOWS = {}; BOOKMARKS = {}; READS = {}; BLOCKS = {}; AFF_CLICKS = [];
     Object.keys(PREDICTIONS).forEach(k => delete PREDICTIONS[k]);
     if (PS.firstApply){ Object.keys(USERS).forEach(k => delete USERS[k]);
-      // Casino directory, complaints, marketplace listings and escrow open in later phases
-      OPERATORS = []; REVIEWS = []; COMPLAINTS = []; LISTINGS = []; ESCROWS = []; PS.firstApply = false; }
+      // Marketplace listings and escrow open in later phases
+      LISTINGS = []; ESCROWS = []; PS.firstApply = false; }
+    OPERATORS = []; REVIEWS = []; COMPLAINTS = [];
     changed = true;
   }
   Object.entries(d.users || {}).forEach(([n, u]) => { USERS[n] = liveUser(u); });
@@ -4724,6 +4726,11 @@ function apply(d){
   if (d.convs && d.convs.length){ upsertBy(CONVS, d.convs); changed = true; }
   if (d.notifs && d.notifs.length){ upsertBy(NOTIFS, d.notifs); NOTIFS.sort((a, b) => a.at - b.at); changed = true; }
   if (d.reports && d.reports.length){ upsertBy(REPORTS, d.reports); changed = true; }
+  // Phase 2: casinos & sportsbooks, reviews, complaints
+  if (d.operators && d.operators.length){ upsertBy(OPERATORS, d.operators.map(o => Object.assign({reps:[], countries:[], withdrawals:[], pros:[], cons:[], unfairTerms:[], warning:null, blacklist:null}, o)), "slug"); changed = true; }
+  if (d.reviews && d.reviews.length){ upsertBy(REVIEWS, d.reviews.map(r => Object.assign(r, {helpful:new Set(r.helpful), unhelpful:new Set(r.unhelpful)}))); changed = true; }
+  if (d.complaints && d.complaints.length){ upsertBy(COMPLAINTS, d.complaints.map(c => Object.assign(c, {followers:new Set(c.followers)}))); COMPLAINTS.sort((a,b) => +a.id.slice(3) - +b.id.slice(3)); changed = true; }
+  if (d.operators || d.docs && d.docs.AFF_LINKS) syncAffiliateFlags();
   if (d.audit && d.audit.length){ upsertBy(AUDIT, d.audit); AUDIT.sort((a, b) => b.at - a.at); changed = true; }
   if (d.affClicks && d.affClicks.length) AFF_CLICKS = d.full ? d.affClicks : AFF_CLICKS.concat(d.affClicks);
   Object.entries(d.predictions || {}).forEach(([ev, m]) => { PREDICTIONS[ev] = Object.assign(PREDICTIONS[ev] || {}, m); });
@@ -4789,7 +4796,7 @@ setInterval(async () => { if (document.hidden) return; if (await resync(false)) 
 document.addEventListener("visibilitychange", async () => { if (!document.hidden && await resync(false)) quietRender(); });
 
 /* ---------- Admin changes: settings documents are saved as soon as they change ---------- */
-const canPushDocs = () => S.user && (can("manageCategories") || can("managePermissions"));
+const canPushDocs = () => S.user && (can("manageCategories") || can("managePermissions") || can("manageRatings"));
 let pushTimer = null;
 function schedulePush(){ if (!canPushDocs()) return; clearTimeout(pushTimer); pushTimer = setTimeout(pushDocs, 350); }
 async function pushDocs(){
@@ -4797,7 +4804,7 @@ async function pushDocs(){
   try {
     for (const k of PUSHABLE){
       const cur = docSer(docGet(k)); if (cur === PS.docSnap[k]) continue;
-      const need = ["PERMS","LIMITS","MOD_TEMPLATES","MOD_PROFILES"].includes(k) ? "managePermissions" : "manageCategories";
+      const need = ["PERMS","LIMITS","MOD_TEMPLATES","MOD_PROFILES"].includes(k) ? "managePermissions" : ["SAFETY_W","WEIGHTS"].includes(k) ? "manageRatings" : "manageCategories";
       if (!can(need)){ await resync(true); render(); toast("You don't have permission to change that."); break; }
       try { await api("config.save", {k, v: JSON.parse(cur), ver: PS.docVers[k]}); PS.docSnap[k] = docSer(docGet(k)); }
       catch(e){ toast(e.message); await resync(true); render(); renderTicker(true); break; }
@@ -5041,8 +5048,7 @@ Object.assign(ACT, {
     openOut(`/go/${encodeURIComponent(l.slug)}?p=${encodeURIComponent(p)}`); }
 });
 // Later-phase actions explain themselves instead of pretending to work
-["writeReview","rvote","editReview","respondReview","disputeReview","reviewStatus","fileComplaint","addEvidence","toggleEvidence","caseFollow","caseTake","caseStatus","caseOutcome","caseSolved","caseWithdraw",
- "claim","editOperator","blacklistOp","unblacklist","setWarning","newListing","listingStatus","featureReq","leaveFeedback","dispute","removeListing","approveListing","rejectListing",
+["newListing","listingStatus","featureReq","leaveFeedback","dispute","removeListing","approveListing","rejectListing",
  "buyEscrow","escrowDeposit","escrowCancel","escrowShip","escrowRelease","escrowRefund","escrowDispute","escrowDecide","escrowSkip","verifStep","verifSubmit","sellerApprove","sellerReject","sellerRevoke"]
   .forEach(k => { if (ACT[k]) ACT[k] = () => toast("This part of Pitchside opens in a later phase."); });
 openReport = function(kind, data){
@@ -5150,3 +5156,118 @@ function liveSystemPanels(){
     <p class="hint muted" style="margin:8px 0 0;font-size:.82rem">Backups run nightly on the server (kept for 14 days). See the README to copy them to Backblaze B2 or another off-site store.</p></section>`;
 }
 CHANGE.siteIndexing = el => { SETTINGS.siteIndexing = el.checked; toast(el.checked ? "Search engines can index the forum" : "Hidden from search engines"); };
+
+/* =====================================================================
+   PHASE 2 on the live site: casinos & sportsbooks, reviews, business accounts,
+   complaints and the blacklist. Each action opens the same dialog as the
+   prototype, then saves through the server.
+   ===================================================================== */
+const reasonOk = f => { const r = val(f,"reason"); return r.length < 3 ? null : r; };
+Object.assign(ACT, {
+  writeReview: withModal(ORIG.writeReview, (f, el) => {
+    const slug = el.dataset.slug || val(f,"op"), stars = +val(f,"stars");
+    if (!stars) return "Choose a rating from 1 to 5 stars.";
+    const scores = Object.fromEntries(REVIEW_CATS.map(k => [k, f.elements["c_"+k] ? +f.elements["c_"+k].value || 0 : 0]));
+    return viaApi("review.create", {operator: slug, stars, title: val(f,"title"), body: val(f,"body"), scores, tx: f.elements.tx ? val(f,"tx") : ""},
+      res => { nav("/topic/" + res.thread); toast("Review posted"); }); }),
+  rvote(el){ if (!signedIn()) return needSignIn("Sign in to vote."); act("review.vote", {id: +el.dataset.id, v: el.dataset.v}); },
+  editReview: withModal(ORIG.editReview, (f, el) => viaApi("review.edit", {id: +el.dataset.id, stars: +val(f,"stars"), body: val(f,"body")}, () => { toast("Review updated"); })),
+  respondReview: withModal(ORIG.respondReview, (f, el) => viaApi("review.respond", {id: +el.dataset.id, body: val(f,"b")}, () => { toast("Response published"); })),
+  disputeReview: withModal(ORIG.disputeReview, (f, el) => { const r = reasonOk(f); if (!r) return "Explain why you dispute this review.";
+    return viaApi("review.dispute", {id: +el.dataset.id, reason: r}, () => { toast("Dispute sent to moderators"); }); }),
+  reviewStatus: withModal(ORIG.reviewStatus, (f, el) => { const r = reasonOk(f); if (!r) return "Give a reason so the audit log is useful.";
+    return viaApi("review.status", {id: +el.dataset.id, st: f.elements.st.value, reason: r}); }),
+  // Complaints
+  fileComplaint: withModal(ORIG.fileComplaint, async f => {
+    if (val(f,"title").length < 8) return "Give your complaint a short, clear title.";
+    if (val(f,"st").length < 40) return "Describe what happened in at least 40 characters.";
+    if (!f.elements.support.checked) return "Please contact the operator's support first. Most problems get fixed there, and our specialists will ask what they said.";
+    try { const att = await uploadAll(f.elements.files);
+      const res = await api("complaint.create", {operator: val(f,"op"), title: val(f,"title"), cat: val(f,"cat"), amount: +val(f,"amount") || 0, statement: val(f,"st"), att, public: f.elements.pub.checked, support: true});
+      nav("/complaints/" + res.id); toast("Complaint submitted"); }
+    catch(e){ return e.message; } }),
+  addEvidence: withModal(ORIG.addEvidence, async (f, el) => {
+    if (!f.elements.files.files.length) return "Choose at least one file.";
+    try { const att = await uploadAll(f.elements.files); await api("complaint.evidence", {id: el.dataset.id, att, public: f.elements.pub.checked}); toast("Evidence added"); }
+    catch(e){ return e.message; } }),
+  toggleEvidence(el){ act("complaint.evidenceToggle", {id: el.dataset.id, i: +el.dataset.i}); },
+  caseFollow(el){ if (!signedIn()) return needSignIn("Sign in to follow cases."); act("complaint.follow", {id: el.dataset.id}, res => res.on ? "You'll be notified of updates" : "Unfollowed"); },
+  caseTake(el){ act("complaint.take", {id: el.dataset.id}, "You're handling this case"); },
+  caseStatus: withModal(ORIG.caseStatus, (f, el) => { const r = reasonOk(f); if (!r) return "Give a reason so the audit log is useful.";
+    return viaApi("complaint.status", {id: el.dataset.id, v: el.dataset.v, reason: r, note: f.elements.note ? f.elements.note.value.trim() : ""}); }),
+  caseOutcome: withModal(ORIG.caseOutcome, (f, el) => { const r = reasonOk(f); if (!r) return "Give a reason so the audit log is useful.";
+    return viaApi("complaint.outcome", {id: el.dataset.id, st: f.elements.st.value, rec: +f.elements.rec.value || 0, note: f.elements.note.value.trim(), reason: r}, () => { toast("Case closed"); }); }),
+  caseSolved: withModal(ORIG.caseSolved, (f, el) => viaApi("complaint.solved", {id: el.dataset.id, rec: +val(f,"rec") || 0, note: val(f,"n")}, () => { toast("Glad it's sorted. The case is closed as resolved."); })),
+  caseWithdraw: withModal(ORIG.caseWithdraw, (f, el) => viaApi("complaint.withdraw", {id: el.dataset.id}, () => { toast("Complaint withdrawn"); })),
+  // Businesses and the blacklist
+  claim: withModal(ORIG.claim, (f, el) => viaApi("operator.claim", {slug: el.dataset.slug, email: val(f,"e"), role: val(f,"r")}, () => { toast("Claim sent for verification"); })),
+  editOperator: withModal(ORIG.editOperator, (f, el) => { const data = {website: val(f,"w"), kyc: val(f,"k"), withdrawals: val(f,"wd"), countries: val(f,"c"), crypto: f.elements.cr.checked, fiat: f.elements.fi.checked};
+    if (f.elements.l){ data.license = val(f,"l"); data.owner = val(f,"ow"); }
+    return viaApi("operator.edit", {slug: el.dataset.slug, data}, () => { toast("Saved"); }); }),
+  blacklistOp: withModal(ORIG.blacklistOp, f => { const reasons = BLACKLIST_REASONS.filter((r, i) => f.elements["r"+i] && f.elements["r"+i].checked);
+    if (!reasons.length) return "Tick at least one reason."; if (val(f,"note").length < 20) return "Write a short public summary of what happened (20 characters or more).";
+    return viaApi("operator.blacklist", {slug: val(f,"op"), reasons, note: val(f,"note")}, () => { toast("Added to the blacklist. Its affiliate links are paused."); }); }),
+  unblacklist: withModal(ORIG.unblacklist, (f, el) => { const r = reasonOk(f); if (!r) return "Give a reason so the audit log is useful.";
+    return viaApi("operator.unblacklist", {slug: el.dataset.slug, reason: r}, () => { toast("Removed from the blacklist"); }); }),
+  setWarning: withModal(ORIG.setWarning, (f, el) => { const r = reasonOk(f); if (!r) return "Give a reason so the audit log is useful.";
+    return viaApi("operator.warning", {slug: el.dataset.slug, w: f.elements.w.value, topic: +f.elements.t.value || 0, reason: r}); }),
+  // Admin → Businesses: add, edit or remove a casino / sportsbook
+  opAdmin(el){ const o = el.dataset.slug ? op(el.dataset.slug) : null;
+    const v = (k, d="") => esc(o ? (Array.isArray(o[k]) ? o[k].join(k === "pros" || k === "cons" || k === "unfairTerms" ? "\n" : ", ") : (o[k] ?? d)) : d);
+    const sel = (name, opts, cur) => `<select name="${name}">${opts.map(([k,t]) => `<option value="${k}" ${k===cur?"selected":""}>${t}</option>`).join("")}</select>`;
+    modal({title: o ? `Edit ${o.name}` : "Add a casino or sportsbook", submit: o ? "Save" : "Add", body:`
+      <div class="row"><label style="flex:2 1 200px">Name<input name="name" value="${v("name")}" required maxlength="80"></label>
+        <label style="flex:1 1 140px">Type${sel("type", [["casino","Casino"],["sportsbook","Sportsbook"]], o ? o.type : "casino")}</label></div>
+      <div class="row"><label style="flex:2 1 200px">Website <span class="hint">e.g. example.com</span><input name="website" value="${v("website")}"></label>
+        <label style="flex:1 1 140px">Brand colour<input type="color" name="color" value="${o ? o.color : "#1E6FB0"}" style="height:40px"></label></div>
+      <div class="row"><label style="flex:2 1 200px">Owner company<input name="owner" value="${v("owner")}"></label><label style="flex:1 1 120px">Established<input name="est" type="number" min="1990" max="2100" value="${v("est", new Date().getFullYear())}"></label></div>
+      <div class="row"><label style="flex:2 1 200px">Licence number / text<input name="license" value="${v("license")}"></label>
+        <label style="flex:1 1 160px">Regulator (for the Safety Index)${sel("regulator", [["mga","Malta (MGA)"],["ukgc","UK Gambling Commission"],["curacao","Curaçao"],["anjouan","Anjouan"],["none","None disclosed"]], o ? o.regulator : "none")}</label></div>
+      <div class="row"><label style="flex:1 1 160px">Size${sel("size", [["small","Small"],["medium","Medium"],["large","Large"]], o ? o.size : "small")}</label>
+        <label style="flex:1 1 160px">Minimum deposit<input name="minDeposit" value="${v("minDeposit")}"></label><label style="flex:1 1 160px">Withdrawal limit<input name="withdrawalLimit" value="${v("withdrawalLimit")}"></label></div>
+      <div class="row"><label class="chk"><input type="checkbox" name="fiat" ${!o || o.fiat ? "checked" : ""}> Fiat payments</label><label class="chk"><input type="checkbox" name="crypto" ${o && o.crypto ? "checked" : ""}> Crypto payments</label>
+        <label class="chk"><input type="checkbox" name="casino" ${o && o.casino ? "checked" : ""}> Has casino</label><label class="chk"><input type="checkbox" name="sportsbook" ${o && o.sportsbook ? "checked" : ""}> Has sportsbook</label><label class="chk"><input type="checkbox" name="poker" ${o && o.poker ? "checked" : ""}> Poker</label></div>
+      <label>Countries <span class="hint">Comma-separated codes, e.g. GH, NG, UK</span><input name="countries" value="${v("countries")}"></label>
+      <label>Withdrawal methods <span class="hint">Comma-separated</span><input name="withdrawals" value="${v("withdrawals")}"></label>
+      <label>KYC policy<input name="kyc" value="${v("kyc")}"></label>
+      <div class="row"><label style="flex:1 1 200px">Games<input name="games" value="${v("games")}"></label><label style="flex:1 1 160px">Languages<input name="languages" value="${v("languages")}"></label></div>
+      <label>Pros <span class="hint">One per line</span><textarea name="pros" style="min-height:60px">${v("pros")}</textarea></label>
+      <label>Cons <span class="hint">One per line</span><textarea name="cons" style="min-height:60px">${v("cons")}</textarea></label>
+      <label>Unfair terms <span class="hint">One per line. Each lowers the Safety Index.</span><textarea name="unfairTerms" style="min-height:60px">${v("unfairTerms")}</textarea></label>`,
+      onSubmit: f => { const g = k => f.elements[k].value.trim(), chk = k => f.elements[k].checked, lines = k => g(k).split("\n").map(x => x.trim()).filter(Boolean);
+        if (g("name").length < 2) return "Give the operator a name.";
+        return viaApi("operator.save", {slug: o ? o.slug : "", data: {name:g("name"), type:g("type"), website:g("website"), color:g("color"), owner:g("owner"), est:+g("est"), license:g("license"), regulator:g("regulator"),
+          size:g("size"), minDeposit:g("minDeposit"), withdrawalLimit:g("withdrawalLimit"), fiat:chk("fiat"), crypto:chk("crypto"), casino:chk("casino"), sportsbook:chk("sportsbook"), poker:chk("poker"),
+          countries:g("countries"), withdrawals:g("withdrawals"), kyc:g("kyc"), games:g("games"), languages:g("languages"), pros:lines("pros"), cons:lines("cons"), unfairTerms:lines("unfairTerms")}},
+          () => { toast(o ? "Saved" : "Added. It now appears in Casinos & Sportsbooks."); }); }}); },
+  opDelete(el){ const o = op(el.dataset.slug);
+    modal({title:`Remove ${o.name}?`, submit:"Remove", danger:true, body:`<p style="margin:0">Only operators with no reviews or complaints can be removed. To warn players away from one, blacklist it instead.</p>`,
+      onSubmit: () => viaApi("operator.delete", {slug: o.slug}, () => { toast(`${o.name} removed`); }) }); }
+});
+Object.assign(FORMS, {
+  caseReply(f){ const id = f.dataset.id, body = f.elements.body.value.trim(); if (!body) return toast("Write a message first.");
+    const btn = f.querySelector("button[type=submit]"); if (btn) btn.disabled = true;
+    uploadAll(f.elements.files).then(att => api("complaint.reply", {id, body, att})).then(() => { toast("Posted"); render(); })
+      .catch(e => toast(e.message)).finally(() => { if (btn) btn.disabled = false; }); },
+  modNote(f){ const b = f.elements.body.value.trim(); if (!b) return; act("complaint.note", {id: f.dataset.id, body: b}); }
+});
+CHANGE.opFlag = el => api("operator.flag", {slug: el.dataset.slug, k: el.dataset.k, v: el.checked}).then(() => { toast("Saved"); render(); }).catch(e => { el.checked = !el.checked; toast(e.message); });
+// Admin → Businesses gets add / edit / remove buttons on the live site
+const aBizProto = aBiz;
+aBiz = function(){
+  const tools = `<div class="spread" style="margin-bottom:12px"><p class="muted" style="margin:0;font-size:.9rem">Casinos and sportsbooks listed on Pitchside. Only add real operators with accurate details: the Safety Index is calculated from them.</p>
+    <button class="btn primary" type="button" data-act="opAdmin">Add a casino or sportsbook</button></div>`;
+  const rows = OPERATORS.length ? `<section class="panel" style="margin-top:16px"><h3 class="ph">Edit details</h3>${OPERATORS.map(o => `<div class="spread" style="padding:6px 0;border-top:1px solid var(--line)"><span>${link(opPath(o), esc(o.name))} <span class="muted">· ${o.type}</span></span>
+    <span class="row"><button class="btn small" type="button" data-act="opAdmin" data-slug="${o.slug}">Edit all details</button><button class="btn small ghost" type="button" data-act="opDelete" data-slug="${o.slug}">Remove</button></span></div>`).join("")}</section>` : "";
+  return tools + aBizProto() + rows;
+};
+
+/* ---------- Admin → System: which sections are open ---------- */
+const liveSystemProto = liveSystemPanels;
+liveSystemPanels = function(){
+  const F = SETTINGS.features || {};
+  const row = (k, t, phase) => `<label class="chk"><input type="checkbox" data-change="feature" data-k="${k}" ${F[k] ? "checked" : ""} ${phase ? "disabled" : ""}> ${t}${phase ? ` <span class="pill">${phase}</span>` : ""}</label>`;
+  return `<section class="panel form"><h3 class="ph">Sections</h3><p class="muted" style="margin:0;font-size:.9rem">Switch a section off to show “Opening soon” instead.</p>
+    ${row("casinos", "Casinos & Sportsbooks, reviews and the blacklist")}${row("complaints", "Complaints")}${row("marketplace", "Marketplace", "Phase 3")}${row("verification", "Seller verification", "Phase 3")}${row("escrow", "Escrow", "Phase 4")}</section>` + liveSystemProto();
+};
+CHANGE.feature = el => { SETTINGS.features = Object.assign({}, SETTINGS.features, {[el.dataset.k]: el.checked}); toast(el.checked ? "Section opened" : "Section closed"); schedulePush(); };

@@ -53,10 +53,11 @@ try {
   }
 
   if ($method === 'GET' && preg_match('#^file/(\d+)$#', $path, $m)) {
-    $u = need_user();
+    $u = viewer();
     $f = row("SELECT * FROM uploads WHERE id = ?", [(int) $m[1]]); if (!$f) fail('Not found.', 404);
-    $ok = $f['user'] === $u['name'] || is_staff($u)
-      || (bool) val("SELECT 1 FROM msgs m JOIN conv_members c ON c.conv_id = m.conv_id AND c.user = ? WHERE m.att LIKE ? LIMIT 1", [$u['name'], '%"id":' . (int) $f['id'] . ',%']);
+    if (!$u && !evidence_file_ok((int) $f['id'], null)) fail('Sign in to continue.', 401);
+    $ok = ($u && $f['user'] === $u['name']) || is_staff($u) || evidence_file_ok((int) $f['id'], $u)
+      || ($u && (bool) val("SELECT 1 FROM msgs m JOIN conv_members c ON c.conv_id = m.conv_id AND c.user = ? WHERE m.att LIKE ? LIMIT 1", [$u['name'], '%"id":' . (int) $f['id'] . ',%']));
     if (!$ok) fail('Not found.', 404);
     $file = APP_DIR . '/storage/files/' . basename($f['path']); if (!is_file($file)) fail('Not found.', 404);
     header('Content-Type: ' . $f['mime']); header('Content-Length: ' . filesize($file)); header('Cache-Control: private, max-age=3600');

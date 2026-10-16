@@ -2,7 +2,7 @@
 // Reports, the moderation queue, member actions, appeals and roles.
 declare(strict_types=1);
 
-const HIDE_PERM = ['post' => 'post.hide', 'topic' => 'topic.delete', 'message' => 'queue.abuse'];
+const HIDE_PERM = ['post' => 'post.hide', 'topic' => 'topic.delete', 'message' => 'queue.abuse', 'review' => 'review.moderate'];
 
 function target_user(string $name): array { $t = user_by_name($name); if (!$t || $t['status'] === 'deleted') fail("There's no member called $name.", 404); return $t; }
 // Staff can't act on people above them: moderators can't act on staff, admins can't act on Super Admins.
@@ -75,7 +75,9 @@ op('report.resolve', function (array $in, array $u) {
     if ($tp) { $p = !empty($t['post']) ? row("SELECT * FROM posts WHERE id = ?", [(int) $t['post']]) : row("SELECT * FROM posts WHERE topic_id = ? ORDER BY " . ($r['kind'] === 'post' ? 'at DESC, id DESC' : 'at, id') . " LIMIT 1", [$tp['id']]);
       $author = $p ? $p['author'] : $tp['author']; }
   } elseif ($r['kind'] === 'message') { $author = val("SELECT from_user FROM msgs WHERE id = ?", [(int) ($t['msg'] ?? 0)]); }
-  elseif ($r['kind'] === 'user' || $r['kind'] === 'appeal') { $author = $t['user'] ?? null; }
+  elseif ($r['kind'] === 'user' || $r['kind'] === 'appeal' || $r['kind'] === 'claim') { $author = $t['user'] ?? null; }
+  elseif ($r['kind'] === 'review') { $author = val("SELECT user FROM reviews WHERE id = ?", [(int) ($t['review'] ?? 0)]); }
+  elseif ($r['kind'] === 'complaint') { $author = val("SELECT user FROM complaints WHERE id = ?", [(string) ($t['complaint'] ?? '')]); }
   $au = $author ? user_by_name((string) $author) : null;
   $now = now_ms();
   switch ($op) {
@@ -84,6 +86,8 @@ op('report.resolve', function (array $in, array $u) {
       if ($r['kind'] === 'post' && !empty($tp)) { if (!empty($p)) q("UPDATE posts SET hidden = 1 WHERE id = ?", [$p['id']]); touch_topic((int) $tp['id']); }
       if ($r['kind'] === 'topic' && !empty($tp)) q("UPDATE topics SET deleted = 1, updated = ? WHERE id = ?", [$now, $tp['id']]);
       if ($r['kind'] === 'message') { q("UPDATE msgs SET body = '[Removed by a moderator]', att = '[]' WHERE id = ?", [(int) $t['msg']]); q("UPDATE convs SET updated = ? WHERE id = ?", [$now, (int) $t['conv']]); }
+      if ($r['kind'] === 'review') { q("UPDATE reviews SET status = 'removed', updated = ? WHERE id = ?", [$now, (int) $t['review']]); $th = val("SELECT thread FROM reviews WHERE id = ?", [(int) $t['review']]); if ($th) touch_topic((int) $th);
+        if ($au) notify($au['name'], 'review', "Moderators removed your review: $reason", '/notifications', $u); }
       audit($u, 'Hide content', "{$r['kind']} (report #{$r['id']})", $reason, 'visible', 'hidden');
       break;
     case 'warn': case 'suspend': case 'ban':
@@ -92,6 +96,22 @@ op('report.resolve', function (array $in, array $u) {
       set_status($u, $au, $op, $reason); break;
     case 'resolveOnly': case 'dismiss':
       audit($u, $op === 'dismiss' ? 'Dismiss report' : 'Resolve report', "report #{$r['id']}", $reason, 'open', $op === 'dismiss' ? 'dismissed' : 'resolved'); break;
+    case 'approveClaim': case 'rejectClaim':
+      if (!mp($u, 'queue.claims') && !mp($u, 'business.verify')) fail("Your moderator permissions don't include business claims.", 403);
+      $o = op_get((string) ($t['op'] ?? '')); if (!$au) fail('That member no longer exists.');
+      $o['pendingClaim'] = null;
+      if ($op === 'approveClaim') {
+        $o['claimed'] = true; $o['verified'] = true; if (!in_array($au['name'], $o['reps'] ?? [], true)) $o['reps'][] = $au['name'];
+        $p = $au['profile']; if (empty($p['business'])) { $p['business'] = $o['slug']; $p['badges'] = array_values(array_unique(array_merge($p['badges'] ?? [], ['Official representative']))); save_profile($au, $p); }
+        if ($au['role'] !== 'business' && !in_array($au['role'], STAFF_ROLES, true)) q("UPDATE users SET role = 'business', updated = ? WHERE id = ?", [$now, $au['id']]);
+        audit($u, 'Business verification', $o['name'], $reason, 'unclaimed', 'verified');
+        notify($au['name'], 'review', "Your claim on {$o['name']} was approved. You can now respond to reviews and complaints.", op_path($o), $u);
+      } else {
+        audit($u, 'Business claim rejected', $o['name'], $reason, 'pending', 'rejected');
+        notify($au['name'], 'review', "Your claim on {$o['name']} was rejected: $reason", op_path($o), $u);
+      }
+      op_save($o);
+      break;
     case 'upholdAppeal': case 'denyAppeal':
       need_mp($u, 'queue.appeals'); if (!$au) fail('That member no longer exists.');
       if ($op === 'upholdAppeal') { q("UPDATE users SET status = 'active', suspended_until = NULL, updated = ? WHERE id = ?", [$now, $au['id']]); audit($u, 'Appeal upheld', $au['name'], $reason, $au['status'], 'active'); notify($au['name'], 'moderator', 'Your appeal was accepted. Your account is active again.', "/members/{$au['name']}", $u); }
@@ -99,7 +119,7 @@ op('report.resolve', function (array $in, array $u) {
       break;
     default: fail('Unknown action.');
   }
-  $status = in_array($op, ['dismiss', 'denyAppeal'], true) ? 'dismissed' : 'resolved';
+  $status = in_array($op, ['dismiss', 'denyAppeal', 'rejectClaim'], true) ? 'dismissed' : 'resolved';
   q("UPDATE reports SET status = ?, closed_by = ?, closed_at = ?, updated = ? WHERE id = ?", [$status, $u['name'], $now, $now, $r['id']]);
   if ($r['by_user'] !== 'system' && !in_array($r['kind'], ['appeal', 'claim'], true)) notify($r['by_user'], 'moderator', "Your report was reviewed: $status", '/notifications', $u);
   return ['status' => $status];

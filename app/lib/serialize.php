@@ -31,6 +31,13 @@ function topic_visible(array $t, ?array $viewer): bool {
   $b = board_doc($t['board']);
   if (!$b || !can_read_board($viewer, $b)) return false;
   if ((int) $t['deleted'] && !can_mod_board($viewer, $t['board'])) return false;
+  // Sections that aren't open yet, and removed reviews (still visible to their author and moderators)
+  if (($b['kind'] ?? '') === 'review' && !feature_on('casinos') && !is_staff($viewer)) return false;
+  if ($t['board'] === 'complaint-talk' && !feature_on('complaints') && !is_staff($viewer)) return false;
+  if (!empty($t['review_id'])) {
+    $r = row("SELECT user, status FROM reviews WHERE id = ?", [(int) $t['review_id']]);
+    if ($r && $r['status'] === 'removed' && !mp($viewer, 'review.moderate') && !($viewer && $viewer['name'] === $r['user'])) return false;
+  }
   return true;
 }
 // Builds full topic objects (with posts, likes and poll) for a list of topic rows.
@@ -67,7 +74,8 @@ function topics_out(array $trows, ?array $viewer): array {
     $out[] = ['id' => $id, 'board' => $t['board'], 'title' => $t['title'], 'author' => $t['author'], 'at' => (int) $t['at'], 'posts' => $ps,
       'pinned' => (bool) $t['pinned'], 'locked' => (bool) $t['locked'], 'archived' => (bool) $t['archived'], 'deleted' => (bool) $t['deleted'],
       'mergedInto' => $t['merged_into'] ? (int) $t['merged_into'] : null, 'auto' => (bool) $t['auto'],
-      'tags' => jdec($t['tags'], []), 'teams' => jdec($t['teams'], []), 'league' => $t['league'], 'event' => $t['event'], 'views' => (int) $t['views'], 'poll' => $poll];
+      'tags' => jdec($t['tags'], []), 'teams' => jdec($t['teams'], []), 'league' => $t['league'], 'event' => $t['event'], 'views' => (int) $t['views'], 'poll' => $poll,
+      'review' => !empty($t['review_id']) ? (int) $t['review_id'] : null, 'complaint' => $t['complaint_id'] ?? null];
   }
   return $out;
 }
@@ -182,6 +190,22 @@ function sync_payload(?array $viewer, int $since = 0): array {
         rows("SELECT * FROM audit WHERE at > ? ORDER BY id DESC LIMIT 1000", [$since ?: $now - 365 * DAY_MS]));
       $out['affClicks'] = array_map(fn($c) => ['link' => (int) $c['link'], 'placement' => $c['placement'], 'at' => (int) $c['at'], 'visitor' => $c['visitor'], 'user' => $c['user'], 'page' => $c['page']],
         rows("SELECT * FROM aff_clicks WHERE at > ? ORDER BY id DESC LIMIT 20000", [$since ?: $now - 90 * DAY_MS]));
+    }
+  }
+  // Phase 2: casinos & sportsbooks, reviews, complaints
+  if (feature_on('casinos') || feature_on('complaints') || is_staff($viewer)) {
+    $out['operators'] = operators_out($since);
+    $out['reviews'] = reviews_out($viewer, $since);
+    $out['complaints'] = complaints_out($viewer, $since);
+    foreach ($out['reviews'] as $r) $names[] = $r['user'];
+    foreach ($out['complaints'] as $c) { $names[] = $c['user']; if ($c['specialist']) $names[] = $c['specialist']; foreach ($c['messages'] as $m) $names[] = $m['by']; }
+    foreach ($out['operators'] as $o) foreach ($o['reps'] ?? [] as $r) $names[] = $r;
+    if ($since === 0) {
+      // Review and complaint discussion topics, even older ones
+      $need = array_values(array_filter(array_merge(array_column($out['reviews'], 'thread'), array_column($out['complaints'], 'thread'))));
+      $have = array_flip(array_map(fn($t) => $t['id'], $out['topics']));
+      $need = array_values(array_filter($need, fn($id) => !isset($have[$id])));
+      foreach (array_chunk($need, 500) as $ch) foreach (topics_out(rows("SELECT * FROM topics WHERE id IN (" . in_list($ch) . ")", $ch), $viewer) as $t) { $out['topics'][] = $t; $names[] = $t['author']; foreach ($t['posts'] as $p) $names[] = $p['author']; }
     }
   }
   $out['predictions'] = [];

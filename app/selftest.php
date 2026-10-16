@@ -35,6 +35,14 @@ try {
   $r = $run('topic.mod', ['id' => $tid, 'do' => 'pin', 'reason' => 'Self-test']); $check(($r['pinned'] ?? null) === true, 'Moderator pins a topic');
   $ver = (int) val("SELECT ver FROM config WHERE k = 'LAYOUT'"); $r = $run('config.save', ['k' => 'LAYOUT', 'v' => doc('LAYOUT'), 'ver' => $ver]); $check(isset($r['ver']), 'Admin saves a setting');
   $r = $run('user.role', ['user' => 'selftest_bob', 'role' => 'trusted']); $check(!isset($r['error']), 'Admin changes a role');
+  // Phase 2: casinos, reviews, complaints
+  $as($m); $r = $run('operator.save', ['slug' => '', 'data' => ['name' => 'Selftest Casino', 'type' => 'casino', 'regulator' => 'mga', 'size' => 'medium']]);
+  $slug = $r['slug'] ?? ''; $check($slug !== '', 'Admin adds a casino' . (isset($r['error']) ? ": {$r['error']}" : ''));
+  $as(user_by_name('selftest_alice')); $r = $run('review.create', ['operator' => $slug, 'stars' => 4, 'title' => 'Self-test review', 'body' => 'Self-test review body that is long enough to pass the rules.']);
+  $check(!empty($r['id']), 'Member reviews the casino' . (isset($r['error']) ? ": {$r['error']}" : ''));
+  $r = $run('complaint.create', ['operator' => $slug, 'title' => 'Self-test complaint', 'cat' => 'Other', 'statement' => 'Self-test complaint statement that is long enough for the rules.', 'support' => true]);
+  $cid = $r['id'] ?? ''; $check($cid !== '', 'Member files a complaint' . (isset($r['error']) ? ": {$r['error']}" : ''));
+  $as($m); $r = $run('complaint.take', ['id' => $cid]); $check(!isset($r['error']), 'Specialist takes the complaint');
   $as(null); $r = $run('search', ['q' => 'Self-test topic']); $check(in_array($tid, $r['ids'] ?? [], true), 'Search finds the topic');
   $full = sync_payload(user_by_name('selftest_alice'), 0); $check(in_array($tid, array_column($full['topics'], 'id'), true) && count($full['convs']) >= 1, 'Page data includes topics and messages');
   $delta = sync_payload(user_by_name('selftest_alice'), $now - 1000); $check(in_array($tid, array_column($delta['topics'], 'id'), true), 'Live updates include recent changes');

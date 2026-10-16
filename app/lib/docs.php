@@ -4,9 +4,10 @@
 declare(strict_types=1);
 
 const DOC_KEYS = ['CATEGORIES','BOARDS','TAGS','NAV','SEO','SETTINGS','LAYOUT','BANNERS','SIDE_SLOTS','SIDE_ADS','TICKER','POST_ADS','AFF_LINKS',
-  'SPORTS','LEAGUES','TEAMS','SPORT_BOARD','PERMS','LIMITS','RANKS','MOD_TEMPLATES','MOD_PROFILES','EVENTS'];
+  'SPORTS','LEAGUES','TEAMS','SPORT_BOARD','PERMS','LIMITS','RANKS','MOD_TEMPLATES','MOD_PROFILES','EVENTS','SAFETY_W','WEIGHTS'];
 // Which capability may change each document. SETTINGS keys in SYSTEM_SETTINGS also need the "system" capability.
-const DOC_WRITE = ['PERMS' => 'managePermissions', 'LIMITS' => 'managePermissions', 'MOD_TEMPLATES' => 'managePermissions', 'MOD_PROFILES' => 'managePermissions'];
+const DOC_WRITE = ['PERMS' => 'managePermissions', 'LIMITS' => 'managePermissions', 'MOD_TEMPLATES' => 'managePermissions', 'MOD_PROFILES' => 'managePermissions',
+  'SAFETY_W' => 'manageRatings', 'WEIGHTS' => 'manageRatings'];
 const SYSTEM_SETTINGS = ['scoresUrl', 'scoresUtm', 'ageGate', 'provider', 'providerOk', 'cacheTtl', 'fixturesFeed', 'siteIndexing', 'features', 'bannedDomains'];
 // Documents only staff receive
 const DOC_STAFF_ONLY = ['MOD_PROFILES'];

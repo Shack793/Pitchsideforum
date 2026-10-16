@@ -4340,8 +4340,8 @@
   "siteIndexing": false,
   "fixturesFeed": "",
   "features": {
-   "casinos": false,
-   "complaints": false,
+   "casinos": true,
+   "complaints": true,
    "marketplace": false,
    "escrow": false,
    "verification": false
@@ -6520,6 +6520,21 @@
  ],
  "MOD_PROFILES": {},
  "EVENTS": [],
+ "WEIGHTS": {
+  "reviews": 40,
+  "quality": 20,
+  "verified": 15,
+  "resolution": 10,
+  "recency": 10,
+  "community": 5
+ },
+ "SAFETY_W": {
+  "licence": 25,
+  "complaints": 35,
+  "fairness": 15,
+  "size": 10,
+  "feedback": 15
+ },
  "SEQ": {
   "banner": 100,
   "sideAd": 100,
