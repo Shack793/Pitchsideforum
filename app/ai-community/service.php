@@ -334,7 +334,7 @@ function ai_run_one(): bool {
       }
     } else $body = trim(preg_replace('/\s+/u', ' ', strip_tags($body)) ?? '');
     if (mb_strtoupper(trim($result['body'])) === 'SKIP') {
-      q("UPDATE ai_jobs SET status = 'rejected', draft_body = NULL, result_json = ?, updated = ? WHERE id = ?", [jenc(['reason' => 'Character declined to reply']), now_ms(), $job['id']]);
+      q("UPDATE ai_jobs SET status = 'rejected', draft_body = NULL, error_message = NULL, result_json = ?, updated = ? WHERE id = ?", [jenc(['reason' => 'Character declined to reply']), now_ms(), $job['id']]);
       ai_log((int) $job['id'], (int) $job['character_id'], 'reply.generate', 'skipped', null, ['cost_usd' => $cost]); return true;
     }
     if ($job['job_type'] === 'thread') {
@@ -413,7 +413,7 @@ function ai_publish_job(int $jobId): int {
     $pid = insert('posts', ['topic_id' => $t['id'], 'author' => $u['name'], 'body' => $job['draft_body'], 'at' => $now, 'hidden' => 0, 'revisions' => '[]']);
     q("UPDATE topics SET last_at = ?, updated = ? WHERE id = ?", [$now, $now, $t['id']]);
     count_post($u);
-    q("UPDATE ai_jobs SET status = 'published', updated = ? WHERE id = ? AND status = 'review'", [$now, $job['id']]);
+    q("UPDATE ai_jobs SET status = 'published', updated = ? WHERE id = ? AND status = 'publishing'", [$now, $job['id']]);
     ai_log((int) $job['id'], (int) $job['character_id'], 'reply.publish', 'success', $pid, ['topic_id' => (int) $t['id']]);
     return $pid;
   });

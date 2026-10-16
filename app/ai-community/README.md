@@ -53,11 +53,13 @@ Google's Gemini API exposes an OpenAI-compatible endpoint, so no code changes ar
 ```php
 'ai_api_base' => 'https://generativelanguage.googleapis.com/v1beta/openai',
 'ai_api_key' => 'REPLACE_WITH_GEMINI_KEY', // from Google AI Studio, free tier needs no billing
-'ai_model' => 'gemini-2.5-flash-lite',
-'ai_input_price_per_million' => 0.10,  // Gemini list prices as the conservative anchor
-'ai_output_price_per_million' => 0.40,
+'ai_model' => 'gemini-3.5-flash-lite',
+'ai_input_price_per_million' => 0.30,  // Gemini list prices as the conservative anchor
+'ai_output_price_per_million' => 2.50,
 'ai_free_tier' => true, // record $0 per call while still tracking tokens
 ```
+
+(Google retires old model names for new accounts — if the API answers `NOT_FOUND`, switch `ai_model` to the current Flash/Flash-Lite name from the error message.)
 
 Notes:
 
