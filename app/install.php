@@ -20,7 +20,7 @@ foreach ($statements as $st) {
 // Columns added after the first release (safe to run again)
 function has_column(string $table, string $col): bool {
   if (cfg('db_driver') === 'sqlite') { foreach (rows("PRAGMA table_info($table)") as $c) if ($c['name'] === $col) return true; return false; }
-  return (bool) row("SHOW COLUMNS FROM $table LIKE ?", [$col]);
+  return (bool) row("SELECT 1 FROM information_schema.COLUMNS WHERE TABLE_SCHEMA = DATABASE() AND TABLE_NAME = ? AND COLUMN_NAME = ?", [$table, $col]);
 }
 foreach ([['topics', 'review_id', 'INT NULL'], ['topics', 'complaint_id', 'VARCHAR(16) NULL']] as [$t, $c, $type])
   if (!has_column($t, $c)) db()->exec("ALTER TABLE $t ADD COLUMN $c $type");
