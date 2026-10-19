@@ -61,6 +61,7 @@ jobs:
           username: ${{ secrets.SSH_USER }}
           port: ${{ secrets.SSH_PORT }}
           key: ${{ secrets.SSH_KEY }}
+          envs: GITHUB_SHA
           script: |
             set -euo pipefail
             STAMP=$(date +%Y%m%d-%H%M%S)
@@ -101,5 +102,5 @@ jobs:
             sudo /usr/sbin/nginx -t
             sudo /usr/bin/systemctl reload nginx
             sudo rm -f "$APP/app/storage/cache/"*.json || true
-            echo "Deployed $GITHUB_SHA at $STAMP"
+            echo "Deployed ${GITHUB_SHA:-unknown} at $STAMP"
             curl -s -o /dev/null -w "Local check HTTP %{http_code}\n" http://127.0.0.1/

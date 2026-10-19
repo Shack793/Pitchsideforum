@@ -318,7 +318,8 @@ function ai_run_one(): bool {
     $result = ai_provider_generate($messages);
     $cost = ai_record_cost(ai_estimated_cost($result['input_tokens'], $result['output_tokens']));
     $projectedMonthlyCost = ai_monthly_cost() + $cost;
-    insert('ai_usage', ['job_id' => $job['id'], 'model' => $result['model'], 'input_tokens' => $result['input_tokens'], 'output_tokens' => $result['output_tokens'], 'estimated_cost_usd' => number_format($cost, 6, '.', ''), 'created' => now_ms()]);
+    // ai_usage has UNIQUE(job_id); a retried job must not crash on the duplicate key.
+    insert_ignore('ai_usage', ['job_id' => $job['id'], 'model' => $result['model'], 'input_tokens' => $result['input_tokens'], 'output_tokens' => $result['output_tokens'], 'estimated_cost_usd' => number_format($cost, 6, '.', ''), 'created' => now_ms()]);
     if ($projectedMonthlyCost > $monthlyCap) {
       q("UPDATE ai_jobs SET status = 'failed', error_message = 'Request exceeded the configured monthly budget after provider usage was reported', updated = ? WHERE id = ?", [now_ms(), $job['id']]);
       ai_log((int) $job['id'], (int) $job['character_id'], 'reply.generate', 'budget_exceeded', null, ['cost_usd' => $cost]); return true;
