@@ -82,14 +82,6 @@ jobs:
             echo "Web user: $WEBUSER"
             sudo /usr/bin/rsync -a --delete --exclude 'app/config.php' --exclude 'app/storage/' --exclude 'public/uploads/' "$REL/app" "$REL/public" "$APP/"
             sudo cp "$REL/backup.sh" "$REL/update.sh" "$APP/" 2>/dev/null || true
-            # refresh nginx config from deploy/nginx.conf (DOMAIN + PHP_SOCK filled in)
-            if [ -f "$REL/deploy/nginx.conf" ]; then
-              PHPV=$(php -r 'echo PHP_MAJOR_VERSION.".".PHP_MINOR_VERSION;' 2>/dev/null || echo "8.3")
-              PHPSOCK="/run/php/php${PHPV}-fpm.sock"; [ -S "/run/php-fpm/www.sock" ] && PHPSOCK="/run/php-fpm/www.sock"
-              DOMAIN=$(grep -m1 server_name /etc/nginx/conf.d/pitchside.conf /etc/nginx/sites-enabled/pitchside /etc/nginx/sites-available/pitchside 2>/dev/null | grep -oE '[a-z0-9.-]+\.[a-z]+' | head -1 || echo "pitchsideforum.com")
-              sudo sed -e "s/DOMAIN/$DOMAIN/g" -e "s#PHP_SOCK#$PHPSOCK#g" "$REL/deploy/nginx.conf" > /tmp/pitchside.new
-              if [ -d /etc/nginx/conf.d ]; then sudo cp /tmp/pitchside.new /etc/nginx/conf.d/pitchside.conf; else sudo cp /tmp/pitchside.new /etc/nginx/sites-available/pitchside; fi
-            fi
             sudo chown -R root:$WEBUSER "$APP/app" "$APP/public"; sudo chown -R $WEBUSER:$WEBUSER "$APP/app/storage" "$APP/public/uploads" 2>/dev/null || sudo mkdir -p "$APP/app/storage" "$APP/public/uploads"
             sudo chmod 640 "$APP/app/config.php" 2>/dev/null || true
             sudo find "$APP/app/storage" "$APP/public/uploads" -type d -exec chmod 750 {} \; 2>/dev/null || true
@@ -101,6 +93,6 @@ jobs:
             if [ -n "$PHPV" ]; then sudo /usr/bin/systemctl reload "php$PHPV-fpm" 2>/dev/null || sudo /usr/bin/systemctl reload php-fpm 2>/dev/null || true; fi
             sudo /usr/sbin/nginx -t
             sudo /usr/bin/systemctl reload nginx
-            sudo rm -f "$APP/app/storage/cache/"*.json || true
+            sudo bash -c "rm -f $APP/app/storage/cache/*.json" || true
             echo "Deployed ${GITHUB_SHA:-unknown} at $STAMP"
             curl -s -o /dev/null -w "Local check HTTP %{http_code}\n" http://127.0.0.1/
