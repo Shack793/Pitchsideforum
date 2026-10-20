@@ -10,6 +10,7 @@ if (!cfg('ai_community_enabled', false)) { echo "AI community disabled.\n"; exit
 if (!ai_configured()) { echo "AI provider not configured.\n"; exit(0); }
 
 ai_recover_stale_jobs();
+ai_sync_interval_topics();
 
 $raw = val("SELECT v FROM meta WHERE k = ?", ['ai_interval_topics']);
 $ids = json_decode((string) $raw, true);

@@ -526,10 +526,59 @@ function ai_discover_thread_candidate(): bool {
   return false;
 }
 
+function ai_sync_interval_topics(): void {
+  // Keep the scheduled reply rotation aligned with the forum: add every recent open
+  // topic that has not yet been given an AI reply job (daily topics and member topics
+  // alike), and drop entries that have since been deleted, archived or locked.
+  // Idempotent and safe to call on every cron run.
+  $since = now_ms() - 45 * DAY_MS;
+  $max = max(5, min(200, (int) cfg('ai_interval_max_topics', 60)));
+
+  $raw = val("SELECT v FROM meta WHERE k = ?", ['ai_interval_topics']);
+  $cur = json_decode((string) $raw, true);
+  $cur = is_array($cur) ? array_values(array_filter(array_map('intval', $cur), static fn($v) => $v > 0)) : [];
+  $merged = $cur;
+
+  $candidates = rows(
+    "SELECT t.id, t.board FROM topics t
+      WHERE t.deleted = 0 AND t.archived = 0 AND t.locked = 0 AND t.at >= ?
+        AND NOT EXISTS (SELECT 1 FROM ai_jobs j WHERE j.job_type = 'reply' AND j.topic_id = t.id)
+      ORDER BY t.id ASC",
+    [$since]
+  );
+  foreach ($candidates as $t) {
+    $id = (int) $t['id'];
+    if (in_array($id, $merged, true)) continue;
+    $board = board_doc((string) $t['board']);
+    if (!$board || !in_array('member', $board['postRoles'] ?? [], true) || !empty($board['kind'])) continue;
+    $merged[] = $id;
+  }
+
+  // Drop ids that no longer point at an open, visible topic.
+  $open = [];
+  foreach ($merged as $id) {
+    $t = row("SELECT deleted, archived, locked FROM topics WHERE id = ?", [(int) $id]);
+    if ($t && !(int) $t['deleted'] && !(int) $t['archived'] && !(int) $t['locked']) $open[] = (int) $id;
+  }
+  $open = array_values(array_unique($open));
+  if (count($open) > $max) $open = array_slice($open, -$max);
+
+  if ($open === $cur) return;
+
+  $added = array_values(array_diff($open, $cur));
+  meta_set('ai_interval_topics', json_encode($open));
+  // Jump the rotation to the first newly added topic so fresh topics get a reply first.
+  if ($added) {
+    $pos = array_search($added[0], $open, true);
+    if ($pos !== false) meta_set('ai_interval_cursor', (string) $pos);
+  }
+}
+
 function ai_community_cron(): void {
   if (!cfg('ai_community_enabled', false) || ai_daily_cap_reached()) return;
   try {
     ai_recover_stale_jobs();
+    ai_sync_interval_topics();
     // Review items do not block discovery forever. Keep a bounded manual-review backlog when auto-publish is off.
     $active = (int)val("SELECT COUNT(*) FROM ai_jobs WHERE status IN ('queued','working','publishing')");
     $reviewBacklog = (int)val("SELECT COUNT(*) FROM ai_jobs WHERE status = 'review'");
