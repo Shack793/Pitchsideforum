@@ -61,6 +61,21 @@ foreach (DOC_KEYS as $k) {
 }
 
 /* ---------- Upgrades for sites installed with an earlier phase ---------- */
+// Promotions & bonuses page: add it to the Gambling menu once (an admin can rename or hide it in Admin → Navigation)
+if (!meta_get('nav:promotions')) {
+  $nav = doc('NAV');
+  foreach ($nav as &$n) if (($n['id'] ?? '') === 'gambling') {
+    $n['match'] = array_values(array_unique(array_merge($n['match'] ?? [], ['/promotions'])));
+    $paths = array_column($n['children'] ?? [], 'path');
+    if (!in_array('/promotions', $paths, true)) array_splice($n['children'], 2, 0, [['label' => 'Promotions & bonuses', 'path' => '/promotions', 'hint' => 'Latest casino and sportsbook offers']]);
+  }
+  unset($n); save_doc('NAV', $nav); meta_set('nav:promotions', '1'); $say('Added Promotions & bonuses to the Gambling menu.');
+}
+// Live Scores links: replace the placeholder address with LiveScoreNow (an address an admin has set in Admin → System is kept)
+$s = doc('SETTINGS');
+if (($s['scoresUrl'] ?? '') === '' || str_contains((string) $s['scoresUrl'], 'scores.pitchside.example')) {
+  $s['scoresUrl'] = 'https://livescorenow.xyz'; save_doc('SETTINGS', $s); $say('Live Scores links now point to https://livescorenow.xyz');
+}
 $phase = (int) (meta_get('phase', '1'));
 if ($phase < 2) {
   // Phase 2 opens Casinos & Sportsbooks, reviews, complaints and the blacklist

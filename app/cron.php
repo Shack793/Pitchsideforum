@@ -36,7 +36,10 @@ if ($feed !== '' && str_starts_with($feed, 'https://')) {
       $e = ['slug' => $m['slug'], 'league' => (string) ($m['league'] ?? ''), 'home' => (string) ($m['home'] ?? ''), 'away' => (string) ($m['away'] ?? ''),
         'homeName' => mb_substr((string) ($m['homeName'] ?? ''), 0, 60), 'awayName' => mb_substr((string) ($m['awayName'] ?? ''), 0, 60), 'at' => $at,
         'status' => in_array($m['status'] ?? '', ['upcoming', 'live', 'finished', 'postponed'], true) ? $m['status'] : 'upcoming',
-        'score' => is_array($m['score'] ?? null) ? array_map('intval', array_slice($m['score'], 0, 2)) : null, 'minute' => mb_substr((string) ($m['minute'] ?? ''), 0, 8), 'stats' => (object) [], 'lineups' => null];
+        'score' => is_array($m['score'] ?? null) ? array_map('intval', array_slice($m['score'], 0, 2)) : null,
+        // Links to this match and its league on the live scores site, when the feed provides them
+        'scoresUrl' => (is_string($m['url'] ?? null) && preg_match('#^https://[^\s"\'<>]+$#', $m['url'])) ? $m['url'] : null,
+        'leagueUrl' => (is_string($m['leagueUrl'] ?? null) && preg_match('#^https://[^\s"\'<>]+$#', $m['leagueUrl'])) ? $m['leagueUrl'] : null, 'minute' => mb_substr((string) ($m['minute'] ?? ''), 0, 8), 'stats' => (object) [], 'lineups' => null];
       if (isset($bySlug[$e['slug']])) { $e['thread'] = $events[$bySlug[$e['slug']]]['thread'] ?? null; $events[$bySlug[$e['slug']]] = $e; }
       else { $e['thread'] = null; $events[] = $e; $bySlug[$e['slug']] = count($events) - 1; }
       $n++;

@@ -4,7 +4,7 @@
 declare(strict_types=1);
 
 const DOC_KEYS = ['CATEGORIES','BOARDS','TAGS','NAV','SEO','SETTINGS','LAYOUT','BANNERS','SIDE_SLOTS','SIDE_ADS','TICKER','POST_ADS','AFF_LINKS',
-  'SPORTS','LEAGUES','TEAMS','SPORT_BOARD','PERMS','LIMITS','RANKS','MOD_TEMPLATES','MOD_PROFILES','EVENTS','SAFETY_W','WEIGHTS'];
+  'SPORTS','LEAGUES','TEAMS','SPORT_BOARD','PERMS','LIMITS','RANKS','MOD_TEMPLATES','MOD_PROFILES','EVENTS','SAFETY_W','WEIGHTS','PROMOS'];
 // Which capability may change each document. SETTINGS keys in SYSTEM_SETTINGS also need the "system" capability.
 const DOC_WRITE = ['PERMS' => 'managePermissions', 'LIMITS' => 'managePermissions', 'MOD_TEMPLATES' => 'managePermissions', 'MOD_PROFILES' => 'managePermissions',
   'SAFETY_W' => 'manageRatings', 'WEIGHTS' => 'manageRatings'];

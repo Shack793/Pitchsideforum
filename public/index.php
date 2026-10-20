@@ -69,6 +69,9 @@ try {
     else { $o = jdec($r['data'], []); $n = (int) val("SELECT COUNT(*) FROM reviews WHERE op = ? AND status <> 'removed'", [$seg[1]]);
       $title = "{$o['name']} review: payouts, complaints, Safety Index | $site"; $desc = "Member reviews ($n), complaints and licence details for {$o['name']}. " . ($o['license'] ?? '');
       $body = '<h1>' . $h($o['name']) . '</h1><p>' . $h($o['license'] ?? '') . '</p>'; }
+  } elseif (($seg[0] ?? '') === 'promotions' && !isset($seg[1])) {
+    $title = "Casino & sportsbook promotions and bonuses | $site"; $desc = 'The latest welcome offers, free spins, free bets and reload bonuses from casinos and sportsbooks, with the key terms. 18+ only.';
+    $body = '<h1>Promotions &amp; bonuses</h1><p>' . $h($desc) . '</p>';
   } elseif (($seg[0] ?? '') === 'complaints' && isset($seg[1]) && feature_on('complaints')) {
     $c = row("SELECT * FROM complaints WHERE id = ?", [$seg[1]]);
     if (!$c) { $status = 404; $index = false; }

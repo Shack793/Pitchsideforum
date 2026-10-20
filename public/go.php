@@ -30,7 +30,7 @@ try {
   if (preg_match('#^([a-z0-9-]{1,64})$#', $path, $m)) {
     $link = null; foreach (doc('AFF_LINKS') as $l) if (($l['slug'] ?? '') === $m[1]) $link = $l;
     if (!$link || ($link['status'] ?? '') !== 'active') bounce('/gambling');
-    $places = ['casino-list', 'operator-page', 'post-ad', 'side-slot', 'banner', 'ticker', 'direct'];
+    $places = ['casino-list', 'operator-page', 'post-ad', 'side-slot', 'banner', 'ticker', 'promotions', 'direct'];
     $p = in_array($_GET['p'] ?? '', $places, true) ? $_GET['p'] : 'direct';
     $ref = parse_url($_SERVER['HTTP_REFERER'] ?? '', PHP_URL_PATH) ?: '';
     rate_limit('affgo:' . client_ip(), 60, 60);
