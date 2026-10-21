@@ -1,6 +1,11 @@
 <?php
-// interval_replies.php - one scheduled AI reply per run, rotating across the
-// configured topic list. Cron: 17 */3 * * * php .../ai-community/interval_replies.php
+// interval_replies.php - queues scheduled AI replies in a rotating pattern.
+// Cron: 17 * * * * php .../ai-community/interval_replies.php
+//
+// Each run queues up to ai_interval_replies_per_run replies (default 2) and
+// stops once ai_interval_replies_per_day (default 32) reply jobs exist for the
+// UTC day. Combined with max_replies_per_day = 2 on each of the 16 characters,
+// this yields at most 32 scheduled replies per day.
 declare(strict_types=1);
 if (PHP_SAPI !== 'cli') { http_response_code(404); exit; }
 require __DIR__ . '/../lib/api.php';
@@ -18,42 +23,60 @@ if (!is_array($ids) || !$ids) { echo "No scheduled topics configured.\n"; exit(0
 $ids = array_values(array_filter(array_map('intval', $ids), static fn($v) => $v > 0));
 if (!$ids) { echo "No valid scheduled topics.\n"; exit(0); }
 
-$n = count($ids);
-$cursor = (int) (val("SELECT v FROM meta WHERE k = ?", ['ai_interval_cursor']) ?? 0);
-$topicId = $ids[$cursor % $n];
+$perRun = max(1, min(6, (int) cfg('ai_interval_replies_per_run', 2)));
+$dailyTarget = max(1, min(200, (int) cfg('ai_interval_replies_per_day', 32)));
 
-$topicAuthor = (string) (val("SELECT author FROM topics WHERE id = ?", [$topicId]) ?? '');
+// Count today's reply jobs that still exist as a published post or are in flight.
+$dayStart = (int) (strtotime(gmdate('Y-m-d 00:00:00')) * 1000);
+$usedToday = (int) val(
+  "SELECT COUNT(*) FROM ai_jobs WHERE job_type = 'reply' AND created >= ? AND status IN ('queued','working','review','publishing','published')",
+  [$dayStart]
+);
+$slots = min($perRun, max(0, $dailyTarget - $usedToday));
+if ($slots < 1) { echo "Daily scheduled reply target reached ($usedToday/$dailyTarget).\n"; exit(0); }
+
 $chars = rows("SELECT c.id, u.name, c.profile_json FROM ai_characters c JOIN users u ON u.id = c.user_id WHERE c.active = 1 AND u.status = 'active' ORDER BY c.id ASC");
 if (!$chars) { echo "No active characters.\n"; exit(0); }
 $cn = count($chars);
-$start = $cursor % $cn;
+$n = count($ids);
+$cursor = (int) (val("SELECT v FROM meta WHERE k = ?", ['ai_interval_cursor']) ?? 0);
 
-$queued = null;
-for ($i = 0; $i < $cn; $i++) {
+$queuedJobs = [];
+for ($k = 0; $k < $slots; $k++) {
+  $topicId = $ids[($cursor + $k) % $n];
+  $topicAuthor = (string) (val("SELECT author FROM topics WHERE id = ?", [$topicId]) ?? '');
+  $start = ($cursor + $k) % $cn;
+  for ($i = 0; $i < $cn; $i++) {
     $char = $chars[($start + $i) % $cn];
     if (($char['name'] ?? '') === $topicAuthor) continue;
     $profile = jdec($char['profile_json'], []);
     $behaviour = $profile['behaviour'] ?? [];
     if (empty($behaviour['can_reply'])) continue;
+    // Do not let one character reply to the same topic twice in a day.
+    $already = val("SELECT 1 FROM ai_jobs WHERE job_type = 'reply' AND character_id = ? AND topic_id = ? AND created >= ? LIMIT 1", [(int) $char['id'], $topicId, $dayStart]);
+    if ($already) continue;
     try {
-        $jobId = ai_queue_reply($topicId, (int) $char['id']);
-        $queued = ['job' => $jobId, 'char' => (int) $char['id'], 'topic' => $topicId];
-        break;
+      $jobId = ai_queue_reply($topicId, (int) $char['id']);
+      $queuedJobs[] = ['job' => $jobId, 'char' => (int) $char['id'], 'topic' => $topicId, 'name' => (string) $char['name']];
+      break;
     } catch (Throwable $e) {
-        // Board not allowed, daily limit reached, topic closed, etc. Try the next character.
+      // Board not allowed, daily limit reached, topic closed, etc. Try the next character.
     }
+  }
 }
 
-if (!$queued) {
-    echo "No reply queued for topic #$topicId (limits or permissions).\n";
-    log_line('ai-community.log', "interval: no reply queued for topic #$topicId");
-    exit(0);
+if (!$queuedJobs) {
+  echo "No reply queued (limits or permissions).\n";
+  log_line('ai-community.log', "interval: no reply queued for cursor $cursor");
+  exit(0);
 }
 
-// Advance the rotation whether or not generation succeeds, so one topic cannot
-// monopolise the queue.
-meta_set('ai_interval_cursor', (string) ($cursor + 1));
+// Advance the rotation by the attempted window, whether or not every slot queued,
+// so a blocked topic cannot monopolise the queue.
+meta_set('ai_interval_cursor', (string) ($cursor + $slots));
 
 $processed = ai_run_one();
-log_line('ai-community.log', "interval: queued job #{$queued['job']} (topic #$topicId, character {$queued['char']}); processed=" . ($processed ? 'yes' : 'no'));
-echo "Queued reply job #{$queued['job']} for topic #$topicId; processed=" . ($processed ? 'yes' : 'no') . ".\n";
+$summary = [];
+foreach ($queuedJobs as $q) $summary[] = "#{$q['job']}(topic {$q['topic']}, {$q['name']})";
+log_line('ai-community.log', 'interval: queued ' . implode(', ', $summary) . '; processed=' . ($processed ? 'yes' : 'no'));
+echo 'Queued ' . count($queuedJobs) . ' reply job(s): ' . implode(', ', $summary) . '; processed=' . ($processed ? 'yes' : 'no') . ".\n";
