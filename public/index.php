@@ -34,7 +34,8 @@ try {
   $seg = array_values(array_filter(explode('/', $path)));
   $excerpt = fn(string $s, int $n = 155) => mb_strimwidth(trim(preg_replace('/\s+/', ' ', preg_replace('/\[quote=[^\]]*\][\s\S]*?\[\/quote\]/', '', $s))), 0, $n, '…');
   $postHtml = fn(string $s) => nl2br($h(preg_replace('/\[quote=([^\]]*)\]([\s\S]*?)\[\/quote\]/', "“$2” ($1)\n", $s)));
-  $topicLi = fn(array $t) => '<li><a href="/topic/' . (int) $t['id'] . '">' . $h($t['title']) . '</a> <small>' . (count($t['posts']) - 1) . ' replies</small></li>';
+  $showReplies = (doc('LAYOUT')['statReplies'] ?? true) !== false;
+  $topicLi = fn(array $t) => '<li><a href="/topic/' . (int) $t['id'] . '">' . $h($t['title']) . '</a>' . ($showReplies ? ' <small>' . (count($t['posts']) - 1) . ' replies</small>' : '') . '</li>';
   foreach (doc('SEO') as $s) if (($s['path'] ?? '') === $path) { $title = $s['title'] ?: $title; $desc = $s['desc'] ?: $desc; if (empty($s['index'])) $index = false; }
 
   if (($seg[0] ?? '') === 'topic' && isset($seg[1])) {
