@@ -70,6 +70,9 @@ try {
     else { $o = jdec($r['data'], []); $n = (int) val("SELECT COUNT(*) FROM reviews WHERE op = ? AND status <> 'removed'", [$seg[1]]);
       $title = "{$o['name']} review: payouts, complaints, Safety Index | $site"; $desc = "Member reviews ($n), complaints and licence details for {$o['name']}. " . ($o['license'] ?? '');
       $body = '<h1>' . $h($o['name']) . '</h1><p>' . $h($o['license'] ?? '') . '</p>'; }
+  } elseif (($seg[0] ?? '') === 'raffle' && !isset($seg[1])) {
+    $title = "Weekly raffle: free to enter, win USDT | $site"; $desc = 'Free weekly prize draw for Pitchside members. Join, start a topic and post in the community to qualify. 18+ only.';
+    $body = '<h1>Weekly raffle</h1><p>' . $h($desc) . '</p>';
   } elseif (($seg[0] ?? '') === 'promotions' && !isset($seg[1])) {
     $title = "Casino & sportsbook promotions and bonuses | $site"; $desc = 'The latest welcome offers, free spins, free bets and reload bonuses from casinos and sportsbooks, with the key terms. 18+ only.';
     $body = '<h1>Promotions &amp; bonuses</h1><p>' . $h($desc) . '</p>';
@@ -94,7 +97,7 @@ try {
 <meta property="og:site_name" content="' . $site . '"><meta property="og:title" content="' . $h($title) . '"><meta property="og:description" content="' . $h($desc) . '"><meta property="og:url" content="' . $h($canonical) . '">';
   $json = json_encode($boot, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_HEX_TAG | JSON_HEX_AMP);
   http_response_code($status);
-  echo str_replace(['<!--PS_HEAD-->', '<!--PS_VIEW-->', '<!--PS_BOOT-->'], [$head, $body, "<script>window.PS_BOOT=$json;</script>"], $shell);
+  echo str_replace(['<!--PS_HEAD-->', '<!--PS_VIEW-->', '<!--PS_BOOT-->'], [$head, '<div class="ssr-copy">' . $body . '</div>', "<script>window.PS_BOOT=$json;</script>"], $shell);
 } catch (Throwable $e) {
   error_log('[pitchside index] ' . $e->getMessage() . ' @ ' . $e->getFile() . ':' . $e->getLine());
   http_response_code(500);

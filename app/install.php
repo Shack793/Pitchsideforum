@@ -22,7 +22,7 @@ function has_column(string $table, string $col): bool {
   if (cfg('db_driver') === 'sqlite') { foreach (rows("PRAGMA table_info($table)") as $c) if ($c['name'] === $col) return true; return false; }
   return (bool) row("SELECT 1 FROM information_schema.COLUMNS WHERE TABLE_SCHEMA = DATABASE() AND TABLE_NAME = ? AND COLUMN_NAME = ?", [$table, $col]);
 }
-foreach ([['topics', 'review_id', 'INT NULL'], ['topics', 'complaint_id', 'VARCHAR(16) NULL']] as [$t, $c, $type])
+foreach ([['topics', 'review_id', 'INT NULL'], ['topics', 'complaint_id', 'VARCHAR(16) NULL'], ['raffle_rounds', 'rules', 'MEDIUMTEXT NULL'], ['raffle_rounds', 'rules_at', 'BIGINT NULL']] as [$t, $c, $type])
   if (!has_column($t, $c)) db()->exec("ALTER TABLE $t ADD COLUMN $c $type");
 $say('Tables ready.');
 
@@ -61,9 +61,11 @@ foreach (DOC_KEYS as $k) {
 }
 
 /* ---------- Upgrades for sites installed with an earlier phase ---------- */
+// Reads a setting straight from the database, so one upgrade step never overwrites the step before it
+function fresh_doc(string $k) { $r = doc_row($k); return $r ? jdec($r['v'], []) : []; }
 // Promotions & bonuses page: add it to the Gambling menu once (an admin can rename or hide it in Admin → Navigation)
 if (!meta_get('nav:promotions')) {
-  $nav = doc('NAV');
+  $nav = fresh_doc('NAV');
   foreach ($nav as &$n) if (($n['id'] ?? '') === 'gambling') {
     $n['match'] = array_values(array_unique(array_merge($n['match'] ?? [], ['/promotions'])));
     $paths = array_column($n['children'] ?? [], 'path');
@@ -71,15 +73,25 @@ if (!meta_get('nav:promotions')) {
   }
   unset($n); save_doc('NAV', $nav); meta_set('nav:promotions', '1'); $say('Added Promotions & bonuses to the Gambling menu.');
 }
+// Weekly raffle page: add it to the Gambling menu once, after Promotions
+if (!meta_get('nav:raffle')) {
+  $nav = fresh_doc('NAV');
+  foreach ($nav as &$n) if (($n['id'] ?? '') === 'gambling') {
+    $n['match'] = array_values(array_unique(array_merge($n['match'] ?? [], ['/raffle'])));
+    $paths = array_column($n['children'] ?? [], 'path');
+    if (!in_array('/raffle', $paths, true)) { $at = array_search('/promotions', $paths, true); array_splice($n['children'], $at === false ? 2 : $at + 1, 0, [['label' => 'Weekly raffle', 'path' => '/raffle', 'hint' => 'Free to enter: win USDT every week']]); }
+  }
+  unset($n); save_doc('NAV', $nav); meta_set('nav:raffle', '1'); $say('Added Weekly raffle to the Gambling menu.');
+}
 // Live Scores links: replace the placeholder address with LiveScoreNow (an address an admin has set in Admin → System is kept)
-$s = doc('SETTINGS');
+$s = fresh_doc('SETTINGS');
 if (($s['scoresUrl'] ?? '') === '' || str_contains((string) $s['scoresUrl'], 'scores.pitchside.example')) {
   $s['scoresUrl'] = 'https://livescorenow.xyz'; save_doc('SETTINGS', $s); $say('Live Scores links now point to https://livescorenow.xyz');
 }
 $phase = (int) (meta_get('phase', '1'));
 if ($phase < 2) {
   // Phase 2 opens Casinos & Sportsbooks, reviews, complaints and the blacklist
-  $s = doc('SETTINGS'); $s['features'] = array_merge(['marketplace' => false, 'escrow' => false, 'verification' => false], $s['features'] ?? [], ['casinos' => true, 'complaints' => true]);
+  $s = fresh_doc('SETTINGS'); $s['features'] = array_merge(['marketplace' => false, 'escrow' => false, 'verification' => false], $s['features'] ?? [], ['casinos' => true, 'complaints' => true]);
   save_doc('SETTINGS', $s); meta_set('phase', '2'); $say('Upgraded to Phase 2: casinos, reviews, complaints and the blacklist are open.');
 }
 

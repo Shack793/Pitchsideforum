@@ -425,3 +425,47 @@ CREATE TABLE IF NOT EXISTS ai_moderation_usage (
   UNIQUE KEY u_ai_moderation_usage_queue (queue_id),
   KEY k_ai_moderation_usage_created (created)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- ---------- Weekly raffle (free to enter; one entry per member and per device) ----------
+CREATE TABLE IF NOT EXISTS raffle_rounds (
+  id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  title VARCHAR(120) NOT NULL,
+  prize VARCHAR(80) NOT NULL,
+  prize_note VARCHAR(300) NOT NULL DEFAULT '',
+  starts BIGINT NOT NULL,
+  ends BIGINT NOT NULL,
+  min_members INT NOT NULL DEFAULT 100,
+  min_topics INT NOT NULL DEFAULT 1,
+  min_posts INT NOT NULL DEFAULT 25,
+  block_ip TINYINT NOT NULL DEFAULT 0,
+  wallet_days INT NOT NULL DEFAULT 14,
+  rules MEDIUMTEXT NULL,
+  rules_at BIGINT NULL,
+  status VARCHAR(16) NOT NULL DEFAULT 'open',
+  winner VARCHAR(32) NULL,
+  winner_entry INT NULL,
+  drawn_at BIGINT NULL,
+  draw_info MEDIUMTEXT NULL,
+  wallet_network VARCHAR(16) NULL,
+  wallet_addr VARCHAR(120) NULL,
+  wallet_at BIGINT NULL,
+  paid_tx VARCHAR(140) NULL,
+  paid_at BIGINT NULL,
+  created BIGINT NOT NULL,
+  updated BIGINT NOT NULL,
+  KEY k_raffle_status (status, ends)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS raffle_entries (
+  id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  round_id INT UNSIGNED NOT NULL,
+  user VARCHAR(32) NOT NULL,
+  at BIGINT NOT NULL,
+  ip_hash CHAR(64) NOT NULL,
+  dev_hash CHAR(64) NOT NULL,
+  status VARCHAR(16) NOT NULL DEFAULT 'ok',
+  note VARCHAR(255) NOT NULL DEFAULT '',
+  UNIQUE KEY u_raffle_entry (round_id, user),
+  KEY k_raffle_ip (round_id, ip_hash),
+  KEY k_raffle_dev (round_id, dev_hash)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
