@@ -4,6 +4,9 @@
 declare(strict_types=1);
 
 function send_mail(string $to, string $subject, string $text): bool {
+  $to = trim($to);
+  // AI community and demo accounts use the reserved .invalid domain: never hand them to SMTP
+  if ($to === '' || str_ends_with(strtolower($to), '.invalid')) return true;
   $host = cfg('smtp_host');
   if (!$host) { log_line('mail.log', "TO $to | $subject\n$text\n"); return true; }
   try { smtp_send($to, $subject, $text); return true; }
