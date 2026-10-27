@@ -114,7 +114,7 @@ op('post.like', function (array $in, array $u) {
     if ($p['author'] !== $u['name']) q("UPDATE users SET likes = CASE WHEN likes > 0 THEN likes - 1 ELSE 0 END, updated = ? WHERE name = ?", [now_ms(), $p['author']]);
     $liked = false;
   }
-  touch_topic((int) $t['id']);
+  touch_topic((int) $t['id']); forum_rep_sync([$p['author']]);
   return ['liked' => $liked];
 });
 
@@ -123,7 +123,7 @@ op('post.hide', function (array $in, array $u) {
   need_mp($u, 'post.hide', $t['board']);
   $reason = str_in($in, 'reason', 1000); if (mb_strlen($reason) < 3) fail('Give a reason so the audit log is useful.');
   $hide = !(int) $p['hidden'];
-  q("UPDATE posts SET hidden = ? WHERE id = ?", [$hide ? 1 : 0, $p['id']]); touch_topic((int) $t['id']);
+  q("UPDATE posts SET hidden = ? WHERE id = ?", [$hide ? 1 : 0, $p['id']]); touch_topic((int) $t['id']); forum_rep_sync([$p['author']]);
   audit($u, $hide ? 'Hide post' : 'Unhide post', "post #{$p['id']} in topic #{$t['id']}", $reason, $hide ? 'visible' : 'hidden', $hide ? 'hidden' : 'visible');
   if ($hide) notify($p['author'], 'moderator', "A moderator hid your post in “{$t['title']}”: $reason", "/topic/{$t['id']}", $u);
   return ['hidden' => $hide];
@@ -157,6 +157,7 @@ op('topic.mod', function (array $in, array $u) {
       q("UPDATE topics SET last_at = ?, updated = ? WHERE id = ?", [$last, $now, $dst['id']]);
       q("UPDATE topics SET deleted = 1, merged_into = ?, updated = ? WHERE id = ?", [$dst['id'], $now, $id]);
     });
+    forum_rep_sync_topic((int) $dst['id']);
     audit($u, 'Merge topics', "topic #$id → #{$dst['id']}", $reason, 'separate', 'merged');
     return ['into' => (int) $dst['id']];
   }
@@ -167,7 +168,7 @@ op('topic.mod', function (array $in, array $u) {
     return [];
   }
   // delete
-  q("UPDATE topics SET deleted = 1, updated = ? WHERE id = ?", [$now, $id]);
+  q("UPDATE topics SET deleted = 1, updated = ? WHERE id = ?", [$now, $id]); forum_rep_sync_topic($id);
   audit($u, 'Deleted topic', "topic #$id “{$t['title']}”", $reason, 'visible', 'deleted');
   return [];
 });

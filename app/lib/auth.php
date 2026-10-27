@@ -93,8 +93,21 @@ function use_token(string $t, string $kind): ?array {
 }
 function send_verify_email(array $u): void {
   $t = make_token($u['id'], 'verify', 3 * DAY_MS);
-  send_mail($u['email'], 'Confirm your email for Pitchside Forum',
-    "Hi {$u['name']},\n\nConfirm your email address to start posting:\n" . site_url("/verify?token=$t") . "\n\nThe link works for 3 days. If you didn't sign up, ignore this email.\n\nPitchside Forum");
+  $link = site_url("/verify?token=$t"); $name = htmlspecialchars($u['name'], ENT_QUOTES); $href = htmlspecialchars($link, ENT_QUOTES);
+  $text = "Hi {$u['name']},\n\nWelcome to Pitchside Forum! Confirm your email address to start posting:\n$link\n\nThe link works for 3 days. If you didn't sign up, you can ignore this email: no account is activated without it.\n\nPitchside Forum";
+  $html = '<!doctype html><html><body style="margin:0;padding:0;background:#eef1f5;font-family:Arial,Helvetica,sans-serif;color:#0f1c2b">'
+    . '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#eef1f5;padding:24px 12px"><tr><td align="center">'
+    . '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:520px;background:#ffffff;border-radius:12px;overflow:hidden">'
+    . '<tr><td style="background:#0b1f33;padding:18px 24px"><span style="display:inline-block;width:30px;height:30px;line-height:30px;text-align:center;border-radius:8px;background:#18c37e;color:#04261a;font-weight:800;font-size:16px">P</span>'
+    . ' <span style="color:#ffffff;font-weight:800;font-size:18px;vertical-align:middle">&nbsp;Pitchside <span style="color:#b9c6d4;font-weight:600">Forum</span></span></td></tr>'
+    . '<tr><td style="padding:28px 24px 8px"><h1 style="margin:0 0 12px;font-size:22px;line-height:1.3">Confirm your email, ' . $name . '</h1>'
+    . '<p style="margin:0 0 20px;font-size:15px;line-height:1.5;color:#334155">Welcome to Pitchside Forum! Press the button to confirm your email address. Then you can post, reply, rate casinos and enter the weekly raffle.</p>'
+    . '<p style="margin:0 0 24px"><a href="' . $href . '" style="display:inline-block;background:#18c37e;color:#04261a;text-decoration:none;font-weight:800;font-size:16px;padding:13px 26px;border-radius:10px">Confirm my email</a></p>'
+    . '<p style="margin:0 0 6px;font-size:13px;color:#6a7889">Button not working? Copy this link into your browser:</p>'
+    . '<p style="margin:0 0 20px;font-size:13px;word-break:break-all"><a href="' . $href . '" style="color:#0b63c9">' . $href . '</a></p>'
+    . '<p style="margin:0 0 24px;font-size:13px;color:#6a7889">The link works for 3 days. If you didn\'t sign up, ignore this email: no account is activated without it.</p></td></tr>'
+    . '<tr><td style="background:#f3f6fa;padding:14px 24px;font-size:12px;color:#6a7889">Pitchside Forum · 18+ for gambling sections</td></tr></table></td></tr></table></body></html>';
+  send_mail($u['email'], 'Confirm your email for Pitchside Forum', $text, $html);
 }
 
 /* ---------- Human check (Cloudflare Turnstile), optional ---------- */

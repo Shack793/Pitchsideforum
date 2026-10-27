@@ -6368,35 +6368,35 @@
  },
  "RANKS": [
   {
-   "name": "New Member",
+   "name": "Rookie",
    "min": 0
   },
   {
-   "name": "Member",
+   "name": "Contender",
    "min": 10
   },
   {
-   "name": "Active Member",
+   "name": "Starter",
    "min": 50
   },
   {
-   "name": "Established Member",
+   "name": "Playmaker",
    "min": 150
   },
   {
-   "name": "Senior Member",
+   "name": "Captain",
    "min": 400
   },
   {
-   "name": "Veteran",
+   "name": "MVP",
    "min": 1000
   },
   {
-   "name": "Community Expert",
+   "name": "Legend",
    "min": 2500
   },
   {
-   "name": "Community Leader",
+   "name": "GOAT",
    "min": 5000
   }
  ],
@@ -6542,5 +6542,6 @@
   "ticker": 100,
   "aff": 100
  },
- "PROMOS": []
+ "PROMOS": [],
+  "SPECIAL_RANKS": []
 }

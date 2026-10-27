@@ -1,0 +1,123 @@
+[
+  {
+    "slug": "1xbet", "name": "1xBet", "kind": "both", "website": "1xbet.com", "color": "#1A5685",
+    "owner": "Caecus N.V.", "license": "Curaçao Gaming Authority OGL/2024/1262/0493 (Caecus N.V.). Reported by independent reviews; not confirmed on the regulator's certificate page.",
+    "regulator": "curacao", "size": "large", "est": 2007,
+    "crypto": true, "fiat": true, "poker": true,
+    "withdrawals": ["Cards", "E-wallets", "Bank transfer", "Crypto"],
+    "minDeposit": "", "withdrawalLimit": "", "kyc": "",
+    "games": "Sportsbook, casino and live casino", "languages": "50+ site languages",
+    "pros": ["Founded in 2007, one of the largest international sportsbooks", "200+ payment systems across most currencies"],
+    "cons": ["Not licensed in Great Britain", "Has faced regulator action in some countries (e.g. the Netherlands, 2018)", "Licence number not confirmed on the Curaçao regulator's certificate page"],
+    "unfairTerms": []
+  },
+  {
+    "slug": "bc-game", "name": "BC.GAME", "kind": "both", "website": "bc.game", "color": "#0F7A4A",
+    "owner": "Twocent Technology Ltd (Belize)", "license": "Anjouan ALSI-202410011-FI1 (Twocent Technology Ltd), listed expiry 1 Oct 2026; renewal not confirmed. Curaçao licence withdrawn December 2024.",
+    "regulator": "anjouan", "size": "large", "est": 2017,
+    "crypto": true, "fiat": false, "poker": false,
+    "withdrawals": ["BTC", "ETH", "USDT", "TRX", "XRP", "DOGE"],
+    "minDeposit": "", "withdrawalLimit": "", "kyc": "",
+    "games": "Casino, originals and sportsbook", "languages": "",
+    "pros": ["Wide range of cryptocurrencies"],
+    "cons": ["Curaçao licence withdrawn in December 2024 after a court declared its operating companies bankrupt; reports of over $2.5 million in unresolved player claims", "Current Anjouan licence's listed expiry (1 Oct 2026) has passed; renewal not confirmed", "Anjouan's authority to issue gambling licences is disputed by the Comoros government"],
+    "unfairTerms": []
+  },
+  {
+    "slug": "betus", "name": "BetUS", "kind": "both", "website": "betus.com.pa", "color": "#B91C1C",
+    "owner": "Milvus (named by Florida's Gaming Control Commission as doing business as BetUS)", "license": "No licence number published. Says it is licensed in Curaçao; Michigan's regulator says it is licensed only in the Comoros (Mwali).",
+    "regulator": "none", "size": "medium", "est": 1994,
+    "crypto": true, "fiat": true, "poker": false,
+    "withdrawals": [],
+    "minDeposit": "", "withdrawalLimit": "", "kyc": "",
+    "games": "Sportsbook, racebook and casino", "languages": "English",
+    "pros": ["Operating since 1994"],
+    "cons": ["No licence number published", "Ordered to stop serving residents by at least 9 US states (2024 to 2025), including Michigan, Florida and Tennessee; Tennessee fined it $50,000"],
+    "unfairTerms": []
+  },
+  {
+    "slug": "betwinner", "name": "BetWinner", "kind": "both", "website": "betwinner.com", "color": "#15803D",
+    "owner": "Prevailer B.V. (Curaçao, company no. 149548)", "license": "Curaçao Gaming Authority OGL/2024/341/0759 (Prevailer B.V.), licensed since 28 Mar 2025. Confirmed on the regulator's certificate.",
+    "regulator": "curacao", "size": "medium", "est": 2018,
+    "crypto": true, "fiat": true, "poker": false,
+    "withdrawals": [],
+    "minDeposit": "", "withdrawalLimit": "", "kyc": "",
+    "games": "Sportsbook and casino", "languages": "",
+    "pros": ["Licence confirmed on the Curaçao regulator's certificate"],
+    "cons": ["Curaçao licence offers less player protection than UK or Malta licences"],
+    "unfairTerms": []
+  },
+  {
+    "slug": "cloudbet", "name": "Cloudbet", "kind": "both", "website": "cloudbet.com", "color": "#0E4D6B",
+    "owner": "Halcyon Super Holdings B.V. (Curaçao, company no. 148526)", "license": "Curaçao Gaming Authority OGL/2024/328/0599 (Halcyon Super Holdings B.V.). Reported by independent reviews; not confirmed on the regulator's certificate page.",
+    "regulator": "curacao", "size": "medium", "est": 2013,
+    "crypto": true, "fiat": false, "poker": false,
+    "withdrawals": ["BTC", "ETH", "USDT (7 networks)", "30+ cryptocurrencies"],
+    "minDeposit": "Varies by coin (usually under $1)", "withdrawalLimit": "$2,200/day until fully verified; no daily limit after",
+    "kyc": "No documents to start; ID, proof of address and face check (Level 2) remove limits",
+    "games": "3,000+ casino games, 250+ live tables, 35+ sports and esports", "languages": "15 site languages",
+    "pros": ["Running since 2013", "Can play and withdraw before full verification, within limits"],
+    "cons": ["Crypto only (cards just to buy crypto through a third party)", "Withdrawals capped at $2,200 a day until fully verified"],
+    "unfairTerms": []
+  },
+  {
+    "slug": "duelbits", "name": "Duelbits", "kind": "both", "website": "duelbits.com", "color": "#B45309",
+    "owner": "Liquid Entertainment N.V. (Curaçao, company no. 153298)", "license": "Curaçao Gaming Authority OGL/2024/1507/0838 (Liquid Entertainment N.V.), covers duelbits.com. Confirmed on the regulator's certificate.",
+    "regulator": "curacao", "size": "medium", "est": 2020,
+    "crypto": true, "fiat": false, "poker": false,
+    "withdrawals": ["BTC", "ETH", "LTC", "USDT"],
+    "minDeposit": "", "withdrawalLimit": "", "kyc": "Electronic ID check required before any withdrawal",
+    "games": "Casino and sportsbook", "languages": "",
+    "pros": ["Licence confirmed on the Curaçao regulator's certificate"],
+    "cons": ["Crypto only", "Its terms and AML policy give different lists of restricted countries"],
+    "unfairTerms": []
+  },
+  {
+    "slug": "gamdom", "name": "Gamdom", "kind": "both", "website": "gamdom.com", "color": "#047857",
+    "owner": "Moon Revolution Limitada (Costa Rica)", "license": "Anjouan licence (licence number not found; not confirmed on a public register).",
+    "regulator": "anjouan", "size": "large", "est": 2016,
+    "crypto": true, "fiat": true, "poker": false,
+    "withdrawals": ["Crypto", "Cards and wallets via a payment partner", "Bank transfer"],
+    "minDeposit": "Varies by method", "withdrawalLimit": "", "kyc": "Not required by default; may be requested (ID, selfie, proof of funds)",
+    "games": "7,300+ slots, 890+ live games, originals and sportsbook", "languages": "",
+    "pros": ["Running since 2016"],
+    "cons": ["Licence number not found", "Anjouan's authority to issue gambling licences is disputed by the Comoros government"],
+    "unfairTerms": []
+  },
+  {
+    "slug": "jackbit", "name": "Jackbit", "kind": "both", "website": "jackbit.com", "color": "#6D28D9",
+    "owner": "Ryker B.V. (Curaçao, company no. 154186)", "license": "Curaçao Gaming Authority OGL/2024/1800/1049 (Ryker B.V.), licensed since 14 Aug 2024, covers jackbit.com. Confirmed on the regulator's certificate.",
+    "regulator": "curacao", "size": "medium", "est": 2022,
+    "crypto": true, "fiat": false, "poker": false,
+    "withdrawals": ["BTC", "BCH", "BNB", "ETH", "LTC", "XRP", "USDT", "TRX"],
+    "minDeposit": "", "withdrawalLimit": "", "kyc": "Photo ID, proof of address and proof of payment method before the first withdrawal",
+    "games": "About 6,600 casino games, live casino and sportsbook", "languages": "",
+    "pros": ["Licence confirmed on the Curaçao regulator's certificate"],
+    "cons": ["Crypto only", "Full documents needed before the first withdrawal"],
+    "unfairTerms": []
+  },
+  {
+    "slug": "mystake", "name": "MyStake", "kind": "both", "website": "mystake.com", "color": "#BE123C",
+    "owner": "Santeda International B.V.", "license": "Curaçao licence (licence number not found; not confirmed on the regulator's certificate).",
+    "regulator": "curacao", "size": "medium", "est": 2019,
+    "crypto": true, "fiat": true, "poker": false,
+    "withdrawals": ["Cards", "Bank transfer", "Skrill", "Neteller", "Payz", "Trustly", "BTC", "ETH", "USDT"],
+    "minDeposit": "", "withdrawalLimit": "€7,500/week, €15,000/month", "kyc": "Verification may be required before withdrawals",
+    "games": "4,000+ casino games, live casino and sportsbook", "languages": "",
+    "pros": ["Cards, e-wallets and crypto"],
+    "cons": ["Licence number not found", "Withdrawals capped at €15,000 a month"],
+    "unfairTerms": []
+  },
+  {
+    "slug": "pinnacle", "name": "Pinnacle", "kind": "both", "website": "pinnacle.com", "color": "#C2410C",
+    "owner": "Balder Media Ltd / Ragnarok Corporation N.V.", "license": "International site: Curaçao OGL/2023/105/0084 (Ragnarok Corporation N.V., register shows 'assessment in progress') and Anjouan ALSI-202412052-FI2 (Balder Media Ltd). Also licensed in Malta (MGA/CL2/1069/2015), Sweden (18Li12898) and Ontario (OPIG1236075).",
+    "regulator": "curacao", "size": "large", "est": 1998,
+    "crypto": true, "fiat": true, "poker": false,
+    "withdrawals": ["Visa/Mastercard", "Bank wire", "Skrill", "NETELLER", "Payz", "paysafecard", "Bitcoin", "Litecoin", "USDT", "AstroPay", "MuchBetter"],
+    "minDeposit": "", "withdrawalLimit": "", "kyc": "Photo ID and recent proof of address before withdrawal",
+    "games": "Sportsbook, casino, live casino and esports", "languages": "",
+    "pros": ["Also licensed in Malta, Sweden and Ontario", "Founded in 1998"],
+    "cons": ["International site's Curaçao licence shows 'assessment in progress'", "Not available in the US or UK"],
+    "unfairTerms": []
+  }
+]

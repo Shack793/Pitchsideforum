@@ -108,6 +108,9 @@ foreach (rows("SELECT * FROM users WHERE delete_after IS NOT NULL AND delete_aft
   $log("deleted account #{$r['id']}");
 }
 
+/* ---------- Forum rep and post counts catch-up (posts hidden or restored by other tools) ---------- */
+try { $n = forum_rep_sync(); if ($n) $log("forum rep and post counts updated for $n member" . ($n > 1 ? 's' : '')); } catch (Throwable $e) { $log('forum rep: ' . $e->getMessage()); }
+
 /* ---------- 5. AI Community pilot (disabled unless explicitly configured) ---------- */
 require_once APP_DIR . '/ai-community/service.php';
 ai_community_cron();

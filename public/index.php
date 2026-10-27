@@ -85,7 +85,30 @@ try {
     $list = doc($seg[0] === 'teams' ? 'TEAMS' : 'LEAGUES');
     foreach ($list as $x) if (($x['slug'] ?? '') === ($seg[1] ?? '')) { $title = $x['name'] . ($seg[0] === 'teams' ? ' fans forum' : ' forum') . " | $site"; $desc = "{$x['name']} discussion, fixtures and match threads on $site."; $body = '<h1>' . $h($x['name']) . '</h1>'; }
   } elseif ($path === '/') {
-    $body = '<h1>Pitchside Forum</h1><h2>Trending</h2><ul>' . implode('', array_map($topicLi, array_slice($boot['topics'] ?? [], 0, 20))) . '</ul>';
+    // The homepage arrives already drawn with the site's own styles (Live Scores bar, space for the banner,
+    // Trending list), so visitors see the real page at once; the app then fills in the rest in the same places.
+    $lay = doc('LAYOUT'); $boards = array_column(doc('BOARDS'), 'name', 'slug');
+    $ago = function (int $ms): string { $s = max(0, intdiv(now_ms() - $ms, 1000));
+      return $s < 60 ? 'just now' : ($s < 3600 ? intdiv($s, 60) . 'm ago' : ($s < 86400 ? intdiv($s, 3600) . 'h ago' : intdiv($s, 86400) . 'd ago')); };
+    $ts = array_values(array_filter($boot['topics'] ?? [], fn($t) => empty($t['archived']) && empty($t['deleted'])));
+    $lastAt = fn($t) => (int) (end($t['posts'])['at'] ?? $t['at']);
+    usort($ts, fn($a, $b) => ((int) !empty($b['pinned']) <=> (int) !empty($a['pinned'])) ?: ($lastAt($b) <=> $lastAt($a)));
+    $rowsHtml = '';
+    foreach (array_slice($ts, 0, 8) as $t) {
+      $replies = max(0, count($t['posts'] ?? []) - 1);
+      $counts = array_filter([($lay['statReplies'] ?? true) !== false ? "<strong class=\"num\">$replies</strong> replies" : '', ($lay['statViews'] ?? true) !== false ? '<span class="num">' . number_format((int) ($t['views'] ?? 0)) . '</span> views' : '']);
+      $stats = ($counts ? '<div>' . implode(' · ', $counts) . '</div>' : '') . (($lay['statLast'] ?? true) !== false ? '<div>last ' . $ago($lastAt($t)) . '</div>' : '');
+      $rowsHtml .= '<li' . (!empty($t['pinned']) ? ' class="pinned"' : '') . '><div style="min-width:0"><h4><a href="/topic/' . (int) $t['id'] . '">' . $h($t['title']) . '</a></h4><div class="meta">'
+        . (isset($boards[$t['board']]) ? '<a href="/forum/' . $h($t['board']) . '">' . $h($boards[$t['board']]) . '</a>' : '') . (!empty($t['pinned']) ? '<span class="pill solid">Pinned</span>' : '')
+        . '<span>by ' . $h($t['author']) . '</span></div></div>' . ($stats ? '<div class="stats">' . $stats . '</div>' : '') . '</li>';
+    }
+    $scores = (string) setting('scoresUrl', 'https://livescorenow.xyz');
+    $body = '<div class="ssr-rich"><h1 class="sr">Pitchside Forum</h1>'
+      . '<section class="ls-cta" aria-label="Live scores"><div class="ls-cta-txt"><span class="ls-dot" aria-hidden="true"></span><div><strong>Live Scores</strong><span>Scores, stats, lineups and odds on LiveScoreNow.</span></div></div>'
+      . '<a class="ls-cta-btn" href="' . $h($scores) . '" target="_blank" rel="noopener">Open Live Scores <span aria-hidden="true">↗</span></a></section>'
+      . (!empty($lay['homeBanner']) && empty($lay['clean']) ? '<div class="ssr-hero" aria-hidden="true"></div>' : '')
+      . '<div class="cols"><div class="stack"><section><div class="spread" style="margin-bottom:10px"><h2 class="sec" style="margin:0">Trending right now</h2><a href="/forum">Forum index</a></div>'
+      . '<div class="panel flush">' . ($rowsHtml ? '<ul class="tlist">' . $rowsHtml . '</ul>' : '<div class="empty">No topics yet.</div>') . '</div></section></div><aside class="stack"></aside></div></div>';
   }
 
   $shell = file_get_contents(APP_DIR . '/shell.html');
@@ -95,9 +118,33 @@ try {
 <link rel="canonical" href="' . $h($canonical) . '">
 <meta name="robots" content="' . ($index && $status === 200 ? 'index, follow' : 'noindex') . '">
 <meta property="og:site_name" content="' . $site . '"><meta property="og:title" content="' . $h($title) . '"><meta property="og:description" content="' . $h($desc) . '"><meta property="og:url" content="' . $h($canonical) . '">';
+  // The menu and the sign-in buttons, filled in on the server so the header is complete before the app script runs
+  // (the app redraws them with the same look a moment later)
+  $cur = '/' . ($seg[0] ?? '');
+  $caret = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>';
+  $navHtml = '';
+  foreach (doc('NAV') as $n) {
+    if (empty($n['on'])) continue;
+    $label = $h((string) ($n['label'] ?? ''));
+    if (!empty($n['ext'])) $navHtml .= '<a href="' . $h((string) setting('scoresUrl', '#')) . '" target="_blank" rel="noopener">' . $label . ' <span aria-hidden="true">↗</span></a>';
+    elseif (!empty($n['children'])) $navHtml .= '<button type="button" class="dd"' . (in_array($cur, $n['match'] ?? [], true) ? ' aria-current="page"' : '') . '>' . $label . $caret . '</button>';
+    else $navHtml .= '<a href="' . $h((string) ($n['path'] ?? '/')) . '"' . ((($n['path'] ?? '') === $cur) ? ' aria-current="page"' : '') . '>' . $label . '</a>';
+  }
+  $userHtml = $u ? '<a class="who" href="/members/' . $h($u['name']) . '"><span class="avatar" aria-hidden="true">' . $h(strtoupper(mb_substr($u['name'], 0, 1))) . '</span><span>' . $h($u['name']) . '</span></a>'
+    : '<button class="btn" type="button" data-act="signIn">Sign in</button><button class="btn primary" type="button" data-act="register">Join free</button>';
+  // Will a side ad show? Then the page starts in the side-ad layout, so nothing shifts when the app takes over
+  $lay = doc('LAYOUT'); $nowMs = now_ms(); $railL = false; $railR = false;
+  if (!empty($lay['sideAds']) && empty($lay['clean'])) foreach (doc('SIDE_SLOTS') as $sl) {
+    if (empty($sl['on'])) continue;
+    foreach (doc('SIDE_ADS') as $ad) if (($ad['slot'] ?? '') === ($sl['id'] ?? '') && empty($ad['paused']) && (empty($ad['start']) || $ad['start'] <= $nowMs) && (empty($ad['end']) || $ad['end'] > $nowMs) && (empty($ad['gambling']) || $u)) {
+      if ($sl['id'] === 'left') $railL = true; else $railR = true;
+    }
+  }
+  $layoutCls = $railL || $railR ? ' has-rails' . ($railL ? '' : ' right-only') . ($railL && !$railR ? ' left-only' : '') : '';
   $json = json_encode($boot, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_HEX_TAG | JSON_HEX_AMP);
   http_response_code($status);
-  echo str_replace(['<!--PS_HEAD-->', '<!--PS_VIEW-->', '<!--PS_BOOT-->'], [$head, '<div class="ssr-copy">' . $body . '</div>', "<script>window.PS_BOOT=$json;</script>"], $shell);
+  echo str_replace(['<!--PS_HEAD-->', '<!--PS_VIEW-->', '<!--PS_BOOT-->', '<!--PS_NAV-->', '<!--PS_USER-->', '<!--PS_LAYOUT-->'],
+    [$head, '<div class="ssr-copy">' . $body . '</div>', "<script>window.PS_BOOT=$json;</script>", $navHtml, $userHtml, $layoutCls], $shell);
 } catch (Throwable $e) {
   error_log('[pitchside index] ' . $e->getMessage() . ' @ ' . $e->getFile() . ':' . $e->getLine());
   http_response_code(500);

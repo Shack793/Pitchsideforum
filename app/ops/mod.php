@@ -83,8 +83,8 @@ op('report.resolve', function (array $in, array $u) {
   switch ($op) {
     case 'hide':
       need_mp($u, HIDE_PERM[$r['kind']] ?? 'post.hide', $r['board']);
-      if ($r['kind'] === 'post' && !empty($tp)) { if (!empty($p)) q("UPDATE posts SET hidden = 1 WHERE id = ?", [$p['id']]); touch_topic((int) $tp['id']); }
-      if ($r['kind'] === 'topic' && !empty($tp)) q("UPDATE topics SET deleted = 1, updated = ? WHERE id = ?", [$now, $tp['id']]);
+      if ($r['kind'] === 'post' && !empty($tp)) { if (!empty($p)) { q("UPDATE posts SET hidden = 1 WHERE id = ?", [$p['id']]); forum_rep_sync([$p['author']]); } touch_topic((int) $tp['id']); }
+      if ($r['kind'] === 'topic' && !empty($tp)) { q("UPDATE topics SET deleted = 1, updated = ? WHERE id = ?", [$now, $tp['id']]); forum_rep_sync_topic((int) $tp['id']); }
       if ($r['kind'] === 'message') { q("UPDATE msgs SET body = '[Removed by a moderator]', att = '[]' WHERE id = ?", [(int) $t['msg']]); q("UPDATE convs SET updated = ? WHERE id = ?", [$now, (int) $t['conv']]); }
       if ($r['kind'] === 'review') { q("UPDATE reviews SET status = 'removed', updated = ? WHERE id = ?", [$now, (int) $t['review']]); $th = val("SELECT thread FROM reviews WHERE id = ?", [(int) $t['review']]); if ($th) touch_topic((int) $th);
         if ($au) notify($au['name'], 'review', "Moderators removed your review: $reason", '/notifications', $u); }

@@ -47,23 +47,34 @@ op('operator.save', function (array $in, array $u) {
   if (mb_strlen($name) < 2) fail('Give the operator a name.');
   if ($new) { $slug = slugify($name); if (!$slug) fail('Give the operator a name with letters or numbers.'); if (val("SELECT 1 FROM operators WHERE slug = ?", [$slug])) fail('An operator with that name already exists.'); $o = ['slug' => $slug, 'reps' => [], 'claimed' => false, 'verified' => false, 'featured' => false, 'affiliate' => false, 'warning' => null, 'blacklist' => null]; }
   else $o = op_get($slug);
-  $type = in_array($d['type'] ?? '', ['casino', 'sportsbook'], true) ? $d['type'] : 'casino';
+  // Listing type: Casino, Casino & Sportsbook ("both") or Sportsbook. "both" lives under /casinos.
+  $kind = in_array($d['kind'] ?? '', ['casino', 'both', 'sportsbook'], true) ? $d['kind'] : (in_array($d['type'] ?? '', ['casino', 'sportsbook'], true) ? $d['type'] : 'casino');
+  $type = $kind === 'sportsbook' ? 'sportsbook' : 'casino';
   $color = preg_match('/^#[0-9a-f]{6}$/i', (string) ($d['color'] ?? '')) ? $d['color'] : '#1E6FB0';
-  $logo = $d['logo'] ?? ($o['logo'] ?? null);
-  if (is_string($logo) && str_starts_with($logo, 'data:')) $logo = store_data_image($logo, 2500000, 400);
+  $logo = array_key_exists('logo', $d) ? $d['logo'] : ($o['logo'] ?? null);   // null removes the logo
+  if (is_string($logo) && str_starts_with($logo, 'data:')) $logo = store_data_image($logo, 2500000, 512);
   if ($logo !== null && !preg_match('#^/uploads/[A-Za-z0-9/_.-]+$#', (string) $logo)) $logo = null;
+  // Listing images (screenshots, promo art): up to 8, re-saved by the server
+  $images = $o['images'] ?? [];
+  if (array_key_exists('images', $d)) {
+    $images = [];
+    foreach (array_slice(is_array($d['images']) ? $d['images'] : [], 0, 8) as $im) {
+      if (is_string($im) && str_starts_with($im, 'data:')) $im = store_data_image($im, 2500000, 1600);
+      if (is_string($im) && preg_match('#^/uploads/[A-Za-z0-9/_.-]+$#', $im)) $images[] = $im;
+    }
+  }
   $o = array_merge($o, [
     'name' => $name, 'type' => $type, 'website' => mb_substr(preg_replace('#^https?://#', '', trim((string) ($d['website'] ?? ''))), 0, 120),
     'owner' => mb_substr((string) ($d['owner'] ?? ''), 0, 120), 'license' => mb_substr((string) ($d['license'] ?? ''), 0, 120),
     'regulator' => in_array($d['regulator'] ?? '', ['mga', 'ukgc', 'curacao', 'anjouan', 'none'], true) ? $d['regulator'] : 'none',
     'size' => in_array($d['size'] ?? '', ['small', 'medium', 'large'], true) ? $d['size'] : 'small', 'est' => max(1990, min((int) date('Y'), (int) ($d['est'] ?? date('Y')))),
     'countries' => list_in($d['countries'] ?? [], 80, 12), 'crypto' => !empty($d['crypto']), 'fiat' => !empty($d['fiat']),
-    'sportsbook' => $type === 'sportsbook' || !empty($d['sportsbook']), 'casino' => $type === 'casino' || !empty($d['casino']), 'poker' => !empty($d['poker']),
+    'kind' => $kind, 'sportsbook' => $kind !== 'casino', 'casino' => $kind !== 'sportsbook', 'poker' => !empty($d['poker']),
     'kyc' => mb_substr((string) ($d['kyc'] ?? ''), 0, 160), 'withdrawals' => list_in($d['withdrawals'] ?? [], 20, 40),
     'minDeposit' => mb_substr((string) ($d['minDeposit'] ?? ''), 0, 40), 'withdrawalLimit' => mb_substr((string) ($d['withdrawalLimit'] ?? ''), 0, 60),
     'games' => mb_substr((string) ($d['games'] ?? ''), 0, 160), 'languages' => mb_substr((string) ($d['languages'] ?? ''), 0, 120),
     'pros' => list_in($d['pros'] ?? [], 10, 160), 'cons' => list_in($d['cons'] ?? [], 10, 160), 'unfairTerms' => list_in($d['unfairTerms'] ?? [], 10, 200),
-    'color' => $color, 'logo' => $logo]);
+    'color' => $color, 'logo' => $logo, 'images' => $images]);
   op_save($o);
   audit($u, $new ? 'Operator added' : 'Operator edited', $name, 'Admin → Businesses', $new ? 'none' : 'previous', 'saved');
   return ['slug' => $slug];

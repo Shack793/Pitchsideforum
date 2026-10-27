@@ -16,7 +16,7 @@ const RENAME_JSON = [
   ['operators', 'slug', 'data'], ['reports', 'id', 'target'], ['raffle_rounds', 'id', 'draw_info'], ['topics', 'id', 'poll'],
 ];
 // Keys whose value (or list of values) is a username
-const RENAME_KEYS = ['by', 'user', 'author', 'actor', 'mods', 'reps', 'names', 'winner', 'specialist', 'claimedBy', 'closedBy'];
+const RENAME_KEYS = ['by', 'user', 'author', 'actor', 'mods', 'reps', 'names', 'winner', 'specialist', 'claimedBy', 'closedBy', 'members'];
 
 function rename_walk(&$v, string $old, string $new, bool $nameList = false): bool {
   if (!is_array($v)) return false;

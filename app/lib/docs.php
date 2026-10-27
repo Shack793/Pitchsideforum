@@ -4,7 +4,7 @@
 declare(strict_types=1);
 
 const DOC_KEYS = ['CATEGORIES','BOARDS','TAGS','NAV','SEO','SETTINGS','LAYOUT','BANNERS','SIDE_SLOTS','SIDE_ADS','TICKER','POST_ADS','AFF_LINKS',
-  'SPORTS','LEAGUES','TEAMS','SPORT_BOARD','PERMS','LIMITS','RANKS','MOD_TEMPLATES','MOD_PROFILES','EVENTS','SAFETY_W','WEIGHTS','PROMOS'];
+  'SPORTS','LEAGUES','TEAMS','SPORT_BOARD','PERMS','LIMITS','RANKS','MOD_TEMPLATES','MOD_PROFILES','EVENTS','SAFETY_W','WEIGHTS','PROMOS','SPECIAL_RANKS'];
 // Which capability may change each document. SETTINGS keys in SYSTEM_SETTINGS also need the "system" capability.
 const DOC_WRITE = ['PERMS' => 'managePermissions', 'LIMITS' => 'managePermissions', 'MOD_TEMPLATES' => 'managePermissions', 'MOD_PROFILES' => 'managePermissions',
   'SAFETY_W' => 'manageRatings', 'WEIGHTS' => 'manageRatings'];
@@ -14,13 +14,15 @@ const DOC_STAFF_ONLY = ['MOD_PROFILES'];
 // Ad stats live in ad_stats; they're merged in when sent and stripped when saved.
 const AD_DOCS = ['BANNERS' => 'banner', 'SIDE_ADS' => 'side', 'POST_ADS' => 'post'];
 
+// Settings are read once per request and kept here; saving a setting clears its copy so the reply sees the new value
+function &doc_cache(): array { static $cache = []; return $cache; }
 function doc(string $k) {
-  static $cache = [];
+  $cache = &doc_cache();
   if (array_key_exists($k, $cache)) return $cache[$k];
   $r = row("SELECT v FROM config WHERE k = ?", [$k]);
   return $cache[$k] = $r ? jdec($r['v'], []) : [];
 }
-function doc_forget(): void { /* static cache lives per request; nothing to do across requests */ }
+function doc_forget(?string $k = null): void { $cache = &doc_cache(); if ($k === null) $cache = []; else unset($cache[$k]); }
 function doc_row(string $k): ?array { return row("SELECT k, v, ver, updated FROM config WHERE k = ?", [$k]); }
 
 function setting(string $k, $def = null) { $s = doc('SETTINGS'); return $s[$k] ?? $def; }
@@ -33,6 +35,7 @@ function save_doc(string $k, $v, string $actor = 'system'): void {
   $json = jenc($v); $now = now_ms();
   $n = q("UPDATE config SET v = ?, ver = ver + 1, updated = ? WHERE k = ?", [$json, $now, $k])->rowCount();
   if (!$n && !insert_ignore('config', ['k' => $k, 'v' => $json, 'ver' => 1, 'updated' => $now])) q("UPDATE config SET v = ?, ver = ver + 1, updated = ? WHERE k = ?", [$json, $now, $k]);
+  doc_forget($k);
 }
 
 /* ---------- Cleaning admin input ---------- */

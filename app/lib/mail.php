@@ -3,17 +3,18 @@
 // Without SMTP settings, emails are written to app/storage/mail.log so nothing is lost during setup.
 declare(strict_types=1);
 
-function send_mail(string $to, string $subject, string $text): bool {
+// $html is optional: when given, the email is sent with both a designed (HTML) version and the plain-text version.
+function send_mail(string $to, string $subject, string $text, ?string $html = null): bool {
   $to = trim($to);
   // AI community and demo accounts use the reserved .invalid domain: never hand them to SMTP
   if ($to === '' || str_ends_with(strtolower($to), '.invalid')) return true;
   $host = cfg('smtp_host');
   if (!$host) { log_line('mail.log', "TO $to | $subject\n$text\n"); return true; }
-  try { smtp_send($to, $subject, $text); return true; }
+  try { smtp_send($to, $subject, $text, $html); return true; }
   catch (Throwable $e) { log_line('mail.log', "FAILED to $to | $subject | " . $e->getMessage()); return false; }
 }
 
-function smtp_send(string $to, string $subject, string $text): void {
+function smtp_send(string $to, string $subject, string $text, ?string $html = null): void {
   $host = (string) cfg('smtp_host'); $port = (int) cfg('smtp_port', 587); $secure = (string) cfg('smtp_secure', 'tls'); // tls = STARTTLS, ssl = implicit TLS
   $from = (string) cfg('mail_from'); $fromName = (string) cfg('mail_from_name', 'Pitchside Forum');
   if (!filter_var($to, FILTER_VALIDATE_EMAIL)) throw new RuntimeException('bad recipient');
@@ -33,8 +34,15 @@ function smtp_send(string $to, string $subject, string $text): void {
   $cmd('DATA', [354]);
   $enc = fn($s) => '=?UTF-8?B?' . base64_encode($s) . '?=';
   $headers = ['From: ' . $enc($fromName) . " <$from>", "To: <$to>", 'Subject: ' . $enc($subject), 'Date: ' . date('r'),
-    'Message-ID: <' . rand_token(12) . "@$me>", 'MIME-Version: 1.0', 'Content-Type: text/plain; charset=UTF-8', 'Content-Transfer-Encoding: base64'];
-  $body = implode("\r\n", $headers) . "\r\n\r\n" . chunk_split(base64_encode($text));
+    'Message-ID: <' . rand_token(12) . "@$me>", 'MIME-Version: 1.0'];
+  if ($html === null) {
+    $headers[] = 'Content-Type: text/plain; charset=UTF-8'; $headers[] = 'Content-Transfer-Encoding: base64';
+    $body = implode("\r\n", $headers) . "\r\n\r\n" . chunk_split(base64_encode($text));
+  } else {
+    $b = 'ps_' . rand_token(12); $headers[] = "Content-Type: multipart/alternative; boundary=\"$b\"";
+    $part = fn(string $type, string $s) => "--$b\r\nContent-Type: $type; charset=UTF-8\r\nContent-Transfer-Encoding: base64\r\n\r\n" . chunk_split(base64_encode($s));
+    $body = implode("\r\n", $headers) . "\r\n\r\n" . $part('text/plain', $text) . $part('text/html', $html) . "--$b--";
+  }
   $cmd($body . "\r\n.", [250]);
   $cmd('QUIT', [221]);
   fclose($fp);
