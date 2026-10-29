@@ -66,7 +66,7 @@ op('operator.save', function (array $in, array $u) {
   $o = array_merge($o, [
     'name' => $name, 'type' => $type, 'website' => mb_substr(preg_replace('#^https?://#', '', trim((string) ($d['website'] ?? ''))), 0, 120),
     'owner' => mb_substr((string) ($d['owner'] ?? ''), 0, 120), 'license' => mb_substr((string) ($d['license'] ?? ''), 0, 120),
-    'regulator' => in_array($d['regulator'] ?? '', ['mga', 'ukgc', 'curacao', 'anjouan', 'none'], true) ? $d['regulator'] : 'none',
+    'regulator' => in_array($d['regulator'] ?? '', ['mga', 'ukgc', 'za', 'curacao', 'anjouan', 'none'], true) ? $d['regulator'] : 'none',
     'size' => in_array($d['size'] ?? '', ['small', 'medium', 'large'], true) ? $d['size'] : 'small', 'est' => max(1990, min((int) date('Y'), (int) ($d['est'] ?? date('Y')))),
     'countries' => list_in($d['countries'] ?? [], 80, 12), 'crypto' => !empty($d['crypto']), 'fiat' => !empty($d['fiat']),
     'kind' => $kind, 'sportsbook' => $kind !== 'casino', 'casino' => $kind !== 'sportsbook', 'poker' => !empty($d['poker']),

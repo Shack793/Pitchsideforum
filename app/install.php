@@ -98,20 +98,30 @@ if (!meta_get('ranks:sports-names')) {
   if ($ch) { save_doc('RANKS', $ranks); $say("Renamed $ch post rank" . ($ch > 1 ? 's' : '') . ' (Rookie, Contender, Starter, Playmaker, Captain, MVP, Legend, GOAT).'); }
   meta_set('ranks:sports-names', '1');
 }
-// Casino listings researched in October 2026: added once. An operator already listed (same address or name) is left as it is.
-if (!meta_get('import:operators-2026-10') && is_file(__DIR__ . '/seed/operators-2026-10.json')) {
+// Casino listings researched in October 2026 (two batches): each batch is added once. An operator already listed
+// (same address, name or slug) is left exactly as it is, so your own edits are never overwritten.
+foreach ([['import:operators-2026-10', 'operators-2026-10.json'], ['import:operators-2026-10b', 'operators-2026-10b.json']] as [$flag, $file]) {
+  if (meta_get($flag) || !is_file(__DIR__ . "/seed/$file")) continue;
   $added = 0; $skipped = [];
   $have = []; foreach (rows("SELECT slug, data FROM operators") as $r) { $d = jdec($r['data'], []); $have[] = strtolower((string) ($d['name'] ?? '')); $have[] = strtolower(preg_replace('#^www\.#', '', (string) ($d['website'] ?? ''))); $have[] = $r['slug']; }
-  foreach (json_decode(file_get_contents(__DIR__ . '/seed/operators-2026-10.json'), true) ?: [] as $x) {
+  foreach (json_decode(file_get_contents(__DIR__ . "/seed/$file"), true) ?: [] as $x) {
     if (array_intersect([$x['slug'], strtolower($x['name']), strtolower($x['website'])], $have)) { $skipped[] = $x['name']; continue; }
     $kind = $x['kind'] ?? 'both';
     op_save(array_merge(['reps' => [], 'claimed' => false, 'verified' => false, 'featured' => false, 'affiliate' => false, 'warning' => null, 'blacklist' => null, 'pendingClaim' => null,
       'countries' => [], 'logo' => null, 'images' => []], $x, ['type' => $kind === 'sportsbook' ? 'sportsbook' : 'casino', 'casino' => $kind !== 'sportsbook', 'sportsbook' => $kind !== 'casino']));
     $added++;
   }
-  meta_set('import:operators-2026-10', '1');
-  audit(null, 'Operator added', "$added casinos and sportsbooks", 'Imported listings (October 2026 research)', 'none', 'saved');
+  meta_set($flag, '1');
+  if ($added) audit(null, 'Operator added', "$added casinos and sportsbooks", 'Imported listings (October 2026 research)', 'none', 'saved');
   $say("Added $added casino listing" . ($added === 1 ? '' : 's') . ($skipped ? ' (already listed, left unchanged: ' . implode(', ', $skipped) . ')' : '') . '.');
+}
+// Starting Top picks on the casino list: feature Pinnacle and Jackbit, once, and only if no casino is featured yet
+if (!meta_get('featured:2026-10-28')) {
+  $any = false; foreach (rows("SELECT data FROM operators") as $r) if (!empty(jdec($r['data'], [])['featured'])) { $any = true; break; }
+  $done = [];
+  if (!$any) foreach (['pinnacle', 'jackbit'] as $sl) if (val("SELECT 1 FROM operators WHERE slug = ?", [$sl])) { $o = op_get($sl); $o['featured'] = true; op_save($o); $done[] = $o['name']; }
+  meta_set('featured:2026-10-28', '1');
+  if ($done) { audit(null, 'Commercial setting', implode(', ', $done), 'featured toggled', 'off', 'on'); $say('Featured ' . implode(' and ', $done) . ' as Top picks on the casino list (change in Admin → Businesses).'); }
 }
 // Forum rep (likes received) and post counts (which set each member's rank) from visible posts only
 $n = forum_rep_sync(); if ($n) $say("Forum rep and post counts worked out for $n member" . ($n > 1 ? 's' : '') . '.');

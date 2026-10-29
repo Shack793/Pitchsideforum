@@ -318,7 +318,7 @@ img.avatar{object-fit:cover;padding:0}
 @media (max-width:600px){.op-cta{width:100%;text-align:center}}
 .aff-note{font-size:.75rem;color:var(--muted)}
 .offer{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;padding:14px 16px;margin-bottom:14px;border:1px solid var(--line);border-left:4px solid var(--turf);border-radius:var(--r);background:var(--turf-soft)}
-.lgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px}
+.lgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:14px}
 .lcard{display:flex;flex-direction:column;gap:10px}
 .crest.lcrest{background:var(--sky-tint);color:var(--ink);border:1px solid var(--sky)}
 .tchips{display:flex;flex-wrap:wrap;gap:6px}
@@ -614,7 +614,11 @@ dialog::backdrop{background:rgba(6,16,26,.6)}
 .ls-cta-btn:focus-visible{outline:3px solid #fff;outline-offset:2px}
 @media (max-width:560px){.ls-cta-btn{width:100%;justify-content:center}}
 /* Promotions & bonuses page */
-.promo-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px}
+.promo-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,280px),1fr));gap:14px}
+.promo{min-width:0}
+.promo-head>:last-child{flex:1 1 auto;min-width:0}
+.promo-head .row{flex-wrap:wrap}
+.promo-head img.crest.op-logo{max-width:45%}
 .promo{display:flex;flex-direction:column;gap:8px;padding:16px;border:1px solid var(--line);border-radius:12px;background:var(--surface)}
 .promo-feat{border-color:var(--sky);box-shadow:0 0 0 1px var(--sky) inset}
 .promo-head{display:flex;gap:12px;align-items:center}
@@ -649,7 +653,8 @@ dialog::backdrop{background:rgba(6,16,26,.6)}
 /* Homepage banner: same size and shape as the Live Scores bar above it (the ad keeps its own colours) */
 .hero > .ad{border:0;border-radius:12px}
 .hero .ad-slide{grid-template-columns:minmax(0,1fr);padding:16px 20px;gap:0;min-height:82px}
-.hero .ad-img{display:none}
+.hero .ad-slide:has(.ad-img){grid-template-columns:auto minmax(0,1fr);column-gap:16px;align-items:center}
+.hero .ad-slide .ad-img{display:block;order:-1;width:64px;height:64px;aspect-ratio:1;object-fit:cover;border-radius:10px;background:rgba(255,255,255,.08)}
 .hero .ad-copy{display:grid;grid-template-columns:auto minmax(0,1fr) auto;grid-template-areas:"lab h2 cta" "p p cta";column-gap:10px;row-gap:0;align-items:center}
 .hero .ad-label{grid-area:lab;justify-self:start;font-size:.66rem;padding:2px 7px;white-space:nowrap}
 .hero .ad-slide h2{grid-area:h2;font:800 1.35rem/1.15 var(--display);letter-spacing:-.01em;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
@@ -657,7 +662,7 @@ dialog::backdrop{background:rgba(6,16,26,.6)}
 .hero .ad-legal{grid-column:1 / 3;font-size:.7rem}
 .hero .ad-cta{grid-area:cta;align-self:center;margin:0 0 0 10px;padding:13px 22px;border-radius:10px;font:800 1.05rem/1 var(--display);white-space:nowrap}
 .hero .ad-ctrls{padding:5px 12px}
-@media (max-width:560px){.hero .ad-copy{grid-template-columns:minmax(0,1fr);grid-template-areas:"lab" "h2" "p"}.hero .ad-legal{grid-column:1}.hero .ad-cta{grid-area:auto}.hero .ad-slide h2,.hero .ad-slide p{white-space:normal}.hero .ad-cta{margin:10px 0 0;width:100%;justify-content:center}}
+@media (max-width:560px){.hero .ad-slide:has(.ad-img){align-items:start}.hero .ad-slide .ad-img{width:52px;height:52px}.hero .ad-copy{grid-template-columns:minmax(0,1fr);grid-template-areas:"lab" "h2" "p"}.hero .ad-legal{grid-column:1}.hero .ad-cta{grid-area:auto}.hero .ad-slide h2,.hero .ad-slide p{white-space:normal}.hero .ad-cta{margin:10px 0 0;width:100%;justify-content:center}}
 /* Weekly raffle page */
 .notice.green{background:var(--good-soft)}
 .rf-hero{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:16px 24px;align-items:center;padding:22px 24px;border-radius:12px;background:linear-gradient(90deg,var(--head),var(--head-2));color:var(--head-ink)}
@@ -692,7 +697,7 @@ dialog::backdrop{background:rgba(6,16,26,.6)}
   body:has(#layout.has-rails) :is(header.top > .wrap, nav.main > .wrap, footer > .wrap){max-width:none;width:min(1200px, calc(100% - 408px));margin-left:calc(204px + (100% - 32px - min(1576px, 100% - 32px)) / 2);margin-right:auto}
 }
 /* Casino & sportsbook logos and listing images */
-img.crest.op-logo{object-fit:contain;background:#fff;border:1px solid var(--line);padding:4px;box-sizing:border-box}
+img.crest.op-logo{--h:min(var(--lh,77px),24vw);height:var(--h);width:auto;min-width:var(--h);max-width:calc(var(--h) * 2.6);flex:none;object-fit:contain;background:#fff;border:1px solid var(--line);padding:3px;box-sizing:border-box}
 .op-gallery{display:flex;gap:10px;overflow-x:auto;padding:2px 2px 10px;margin:0 0 14px;scroll-snap-type:x mandatory}
 .op-gallery button{flex:none;padding:0;border:1px solid var(--line);border-radius:10px;background:var(--sunk);cursor:zoom-in;scroll-snap-align:start;overflow:hidden}
 .op-gallery img{display:block;height:170px;width:auto;max-width:300px;object-fit:cover}
@@ -719,6 +724,43 @@ img.crest.op-logo{object-fit:contain;background:#fff;border:1px solid var(--line
 .um-out{display:block;width:100%;text-align:left;margin-top:4px;padding:9px 12px;border:0;border-top:1px solid var(--line);border-radius:0 0 6px 6px;background:none;font:inherit;font-weight:600;color:var(--fg);cursor:pointer}
 .um-out:hover,.um-out:focus-visible{background:var(--sunk)}
 @media (max-width:639px){.top .who-btn .avatar~span,.top .who-btn>span:not(.avatar){max-width:9ch;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}}
+/* banner form: image preview */
+.bn-prev{display:flex;align-items:center;gap:10px;margin-top:6px}
+.bn-prev img{width:72px;height:72px;object-fit:cover;border-radius:10px;border:1px solid var(--line);background:var(--sunk)}
+/* footer always at the bottom of the screen, even on short pages */
+body{min-height:100vh;min-height:100dvh;display:flex;flex-direction:column}
+body > #layout{flex:1 0 auto;width:100%}
+body > footer{flex-shrink:0;margin-top:auto}
+/* fit any screen: fields and grids never force the page wider than the screen */
+.inp,input,select,textarea{min-width:0;max-width:100%}
+label{max-width:100%}
+.lcard,.panel{min-width:0}
+.lcard .meta{flex-wrap:wrap}
+@media (max-width:340px){
+  .wrap{padding-inline:12px}
+  .panel{padding-left:12px;padding-right:12px}
+  h1,.phead h1{overflow-wrap:anywhere}
+  .si{padding-right:8px}
+}
+/* phones: Sign in / Join (or your icons and menu) sit beside the logo, search bar underneath */
+@media (max-width:720px){
+  .top .bar > .search{order:3;flex:1 1 100%}
+  .top .bar > .right{width:auto;margin-left:auto;justify-content:flex-end}
+  .top .bar > .right > #userArea{flex-wrap:nowrap}
+}
+@media (max-width:480px){
+  .top .bar{gap:8px 10px}
+  .top .logo-sub{display:none}
+  .top #userArea{gap:6px}
+  .top #userArea .btn{padding:6px 10px;font-size:.88rem}
+  .top #userArea .iconbtn{width:34px;height:34px}
+  .top .who-btn > span:not(.avatar){display:none}
+  .top #userArea .iconbtn[data-go="/admin"],.top #userArea .iconbtn[data-go="/mod"]{display:none} /* both are in the menu under your name */
+}
+@media (max-width:360px){
+  .top #userArea .iconbtn{width:30px;height:30px}
+  .top #userArea .iconbtn svg{width:16px;height:16px}
+}
 /* videos in posts */
 .pvid{margin:8px 0;max-width:560px;white-space:normal}
 .pvid-play,.pvid iframe{position:relative;display:block;width:100%;aspect-ratio:16/9;border:0;border-radius:8px;overflow:hidden;background:#0b1622;padding:0;cursor:pointer}
@@ -749,6 +791,42 @@ details.spoiler>div{margin-top:6px;white-space:pre-wrap}
 .cl-form{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px;align-items:center}
 .cl-form .inp{flex:1 1 200px;min-width:0}
 .cl-up{cursor:pointer}
+/* casinos & sportsbooks list (cards, 2 per row) */
+.cl-filters{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:flex-end;margin:0 0 18px;padding:12px 14px;background:var(--surface);border:1px solid var(--line);border-radius:12px}
+.cl-f{display:flex;flex-direction:column;gap:4px;font-size:.82rem;font-weight:600;color:var(--muted);flex:1 1 180px;min-width:0;max-width:280px}
+.cl-f .inp{width:100%;font-weight:600;color:var(--fg)}
+.cl-sec{margin:0 0 22px}
+.cl-h{font:800 1.15rem/1.3 var(--display);margin:0 0 10px}
+.cl-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.cl-card{position:relative;display:flex;flex-direction:column;gap:12px;padding:16px;background:var(--surface);border:1px solid var(--line);border-radius:14px;cursor:pointer;transition:box-shadow .15s,border-color .15s,transform .15s}
+.cl-card:hover{border-color:var(--sky);box-shadow:0 6px 20px rgba(10,20,14,.10);transform:translateY(-2px)}
+.cl-card:focus-within{border-color:var(--sky)}
+.cl-pick{padding-top:30px;border-color:var(--sky);box-shadow:0 0 0 1px var(--sky) inset}
+.cl-ribbon{position:absolute;top:0;left:16px;background:var(--sky);color:var(--sky-ink);font-size:.7rem;font-weight:800;letter-spacing:.04em;text-transform:uppercase;padding:3px 9px;border-radius:0 0 6px 6px}
+.cl-head{display:flex;align-items:center;gap:14px}
+.cl-logo{flex:none;display:flex;align-items:center;justify-content:center;max-width:34%}
+.cl-logo img.crest.op-logo{--h:68px;max-width:min(100%,160px)}
+.cl-id{flex:1;min-width:0;display:flex;flex-direction:column;gap:5px}
+.cl-meta{display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px;margin-top:2px}
+.cl-si{flex:none}
+.cl-name{margin:0;font:800 1.12rem/1.25 var(--display)}
+.cl-name a{color:var(--fg);text-decoration:none}
+.cl-name a:hover{text-decoration:underline}
+.cl-tags{display:flex;flex-wrap:wrap;gap:4px}
+.cl-rate{font-size:.88rem}
+.cl-stars{letter-spacing:1px}.cl-stars .on{color:#f5a623}.cl-stars .off{color:var(--line)}
+.cl-facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px 12px;margin:0;font-size:.84rem;padding-top:12px;border-top:1px solid var(--line)}
+.cl-facts dt{color:var(--muted);font-size:.78rem}
+.cl-facts dd{margin:2px 0 0;font-weight:600;overflow-wrap:anywhere}
+.cl-btns{display:flex;gap:8px;margin-top:auto}
+.cl-btns .btn{flex:1;justify-content:center;text-align:center}
+.cl-btns .cl-review{background:transparent;border-color:var(--sky);color:var(--fg)}
+.cl-note{font-size:.7rem;color:var(--muted);text-align:center;margin-top:-6px}
+.cl-note .aff-note{font-size:inherit}
+.cl-foot{display:flex;flex-direction:column;gap:10px}
+.cl-how{font-size:.88rem;margin:0}
+@media (max-width:900px){.cl-grid{grid-template-columns:1fr}}
+@media (max-width:520px){.cl-f{max-width:none;flex-basis:100%}.cl-head{flex-wrap:wrap}.cl-logo img.crest.op-logo{max-width:220px}.cl-logo{max-width:100%}.cl-id{flex-basis:100%}.cl-facts{grid-template-columns:1fr 1fr}}
 </style>
 </head>
 <body>
@@ -792,18 +870,19 @@ details.spoiler>div{margin-top:6px;white-space:pre-wrap}
 <script src="/assets/app.895e02db9d15.js"></script>
 <script src="/assets/scores-links.2.js"></script>
 <script src="/assets/promotions.3.js"></script>
-<script src="/assets/ads-tweaks.1.js"></script>
+<script src="/assets/ads-tweaks.2.js"></script>
 <script src="/assets/topic-stats.2.js"></script>
 <script src="/assets/raffle.2.js"></script>
 <script src="/assets/user-rename.1.js"></script>
 <script src="/assets/rep.1.js"></script>
 <script src="/assets/ranks.1.js"></script>
 <script src="/assets/special-ranks.1.js"></script>
-<script src="/assets/operators.2.js"></script>
+<script src="/assets/operators.4.js"></script>
 <script src="/assets/post-images.1.js"></script>
 <script src="/assets/post-media.1.js"></script>
 <script src="/assets/header.1.js"></script>
 <script src="/assets/competitions.1.js"></script>
+<script src="/assets/casino-list.3.js"></script>
 <script>(function(){var d=document.documentElement;if(document.querySelector("#view .ssr-copy"))d.classList.remove("ps-js");else d.classList.add("ps-ready");})();</script>
 </body>
 </html>
