@@ -44,9 +44,10 @@ function clean_doc($v, string $key = '', int $depth = 0) {
   if ($depth > 12) fail('That setting is nested too deeply.');
   if (is_array($v)) { $o = []; foreach ($v as $k => $x) { if (in_array($k, ['imps', 'clicks'], true)) continue; $o[$k] = clean_doc($x, (string) $k, $depth + 1); } return $o; }
   if (is_string($v)) {
-    if (str_starts_with($v, 'data:')) return store_data_image($v);
+    // Full banner images (full = computers, fullM = phones) may be wide or tall, so they keep up to 2400 px
+    if (str_starts_with($v, 'data:')) return in_array($key, ['full', 'fullM'], true) ? store_data_image($v, 4000000, 2400) : store_data_image($v);
     if (preg_match('/^(color|bg|fg|accent|avatarColor)$/i', $key)) return preg_match('/^#[0-9a-f]{3,8}$/i', $v) ? $v : '#A9D6F5';
-    if (preg_match('/^(img|logo|avatar|image)$/i', $key)) return $v === '' ? null : (preg_match('#^(/uploads/[A-Za-z0-9/_.-]+|https://[^\s"\'<>]+)$#', $v) ? $v : null);
+    if (preg_match('/^(img|logo|avatar|image|full|fullM)$/i', $key)) return $v === '' ? null : (preg_match('#^(/uploads/[A-Za-z0-9/_.-]+|https://[^\s"\'<>]+)$#', $v) ? $v : null);
     if (preg_match('/^(dest|url|path|canonical|scoresUrl|fixturesFeed|go)$/i', $key) && $v !== '') {
       if (preg_match('/^\s*(javascript|data|vbscript):/i', $v) || preg_match('/["\'<>\s]/', $v)) fail("“{$v}” isn't a valid link. Use https://… or a path starting with /.");
     }
@@ -59,7 +60,7 @@ function clean_doc($v, string $key = '', int $depth = 0) {
 function store_data_image(string $data, int $maxBytes = 2500000, ?int $maxSide = 1200): string {
   if (!preg_match('#^data:image/(png|jpe?g|gif|webp);base64,([A-Za-z0-9+/=\s]+)$#', $data, $m)) fail('Images must be PNG, JPG, GIF or WebP.');
   $bin = base64_decode(preg_replace('/\s+/', '', $m[2]), true);
-  if ($bin === false || strlen($bin) > $maxBytes) fail('Images must be under 2 MB.');
+  if ($bin === false || strlen($bin) > $maxBytes) fail($maxBytes > 3000000 ? 'Banner images must be under 4 MB.' : 'Images must be under 2 MB.');
   return save_image_bytes($bin, 'media', $maxSide);
 }
 // Re-encodes an image with GD (drops metadata such as photo location, defuses anything hidden in the file).
