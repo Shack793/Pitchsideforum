@@ -663,7 +663,7 @@ dialog::backdrop{background:rgba(6,16,26,.6)}
 .hero .ad-cta{grid-area:cta;align-self:center;margin:0 0 0 10px;padding:13px 22px;border-radius:10px;font:800 1.05rem/1 var(--display);white-space:nowrap}
 .hero .ad-ctrls{padding:5px 12px}
 @media (max-width:560px){.hero .ad-slide:has(.ad-img){align-items:start}.hero .ad-slide .ad-img{width:52px;height:52px}.hero .ad-copy{grid-template-columns:minmax(0,1fr);grid-template-areas:"lab" "h2" "p"}.hero .ad-legal{grid-column:1}.hero .ad-cta{grid-area:auto}.hero .ad-slide h2,.hero .ad-slide p{white-space:normal}.hero .ad-cta{margin:10px 0 0;width:100%;justify-content:center}}
-/* Weekly raffle page */
+/* Raffle page */
 .notice.green{background:var(--good-soft)}
 .rf-hero{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:16px 24px;align-items:center;padding:22px 24px;border-radius:12px;background:linear-gradient(90deg,var(--head),var(--head-2));color:var(--head-ink)}
 .rf-kicker{font:700 .78rem/1 var(--body);letter-spacing:.06em;text-transform:uppercase;color:var(--head-muted)}
@@ -687,6 +687,21 @@ dialog::backdrop{background:rgba(6,16,26,.6)}
 .rf-results li{display:flex;justify-content:space-between;gap:12px;padding:12px 16px;border-top:1px solid var(--line);flex-wrap:wrap}
 .rf-rules summary{cursor:pointer}
 .rf-rules ol{margin:10px 0 0;padding-left:20px;display:flex;flex-direction:column;gap:6px;font-size:.92rem}
+.rf-split{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 8px}
+.rf-place{display:inline-flex;align-items:baseline;gap:6px;padding:4px 10px;border-radius:999px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);font:700 .95rem/1.2 var(--display);color:var(--head-ink)}
+.rf-place b{font:700 .72rem/1 var(--body);letter-spacing:.04em;text-transform:uppercase;color:var(--head-muted)}
+.rf-place.first{background:var(--sky);border-color:var(--sky);color:var(--sky-ink)}
+.rf-place.first b{color:var(--sky-ink);opacity:.75}
+.rf-results li>div:first-child{flex:1 1 320px;min-width:0}
+.rf-winners{list-style:none;margin:8px 0 6px;padding:0;display:flex;flex-direction:column;gap:0}
+.rf-results .rf-winners li{display:grid;grid-template-columns:44px minmax(0,1fr) auto;gap:10px;align-items:center;padding:7px 0;border-top:1px dashed var(--line)}
+.rf-pl{font:800 .9rem/1 var(--display);color:var(--sky-ink)}
+.rf-wn{display:flex;flex-direction:column;min-width:0}
+.rf-wn small{font-size:.8rem}
+.rf-ws{text-align:right;font-size:.85rem}
+.rf-paylist{display:flex;flex-direction:column;margin-top:8px}
+.rf-payrow{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;padding:10px 0;border-top:1px solid var(--line)}
+@media (max-width:640px){.rf-results .rf-winners li{grid-template-columns:38px minmax(0,1fr)}.rf-ws{grid-column:2;text-align:left}}
 @media (max-width:640px){.rf-hero{grid-template-columns:minmax(0,1fr);padding:18px}.rf-facts{gap:16px}}
 /* Side ad showing on a laptop-size screen: the header, menu and footer line up with the page content */
 @media (min-width:1280px) and (max-width:1599px){
@@ -933,17 +948,19 @@ details.spoiler>div{margin-top:6px;white-space:pre-wrap}
 <script src="/assets/full-banners.1.js"></script>
 <script src="/assets/ads-images.1.js"></script>
 <script src="/assets/topic-stats.2.js"></script>
-<script src="/assets/raffle.2.js"></script>
+<script src="/assets/raffle.4.js"></script>
 <script src="/assets/user-rename.1.js"></script>
 <script src="/assets/rep.1.js"></script>
 <script src="/assets/ranks.1.js"></script>
 <script src="/assets/special-ranks.1.js"></script>
 <script src="/assets/operators.4.js"></script>
+<script src="/assets/regulators.6.js"></script>
 <script src="/assets/post-images.1.js"></script>
 <script src="/assets/post-media.1.js"></script>
 <script src="/assets/new-topic.1.js"></script>
 <script src="/assets/complaint-delete.1.js"></script>
 <script src="/assets/post-preview.1.js"></script>
+<script src="/assets/pins-scoped.1.js"></script>
 <script src="/assets/header.1.js"></script>
 <script src="/assets/competitions.1.js"></script>
 <script src="/assets/casino-list.4.js"></script>

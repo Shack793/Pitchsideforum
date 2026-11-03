@@ -469,3 +469,24 @@ CREATE TABLE IF NOT EXISTS raffle_entries (
   KEY k_raffle_ip (round_id, ip_hash),
   KEY k_raffle_dev (round_id, dev_hash)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- ---------- Raffle winners (a draw can have several placed prizes: 1st, 2nd, 3rd…) ----------
+CREATE TABLE IF NOT EXISTS raffle_winners (
+  id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  round_id INT UNSIGNED NOT NULL,
+  place INT NOT NULL,
+  prize VARCHAR(80) NOT NULL,
+  user VARCHAR(32) NOT NULL,
+  entry_id INT NULL,
+  ticket INT NULL,
+  pool INT NULL,
+  drawn_at BIGINT NOT NULL,
+  status VARCHAR(16) NOT NULL DEFAULT 'won',
+  note VARCHAR(255) NOT NULL DEFAULT '',
+  wallet_network VARCHAR(16) NULL,
+  wallet_addr VARCHAR(120) NULL,
+  wallet_at BIGINT NULL,
+  paid_tx VARCHAR(140) NULL,
+  paid_at BIGINT NULL,
+  KEY k_raffle_win (round_id, place)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

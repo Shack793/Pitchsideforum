@@ -101,7 +101,7 @@ function send_verify_email(array $u): void {
     . '<tr><td style="background:#0b1f33;padding:18px 24px"><span style="display:inline-block;width:30px;height:30px;line-height:30px;text-align:center;border-radius:8px;background:#18c37e;color:#04261a;font-weight:800;font-size:16px">P</span>'
     . ' <span style="color:#ffffff;font-weight:800;font-size:18px;vertical-align:middle">&nbsp;Pitchside <span style="color:#b9c6d4;font-weight:600">Forum</span></span></td></tr>'
     . '<tr><td style="padding:28px 24px 8px"><h1 style="margin:0 0 12px;font-size:22px;line-height:1.3">Confirm your email, ' . $name . '</h1>'
-    . '<p style="margin:0 0 20px;font-size:15px;line-height:1.5;color:#334155">Welcome to Pitchside Forum! Press the button to confirm your email address. Then you can post, reply, rate casinos and enter the weekly raffle.</p>'
+    . '<p style="margin:0 0 20px;font-size:15px;line-height:1.5;color:#334155">Welcome to Pitchside Forum! Press the button to confirm your email address. Then you can post, reply, rate casinos and enter the raffle.</p>'
     . '<p style="margin:0 0 24px"><a href="' . $href . '" style="display:inline-block;background:#18c37e;color:#04261a;text-decoration:none;font-weight:800;font-size:16px;padding:13px 26px;border-radius:10px">Confirm my email</a></p>'
     . '<p style="margin:0 0 6px;font-size:13px;color:#6a7889">Button not working? Copy this link into your browser:</p>'
     . '<p style="margin:0 0 20px;font-size:13px;word-break:break-all"><a href="' . $href . '" style="color:#0b63c9">' . $href . '</a></p>'

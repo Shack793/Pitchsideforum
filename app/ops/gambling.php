@@ -14,6 +14,8 @@ const BLACKLIST_REASONS = ['Confiscated winnings without a valid reason', 'Ignor
   'Copies another brand or uses fake reviews', 'Shut down without paying players'];
 // Fields an operator's own representative may change; everything else is admin-only
 const REP_FIELDS = ['website', 'kyc', 'withdrawals', 'countries', 'crypto', 'fiat', 'minDeposit', 'withdrawalLimit', 'games', 'languages'];
+// Regulators a listing can name for its Safety Index (the browser shows their names and scores)
+const OP_REGULATORS = ['mga', 'ukgc', 'gib', 'alderney', 'iom', 'ksa', 'sga', 'dgoj', 'adm', 'srij', 'onjn', 'be', 'ee', 'br', 'ie', 'de', 'lv', 'ua', 'bg', 'ontario', 'au', 'us', 'za', 'kahnawake', 'curacao', 'anjouan', 'none'];
 const ADMIN_FIELDS = ['name', 'type', 'website', 'owner', 'license', 'regulator', 'size', 'est', 'countries', 'crypto', 'fiat', 'sportsbook', 'casino', 'poker', 'kyc', 'withdrawals',
   'minDeposit', 'withdrawalLimit', 'games', 'languages', 'pros', 'cons', 'unfairTerms', 'color', 'logo'];
 
@@ -66,8 +68,8 @@ op('operator.save', function (array $in, array $u) {
   $o = array_merge($o, [
     'name' => $name, 'type' => $type, 'website' => mb_substr(preg_replace('#^https?://#', '', trim((string) ($d['website'] ?? ''))), 0, 120),
     'owner' => mb_substr((string) ($d['owner'] ?? ''), 0, 120), 'license' => mb_substr((string) ($d['license'] ?? ''), 0, 120),
-    'regulator' => in_array($d['regulator'] ?? '', ['mga', 'ukgc', 'za', 'curacao', 'anjouan', 'none'], true) ? $d['regulator'] : 'none',
-    'size' => in_array($d['size'] ?? '', ['small', 'medium', 'large'], true) ? $d['size'] : 'small', 'est' => max(1990, min((int) date('Y'), (int) ($d['est'] ?? date('Y')))),
+    'regulator' => in_array($d['regulator'] ?? '', OP_REGULATORS, true) ? $d['regulator'] : 'none',
+    'size' => in_array($d['size'] ?? '', ['small', 'medium', 'large'], true) ? $d['size'] : 'small', 'est' => empty($d['est']) ? null : max(1900, min((int) date('Y'), (int) $d['est'])),   // empty when the founding year isn't known
     'countries' => list_in($d['countries'] ?? [], 80, 12), 'crypto' => !empty($d['crypto']), 'fiat' => !empty($d['fiat']),
     'kind' => $kind, 'sportsbook' => $kind !== 'casino', 'casino' => $kind !== 'sportsbook', 'poker' => !empty($d['poker']),
     'kyc' => mb_substr((string) ($d['kyc'] ?? ''), 0, 160), 'withdrawals' => list_in($d['withdrawals'] ?? [], 20, 40),

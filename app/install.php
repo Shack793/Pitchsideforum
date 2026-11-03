@@ -22,7 +22,7 @@ function has_column(string $table, string $col): bool {
   if (cfg('db_driver') === 'sqlite') { foreach (rows("PRAGMA table_info($table)") as $c) if ($c['name'] === $col) return true; return false; }
   return (bool) row("SELECT 1 FROM information_schema.COLUMNS WHERE TABLE_SCHEMA = DATABASE() AND TABLE_NAME = ? AND COLUMN_NAME = ?", [$table, $col]);
 }
-foreach ([['topics', 'review_id', 'INT NULL'], ['topics', 'complaint_id', 'VARCHAR(16) NULL'], ['raffle_rounds', 'rules', 'MEDIUMTEXT NULL'], ['raffle_rounds', 'rules_at', 'BIGINT NULL']] as [$t, $c, $type])
+foreach ([['topics', 'review_id', 'INT NULL'], ['topics', 'complaint_id', 'VARCHAR(16) NULL'], ['raffle_rounds', 'rules', 'MEDIUMTEXT NULL'], ['raffle_rounds', 'rules_at', 'BIGINT NULL'], ['raffle_rounds', 'prizes', 'TEXT NULL']] as [$t, $c, $type])
   if (!has_column($t, $c)) db()->exec("ALTER TABLE $t ADD COLUMN $c $type");
 $say('Tables ready.');
 
@@ -83,6 +83,53 @@ if (!meta_get('nav:raffle')) {
   }
   unset($n); save_doc('NAV', $nav); meta_set('nav:raffle', '1'); $say('Added Weekly raffle to the Gambling menu.');
 }
+
+// The raffle runs for longer than a week now: the menu item is just "Raffle"
+if (!meta_get('nav:raffle-label')) {
+  $nav = fresh_doc('NAV'); $changed = false;
+  foreach ($nav as &$n) foreach (($n['children'] ?? []) as $i => $ch) if (($ch['path'] ?? '') === '/raffle' && ($ch['label'] ?? '') === 'Weekly raffle') { $n['children'][$i]['label'] = 'Raffle'; $n['children'][$i]['hint'] = 'Free to enter: win USDT'; $changed = true; }
+  unset($n); if ($changed) save_doc('NAV', $nav); meta_set('nav:raffle-label', '1');
+}
+// $1,000 raffle: opens 3 November 2026, draw on 1 December 2026, 5 winners
+if (!meta_get('raffle:2026-12-01')) {
+  $tz = new DateTimeZone('America/Los_Angeles');
+  $starts = (new DateTime('2026-11-03 00:00', $tz))->getTimestamp() * 1000;
+  $ends = (new DateTime('2026-12-01 00:00', $tz))->getTimestamp() * 1000;
+  $prizes = ['$500 in USDT', '$200 in USDT', '$150 in USDT', '$100 in USDT', '$50 in USDT'];
+  $rules = implode("\n", [
+    'Free to enter. No purchase or deposit is needed, and entering never costs anything.',
+    'Open to registered Pitchside members aged 18 or over, where prize draws like this are allowed. Staff and Pitchside\'s automated community accounts can\'t enter.',
+    'To qualify you need a confirmed account, at least {topics} and {posts} posts. The first post of a topic counts. Posts removed by moderators don\'t count. You must still meet these at draw time.',
+    'One entry per person and per device. Several accounts, shared or bought accounts, or spam posts to reach the post count lead to disqualification, and may lead to a ban.',
+    'The draw takes place on 1 December 2026 once {members} members have qualified. If fewer have qualified by then, entries stay open and the draw takes place as soon as {members} have.',
+    'Five winners are picked at random by the server from all eligible entries, one after another, so nobody can win more than one prize. The winners\' usernames, the number of entries and the winning tickets are published here.',
+    'Prizes: 1st $500, 2nd $200, 3rd $150, 4th $100 and 5th $50, $1,000 in total, paid in USDT to a wallet each winner sends us within {walletDays} days of the draw. If no valid address arrives in time, or a winner breaks these rules, that prize is drawn again. If fewer than five eligible members have entered, only that many prizes are awarded.',
+    'Winners are responsible for any taxes where they live. Prizes can\'t be exchanged for anything else.',
+    'Pitchside may change, pause or cancel a draw if something goes wrong (for example, technical problems or fraud), and will explain why on this page. Staff decisions on eligibility are final.']);
+  $d = ['title' => '$1,000 November raffle', 'prize' => '$1,000 in USDT', 'prize_note' => 'Five winners. Paid in USDT (TRC20, ERC20 or BEP20) to each winner\'s wallet.',
+    'starts' => $starts, 'ends' => $ends, 'min_members' => 1000, 'min_topics' => 1, 'min_posts' => 25, 'block_ip' => 0, 'wallet_days' => 14,
+    'prizes' => jenc($prizes), 'rules' => $rules, 'rules_at' => now_ms(), 'updated' => now_ms()];
+  $open = row("SELECT id FROM raffle_rounds WHERE status = 'open' ORDER BY id DESC LIMIT 1");
+  if ($open) {
+    // An open draw already exists: it becomes this draw, and anyone who already entered stays entered
+    $sets = implode(', ', array_map(fn($k) => "$k = ?", array_keys($d)));
+    q("UPDATE raffle_rounds SET $sets WHERE id = ?", [...array_values($d), (int) $open['id']]);
+    $say("Raffle: the open draw (#{$open['id']}) is now the \$1,000 raffle, drawn on 1 December 2026 with 5 winners. Existing entries were kept.");
+  } else {
+    $id = insert('raffle_rounds', $d + ['status' => 'open', 'created' => now_ms()]);
+    $say("Raffle: started the \$1,000 raffle (#$id), drawn on 1 December 2026 with 5 winners.");
+  }
+  meta_set('raffle:2026-12-01', '1');
+}
+// The $1,000 raffle needs 1,000 qualified members before it's drawn
+if (!meta_get('raffle:2026-12-01:min1000')) {
+  foreach (rows("SELECT id, rules FROM raffle_rounds WHERE status = 'open' AND title = '$1,000 November raffle'") as $r) {
+    $rules = str_replace("Entries close and the draw takes place on 1 December 2026.", "The draw takes place on 1 December 2026 once {members} members have qualified. If fewer have qualified by then, entries stay open and the draw takes place as soon as {members} have.", (string) $r['rules']);
+    q("UPDATE raffle_rounds SET min_members = 1000, rules = ?, updated = ? WHERE id = ?", [$rules, now_ms(), (int) $r['id']]);
+    $say("Raffle: the \$1,000 raffle now needs 1,000 qualified members before it's drawn.");
+  }
+  meta_set('raffle:2026-12-01:min1000', '1');
+}
 // Live Scores links: replace the placeholder address with LiveScoreNow (an address an admin has set in Admin → System is kept)
 $s = fresh_doc('SETTINGS');
 if (($s['scoresUrl'] ?? '') === '' || str_contains((string) $s['scoresUrl'], 'scores.pitchside.example')) {
@@ -100,7 +147,7 @@ if (!meta_get('ranks:sports-names')) {
 }
 // Casino listings researched in October 2026 (two batches): each batch is added once. An operator already listed
 // (same address, name or slug) is left exactly as it is, so your own edits are never overwritten.
-foreach ([['import:operators-2026-10', 'operators-2026-10.json'], ['import:operators-2026-10b', 'operators-2026-10b.json']] as [$flag, $file]) {
+foreach ([['import:operators-2026-10', 'operators-2026-10.json'], ['import:operators-2026-10b', 'operators-2026-10b.json'], ['import:operators-2026-11a', 'operators-2026-11a.json'], ['import:operators-2026-11b', 'operators-2026-11b.json'], ['import:operators-2026-11c', 'operators-2026-11c.json'], ['import:operators-2026-11d', 'operators-2026-11d.json'], ['import:operators-2026-11e', 'operators-2026-11e.json'], ['import:operators-2026-11f', 'operators-2026-11f.json'], ['import:operators-2026-11g', 'operators-2026-11g.json'], ['import:operators-2026-11h', 'operators-2026-11h.json'], ['import:operators-2026-11i', 'operators-2026-11i.json']] as [$flag, $file]) {
   if (meta_get($flag) || !is_file(__DIR__ . "/seed/$file")) continue;
   $added = 0; $skipped = [];
   $have = []; foreach (rows("SELECT slug, data FROM operators") as $r) { $d = jdec($r['data'], []); $have[] = strtolower((string) ($d['name'] ?? '')); $have[] = strtolower(preg_replace('#^www\.#', '', (string) ($d['website'] ?? ''))); $have[] = $r['slug']; }
@@ -112,8 +159,21 @@ foreach ([['import:operators-2026-10', 'operators-2026-10.json'], ['import:opera
     $added++;
   }
   meta_set($flag, '1');
-  if ($added) audit(null, 'Operator added', "$added casinos and sportsbooks", 'Imported listings (October 2026 research)', 'none', 'saved');
+  if ($added) audit(null, 'Operator added', "$added casinos and sportsbooks", 'Imported listings (' . $file . ')', 'none', 'saved');
   $say("Added $added casino listing" . ($added === 1 ? '' : 's') . ($skipped ? ' (already listed, left unchanged: ' . implode(', ', $skipped) . ')' : '') . '.');
+}
+// Doubtful listings from the November 2026 batch, removed: Casinolo (may have closed) and Casoola (no recognised licence).
+// A listing that members have already reviewed or complained about is kept, so nothing they wrote is lost.
+if (!meta_get('remove:2026-11-doubtful')) {
+  $gone = []; $kept = [];
+  foreach (['casinolo' => 'Casinolo', 'casoola' => 'Casoola'] as $sl => $nm) {
+    if (!val("SELECT 1 FROM operators WHERE slug = ?", [$sl])) continue;
+    if (val("SELECT 1 FROM reviews WHERE op = ?", [$sl]) || val("SELECT 1 FROM complaints WHERE op = ?", [$sl])) { $kept[] = $nm; continue; }
+    q("DELETE FROM operators WHERE slug = ?", [$sl]); $gone[] = $nm;
+  }
+  if ($gone) { audit(null, 'Operator removed', implode(', ', $gone), 'Doubtful listings removed (possibly closed / no recognised licence)', 'listed', 'removed'); $say('Removed ' . implode(' and ', $gone) . ' from the casino list.'); }
+  if ($kept) $say('Kept ' . implode(' and ', $kept) . ': members have already reviewed or complained about ' . (count($kept) > 1 ? 'them' : 'it') . '. Remove in Admin → Businesses if you still want to.');
+  meta_set('remove:2026-11-doubtful', '1');
 }
 // Starting Top picks on the casino list: feature Pinnacle and Jackbit, once, and only if no casino is featured yet
 if (!meta_get('featured:2026-10-28')) {

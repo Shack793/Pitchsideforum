@@ -22,6 +22,19 @@
 # Your database, posts, uploads, settings file and AI chatbots are not touched.
 # admins can delete a complaint (button at the bottom of each complaint page; reason goes in the Audit log and to the member).
 # fixed ad pictures: side and in-post ads take any picture (shrunk automatically), upload limits and folder permissions checked,
+# batch 9 (last): 27 more licensed casino listings (QueenVegas, Royal Vegas, Ruby Fortune, Rainbow Riches, Rooster.Bet and more); Irish and Australian regulators added;
+# batch 8: 23 more licensed casino listings (One Casino, Ninja Casino, Paston, Nossa Aposta, PlayGrand and more);
+# batch 7: 30 more licensed casino listings (Monopoly Casino, Maria Casino, Lucky Nugget, LuckyDays, Lucky Vegas and more);
+# batch 6: 23 more licensed casino listings (Lucky Casino, KingSpin, Kitty Bingo, KTO, JOKERBET and more); German and Latvian regulators added;
+# batch 5: 11 more licensed casino listings (HellSpin, Happy Casino, Heart Bingo, Galactic Wins and more);
+# batch 4: 24 more licensed casino listings (Expekt, Foxy Bingo, Circus, Cherry, enracha and more); Ukrainian regulator added;
+# batch 3: 26 more licensed casino listings (Campobet, CasinoCasino, Buzz Bingo, Ladbrokes Belgium and more); Belgian, Estonian and Brazilian regulators added;
+# batch 2: 23 more licensed casino listings (1win, 777, Bally Bet, BET99, 888Starz and more); US state regulators added;
+# 39 more casino listings (32Red, LeoVegas, Casumo, Mr Green, PokerStars Casino, Coral and more; Casinolo and Casoola removed) and more regulators
+# (Gibraltar, Alderney, Netherlands, Sweden, Spain, Italy, Portugal, Romania, Bulgaria, Ontario, Kahnawake),
+# $1,000 raffle with 5 winners (1st $500, 2nd $200, 3rd $150, 4th $100, 5th $50), open now, drawn 1 December 2026 once 1,000 members qualify;
+# raffles can have several placed prizes, each winner sends their own wallet and is paid separately,
+# pinned topics stay pinned only in their own board (not on the homepage, section pages or parent boards),
 # Write / Preview tabs on every post box, so members can see how a post or reply will look before posting.
 set -euo pipefail
 if [[ $EUID -ne 0 ]]; then echo "Please run with sudo or as root."; exit 1; fi
@@ -29,7 +42,7 @@ cd "$(dirname "$0")"
 APP=/var/www/pitchside
 if [[ ! -f "$APP/app/config.php" ]]; then echo "Can't find the site at $APP (no app/config.php). Nothing was changed."; exit 1; fi
 WEB=$(id -u nginx >/dev/null 2>&1 && echo nginx || echo www-data)
-FILES="app/shell.html app/cron.php app/install.php app/seed/docs.json app/lib/docs.php public/go.php public/index.php public/sitemap.php public/assets/scores-links.2.js public/assets/promotions.3.js public/assets/ads-tweaks.2.js public/assets/topic-stats.2.js public/assets/raffle.2.js app/schema.sql app/ops/raffle.php app/ops/rename.php public/assets/user-rename.1.js app/ops/rep.php app/ops/forum.php app/ops/mod.php public/assets/rep.1.js public/assets/ranks.1.js public/assets/special-ranks.1.js public/assets/operators.4.js public/assets/post-images.1.js app/ops/gambling.php app/seed/operators-2026-10.json app/ops/specialrank.php public/favicon.svg public/favicon.ico public/apple-touch-icon.png public/icon-512.png app/lib/mail.php app/lib/auth.php public/assets/header.1.js public/assets/post-media.1.js public/assets/competitions.1.js public/assets/casino-list.4.js app/seed/operators-2026-10b.json public/assets/full-banners.1.js public/assets/new-topic.1.js app/ops/complaint-delete.php public/assets/complaint-delete.1.js public/assets/post-preview.1.js public/assets/ads-images.1.js"
+FILES="app/shell.html app/cron.php app/install.php app/seed/docs.json app/lib/docs.php public/go.php public/index.php public/sitemap.php public/assets/scores-links.2.js public/assets/promotions.3.js public/assets/ads-tweaks.2.js public/assets/topic-stats.2.js public/assets/raffle.2.js app/schema.sql app/ops/raffle.php app/ops/rename.php public/assets/user-rename.1.js app/ops/rep.php app/ops/forum.php app/ops/mod.php public/assets/rep.1.js public/assets/ranks.1.js public/assets/special-ranks.1.js public/assets/operators.4.js public/assets/post-images.1.js app/ops/gambling.php app/seed/operators-2026-10.json app/ops/specialrank.php public/favicon.svg public/favicon.ico public/apple-touch-icon.png public/icon-512.png app/lib/mail.php app/lib/auth.php public/assets/header.1.js public/assets/post-media.1.js public/assets/competitions.1.js public/assets/casino-list.4.js app/seed/operators-2026-10b.json public/assets/full-banners.1.js public/assets/new-topic.1.js app/ops/complaint-delete.php public/assets/complaint-delete.1.js public/assets/post-preview.1.js public/assets/ads-images.1.js public/assets/pins-scoped.1.js public/assets/raffle.4.js app/seed/operators-2026-11a.json public/assets/regulators.6.js app/seed/operators-2026-11b.json app/seed/operators-2026-11c.json app/seed/operators-2026-11d.json app/seed/operators-2026-11e.json app/seed/operators-2026-11f.json app/seed/operators-2026-11g.json app/seed/operators-2026-11h.json app/seed/operators-2026-11i.json"
 STAMP=$(date +%Y%m%d-%H%M%S); BK=/var/backups/pitchside/update-$STAMP
 for f in $FILES; do if [[ -f "$APP/$f" ]]; then mkdir -p "$BK/$(dirname $f)"; cp -a "$APP/$f" "$BK/$f"; fi; done
 echo "==> Backup of the old files: $BK"
@@ -75,10 +88,10 @@ if command -v nginx >/dev/null 2>&1; then
   fi
 fi
 [[ -n "$FPM" ]] && systemctl reload "$FPM" 2>/dev/null || true
-echo "==> Updating the database and settings (raffle tables, menu items, Live Scores address)"
+echo "==> Updating the database and settings (raffle, menu items, Live Scores address)"
 runuser -u "$WEB" -- php "$APP/app/install.php" | grep -iv "already exists" || true
 rm -f "$APP"/app/storage/cache/*.json
-echo "Done. Reload pitchsideforum.com: new colours, Live Scores button on the homepage, Gambling → Promotions & bonuses, Gambling → Weekly raffle, and the new favicon
+echo "Done. Reload pitchsideforum.com: new colours, Live Scores button on the homepage, Gambling → Promotions & bonuses, Gambling → Raffle (\$1,000, drawn 1 December once 1,000 members qualify), and the new favicon
 (browsers keep old tab icons for a while; open the site in a private window to see the new one straight away)."
 if ! grep -q "smtp_host" "$APP/app/config.php"; then echo "Note: no email server is set in app/config.php yet (smtp_host), so sign-up confirmation emails are only written to the log, not sent."; fi
 echo "To undo: sudo cp -a $BK/. $APP/"

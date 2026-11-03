@@ -1,5 +1,5 @@
 <?php
-// Weekly raffle (/raffle): free to enter. Members qualify with a minimum number of topics and posts,
+// Raffle (/raffle): free to enter. A draw has one prize, or several placed prizes (1st, 2nd…) with one winner each. Members qualify with a minimum number of topics and posts,
 // one entry per member and per device (the internet connection doesn't matter). The draw runs on the server.
 // AI community accounts and staff can't enter, and AI accounts don't count toward the member target.
 declare(strict_types=1);
@@ -41,9 +41,21 @@ function raffle_progress(array $u, array $r): array {
   $ok = !$why && $verified && $topics >= (int) $r['min_topics'] && $posts >= (int) $r['min_posts'];
   return ['topics' => $topics, 'posts' => $posts, 'verified' => $verified, 'blocked' => $why, 'eligible' => $ok];
 }
+function raffle_place(int $n): string { $s = ($n % 100 >= 11 && $n % 100 <= 13) ? 'th' : (['th', 'st', 'nd', 'rd'][$n % 10] ?? 'th'); return $n . $s; }
 function raffle_round(int $id): array { $r = row("SELECT * FROM raffle_rounds WHERE id = ?", [$id]); if (!$r) fail('That raffle wasn’t found.', 404); return $r; }
 function raffle_need_admin(?array $u): void { if (!$u || !is_admin($u)) fail('Only admins can manage the raffle.', 403); }
 function raffle_ready(array $r, int $members): bool { return $r['status'] === 'open' && now_ms() >= (int) $r['ends'] && $members >= (int) $r['min_members']; }
+// Placed prizes for a draw (1st, 2nd…). Empty means the classic single prize in "prize".
+function raffle_prizes(array $r): array { $p = jdec($r['prizes'] ?? null, []); return is_array($p) ? array_values(array_filter(array_map('strval', $p), 'strlen')) : []; }
+function raffle_winners_rows(int $roundId): array { return rows("SELECT * FROM raffle_winners WHERE round_id = ? ORDER BY place, id", [$roundId]); }
+function raffle_winner_out(array $w, array $r, ?array $u): array {
+  $mine = $u && $w['user'] === $u['name']; $admin = $u && is_admin($u);
+  return ['place' => (int) $w['place'], 'prize' => $w['prize'], 'user' => $w['user'], 'status' => $w['status'], 'note' => $w['note'],
+    'ticket' => $w['ticket'] !== null ? (int) $w['ticket'] : null, 'pool' => $w['pool'] !== null ? (int) $w['pool'] : null, 'drawnAt' => (int) $w['drawn_at'],
+    'walletSet' => (bool) $w['wallet_addr'], 'walletDue' => (int) $w['drawn_at'] + (int) $r['wallet_days'] * 86400000,
+    'wallet' => ($admin || $mine) && $w['wallet_addr'] ? ['network' => $w['wallet_network'], 'addr' => $w['wallet_addr'], 'at' => (int) $w['wallet_at']] : null,
+    'paidTx' => $w['paid_tx'], 'paidAt' => $w['paid_at'] ? (int) $w['paid_at'] : null, 'paidNetwork' => $w['paid_tx'] ? $w['wallet_network'] : null];
+}
 function raffle_out(array $r, ?array $u): array {
   $members = raffle_qualified_count($r);
   $admin = $u && is_admin($u); $isWinner = $u && $r['winner'] === $u['name'];
@@ -56,7 +68,8 @@ function raffle_out(array $r, ?array $u): array {
     'winner' => $r['winner'], 'drawnAt' => $r['drawn_at'] ? (int) $r['drawn_at'] : null, 'draw' => $draw,
     'walletSet' => (bool) $r['wallet_addr'], 'walletDue' => $r['drawn_at'] ? (int) $r['drawn_at'] + (int) $r['wallet_days'] * 86400000 : null,
     'wallet' => ($admin || $isWinner) && $r['wallet_addr'] ? ['network' => $r['wallet_network'], 'addr' => $r['wallet_addr'], 'at' => (int) $r['wallet_at']] : null,
-    'rules' => (string) ($r['rules'] ?? ''), 'rulesAt' => !empty($r['rules_at']) ? (int) $r['rules_at'] : null, 'paidTx' => $r['paid_tx'], 'paidAt' => $r['paid_at'] ? (int) $r['paid_at'] : null, 'paidNetwork' => $r['paid_tx'] ? $r['wallet_network'] : null];
+    'rules' => (string) ($r['rules'] ?? ''), 'rulesAt' => !empty($r['rules_at']) ? (int) $r['rules_at'] : null, 'paidTx' => $r['paid_tx'], 'paidAt' => $r['paid_at'] ? (int) $r['paid_at'] : null, 'paidNetwork' => $r['paid_tx'] ? $r['wallet_network'] : null,
+    'prizes' => raffle_prizes($r), 'winners' => array_map(fn($w) => raffle_winner_out($w, $r, $u), raffle_winners_rows((int) $r['id']))];
 }
 // Accounts that signed in from the same network as another entrant (a hint for admins, not proof)
 function raffle_shared_ip(string $user, array $entrants): array {
@@ -124,6 +137,11 @@ op('raffle.save', function (array $in, array $u) {
     'starts' => int_in($in, 'starts'), 'ends' => int_in($in, 'ends'), 'min_members' => max(0, min(1000000, int_in($in, 'minMembers', 100))),
     'min_topics' => max(0, min(1000, int_in($in, 'minTopics', 1))), 'min_posts' => max(0, min(10000, int_in($in, 'minPosts', 25))),
     'block_ip' => 0, 'wallet_days' => max(1, min(90, int_in($in, 'walletDays', 14))), 'updated' => now_ms()];
+  // Placed prizes, one per line or a list: "$500 in USDT", "$200 in USDT"… (empty = one winner)
+  $pz = $in['prizes'] ?? []; if (is_string($pz)) $pz = explode("\n", $pz); if (!is_array($pz)) $pz = [];
+  $pz = array_values(array_filter(array_map(fn($x) => mb_substr(trim(preg_replace('/^\s*\d+\s*(st|nd|rd|th)?\s*[:.)-]?\s*/i', '', (string) $x)), 0, 80), $pz), 'strlen'));
+  if (count($pz) > 20) fail('A draw can have up to 20 prizes.');
+  $d['prizes'] = count($pz) > 1 ? jenc($pz) : null;
   if (mb_strlen($d['title']) < 3) fail('Give the draw a name, e.g. “Round 1 raffle”.');
   if ($d['prize'] === '') fail('Write the prize, e.g. “$100 in USDT”.');
   if ($d['starts'] <= 0 || $d['ends'] <= $d['starts']) fail('The draw date must be after the start date.');
@@ -137,7 +155,7 @@ op('raffle.save', function (array $in, array $u) {
       q("UPDATE raffle_rounds SET rules = ?, rules_at = ? WHERE id = ?", [$rules, now_ms(), $id]);
       audit($u, 'Raffle change', "Raffle #$id: {$d['title']}", 'Rules changed', mb_substr((string) ($r['rules'] ?? 'standard rules'), 0, 400), mb_substr($rules, 0, 400));
     }
-    q("UPDATE raffle_rounds SET title = ?, prize = ?, prize_note = ?, starts = ?, ends = ?, min_members = ?, min_topics = ?, min_posts = ?, block_ip = ?, wallet_days = ?, updated = ? WHERE id = ?",
+    q("UPDATE raffle_rounds SET title = ?, prize = ?, prize_note = ?, starts = ?, ends = ?, min_members = ?, min_topics = ?, min_posts = ?, block_ip = ?, wallet_days = ?, updated = ?, prizes = ? WHERE id = ?",
       [...array_values($d), $id]);
     audit($u, 'Raffle change', "Raffle #$id: {$d['title']}", 'Edited', "{$r['prize']}, {$r['min_posts']} posts, {$r['min_members']} members", "{$d['prize']}, {$d['min_posts']} posts, {$d['min_members']} members");
   } else {
@@ -171,7 +189,7 @@ op('raffle.dq', function (array $in, array $u) {
 
 // Picks the winner at random from entries that are still eligible right now. Entries that no longer
 // qualify (posts removed, account suspended…) are marked and left out first.
-function raffle_pick(array $r, array $u, array $exclude = []): array {
+function raffle_pool(array $r, array $exclude = []): array {
   $entries = rows("SELECT * FROM raffle_entries WHERE round_id = ? AND status = 'ok' ORDER BY id", [$r['id']]);
   $pool = [];
   foreach ($entries as $e) {
@@ -181,6 +199,10 @@ function raffle_pick(array $r, array $u, array $exclude = []): array {
     if (!$p['eligible']) { q("UPDATE raffle_entries SET status = 'ineligible', note = ? WHERE id = ?", [mb_substr($p['blocked'] ?? 'No longer meets the topic and post requirements at draw time', 0, 255), $e['id']]); continue; }
     $pool[] = $e;
   }
+  return $pool;
+}
+function raffle_pick(array $r, array $u, array $exclude = []): array {
+  $pool = raffle_pool($r, $exclude);
   if (!$pool) fail('There are no eligible entries to draw from.');
   $k = random_int(0, count($pool) - 1); $w = $pool[$k];
   $info = ['at' => now_ms(), 'pool' => count($pool), 'ticket' => $k + 1, 'names' => array_column($pool, 'user'), 'by' => $u['name'], 'method' => 'PHP random_int (cryptographically secure)'];
@@ -196,6 +218,25 @@ op('raffle.draw', function (array $in, array $u) {
     $members = raffle_qualified_count($r);
     if (now_ms() < (int) $r['ends']) fail('The draw date hasn’t arrived yet.');
     if ($members < (int) $r['min_members']) fail("The draw needs {$r['min_members']} qualified members. There are $members so far.");
+    $prizes = raffle_prizes($r);
+    if ($prizes) {
+      // Placed prizes: winners are drawn one after another from the eligible entries, so nobody wins twice
+      $pool = raffle_pool($r); if (!$pool) fail('There are no eligible entries to draw from.');
+      $names = array_column($pool, 'user'); $left = $pool; $now = now_ms(); $picks = [];
+      foreach ($prizes as $i => $prize) {
+        if (!$left) break;
+        $k = random_int(0, count($left) - 1); $w = $left[$k]; array_splice($left, $k, 1);
+        $ticket = array_search($w['user'], $names, true) + 1;
+        insert('raffle_winners', ['round_id' => $r['id'], 'place' => $i + 1, 'prize' => $prize, 'user' => $w['user'], 'entry_id' => $w['id'], 'ticket' => $ticket, 'pool' => count($pool), 'drawn_at' => $now, 'status' => 'won', 'note' => '']);
+        $picks[] = ['place' => $i + 1, 'user' => $w['user'], 'ticket' => $ticket];
+        notify($w['user'], 'raffle', "You won " . raffle_place($i + 1) . " prize, $prize, in “{$r['title']}”! Open the raffle page to send us your USDT wallet address within {$r['wallet_days']} days.", '/raffle', $u);
+      }
+      $info = ['at' => $now, 'pool' => count($pool), 'ticket' => $picks[0]['ticket'], 'names' => $names, 'picks' => $picks, 'unawarded' => count($prizes) - count($picks), 'by' => $u['name'], 'method' => 'PHP random_int (cryptographically secure)'];
+      $first = $picks[0]['user']; $firstEntry = (int) val("SELECT entry_id FROM raffle_winners WHERE round_id = ? AND place = 1", [$r['id']]);
+      q("UPDATE raffle_rounds SET status = 'drawn', winner = ?, winner_entry = ?, drawn_at = ?, draw_info = ?, updated = ? WHERE id = ?", [$first, $firstEntry, $now, jenc($info), $now, $r['id']]);
+      audit($u, 'Raffle draw', "Raffle #{$r['id']}: {$r['title']}", count($picks) . ' of ' . count($prizes) . ' prizes drawn from ' . count($pool) . ' eligible entries', 'open', implode(', ', array_map(fn($p) => raffle_place($p['place']) . ": {$p['user']}", $picks)));
+      return ['winners' => array_column($picks, 'user')];
+    }
     [$w, $info] = raffle_pick($r, $u);
     q("UPDATE raffle_rounds SET status = 'drawn', winner = ?, winner_entry = ?, drawn_at = ?, draw_info = ?, updated = ? WHERE id = ?", [$w['user'], $w['id'], now_ms(), jenc($info), now_ms(), $r['id']]);
     audit($u, 'Raffle draw', "Raffle #{$r['id']}: {$r['title']}", "Ticket {$info['ticket']} of {$info['pool']}", 'open', "winner: {$w['user']}");
@@ -210,6 +251,23 @@ op('raffle.redraw', function (array $in, array $u) {
     $r = raffle_round(int_in($in, 'id'));
     if ($r['status'] !== 'drawn') fail('Only a drawn, unpaid raffle can be redrawn.');
     $why = str_in($in, 'reason', 255); if (mb_strlen($why) < 5) fail('Say why the winner is being replaced. It’s shown on the raffle page.');
+    if (raffle_prizes($r)) {
+      $place = int_in($in, 'place');
+      $cur = row("SELECT * FROM raffle_winners WHERE round_id = ? AND place = ? AND status = 'won' ORDER BY id DESC LIMIT 1", [$r['id'], $place]);
+      if (!$cur) fail('That prize has been paid or wasn’t drawn, so it can’t be redrawn.');
+      q("UPDATE raffle_winners SET status = 'replaced', note = ? WHERE id = ?", [$why, $cur['id']]);
+      if ($cur['entry_id']) q("UPDATE raffle_entries SET status = 'disqualified', note = ? WHERE id = ?", [$why, $cur['entry_id']]);
+      $past = array_column(rows("SELECT user FROM raffle_winners WHERE round_id = ?", [$r['id']]), 'user');
+      $pool = raffle_pool($r, $past); if (!$pool) fail('There are no other eligible entries to draw from.');
+      $names = jdec($r['draw_info'], [])['names'] ?? array_column(raffle_pool($r), 'user');   // tickets keep the numbers from the original draw
+      $w = $pool[random_int(0, count($pool) - 1)]; $now = now_ms();
+      insert('raffle_winners', ['round_id' => $r['id'], 'place' => $place, 'prize' => $cur['prize'], 'user' => $w['user'], 'entry_id' => $w['id'], 'ticket' => (($t = array_search($w['user'], $names, true)) === false ? null : $t + 1), 'pool' => count($pool), 'drawn_at' => $now, 'status' => 'won', 'note' => '']);
+      if ($place === 1) q("UPDATE raffle_rounds SET winner = ?, winner_entry = ?, updated = ? WHERE id = ?", [$w['user'], $w['id'], $now, $r['id']]);
+      audit($u, 'Raffle draw', "Raffle #{$r['id']}: {$r['title']}", "Redraw of " . raffle_place($place) . " prize: $why", "winner: {$cur['user']}", "winner: {$w['user']}");
+      notify($cur['user'], 'raffle', "Your " . raffle_place($place) . " prize in “{$r['title']}” was withdrawn: $why", '/raffle', $u);
+      notify($w['user'], 'raffle', "You won " . raffle_place($place) . " prize, {$cur['prize']}, in “{$r['title']}” (redraw)! Open the raffle page to send us your USDT wallet address within {$r['wallet_days']} days.", '/raffle', $u);
+      return ['winner' => $w['user']];
+    }
     q("UPDATE raffle_entries SET status = 'disqualified', note = ? WHERE id = ?", [$why, $r['winner_entry']]);
     $info = jdec($r['draw_info'], []); $info['redrawReason'] = $why; $r['draw_info'] = jenc($info);
     [$w, $new] = raffle_pick($r, $u, [$r['winner']]);
@@ -225,10 +283,19 @@ op('raffle.redraw', function (array $in, array $u) {
 op('raffle.wallet', function (array $in, array $u) {
   rate_limit('raffle-wallet:' . $u['name'], 10, 3600);
   $r = raffle_round(int_in($in, 'id'));
-  if ($r['status'] !== 'drawn' || $r['winner'] !== $u['name']) fail('Only the winner can add a wallet address, before the prize is paid.');
   $net = strtoupper(str_in($in, 'network', 10)); $addr = str_in($in, 'addr', 120);
+  $multi = (bool) raffle_prizes($r);
+  $win = $multi ? row("SELECT * FROM raffle_winners WHERE round_id = ? AND user = ? AND status = 'won'", [$r['id'], $u['name']]) : null;
+  if ($r['status'] !== 'drawn' || ($multi ? !$win : $r['winner'] !== $u['name'])) fail('Only a winner can add a wallet address, before the prize is paid.');
   if (!isset(RAFFLE_NETWORKS[$net])) fail('Pick the network: TRC20 (Tron), ERC20 (Ethereum) or BEP20 (BNB Smart Chain).');
   if (!preg_match(RAFFLE_NETWORKS[$net], $addr)) fail($net === 'TRC20' ? 'A TRC20 address starts with T and has 34 characters.' : "An $net address starts with 0x and has 42 characters.");
+  if ($win) {
+    q("UPDATE raffle_winners SET wallet_network = ?, wallet_addr = ?, wallet_at = ? WHERE id = ?", [$net, $addr, now_ms(), $win['id']]);
+    audit($u, 'Raffle wallet', "Raffle #{$r['id']}: {$r['title']} (" . raffle_place((int) $win['place']) . ")", 'Winner added a wallet', $win['wallet_network'] ? "{$win['wallet_network']} " . substr((string) $win['wallet_addr'], 0, 8) . '…' : 'none', "$net " . substr($addr, 0, 8) . '…');
+    foreach (rows("SELECT name FROM users WHERE role IN ('admin','super_admin') AND status = 'active'") as $a)
+      notify($a['name'], 'raffle', "{$u['name']} (" . raffle_place((int) $win['place']) . " prize) sent their $net wallet for “{$r['title']}”. Ready to pay.", '/raffle', $u);
+    return [];
+  }
   q("UPDATE raffle_rounds SET wallet_network = ?, wallet_addr = ?, wallet_at = ?, updated = ? WHERE id = ?", [$net, $addr, now_ms(), now_ms(), $r['id']]);
   audit($u, 'Raffle wallet', "Raffle #{$r['id']}: {$r['title']}", 'Winner added a wallet', $r['wallet_network'] ? "{$r['wallet_network']} " . substr((string) $r['wallet_addr'], 0, 8) . '…' : 'none', "$net " . substr($addr, 0, 8) . '…');
   foreach (rows("SELECT name FROM users WHERE role IN ('admin','super_admin') AND status = 'active'") as $a)
@@ -240,8 +307,22 @@ op('raffle.paid', function (array $in, array $u) {
   raffle_need_admin($u);
   $r = raffle_round(int_in($in, 'id'));
   if ($r['status'] !== 'drawn') fail('This raffle isn’t waiting for payment.');
-  if (!$r['wallet_addr']) fail('The winner hasn’t sent a wallet address yet.');
   $txh = str_in($in, 'tx', 140); if (!preg_match('/^(0x)?[0-9a-fA-F]{64}$/', $txh)) fail('Paste the transaction hash (ID) from the transfer: 64 letters and numbers, or 0x plus 64.');
+  if (raffle_prizes($r)) {
+    $place = int_in($in, 'place');
+    $w = row("SELECT * FROM raffle_winners WHERE round_id = ? AND place = ? AND status = 'won' ORDER BY id DESC LIMIT 1", [$r['id'], $place]);
+    if (!$w) fail('That prize isn’t waiting for payment.');
+    if (!$w['wallet_addr']) fail('This winner hasn’t sent a wallet address yet.');
+    $now = now_ms();
+    q("UPDATE raffle_winners SET status = 'paid', paid_tx = ?, paid_at = ? WHERE id = ?", [$txh, $now, $w['id']]);
+    $left = (int) val("SELECT COUNT(*) FROM raffle_winners WHERE round_id = ? AND status = 'won'", [$r['id']]);
+    if (!$left) q("UPDATE raffle_rounds SET status = 'paid', paid_at = ?, updated = ? WHERE id = ?", [$now, $now, $r['id']]);
+    else q("UPDATE raffle_rounds SET updated = ? WHERE id = ?", [$now, $r['id']]);
+    audit($u, 'Raffle payout', "Raffle #{$r['id']}: {$r['title']}", "Paid " . raffle_place($place) . " prize, {$w['prize']}, to {$w['user']}", 'won', "paid, tx " . substr($txh, 0, 12) . '…');
+    notify($w['user'], 'raffle', "Your {$w['prize']} prize for “{$r['title']}” has been sent. Thanks for being part of Pitchside!", '/raffle', $u);
+    return ['allPaid' => !$left];
+  }
+  if (!$r['wallet_addr']) fail('The winner hasn’t sent a wallet address yet.');
   q("UPDATE raffle_rounds SET status = 'paid', paid_tx = ?, paid_at = ?, updated = ? WHERE id = ?", [$txh, now_ms(), now_ms(), $r['id']]);
   audit($u, 'Raffle payout', "Raffle #{$r['id']}: {$r['title']}", "Paid {$r['prize']} to {$r['winner']}", 'drawn', "paid, tx " . substr($txh, 0, 12) . '…');
   notify($r['winner'], 'raffle', "Your {$r['prize']} prize for “{$r['title']}” has been sent. Thanks for being part of Pitchside!", '/raffle', $u);
