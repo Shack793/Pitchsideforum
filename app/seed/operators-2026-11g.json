@@ -1,0 +1,877 @@
+[
+ {
+  "slug": "lucky-louis",
+  "name": "Lucky Louis",
+  "kind": "casino",
+  "website": "luckylouis.com",
+  "color": "#8D6E63",
+  "owner": "Skill On Net Ltd",
+  "license": "Malta MGA/CRP/171/2009; UK Gambling Commission 039326-R-319358-063; Germany (GGL and Schleswig-Holstein, luckylouis.de); Denmark; Sweden.",
+  "regulator": "mga",
+  "size": "medium",
+  "est": null,
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "minDeposit": "",
+  "withdrawalLimit": "",
+  "kyc": "",
+  "games": "Casino",
+  "languages": "",
+  "pros": [
+   "Licensed in Malta, the UK, Germany, Denmark and Sweden"
+  ],
+  "cons": [
+   "Skill On Net Ltd runs many other casino brands under the same licences",
+   "Listed as unauthorised by 6 national regulators in countries where it isn't licensed"
+  ],
+  "unfairTerms": []
+ },
+ {
+  "slug": "lucky-nordic",
+  "name": "Lucky Nordic",
+  "kind": "casino",
+  "website": "luckynordic.com",
+  "color": "#0277BD",
+  "owner": "Blixx Gaming Ltd",
+  "license": "Estonia HKL000470, HKT000089.",
+  "regulator": "ee",
+  "size": "small",
+  "est": null,
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "minDeposit": "",
+  "withdrawalLimit": "",
+  "kyc": "",
+  "games": "Casino",
+  "languages": "",
+  "pros": [
+   "Estonian licence"
+  ],
+  "cons": [
+   "Same company runs Kanuuna",
+   "Listed as unauthorised by 2 national regulators in countries where it isn't licensed"
+  ],
+  "unfairTerms": []
+ },
+ {
+  "slug": "lucky-nugget",
+  "name": "Lucky Nugget",
+  "kind": "casino",
+  "website": "luckynuggetcasino.com",
+  "color": "#C9A227",
+  "owner": "Baytree (Alderney) Ltd; Baytree Interactive Ltd",
+  "license": "Alderney Gambling Control Commission, Category 1 (Baytree (Alderney) Ltd); Kahnawake Gaming Commission (Baytree Interactive Ltd).",
+  "regulator": "alderney",
+  "size": "medium",
+  "est": null,
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "minDeposit": "",
+  "withdrawalLimit": "",
+  "kyc": "",
+  "games": "Casino",
+  "languages": "",
+  "pros": [
+   "Alderney licence",
+   "Same licence holders as Jackpot City and Spin Casino"
+  ],
+  "cons": [
+   "39 of its web addresses are on regulators' blocklists",
+   "Listed as unauthorised by 12 national regulators in countries where it isn't licensed"
+  ],
+  "unfairTerms": []
+ },
+ {
+  "slug": "lucky-pants-bingo",
+  "name": "Lucky Pants Bingo",
+  "kind": "casino",
+  "website": "luckypantsbingo.com",
+  "color": "#F06292",
+  "owner": "Rank Interactive (Gibraltar) Ltd (The Rank Group)",
+  "license": "UK Gambling Commission 057924-R-334666-006.",
+  "regulator": "ukgc",
+  "size": "medium",
+  "est": null,
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "minDeposit": "",
+  "withdrawalLimit": "",
+  "kyc": "",
+  "games": "Bingo and slots",
+  "languages": "",
+  "pros": [
+   "Owned by The Rank Group",
+   "UK licence"
+  ],
+  "cons": [
+   "UK players only",
+   "Listed as unauthorised by 5 national regulators in countries where it isn't licensed"
+  ],
+  "unfairTerms": []
+ },
+ {
+  "slug": "lucky-spins",
+  "name": "Lucky Spins",
+  "kind": "casino",
+  "website": "luckyspins.com",
+  "color": "#7C4DFF",
+  "owner": "Play Well Media Ltd; Indigo Nova Ltd",
+  "license": "Estonia HKL000395, HKT000068 (Play Well Media Ltd); Kahnawake Gaming Commission (Indigo Nova Ltd).",
+  "regulator": "ee",
+  "size": "small",
+  "est": null,
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "minDeposit": "",
+  "withdrawalLimit": "",
+  "kyc": "",
+  "games": "Casino",
+  "languages": "",
+  "pros": [
+   "Estonian and Kahnawake licences"
+  ],
+  "cons": [
+   "Same companies run Casino Days and Big Boost",
+   "Listed as unauthorised by 7 national regulators in countries where it isn't licensed"
+  ],
+  "unfairTerms": []
+ },
+ {
+  "slug": "lucky-tiger",
+  "name": "Lucky Tiger",
+  "kind": "casino",
+  "website": "luckytiger.co.uk",
+  "color": "#FF8F00",
+  "owner": "SCGO Ltd",
+  "license": "UK Gambling Commission 044662-R-324273-023 (luckytiger.co.uk).",
+  "regulator": "ukgc",
+  "size": "small",
+  "est": null,
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "minDeposit": "",
+  "withdrawalLimit": "",
+  "kyc": "",
+  "games": "Casino",
+  "languages": "",
+  "pros": [
+   "UK licence"
+  ],
+  "cons": [
+   "UK players only",
+   "Listed as unauthorised by 1 national regulator in countries where it isn't licensed"
+  ],
+  "unfairTerms": []
+ },
+ {
+  "slug": "lucky-vegas",
+  "name": "Lucky Vegas",
+  "kind": "casino",
+  "website": "luckyvegas.com",
+  "color": "#E53935",
+  "owner": "Skill On Net Ltd",
+  "license": "Malta MGA/CRP/171/2009; UK Gambling Commission 039326-R-319358-063; Spain DGOJ (Skill on Net S.A.); Germany; Denmark; Sweden.",
+  "regulator": "mga",
+  "size": "medium",
+  "est": null,
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "minDeposit": "",
+  "withdrawalLimit": "",
+  "kyc": "",
+  "games": "Casino",
+  "languages": "",
+  "pros": [
+   "Licensed in Malta, the UK, Spain, Germany, Denmark and Sweden"
+  ],
+  "cons": [
+   "Skill On Net Ltd runs many other casino brands under the same licences",
+   "Listed as unauthorised by 6 national regulators in countries where it isn't licensed"
+  ],
+  "unfairTerms": []
+ },
+ {
+  "slug": "lucky-vip",
+  "name": "Lucky VIP",
+  "kind": "casino",
+  "website": "luckyvip.com",
+  "color": "#B8860B",
+  "owner": "Rank Interactive (Gibraltar) Ltd (The Rank Group)",
+  "license": "UK Gambling Commission 057924-R-334666-006.",
+  "regulator": "ukgc",
+  "size": "medium",
+  "est": null,
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "minDeposit": "",
+  "withdrawalLimit": "",
+  "kyc": "",
+  "games": "Casino and live casino",
+  "languages": "",
+  "pros": [
+   "Owned by The Rank Group",
+   "UK licence"
+  ],
+  "cons": [
+   "UK players only",
+   "Listed as unauthorised by 2 national regulators in countries where it isn't licensed"
+  ],
+  "unfairTerms": []
+ },
+ {
+  "slug": "lucky7even",
+  "name": "Lucky7even",
+  "kind": "casino",
+  "website": "lucky7even.com",
+  "color": "#00897B",
+  "owner": "Metlait S.R.L.",
+  "license": "Anjouan (AOFA) ALSI-202509073-FI2.",
+  "regulator": "anjouan",
+  "size": "small",
+  "est": null,
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "minDeposit": "",
+  "withdrawalLimit": "",
+  "kyc": "",
+  "games": "Casino",
+  "languages": "",
+  "pros": [
+   "Licence number published"
+  ],
+  "cons": [
+   "Offshore Anjouan licence with light player protection",
+   "Same company holds the licence for CasinoRocket, Billy Billion and Cloverspin",
+   "Listed as unauthorised by 9 national regulators in countries where it isn't licensed"
+  ],
+  "unfairTerms": []
+ },
+ {
+  "slug": "luckydays",
+  "name": "LuckyDays",
+  "kind": "casino",
+  "website": "luckydays.com",
+  "color": "#1DE9B6",
+  "owner": "Jungle Media Ltd; L7 Entertainment Ltd (Canada); Monkey 9 Ltd",
+  "license": "Malta MGA/B2C/822/2020 (Jungle Media Ltd, luckydays.com); Ontario OPIG1242643 and Alberta (L7 Entertainment Ltd, luckydays.ca); Kahnawake (Monkey 9 Ltd); Anjouan ALSI-202607037-FI2 (luckydays.co).",
+  "regulator": "mga",
+  "size": "medium",
+  "est": null,
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "minDeposit": "",
+  "withdrawalLimit": "",
+  "kyc": "",
+  "games": "Casino and live casino",
+  "languages": "",
+  "pros": [
+   "Licensed in Malta, Ontario and Alberta"
+  ],
+  "cons": [
+   "Its .co site runs under a lighter Anjouan licence",
+   "Listed as unauthorised by 6 national regulators in countries where it isn't licensed"
+  ],
+  "unfairTerms": []
+ },
+ {
+  "slug": "luckygem",
+  "name": "LuckyGem",
+  "kind": "casino",
+  "website": "luckygem.com",
+  "color": "#26A69A",
+  "owner": "Innovex Tech Holdings Ltd; Lucky Gem Ltd",
+  "license": "Anjouan (AOFA) ALSI-202504026-FI1 (luckygem.com) and ALSI-202508020-FI1 (luckygem.net, luckygem.online).",
+  "regulator": "anjouan",
+  "size": "small",
+  "est": null,
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "minDeposit": "",
+  "withdrawalLimit": "",
+  "kyc": "",
+  "games": "Casino",
+  "languages": "",
+  "pros": [
+   "Licence numbers published"
+  ],
+  "cons": [
+   "Offshore Anjouan licence with light player protection",
+   "Listed as unauthorised by 8 national regulators in countries where it isn't licensed"
+  ],
+  "unfairTerms": []
+ },
+ {
+  "slug": "luckyliner",
+  "name": "LuckyLiner",
+  "kind": "casino",
+  "website": "luckyliner.com",
+  "color": "#29B6F6",
+  "owner": "Ellipse Entertainment Ltd",
+  "license": "Alderney Gambling Control Commission, Category 1; Alberta iGaming.",
+  "regulator": "alderney",
+  "size": "small",
+  "est": null,
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "minDeposit": "",
+  "withdrawalLimit": "",
+  "kyc": "",
+  "games": "Casino",
+  "languages": "",
+  "pros": [
+   "Alderney and Alberta licences"
+  ],
+  "cons": [
+   "Same company runs CashCabin",
+   "Listed as unauthorised by 2 national regulators in countries where it isn't licensed"
+  ],
+  "unfairTerms": []
+ },
+ {
+  "slug": "luckyniki",
+  "name": "Luckyniki",
+  "kind": "casino",
+  "website": "luckyniki.com",
+  "color": "#EC407A",
+  "owner": "Skill On Net Ltd",
+  "license": "Malta MGA/CRP/171/2009; UK Gambling Commission 039326-R-319358-063 (luckyniki.co.uk); Germany; Denmark; Sweden.",
+  "regulator": "mga",
+  "size": "medium",
+  "est": null,
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "minDeposit": "",
+  "withdrawalLimit": "",
+  "kyc": "",
+  "games": "Casino",
+  "languages": "",
+  "pros": [
+   "Licensed in Malta, the UK, Germany, Denmark and Sweden"
+  ],
+  "cons": [
+   "Skill On Net Ltd runs many other casino brands under the same licences",
+   "Listed as unauthorised by 10 national regulators in countries where it isn't licensed"
+  ],
+  "unfairTerms": []
+ },
+ {
+  "slug": "luckypari",
+  "name": "LuckyPari",
+  "kind": "both",
+  "website": "luckypari.com",
+  "color": "#FFB300",
+  "owner": "Lunex LLC",
+  "license": "Anjouan (AOFA) ALSI-202510030-FI1 (luckypari.com, .net, .asia).",
+  "regulator": "anjouan",
+  "size": "small",
+  "est": null,
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "minDeposit": "",
+  "withdrawalLimit": "",
+  "kyc": "",
+  "games": "Casino and sports betting",
+  "languages": "",
+  "pros": [
+   "Licence number published"
+  ],
+  "cons": [
+   "Offshore Anjouan licence with light player protection",
+   "Listed as unauthorised by 2 national regulators in countries where it isn't licensed"
+  ],
+  "unfairTerms": []
+ },
+ {
+  "slug": "luckyreels",
+  "name": "LuckyReels",
+  "kind": "casino",
+  "website": "luckyreels.com",
+  "color": "#D81B60",
+  "owner": "Redstone Interactive Ltd",
+  "license": "Anjouan (AOFA) ALSI-202411039-FI1.",
+  "regulator": "anjouan",
+  "size": "small",
+  "est": null,
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "minDeposit": "",
+  "withdrawalLimit": "",
+  "kyc": "",
+  "games": "Casino",
+  "languages": "",
+  "pros": [
+   "Licence number published"
+  ],
+  "cons": [
+   "Offshore Anjouan licence with light player protection",
+   "Listed as unauthorised by 6 national regulators in countries where it isn't licensed"
+  ],
+  "unfairTerms": []
+ },
+ {
+  "slug": "lukkly",
+  "name": "Lukkly",
+  "kind": "casino",
+  "website": "lukkly.com",
+  "color": "#5E35B1",
+  "owner": "Island Lukkly B.V.",
+  "license": "Curaçao Gaming Authority OGL/2024/1723/0940 (Island Lukkly B.V.), shown on the regulator's register as 'assessment in progress'.",
+  "regulator": "curacao",
+  "size": "small",
+  "est": null,
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "minDeposit": "",
+  "withdrawalLimit": "",
+  "kyc": "",
+  "games": "Casino",
+  "languages": "",
+  "pros": [
+   "Curaçao licence number published"
+  ],
+  "cons": [
+   "Curaçao licence still under the regulator's assessment",
+   "51 of its web addresses are on regulators' blocklists",
+   "Listed as unauthorised by 3 national regulators in countries where it isn't licensed"
+  ],
+  "unfairTerms": []
+ },
+ {
+  "slug": "magical-vegas",
+  "name": "Magical Vegas",
+  "kind": "casino",
+  "website": "magicalvegas.com",
+  "color": "#7B1FA2",
+  "owner": "Rank Interactive (Gibraltar) Ltd (The Rank Group)",
+  "license": "UK Gambling Commission 057924-R-334666-006.",
+  "regulator": "ukgc",
+  "size": "medium",
+  "est": null,
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "minDeposit": "",
+  "withdrawalLimit": "",
+  "kyc": "",
+  "games": "Casino and slots",
+  "languages": "",
+  "pros": [
+   "Owned by The Rank Group",
+   "UK licence"
+  ],
+  "cons": [
+   "UK players only",
+   "Listed as unauthorised by 6 national regulators in countries where it isn't licensed"
+  ],
+  "unfairTerms": []
+ },
+ {
+  "slug": "magicjackpot",
+  "name": "MagicJackpot",
+  "kind": "casino",
+  "website": "magicjackpot.bet.br",
+  "color": "#FF6F00",
+  "owner": "SPRBT Interactive Brasil Ltda",
+  "license": "Brazil, Secretaria de Prêmios e Apostas SPA/MF nº 2.090 (30 Dec 2024) (magicjackpot.bet.br).",
+  "regulator": "br",
+  "size": "medium",
+  "est": null,
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "minDeposit": "",
+  "withdrawalLimit": "",
+  "kyc": "",
+  "games": "Casino",
+  "languages": "",
+  "pros": [
+   "Licensed under Brazil's federal betting rules"
+  ],
+  "cons": [
+   "Brazil only",
+   "Listed as unauthorised by 2 national regulators in countries where it isn't licensed"
+  ],
+  "unfairTerms": []
+ },
+ {
+  "slug": "mango",
+  "name": "Mango",
+  "kind": "casino",
+  "website": "mangocasino.com",
+  "color": "#FFA726",
+  "owner": "ProgressPlay Ltd",
+  "license": "Malta MGA/B2C/231/2012 (mangocasino.com).",
+  "regulator": "mga",
+  "size": "small",
+  "est": null,
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "minDeposit": "",
+  "withdrawalLimit": "",
+  "kyc": "",
+  "games": "Casino",
+  "languages": "",
+  "pros": [
+   "Malta licence"
+  ],
+  "cons": [
+   "ProgressPlay Ltd runs more than 100 other casino brands under the same licences",
+   "Listed as unauthorised by 4 national regulators in countries where it isn't licensed"
+  ],
+  "unfairTerms": []
+ },
+ {
+  "slug": "mango-spins",
+  "name": "Mango Spins",
+  "kind": "casino",
+  "website": "mangospins.com",
+  "color": "#FB8C00",
+  "owner": "Grace Media (Gibraltar) Ltd",
+  "license": "UK Gambling Commission 057869-R-334655-010.",
+  "regulator": "ukgc",
+  "size": "small",
+  "est": null,
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "minDeposit": "",
+  "withdrawalLimit": "",
+  "kyc": "",
+  "games": "Casino",
+  "languages": "",
+  "pros": [
+   "UK licence"
+  ],
+  "cons": [
+   "Same company runs 333 Casino and Bogof Bingo",
+   "Listed as unauthorised by 2 national regulators in countries where it isn't licensed"
+  ],
+  "unfairTerms": []
+ },
+ {
+  "slug": "marca-apuestas",
+  "name": "Marca Apuestas",
+  "kind": "both",
+  "website": "marcaapuestas.es",
+  "color": "#C62828",
+  "owner": "Casino Marbella Interactive S.A.",
+  "license": "Spain DGOJ (Casino Marbella Interactive S.A.).",
+  "regulator": "dgoj",
+  "size": "medium",
+  "est": null,
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "minDeposit": "",
+  "withdrawalLimit": "",
+  "kyc": "",
+  "games": "Sports betting and casino",
+  "languages": "",
+  "pros": [
+   "Licensed by Spain's regulator"
+  ],
+  "cons": [
+   "Spain only",
+   "Listed as unauthorised by 5 national regulators in countries where it isn't licensed"
+  ],
+  "unfairTerms": []
+ },
+ {
+  "slug": "maria-casino",
+  "name": "Maria Casino",
+  "kind": "casino",
+  "website": "mariacasino.com",
+  "color": "#AD1457",
+  "owner": "Kserol PLC (Kindred Group) and local companies",
+  "license": "Malta MGA/B2C/1031/2023 (Kserol PLC); Denmark (Unibet (Denmark) Ltd); Estonia HKL000273, HKL000418, HKT000018, HKT000019 (Lexbyte Digital Ltd); Sweden (Tussilago Ltd).",
+  "regulator": "mga",
+  "size": "large",
+  "est": null,
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "minDeposit": "",
+  "withdrawalLimit": "",
+  "kyc": "",
+  "games": "Casino and live casino",
+  "languages": "",
+  "pros": [
+   "Part of Kindred Group (Unibet, 32Red)",
+   "Licensed in Malta, Denmark, Estonia and Sweden"
+  ],
+  "cons": [
+   "Listed as unauthorised by 11 national regulators in countries where it isn't licensed"
+  ],
+  "unfairTerms": []
+ },
+ {
+  "slug": "megarich",
+  "name": "Megarich",
+  "kind": "casino",
+  "website": "megarich.ws",
+  "color": "#AB47BC",
+  "owner": "Buscarar SRL",
+  "license": "Anjouan (AOFA) ALSI-202412042-FI2 (megarich.ws).",
+  "regulator": "anjouan",
+  "size": "small",
+  "est": null,
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "minDeposit": "",
+  "withdrawalLimit": "",
+  "kyc": "",
+  "games": "Casino",
+  "languages": "",
+  "pros": [
+   "Licence number published"
+  ],
+  "cons": [
+   "Offshore Anjouan licence with light player protection",
+   "Listed as unauthorised by 5 national regulators in countries where it isn't licensed"
+  ],
+  "unfairTerms": []
+ },
+ {
+  "slug": "megarush",
+  "name": "Megarush",
+  "kind": "casino",
+  "website": "megarush.com",
+  "color": "#F4511E",
+  "owner": "ML Entertainment Casino Ltd",
+  "license": "Malta MGA/CRP/591/2018.",
+  "regulator": "mga",
+  "size": "small",
+  "est": null,
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "minDeposit": "",
+  "withdrawalLimit": "",
+  "kyc": "",
+  "games": "Casino",
+  "languages": "",
+  "pros": [
+   "Malta licence"
+  ],
+  "cons": [
+   "Listed as unauthorised by 3 national regulators in countries where it isn't licensed"
+  ],
+  "unfairTerms": []
+ },
+ {
+  "slug": "metal-casino",
+  "name": "Metal Casino",
+  "kind": "casino",
+  "website": "metalcasino.com",
+  "color": "#455A64",
+  "owner": "Skill On Net Ltd",
+  "license": "Malta MGA/CRP/171/2009; UK Gambling Commission 039326-R-319358-063; Spain DGOJ (Skill on Net S.A.); Denmark; Sweden.",
+  "regulator": "mga",
+  "size": "medium",
+  "est": null,
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "minDeposit": "",
+  "withdrawalLimit": "",
+  "kyc": "",
+  "games": "Casino",
+  "languages": "",
+  "pros": [
+   "Licensed in Malta, the UK, Spain, Denmark and Sweden"
+  ],
+  "cons": [
+   "Skill On Net Ltd runs many other casino brands under the same licences",
+   "Listed as unauthorised by 5 national regulators in countries where it isn't licensed"
+  ],
+  "unfairTerms": []
+ },
+ {
+  "slug": "miami-jackpots",
+  "name": "Miami Jackpots",
+  "kind": "casino",
+  "website": "miamijackpots.com",
+  "color": "#00BCD4",
+  "owner": "Skill On Net Ltd",
+  "license": "Malta MGA/CRP/171/2009; UK Gambling Commission 039326-R-319358-063; Denmark; Sweden.",
+  "regulator": "mga",
+  "size": "medium",
+  "est": null,
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "minDeposit": "",
+  "withdrawalLimit": "",
+  "kyc": "",
+  "games": "Casino",
+  "languages": "",
+  "pros": [
+   "Licensed in Malta, the UK, Denmark and Sweden"
+  ],
+  "cons": [
+   "Skill On Net Ltd runs many other casino brands under the same licences",
+   "Listed as unauthorised by 5 national regulators in countries where it isn't licensed"
+  ],
+  "unfairTerms": []
+ },
+ {
+  "slug": "miki",
+  "name": "Miki",
+  "kind": "casino",
+  "website": "miki.com",
+  "color": "#E91E63",
+  "owner": "VL Canada Ltd; VL Estonia Ltd OÜ",
+  "license": "Ontario OPIG1300315 (VL Canada Ltd, on.miki.com); Estonia HKL000473, HKL000474, HKT000086, HKT000087 (VL Estonia Ltd OÜ, ee.miki.com).",
+  "regulator": "ontario",
+  "size": "small",
+  "est": null,
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "minDeposit": "",
+  "withdrawalLimit": "",
+  "kyc": "",
+  "games": "Casino",
+  "languages": "",
+  "pros": [
+   "Licensed in Ontario and Estonia"
+  ],
+  "cons": [
+   "Its main miki.com address isn't covered by either licence",
+   "Listed as unauthorised by 3 national regulators in countries where it isn't licensed"
+  ],
+  "unfairTerms": []
+ },
+ {
+  "slug": "mobile-wins",
+  "name": "Mobile Wins",
+  "kind": "casino",
+  "website": "mobilewins.co.uk",
+  "color": "#3F51B5",
+  "owner": "ProgressPlay Ltd",
+  "license": "UK Gambling Commission 039335-R-319313-021; Malta MGA/B2C/231/2012.",
+  "regulator": "ukgc",
+  "size": "small",
+  "est": null,
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "minDeposit": "",
+  "withdrawalLimit": "",
+  "kyc": "",
+  "games": "Casino",
+  "languages": "",
+  "pros": [
+   "UK and Malta licences"
+  ],
+  "cons": [
+   "ProgressPlay Ltd runs more than 100 other casino brands under the same licences",
+   "Listed as unauthorised by 4 national regulators in countries where it isn't licensed"
+  ],
+  "unfairTerms": []
+ },
+ {
+  "slug": "mogobet",
+  "name": "MogoBet",
+  "kind": "casino",
+  "website": "mogobet.com",
+  "color": "#26C6DA",
+  "owner": "ProgressPlay Ltd",
+  "license": "UK Gambling Commission 039335-R-319313-021; Malta MGA/B2C/231/2012.",
+  "regulator": "ukgc",
+  "size": "small",
+  "est": null,
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "minDeposit": "",
+  "withdrawalLimit": "",
+  "kyc": "",
+  "games": "Casino",
+  "languages": "",
+  "pros": [
+   "UK and Malta licences"
+  ],
+  "cons": [
+   "ProgressPlay Ltd runs more than 100 other casino brands under the same licences",
+   "Listed as unauthorised by 4 national regulators in countries where it isn't licensed"
+  ],
+  "unfairTerms": []
+ },
+ {
+  "slug": "monopoly-casino",
+  "name": "Monopoly Casino",
+  "kind": "casino",
+  "website": "monopolycasino.com",
+  "color": "#D32F2F",
+  "owner": "Gamesys Operations Ltd; Bally's Canada Inc.; Games Spain Operations S.A. (Bally's Corporation)",
+  "license": "UK Gambling Commission 038905-R-319430-023 (Gamesys Operations Ltd); Ontario OPIG1242339 / OPIG1451132 and Alberta (Bally's Canada Inc.); Spain DGOJ (monopolycasino.es).",
+  "regulator": "ukgc",
+  "size": "large",
+  "est": null,
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "minDeposit": "",
+  "withdrawalLimit": "",
+  "kyc": "",
+  "games": "Casino, slots and live casino",
+  "languages": "",
+  "pros": [
+   "Run by Gamesys, part of Bally's Corporation",
+   "Licensed in the UK, Ontario, Alberta and Spain"
+  ],
+  "cons": [
+   "Listed as unauthorised by 1 national regulator in countries where it isn't licensed"
+  ],
+  "unfairTerms": []
+ }
+]

@@ -1,0 +1,791 @@
+[
+ {
+  "slug": "posido",
+  "name": "Posido",
+  "kind": "both",
+  "website": "posido.com",
+  "color": "#00897B",
+  "owner": "Estolio Ltd",
+  "license": "Estonia HKL000355, HKL000543, HKT000056, HKT000057 (posido.com), including betting.",
+  "regulator": "ee",
+  "size": "small",
+  "est": null,
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "minDeposit": "",
+  "withdrawalLimit": "",
+  "kyc": "",
+  "games": "Casino and sports betting",
+  "languages": "",
+  "pros": [
+   "Estonian licence"
+  ],
+  "cons": [
+   "Listed as unauthorised by 11 national regulators in countries where it isn't licensed"
+  ],
+  "unfairTerms": []
+ },
+ {
+  "slug": "power-slots",
+  "name": "Power Slots",
+  "kind": "casino",
+  "website": "powerslots.com",
+  "color": "#F4511E",
+  "owner": "ProgressPlay Ltd",
+  "license": "UK Gambling Commission 039335-R-319313-021; Malta MGA/B2C/231/2012.",
+  "regulator": "ukgc",
+  "size": "small",
+  "est": null,
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "minDeposit": "",
+  "withdrawalLimit": "",
+  "kyc": "",
+  "games": "Casino and slots",
+  "languages": "",
+  "pros": [
+   "UK and Malta licences"
+  ],
+  "cons": [
+   "ProgressPlay Ltd runs more than 100 other casino brands under the same licences",
+   "Listed as unauthorised by 5 national regulators in countries where it isn't licensed"
+  ],
+  "unfairTerms": []
+ },
+ {
+  "slug": "powerplay",
+  "name": "PowerPlay",
+  "kind": "both",
+  "website": "powerplay.com",
+  "color": "#1E88E5",
+  "owner": "Trillium Ventures Ltd",
+  "license": "Ontario iGaming (on.powerplay.com) and Alberta iGaming (powerplay.com), Trillium Ventures Ltd; a separate company runs PowerPlay in the Philippines under PAGCOR.",
+  "regulator": "ontario",
+  "size": "medium",
+  "est": null,
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "minDeposit": "",
+  "withdrawalLimit": "",
+  "kyc": "",
+  "games": "Sports betting and casino",
+  "languages": "",
+  "pros": [
+   "Licensed in Ontario and Alberta"
+  ],
+  "cons": [
+   "Canada only (the Philippine site is a different company)",
+   "Listed as unauthorised by 4 national regulators in countries where it isn't licensed"
+  ],
+  "unfairTerms": []
+ },
+ {
+  "slug": "premier-live-casino",
+  "name": "Premier Live Casino",
+  "kind": "casino",
+  "website": "premierlivecasino.com",
+  "color": "#5D4037",
+  "owner": "Premiergaming Ltd",
+  "license": "Malta MGA/B2C/430/2017; Sweden Spelinspektionen.",
+  "regulator": "mga",
+  "size": "small",
+  "est": null,
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "minDeposit": "",
+  "withdrawalLimit": "",
+  "kyc": "",
+  "games": "Live casino and casino",
+  "languages": "",
+  "pros": [
+   "Malta and Swedish licences"
+  ],
+  "cons": [
+   "Same company runs Pronto Casino",
+   "Listed as unauthorised by 4 national regulators in countries where it isn't licensed"
+  ],
+  "unfairTerms": []
+ },
+ {
+  "slug": "pronto-casino",
+  "name": "Pronto Casino",
+  "kind": "casino",
+  "website": "prontocasino.se",
+  "color": "#FFB300",
+  "owner": "Premiergaming Ltd",
+  "license": "Sweden Spelinspektionen (prontocasino.se).",
+  "regulator": "sga",
+  "size": "small",
+  "est": null,
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "minDeposit": "",
+  "withdrawalLimit": "",
+  "kyc": "",
+  "games": "Casino",
+  "languages": "",
+  "pros": [
+   "Licensed in Sweden"
+  ],
+  "cons": [
+   "Sweden only",
+   "Listed as unauthorised by 4 national regulators in countries where it isn't licensed"
+  ],
+  "unfairTerms": []
+ },
+ {
+  "slug": "pub-casino",
+  "name": "Pub Casino",
+  "kind": "casino",
+  "website": "pubcasino.co.uk",
+  "color": "#6D4C41",
+  "owner": "L&L Europe Ltd",
+  "license": "UK Gambling Commission 038758-R-319451-016; Malta MGA/B2C/211/2011.",
+  "regulator": "ukgc",
+  "size": "small",
+  "est": null,
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "minDeposit": "",
+  "withdrawalLimit": "",
+  "kyc": "",
+  "games": "Casino",
+  "languages": "",
+  "pros": [
+   "UK and Malta licences"
+  ],
+  "cons": [
+   "Same company runs CasinoCasino and Fun Casino",
+   "Listed as unauthorised by 2 national regulators in countries where it isn't licensed"
+  ],
+  "unfairTerms": []
+ },
+ {
+  "slug": "puntit",
+  "name": "Puntit",
+  "kind": "both",
+  "website": "puntit.com",
+  "color": "#00C853",
+  "owner": "Play Well Media Ltd",
+  "license": "Ireland Revenue Commissioners remote bookmaker licence 1022285 (puntit.com).",
+  "regulator": "ie",
+  "size": "small",
+  "est": null,
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "minDeposit": "",
+  "withdrawalLimit": "",
+  "kyc": "",
+  "games": "Sports betting and casino",
+  "languages": "",
+  "pros": [
+   "Irish bookmaker licence"
+  ],
+  "cons": [
+   "Same company runs Casino Days, Big Boost and Raketti",
+   "Listed as unauthorised by 2 national regulators in countries where it isn't licensed"
+  ],
+  "unfairTerms": []
+ },
+ {
+  "slug": "queenvegas",
+  "name": "QueenVegas",
+  "kind": "casino",
+  "website": "queenvegas.com",
+  "color": "#C2185B",
+  "owner": "Skill On Net Ltd",
+  "license": "Malta MGA/CRP/171/2009; UK Gambling Commission 039326-R-319358-063; Germany (GGL and Schleswig-Holstein); Denmark; Sweden.",
+  "regulator": "mga",
+  "size": "medium",
+  "est": null,
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "minDeposit": "",
+  "withdrawalLimit": "",
+  "kyc": "",
+  "games": "Casino",
+  "languages": "",
+  "pros": [
+   "Licensed in Malta, the UK, Germany, Denmark and Sweden"
+  ],
+  "cons": [
+   "Skill On Net Ltd runs many other casino brands under the same licences",
+   "Listed as unauthorised by 12 national regulators in countries where it isn't licensed"
+  ],
+  "unfairTerms": []
+ },
+ {
+  "slug": "rainbow-riches",
+  "name": "Rainbow Riches Casino",
+  "kind": "casino",
+  "website": "rainbowriches.co.uk",
+  "color": "#2E7D32",
+  "owner": "Gamesys Operations Ltd (Bally's Corporation)",
+  "license": "UK Gambling Commission 038905-R-319430-023.",
+  "regulator": "ukgc",
+  "size": "medium",
+  "est": null,
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "minDeposit": "",
+  "withdrawalLimit": "",
+  "kyc": "",
+  "games": "Slots and casino",
+  "languages": "",
+  "pros": [
+   "Run by Gamesys, part of Bally's Corporation",
+   "UK licence"
+  ],
+  "cons": [
+   "UK players only",
+   "Listed as unauthorised by 1 national regulator in countries where it isn't licensed"
+  ],
+  "unfairTerms": []
+ },
+ {
+  "slug": "raketti",
+  "name": "Raketti",
+  "kind": "casino",
+  "website": "raketti.com",
+  "color": "#E53935",
+  "owner": "Play Well Media Ltd",
+  "license": "Estonia HKL000395, HKT000068 (raketti.com).",
+  "regulator": "ee",
+  "size": "small",
+  "est": null,
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "minDeposit": "",
+  "withdrawalLimit": "",
+  "kyc": "",
+  "games": "Casino",
+  "languages": "",
+  "pros": [
+   "Estonian licence"
+  ],
+  "cons": [
+   "Same company runs Casino Days and Big Boost",
+   "Listed as unauthorised by 2 national regulators in countries where it isn't licensed"
+  ],
+  "unfairTerms": []
+ },
+ {
+  "slug": "rant-casino",
+  "name": "RANT Casino",
+  "kind": "casino",
+  "website": "rantcasino.com",
+  "color": "#D81B60",
+  "owner": "Starscream Ltd",
+  "license": "Kahnawake Gaming Commission, Client Provider Authorization (Starscream Ltd).",
+  "regulator": "kahnawake",
+  "size": "small",
+  "est": null,
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "minDeposit": "",
+  "withdrawalLimit": "",
+  "kyc": "",
+  "games": "Casino",
+  "languages": "",
+  "pros": [
+   "Kahnawake licence"
+  ],
+  "cons": [
+   "Same company holds the licence for AllStarzCasino and Locowin",
+   "Listed as unauthorised by 10 national regulators in countries where it isn't licensed"
+  ],
+  "unfairTerms": []
+ },
+ {
+  "slug": "regal-wins",
+  "name": "Regal Wins",
+  "kind": "casino",
+  "website": "regalwins.com",
+  "color": "#4527A0",
+  "owner": "Rank Interactive (Gibraltar) Ltd (The Rank Group)",
+  "license": "UK Gambling Commission 057924-R-334666-006.",
+  "regulator": "ukgc",
+  "size": "medium",
+  "est": null,
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "minDeposit": "",
+  "withdrawalLimit": "",
+  "kyc": "",
+  "games": "Casino and slots",
+  "languages": "",
+  "pros": [
+   "Owned by The Rank Group",
+   "UK licence"
+  ],
+  "cons": [
+   "UK players only",
+   "Listed as unauthorised by 3 national regulators in countries where it isn't licensed"
+  ],
+  "unfairTerms": []
+ },
+ {
+  "slug": "rembrandt",
+  "name": "Rembrandt Casino",
+  "kind": "casino",
+  "website": "rembrandtcasino.com",
+  "color": "#8D6E63",
+  "owner": "Condor Malta Ltd",
+  "license": "UK Gambling Commission 050094-R-327623-004.",
+  "regulator": "ukgc",
+  "size": "small",
+  "est": null,
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "minDeposit": "",
+  "withdrawalLimit": "",
+  "kyc": "",
+  "games": "Casino",
+  "languages": "",
+  "pros": [
+   "UK licence"
+  ],
+  "cons": [
+   "Same company runs 24Bettle, b-Bets and Big 5",
+   "Listed as unauthorised by 15 national regulators in countries where it isn't licensed"
+  ],
+  "unfairTerms": []
+ },
+ {
+  "slug": "richville",
+  "name": "Richville",
+  "kind": "casino",
+  "website": "richville.net",
+  "color": "#FFD54F",
+  "owner": "Buscarar SRL (richville.net); 3-102-963095 SRL (richville.cc)",
+  "license": "Anjouan (AOFA) ALSI-202412042-FI2 (richville.net) and ALSI-202608034-FI2 (richville.cc).",
+  "regulator": "anjouan",
+  "size": "small",
+  "est": null,
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "minDeposit": "",
+  "withdrawalLimit": "",
+  "kyc": "",
+  "games": "Casino",
+  "languages": "",
+  "pros": [
+   "Licence numbers published"
+  ],
+  "cons": [
+   "Offshore Anjouan licence with light player protection",
+   "Same company holds the licence for Megarich",
+   "Listed as unauthorised by 7 national regulators in countries where it isn't licensed"
+  ],
+  "unfairTerms": []
+ },
+ {
+  "slug": "rocket-bingo",
+  "name": "Rocket Bingo",
+  "kind": "casino",
+  "website": "rocketbingo.co.uk",
+  "color": "#7E57C2",
+  "owner": "Jumpman Gaming Ltd",
+  "license": "UK Gambling Commission 039175-R-319452-025.",
+  "regulator": "ukgc",
+  "size": "small",
+  "est": null,
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "minDeposit": "",
+  "withdrawalLimit": "",
+  "kyc": "",
+  "games": "Bingo and slots",
+  "languages": "",
+  "pros": [
+   "UK licence"
+  ],
+  "cons": [
+   "UK players only",
+   "Listed as unauthorised by 3 national regulators in countries where it isn't licensed"
+  ],
+  "unfairTerms": []
+ },
+ {
+  "slug": "rocket-slots",
+  "name": "Rocket Slots",
+  "kind": "casino",
+  "website": "rocketslots.co.uk",
+  "color": "#5C6BC0",
+  "owner": "Jumpman Gaming Ltd",
+  "license": "UK Gambling Commission 039175-R-319452-025.",
+  "regulator": "ukgc",
+  "size": "small",
+  "est": null,
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "minDeposit": "",
+  "withdrawalLimit": "",
+  "kyc": "",
+  "games": "Slots",
+  "languages": "",
+  "pros": [
+   "UK licence"
+  ],
+  "cons": [
+   "UK players only",
+   "Same company runs Rocket Bingo and Casino Game",
+   "Listed as unauthorised by 3 national regulators in countries where it isn't licensed"
+  ],
+  "unfairTerms": []
+ },
+ {
+  "slug": "rockstar",
+  "name": "Rockstar",
+  "kind": "casino",
+  "website": "rockstar.casino",
+  "color": "#212121",
+  "owner": "Jeux Craft Limitada",
+  "license": "Anjouan (AOFA) ALSI-202410042-FI2 (rockstar.casino).",
+  "regulator": "anjouan",
+  "size": "small",
+  "est": null,
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "minDeposit": "",
+  "withdrawalLimit": "",
+  "kyc": "",
+  "games": "Casino",
+  "languages": "",
+  "pros": [
+   "Licence number published"
+  ],
+  "cons": [
+   "Offshore Anjouan licence with light player protection",
+   "Listed as unauthorised by 3 national regulators in countries where it isn't licensed"
+  ],
+  "unfairTerms": []
+ },
+ {
+  "slug": "rolldorado",
+  "name": "Rolldorado",
+  "kind": "casino",
+  "website": "rolldorado.com",
+  "color": "#FFA000",
+  "owner": "Sikora Technologies SRL",
+  "license": "Anjouan (AOFA) ALSI-202505035-FI2.",
+  "regulator": "anjouan",
+  "size": "small",
+  "est": null,
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "minDeposit": "",
+  "withdrawalLimit": "",
+  "kyc": "",
+  "games": "Casino",
+  "languages": "",
+  "pros": [
+   "Licence number published"
+  ],
+  "cons": [
+   "Offshore Anjouan licence with light player protection",
+   "Same company holds the licence for Playjonny, Roulettino and SavaSpin",
+   "Listed as unauthorised by 2 national regulators in countries where it isn't licensed"
+  ],
+  "unfairTerms": []
+ },
+ {
+  "slug": "rooster-bet",
+  "name": "Rooster.Bet",
+  "kind": "sportsbook",
+  "website": "roosterbet.com.au",
+  "color": "#E65100",
+  "owner": "Rooster Bet Pty Ltd",
+  "license": "On Australia's register of licensed interactive wagering providers (ACMA) (roosterbet.com.au).",
+  "regulator": "au",
+  "size": "small",
+  "est": null,
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "minDeposit": "",
+  "withdrawalLimit": "",
+  "kyc": "",
+  "games": "Sports and racing betting",
+  "languages": "",
+  "pros": [
+   "Licensed Australian wagering provider"
+  ],
+  "cons": [
+   "Australia only",
+   "Listed as unauthorised by 1 national regulator in countries where it isn't licensed"
+  ],
+  "unfairTerms": []
+ },
+ {
+  "slug": "roulettino",
+  "name": "Roulettino",
+  "kind": "casino",
+  "website": "roulettino.com",
+  "color": "#C62828",
+  "owner": "Sikora Technologies SRL",
+  "license": "Anjouan (AOFA) ALSI-202505035-FI2.",
+  "regulator": "anjouan",
+  "size": "small",
+  "est": null,
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "minDeposit": "",
+  "withdrawalLimit": "",
+  "kyc": "",
+  "games": "Casino",
+  "languages": "",
+  "pros": [
+   "Licence number published"
+  ],
+  "cons": [
+   "Offshore Anjouan licence with light player protection",
+   "Same company holds the licence for Playjonny, Rolldorado and SavaSpin",
+   "Listed as unauthorised by 3 national regulators in countries where it isn't licensed"
+  ],
+  "unfairTerms": []
+ },
+ {
+  "slug": "royal-swipe",
+  "name": "Royal Swipe",
+  "kind": "casino",
+  "website": "royalswipe.com",
+  "color": "#3949AB",
+  "owner": "ProgressPlay Ltd",
+  "license": "UK Gambling Commission 039335-R-319313-021; Malta MGA/B2C/231/2012.",
+  "regulator": "ukgc",
+  "size": "small",
+  "est": null,
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "minDeposit": "",
+  "withdrawalLimit": "",
+  "kyc": "",
+  "games": "Casino",
+  "languages": "",
+  "pros": [
+   "UK and Malta licences"
+  ],
+  "cons": [
+   "ProgressPlay Ltd runs more than 100 other casino brands under the same licences",
+   "Listed as unauthorised by 6 national regulators in countries where it isn't licensed"
+  ],
+  "unfairTerms": []
+ },
+ {
+  "slug": "royal-vegas",
+  "name": "Royal Vegas",
+  "kind": "casino",
+  "website": "royalvegas.ca",
+  "color": "#B8860B",
+  "owner": "Cadtree Ltd (Super Group's Spin brands)",
+  "license": "Ontario OPIG1236392, OPIG1237898, OPIG1237900, OPIG1237906 (Cadtree Ltd); Alderney Gambling Control Commission, Category 1; Alberta iGaming.",
+  "regulator": "ontario",
+  "size": "medium",
+  "est": null,
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "minDeposit": "",
+  "withdrawalLimit": "",
+  "kyc": "",
+  "games": "Casino and live casino",
+  "languages": "",
+  "pros": [
+   "Licensed in Ontario, Alderney and Alberta",
+   "Same licence holder as Jackpot City"
+  ],
+  "cons": [
+   "Listed as unauthorised by 7 national regulators in countries where it isn't licensed"
+  ],
+  "unfairTerms": []
+ },
+ {
+  "slug": "royalbet",
+  "name": "RoyalBet",
+  "kind": "casino",
+  "website": "royalbet.com",
+  "color": "#1A237E",
+  "owner": "Skill On Net Ltd",
+  "license": "Malta MGA/CRP/171/2009; UK Gambling Commission 039326-R-319358-063; Germany (GGL and Schleswig-Holstein); Denmark; Sweden.",
+  "regulator": "mga",
+  "size": "medium",
+  "est": null,
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "minDeposit": "",
+  "withdrawalLimit": "",
+  "kyc": "",
+  "games": "Casino",
+  "languages": "",
+  "pros": [
+   "Licensed in Malta, the UK, Germany, Denmark and Sweden"
+  ],
+  "cons": [
+   "Skill On Net Ltd runs many other casino brands under the same licences",
+   "Listed as unauthorised by 4 national regulators in countries where it isn't licensed"
+  ],
+  "unfairTerms": []
+ },
+ {
+  "slug": "royale500",
+  "name": "Royale500",
+  "kind": "casino",
+  "website": "royale500.com",
+  "color": "#6A1B9A",
+  "owner": "Skill On Net Ltd",
+  "license": "Malta MGA/CRP/171/2009; UK Gambling Commission 039326-R-319358-063; Spain DGOJ (Skill on Net S.A.); Germany; Denmark; Sweden.",
+  "regulator": "mga",
+  "size": "medium",
+  "est": null,
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "minDeposit": "",
+  "withdrawalLimit": "",
+  "kyc": "",
+  "games": "Casino",
+  "languages": "",
+  "pros": [
+   "Licensed in Malta, the UK, Spain, Germany, Denmark and Sweden",
+   "Not on any regulator's blocklist"
+  ],
+  "cons": [
+   "Skill On Net Ltd runs many other casino brands under the same licences"
+  ],
+  "unfairTerms": []
+ },
+ {
+  "slug": "royspins",
+  "name": "RoySpins",
+  "kind": "casino",
+  "website": "royspins.casino",
+  "color": "#0097A7",
+  "owner": "Luxora LLC",
+  "license": "Anjouan (AOFA) ALSI-202503027-FI2 (royspins.casino).",
+  "regulator": "anjouan",
+  "size": "small",
+  "est": null,
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "minDeposit": "",
+  "withdrawalLimit": "",
+  "kyc": "",
+  "games": "Casino",
+  "languages": "",
+  "pros": [
+   "Licence number published"
+  ],
+  "cons": [
+   "Offshore Anjouan licence with light player protection",
+   "Listed as unauthorised by 8 national regulators in countries where it isn't licensed"
+  ],
+  "unfairTerms": []
+ },
+ {
+  "slug": "ruby-fortune",
+  "name": "Ruby Fortune",
+  "kind": "casino",
+  "website": "rubyfortune.com",
+  "color": "#B71C1C",
+  "owner": "Baytree Interactive Ltd; Baytree (Alderney) Ltd; Cadtree Ltd (Super Group's Spin brands)",
+  "license": "Alderney Gambling Control Commission, Category 1; Kahnawake Gaming Commission (Baytree Interactive Ltd); Ontario OPIG1236392 (Cadtree Ltd); Alberta iGaming.",
+  "regulator": "alderney",
+  "size": "medium",
+  "est": null,
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "minDeposit": "",
+  "withdrawalLimit": "",
+  "kyc": "",
+  "games": "Casino and live casino",
+  "languages": "",
+  "pros": [
+   "Licensed in Alderney, Ontario and Alberta",
+   "Same licence holders as Jackpot City"
+  ],
+  "cons": [
+   "Listed as unauthorised by 11 national regulators in countries where it isn't licensed"
+  ],
+  "unfairTerms": []
+ },
+ {
+  "slug": "savaspin",
+  "name": "SavaSpin",
+  "kind": "casino",
+  "website": "savaspin.com",
+  "color": "#00796B",
+  "owner": "Sikora Technologies SRL",
+  "license": "Anjouan (AOFA) ALSI-202505035-FI2.",
+  "regulator": "anjouan",
+  "size": "small",
+  "est": null,
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "minDeposit": "",
+  "withdrawalLimit": "",
+  "kyc": "",
+  "games": "Casino",
+  "languages": "",
+  "pros": [
+   "Licence number published"
+  ],
+  "cons": [
+   "Offshore Anjouan licence with light player protection",
+   "Same company holds the licence for Playjonny, Rolldorado and Roulettino",
+   "Listed as unauthorised by 5 national regulators in countries where it isn't licensed"
+  ],
+  "unfairTerms": []
+ }
+]

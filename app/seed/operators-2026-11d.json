@@ -1,0 +1,699 @@
+[
+ {
+  "slug": "casoo",
+  "name": "Casoo",
+  "kind": "casino",
+  "website": "casoo.com",
+  "color": "#00BFA5",
+  "owner": "Trink N.V.",
+  "license": "Anjouan (AOFA) ALSI-202503021-FI1.",
+  "regulator": "anjouan",
+  "size": "small",
+  "est": null,
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "minDeposit": "",
+  "withdrawalLimit": "",
+  "kyc": "",
+  "games": "Casino",
+  "languages": "",
+  "pros": [
+   "Licence number published"
+  ],
+  "cons": [
+   "Offshore Anjouan licence with light player protection",
+   "Listed as unauthorised by 13 national regulators in countries where it isn't licensed"
+  ],
+  "unfairTerms": []
+ },
+ {
+  "slug": "casushi",
+  "name": "Casushi",
+  "kind": "casino",
+  "website": "casushi.com",
+  "color": "#E53935",
+  "owner": "Solaya Group Ltd",
+  "license": "UK Gambling Commission 100050-R-341529-004.",
+  "regulator": "ukgc",
+  "size": "small",
+  "est": null,
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "minDeposit": "",
+  "withdrawalLimit": "",
+  "kyc": "",
+  "games": "Casino",
+  "languages": "",
+  "pros": [
+   "UK licence"
+  ],
+  "cons": [
+   "Listed as unauthorised by 1 national regulator in countries where it isn't licensed"
+  ],
+  "unfairTerms": []
+ },
+ {
+  "slug": "celebrino",
+  "name": "Celebrino",
+  "kind": "casino",
+  "website": "celebrino.com",
+  "color": "#FFB300",
+  "owner": "Hitz Gaming OÜ (Estonia); Feature Buy Ltd",
+  "license": "Estonia HKL000371, HKL000437, HKT000062, HKT000073 (Hitz Gaming OÜ); Anjouan (AOFA) ALSI-202410039-FI2 (Feature Buy Ltd).",
+  "regulator": "ee",
+  "size": "small",
+  "est": null,
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "minDeposit": "",
+  "withdrawalLimit": "",
+  "kyc": "",
+  "games": "Casino",
+  "languages": "",
+  "pros": [
+   "Estonian licence",
+   "Not on any regulator's blocklist"
+  ],
+  "cons": [
+   "Also runs under a lighter Anjouan licence"
+  ],
+  "unfairTerms": []
+ },
+ {
+  "slug": "chanz",
+  "name": "Chanz",
+  "kind": "casino",
+  "website": "chanz.com",
+  "color": "#43A047",
+  "owner": "Dreambox Games OÜ",
+  "license": "Estonia HKL000218, HKL000484, HKT000023, HKT000030 (chanz.ee); Sweden Spelinspektionen (chanz.com).",
+  "regulator": "ee",
+  "size": "small",
+  "est": null,
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "minDeposit": "",
+  "withdrawalLimit": "",
+  "kyc": "",
+  "games": "Casino",
+  "languages": "",
+  "pros": [
+   "Estonian and Swedish licences"
+  ],
+  "cons": [
+   "Listed as unauthorised by 10 national regulators in countries where it isn't licensed"
+  ],
+  "unfairTerms": []
+ },
+ {
+  "slug": "cherry",
+  "name": "Cherry",
+  "kind": "casino",
+  "website": "cherry.com",
+  "color": "#C2185B",
+  "owner": "Cherry Online Ltd",
+  "license": "Sweden Spelinspektionen (Cherry Online Ltd).",
+  "regulator": "sga",
+  "size": "medium",
+  "est": null,
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "minDeposit": "",
+  "withdrawalLimit": "",
+  "kyc": "",
+  "games": "Casino",
+  "languages": "",
+  "pros": [
+   "Licensed in Sweden"
+  ],
+  "cons": [
+   "Sweden only",
+   "Listed as unauthorised by 1 national regulator in countries where it isn't licensed"
+  ],
+  "unfairTerms": []
+ },
+ {
+  "slug": "christchurch-casino",
+  "name": "Christchurch Casino (online)",
+  "kind": "casino",
+  "website": "christchurchcasino.com",
+  "color": "#0D47A1",
+  "owner": "Two Islands Enterprise Ltd",
+  "license": "Malta MGA/B2C/978/2022 (christchurchcasino.com).",
+  "regulator": "mga",
+  "size": "small",
+  "est": null,
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "minDeposit": "",
+  "withdrawalLimit": "",
+  "kyc": "",
+  "games": "Casino",
+  "languages": "",
+  "pros": [
+   "Malta licence",
+   "Not on any regulator's blocklist"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "circus",
+  "name": "Circus",
+  "kind": "both",
+  "website": "circus.be",
+  "color": "#D32F2F",
+  "owner": "SA/NV Circus Belgium; Cortex Holding S.A. (Netherlands)",
+  "license": "Belgian Gaming Commission 124893 / 4031 (Circus Belgium); Netherlands KSA 1830 (Cortex Holding S.A., circus.nl).",
+  "regulator": "be",
+  "size": "large",
+  "est": null,
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "minDeposit": "",
+  "withdrawalLimit": "",
+  "kyc": "",
+  "games": "Casino and sports betting",
+  "languages": "",
+  "pros": [
+   "Licensed in Belgium and the Netherlands"
+  ],
+  "cons": [
+   "Only for players in Belgium and the Netherlands",
+   "Listed as unauthorised by 5 national regulators in countries where it isn't licensed"
+  ],
+  "unfairTerms": []
+ },
+ {
+  "slug": "cloverspin",
+  "name": "Cloverspin",
+  "kind": "casino",
+  "website": "cloverspin.com",
+  "color": "#2E7D32",
+  "owner": "Metlait S.R.L.",
+  "license": "Anjouan (AOFA) ALSI-202509073-FI2.",
+  "regulator": "anjouan",
+  "size": "small",
+  "est": null,
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "minDeposit": "",
+  "withdrawalLimit": "",
+  "kyc": "",
+  "games": "Casino",
+  "languages": "",
+  "pros": [
+   "Licence number published"
+  ],
+  "cons": [
+   "Offshore Anjouan licence with light player protection",
+   "Same company holds the licence for CasinoRocket and Billy Billion",
+   "Listed as unauthorised by 1 national regulator in countries where it isn't licensed"
+  ],
+  "unfairTerms": []
+ },
+ {
+  "slug": "cobra-casino",
+  "name": "Cobra Casino",
+  "kind": "casino",
+  "website": "cobracasino.com",
+  "color": "#558B2F",
+  "owner": "Novatrix S.R.L.",
+  "license": "Anjouan (AOFA) ALSI-202508056-FI2.",
+  "regulator": "anjouan",
+  "size": "small",
+  "est": null,
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "minDeposit": "",
+  "withdrawalLimit": "",
+  "kyc": "",
+  "games": "Casino",
+  "languages": "",
+  "pros": [
+   "Licence number published"
+  ],
+  "cons": [
+   "Offshore Anjouan licence with light player protection",
+   "Novatrix S.R.L. holds the same licence for more than 60 other brands",
+   "Listed as unauthorised by 11 national regulators in countries where it isn't licensed"
+  ],
+  "unfairTerms": []
+ },
+ {
+  "slug": "conquer-casino",
+  "name": "Conquer Casino",
+  "kind": "casino",
+  "website": "conquercasino.com",
+  "color": "#4527A0",
+  "owner": "ProgressPlay Ltd",
+  "license": "UK Gambling Commission 039335-R-319313-021; Malta MGA/B2C/231/2012.",
+  "regulator": "ukgc",
+  "size": "small",
+  "est": null,
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "minDeposit": "",
+  "withdrawalLimit": "",
+  "kyc": "",
+  "games": "Casino",
+  "languages": "",
+  "pros": [
+   "UK and Malta licences"
+  ],
+  "cons": [
+   "ProgressPlay Ltd runs more than 100 other casino brands under the same licences",
+   "Listed as unauthorised by 9 national regulators in countries where it isn't licensed"
+  ],
+  "unfairTerms": []
+ },
+ {
+  "slug": "cosmolot",
+  "name": "Cosmolot",
+  "kind": "casino",
+  "website": "cosmolot.ua",
+  "color": "#3D5AFE",
+  "owner": "TOV Spaceix (Ukraine)",
+  "license": "Ukraine PlayCity online casino licence 30-Р (cosmolot.ua).",
+  "regulator": "ua",
+  "size": "large",
+  "est": null,
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "minDeposit": "",
+  "withdrawalLimit": "",
+  "kyc": "",
+  "games": "Casino",
+  "languages": "",
+  "pros": [
+   "Licensed by Ukraine's regulator (PlayCity)"
+  ],
+  "cons": [
+   "Ukraine only",
+   "Listed as unauthorised by 5 national regulators in countries where it isn't licensed"
+  ],
+  "unfairTerms": []
+ },
+ {
+  "slug": "dream-palace-casino",
+  "name": "Dream Palace Casino",
+  "kind": "casino",
+  "website": "dreampalacecasino.com",
+  "color": "#8E24AA",
+  "owner": "ProgressPlay Ltd",
+  "license": "UK Gambling Commission 039335-R-319313-021; Malta MGA/B2C/231/2012.",
+  "regulator": "ukgc",
+  "size": "small",
+  "est": null,
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "minDeposit": "",
+  "withdrawalLimit": "",
+  "kyc": "",
+  "games": "Casino",
+  "languages": "",
+  "pros": [
+   "UK and Malta licences"
+  ],
+  "cons": [
+   "ProgressPlay Ltd runs more than 100 other casino brands under the same licences",
+   "Listed as unauthorised by 5 national regulators in countries where it isn't licensed"
+  ],
+  "unfairTerms": []
+ },
+ {
+  "slug": "eddyvegas",
+  "name": "EddyVegas",
+  "kind": "casino",
+  "website": "eddyvegas.com",
+  "color": "#F4511E",
+  "owner": "Qinrara Management Ltd",
+  "license": "Anjouan (AOFA) ALSI-202502009-FI1.",
+  "regulator": "anjouan",
+  "size": "small",
+  "est": null,
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "minDeposit": "",
+  "withdrawalLimit": "",
+  "kyc": "",
+  "games": "Casino",
+  "languages": "",
+  "pros": [
+   "Licence number published"
+  ],
+  "cons": [
+   "Offshore Anjouan licence with light player protection",
+   "Same company holds the licence for EmuCasino",
+   "Listed as unauthorised by 7 national regulators in countries where it isn't licensed"
+  ],
+  "unfairTerms": []
+ },
+ {
+  "slug": "emucasino",
+  "name": "EmuCasino",
+  "kind": "casino",
+  "website": "emucasino.com",
+  "color": "#6D4C41",
+  "owner": "Qinrara Management Ltd",
+  "license": "Anjouan (AOFA) ALSI-202502009-FI1.",
+  "regulator": "anjouan",
+  "size": "small",
+  "est": null,
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "minDeposit": "",
+  "withdrawalLimit": "",
+  "kyc": "",
+  "games": "Casino",
+  "languages": "",
+  "pros": [
+   "Licence number published"
+  ],
+  "cons": [
+   "Offshore Anjouan licence with light player protection",
+   "Same company holds the licence for EddyVegas",
+   "Listed as unauthorised by 14 national regulators in countries where it isn't licensed"
+  ],
+  "unfairTerms": []
+ },
+ {
+  "slug": "enracha",
+  "name": "enracha",
+  "kind": "both",
+  "website": "enracha.es",
+  "color": "#E91E63",
+  "owner": "Rank Digital Ceuta S.A. (The Rank Group)",
+  "license": "Spain DGOJ (Rank Digital Ceuta S.A.), including sports betting.",
+  "regulator": "dgoj",
+  "size": "medium",
+  "est": null,
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "minDeposit": "",
+  "withdrawalLimit": "",
+  "kyc": "",
+  "games": "Casino, bingo and sports betting",
+  "languages": "",
+  "pros": [
+   "Owned by The Rank Group",
+   "Licensed by Spain's regulator"
+  ],
+  "cons": [
+   "Spain only",
+   "Listed as unauthorised by 4 national regulators in countries where it isn't licensed"
+  ],
+  "unfairTerms": []
+ },
+ {
+  "slug": "evobet",
+  "name": "Evobet",
+  "kind": "both",
+  "website": "evobet.com",
+  "color": "#1976D2",
+  "owner": "Campeon Interactive EE Ltd",
+  "license": "Estonia HKL000468, HKL000469, HKT000091, HKT000092 (evobet.com, evobet.ee).",
+  "regulator": "ee",
+  "size": "medium",
+  "est": null,
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "minDeposit": "",
+  "withdrawalLimit": "",
+  "kyc": "",
+  "games": "Sports betting and casino",
+  "languages": "",
+  "pros": [
+   "Estonian licence"
+  ],
+  "cons": [
+   "Same company runs Campeonbet",
+   "Listed as unauthorised by 9 national regulators in countries where it isn't licensed"
+  ],
+  "unfairTerms": []
+ },
+ {
+  "slug": "expekt",
+  "name": "Expekt",
+  "kind": "both",
+  "website": "expekt.com",
+  "color": "#FF6600",
+  "owner": "LeoVegas Gaming PLC (MGM Resorts); MGMNordic Ltd; LeoEx Ltd",
+  "license": "Malta MGA/CRP/237/2013 (LeoVegas Gaming PLC, expekt.com); Denmark (expekt.dk); Sweden (LeoEx Ltd, expekt.se).",
+  "regulator": "mga",
+  "size": "large",
+  "est": null,
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "minDeposit": "",
+  "withdrawalLimit": "",
+  "kyc": "",
+  "games": "Sports betting and casino",
+  "languages": "",
+  "pros": [
+   "Part of the LeoVegas group, owned by MGM Resorts",
+   "Malta, Danish and Swedish licences"
+  ],
+  "cons": [
+   "Listed as unauthorised by 10 national regulators in countries where it isn't licensed"
+  ],
+  "unfairTerms": []
+ },
+ {
+  "slug": "f1-casino",
+  "name": "F1 Casino",
+  "kind": "casino",
+  "website": "f1casino.com",
+  "color": "#C62828",
+  "owner": "RSO Ltd",
+  "license": "Anjouan (AOFA) ALSI-182407017-FI1.",
+  "regulator": "anjouan",
+  "size": "small",
+  "est": null,
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "minDeposit": "",
+  "withdrawalLimit": "",
+  "kyc": "",
+  "games": "Casino",
+  "languages": "",
+  "pros": [
+   "Licence number published"
+  ],
+  "cons": [
+   "Offshore Anjouan licence with light player protection",
+   "Listed as unauthorised by 5 national regulators in countries where it isn't licensed"
+  ],
+  "unfairTerms": []
+ },
+ {
+  "slug": "fortune-play",
+  "name": "Fortune Play",
+  "kind": "casino",
+  "website": "fortuneplay.com",
+  "color": "#FFA000",
+  "owner": "Novatrix S.R.L.",
+  "license": "Anjouan (AOFA) ALSI-202508056-FI2.",
+  "regulator": "anjouan",
+  "size": "small",
+  "est": null,
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "minDeposit": "",
+  "withdrawalLimit": "",
+  "kyc": "",
+  "games": "Casino",
+  "languages": "",
+  "pros": [
+   "Licence number published"
+  ],
+  "cons": [
+   "Offshore Anjouan licence with light player protection",
+   "Novatrix S.R.L. holds the same licence for more than 60 other brands",
+   "Listed as unauthorised by 6 national regulators in countries where it isn't licensed"
+  ],
+  "unfairTerms": []
+ },
+ {
+  "slug": "foxy-bingo",
+  "name": "Foxy Bingo",
+  "kind": "casino",
+  "website": "foxybingo.com",
+  "color": "#E4007C",
+  "owner": "LC International Ltd; bwin Holdings (Malta) Ltd (Entain plc)",
+  "license": "UK Gambling Commission 054743-R-330863-015; Malta MGA/CRP/688/2019.",
+  "regulator": "ukgc",
+  "size": "large",
+  "est": null,
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "minDeposit": "",
+  "withdrawalLimit": "",
+  "kyc": "",
+  "games": "Bingo, slots and casino",
+  "languages": "",
+  "pros": [
+   "Owned by Entain",
+   "UK and Malta licences"
+  ],
+  "cons": [
+   "Listed as unauthorised by 7 national regulators in countries where it isn't licensed"
+  ],
+  "unfairTerms": []
+ },
+ {
+  "slug": "fragabet",
+  "name": "Fragabet",
+  "kind": "casino",
+  "website": "fragabet.com",
+  "color": "#00897B",
+  "owner": "Nostas Technology Ltd",
+  "license": "Anjouan (AOFA) ALSI-202505044-FI2.",
+  "regulator": "anjouan",
+  "size": "small",
+  "est": null,
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "minDeposit": "",
+  "withdrawalLimit": "",
+  "kyc": "",
+  "games": "Casino",
+  "languages": "",
+  "pros": [
+   "Licence number published",
+   "Not on any regulator's blocklist"
+  ],
+  "cons": [
+   "Offshore Anjouan licence with light player protection"
+  ],
+  "unfairTerms": []
+ },
+ {
+  "slug": "fruitkings",
+  "name": "FruitKings",
+  "kind": "casino",
+  "website": "fruitkings.com",
+  "color": "#7CB342",
+  "owner": "Solaya Group Ltd (UK); Dazzletag Entertainment Ltd (Malta)",
+  "license": "UK Gambling Commission 100050-R-341529-004; Malta MGA/B2C/193/2010.",
+  "regulator": "ukgc",
+  "size": "small",
+  "est": null,
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "minDeposit": "",
+  "withdrawalLimit": "",
+  "kyc": "",
+  "games": "Casino and slots",
+  "languages": "",
+  "pros": [
+   "UK and Malta licences"
+  ],
+  "cons": [
+   "Listed as unauthorised by 1 national regulator in countries where it isn't licensed"
+  ],
+  "unfairTerms": []
+ },
+ {
+  "slug": "fruity-king",
+  "name": "Fruity King",
+  "kind": "casino",
+  "website": "fruityking.co.uk",
+  "color": "#AFB42B",
+  "owner": "ProgressPlay Ltd",
+  "license": "UK Gambling Commission 039335-R-319313-021; Malta MGA/B2C/231/2012.",
+  "regulator": "ukgc",
+  "size": "small",
+  "est": null,
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "minDeposit": "",
+  "withdrawalLimit": "",
+  "kyc": "",
+  "games": "Casino and slots",
+  "languages": "",
+  "pros": [
+   "UK and Malta licences"
+  ],
+  "cons": [
+   "ProgressPlay Ltd runs more than 100 other casino brands under the same licences",
+   "Listed as unauthorised by 5 national regulators in countries where it isn't licensed"
+  ],
+  "unfairTerms": []
+ },
+ {
+  "slug": "fun-casino",
+  "name": "Fun Casino",
+  "kind": "casino",
+  "website": "funcasino.com",
+  "color": "#F50057",
+  "owner": "L&L Europe Ltd",
+  "license": "UK Gambling Commission 038758-R-319451-016; Malta MGA/B2C/211/2011; Sweden Spelinspektionen.",
+  "regulator": "mga",
+  "size": "medium",
+  "est": null,
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "minDeposit": "",
+  "withdrawalLimit": "",
+  "kyc": "",
+  "games": "Casino and live casino",
+  "languages": "",
+  "pros": [
+   "UK, Malta and Swedish licences"
+  ],
+  "cons": [
+   "Same company runs CasinoCasino",
+   "Listed as unauthorised by 11 national regulators in countries where it isn't licensed"
+  ],
+  "unfairTerms": []
+ }
+]

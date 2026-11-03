@@ -1,0 +1,320 @@
+[
+ {
+  "slug": "galactic-wins",
+  "name": "Galactic Wins",
+  "kind": "casino",
+  "website": "galacticwins.com",
+  "color": "#311B92",
+  "owner": "Green Feather Online Ltd",
+  "license": "Malta MGA/B2C/445/2017.",
+  "regulator": "mga",
+  "size": "small",
+  "est": null,
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "minDeposit": "",
+  "withdrawalLimit": "",
+  "kyc": "",
+  "games": "Casino",
+  "languages": "",
+  "pros": [
+   "Malta licence"
+  ],
+  "cons": [
+   "Same company runs bCasino, BooCasino and Mr Fortune",
+   "Listed as unauthorised by 5 national regulators in countries where it isn't licensed"
+  ],
+  "unfairTerms": []
+ },
+ {
+  "slug": "gamblii",
+  "name": "Gamblii",
+  "kind": "casino",
+  "website": "gamblii.io",
+  "color": "#00ACC1",
+  "owner": "Rabocse SRL",
+  "license": "Anjouan (AOFA) ALSI-202412035-FI2 (gamblii.io).",
+  "regulator": "anjouan",
+  "size": "small",
+  "est": null,
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "minDeposit": "",
+  "withdrawalLimit": "",
+  "kyc": "",
+  "games": "Casino",
+  "languages": "",
+  "pros": [
+   "Licence number published"
+  ],
+  "cons": [
+   "Offshore Anjouan licence with light player protection",
+   "Same company holds the licence for Casineia",
+   "Listed as unauthorised by 6 national regulators in countries where it isn't licensed"
+  ],
+  "unfairTerms": []
+ },
+ {
+  "slug": "golden-reels",
+  "name": "Golden Reels",
+  "kind": "casino",
+  "website": "goldenreels.casino",
+  "color": "#FFC107",
+  "owner": "Cavolo Boss Limitada",
+  "license": "Anjouan (AOFA) ALSI-082404002-FI1 (goldenreels.casino).",
+  "regulator": "anjouan",
+  "size": "small",
+  "est": null,
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "minDeposit": "",
+  "withdrawalLimit": "",
+  "kyc": "",
+  "games": "Casino",
+  "languages": "",
+  "pros": [
+   "Licence number published"
+  ],
+  "cons": [
+   "Offshore Anjouan licence with light player protection",
+   "Listed as unauthorised by 6 national regulators in countries where it isn't licensed"
+  ],
+  "unfairTerms": []
+ },
+ {
+  "slug": "goldpari",
+  "name": "GoldPari",
+  "kind": "both",
+  "website": "goldpari.com",
+  "color": "#D4AF37",
+  "owner": "Braveco LLC",
+  "license": "Anjouan (AOFA) ALSI-192407047-FI3.",
+  "regulator": "anjouan",
+  "size": "small",
+  "est": null,
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "minDeposit": "",
+  "withdrawalLimit": "",
+  "kyc": "",
+  "games": "Sports betting and casino",
+  "languages": "",
+  "pros": [
+   "Licence number published",
+   "Not on any regulator's blocklist"
+  ],
+  "cons": [
+   "Offshore Anjouan licence with light player protection"
+  ],
+  "unfairTerms": []
+ },
+ {
+  "slug": "gorilla",
+  "name": "Gorilla",
+  "kind": "casino",
+  "website": "gorilla.ua",
+  "color": "#424242",
+  "owner": "Gorillabet LLC (Ukraine)",
+  "license": "Ukraine PlayCity online casino licence 417 (gorilla.ua).",
+  "regulator": "ua",
+  "size": "medium",
+  "est": null,
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "minDeposit": "",
+  "withdrawalLimit": "",
+  "kyc": "",
+  "games": "Casino",
+  "languages": "",
+  "pros": [
+   "Licensed by Ukraine's regulator (PlayCity)"
+  ],
+  "cons": [
+   "Ukraine only",
+   "Listed as unauthorised by 2 national regulators in countries where it isn't licensed"
+  ],
+  "unfairTerms": []
+ },
+ {
+  "slug": "happy-casino",
+  "name": "Happy Casino",
+  "kind": "casino",
+  "website": "happycasino.com",
+  "color": "#FFD600",
+  "owner": "Glitnor Services Ltd; Forseti Services Ltd (Sweden)",
+  "license": "Malta MGA/CRP/628/2018 (Glitnor Services Ltd); Sweden Spelinspektionen (Forseti Services Ltd).",
+  "regulator": "mga",
+  "size": "small",
+  "est": null,
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "minDeposit": "",
+  "withdrawalLimit": "",
+  "kyc": "",
+  "games": "Casino",
+  "languages": "",
+  "pros": [
+   "Malta and Swedish licences",
+   "Not on any regulator's blocklist"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "heart-bingo",
+  "name": "Heart Bingo",
+  "kind": "casino",
+  "website": "heartbingo.co.uk",
+  "color": "#E91E63",
+  "owner": "BV Gaming Ltd",
+  "license": "UK Gambling Commission 039576-R-319370-028 (heartbingo.co.uk).",
+  "regulator": "ukgc",
+  "size": "medium",
+  "est": null,
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "minDeposit": "",
+  "withdrawalLimit": "",
+  "kyc": "",
+  "games": "Bingo and slots",
+  "languages": "",
+  "pros": [
+   "UK licence"
+  ],
+  "cons": [
+   "UK players only",
+   "Listed as unauthorised by 2 national regulators in countries where it isn't licensed"
+  ],
+  "unfairTerms": []
+ },
+ {
+  "slug": "hellspin",
+  "name": "HellSpin",
+  "kind": "casino",
+  "website": "hellspin.com",
+  "color": "#B71C1C",
+  "owner": "Lufilight Ltd",
+  "license": "Kahnawake Gaming Commission, Client Provider Authorization (Lufilight Ltd).",
+  "regulator": "kahnawake",
+  "size": "medium",
+  "est": null,
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "minDeposit": "",
+  "withdrawalLimit": "",
+  "kyc": "",
+  "games": "Casino and live casino",
+  "languages": "",
+  "pros": [
+   "Kahnawake licence"
+  ],
+  "cons": [
+   "Same company runs Ivibet and Slotsgem",
+   "Listed as unauthorised by 7 national regulators in countries where it isn't licensed"
+  ],
+  "unfairTerms": []
+ },
+ {
+  "slug": "horus-casino",
+  "name": "Horus Casino",
+  "kind": "casino",
+  "website": "horuscasino.com",
+  "color": "#C49A00",
+  "owner": "Moonseeker SRL",
+  "license": "Anjouan (AOFA) ALSI-202509006-FI1.",
+  "regulator": "anjouan",
+  "size": "small",
+  "est": null,
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "minDeposit": "",
+  "withdrawalLimit": "",
+  "kyc": "",
+  "games": "Casino",
+  "languages": "",
+  "pros": [
+   "Licence number published"
+  ],
+  "cons": [
+   "Offshore Anjouan licence with light player protection",
+   "Listed as unauthorised by 14 national regulators in countries where it isn't licensed"
+  ],
+  "unfairTerms": []
+ },
+ {
+  "slug": "ivibet",
+  "name": "Ivibet",
+  "kind": "both",
+  "website": "ivibet.com",
+  "color": "#6A1B9A",
+  "owner": "Lufilight Ltd",
+  "license": "Kahnawake Gaming Commission, Client Provider Authorization (Lufilight Ltd).",
+  "regulator": "kahnawake",
+  "size": "small",
+  "est": null,
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "minDeposit": "",
+  "withdrawalLimit": "",
+  "kyc": "",
+  "games": "Sports betting and casino",
+  "languages": "",
+  "pros": [
+   "Kahnawake licence"
+  ],
+  "cons": [
+   "Same company runs HellSpin and Slotsgem",
+   "Listed as unauthorised by 14 national regulators in countries where it isn't licensed"
+  ],
+  "unfairTerms": []
+ },
+ {
+  "slug": "jackpotter",
+  "name": "Jackpotter",
+  "kind": "casino",
+  "website": "jackpotter.com",
+  "color": "#2E7D32",
+  "owner": "Bravo Entertainment Ltd",
+  "license": "Anjouan (AOFA) ALSI-202505025-FI1.",
+  "regulator": "anjouan",
+  "size": "small",
+  "est": null,
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "minDeposit": "",
+  "withdrawalLimit": "",
+  "kyc": "",
+  "games": "Casino",
+  "languages": "",
+  "pros": [
+   "Licence number published"
+  ],
+  "cons": [
+   "Offshore Anjouan licence with light player protection",
+   "Listed as unauthorised by 6 national regulators in countries where it isn't licensed"
+  ],
+  "unfairTerms": []
+ }
+]

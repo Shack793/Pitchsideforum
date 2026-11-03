@@ -1,0 +1,675 @@
+[
+ {
+  "slug": "1win",
+  "name": "1win",
+  "kind": "both",
+  "website": "1win.com",
+  "color": "#1C64F2",
+  "owner": "1Win N.V.",
+  "license": "Curaçao Gaming Authority OGL/2024/587/0621 (1Win N.V.), shown on the regulator's register as 'assessment in progress'.",
+  "regulator": "curacao",
+  "size": "large",
+  "est": null,
+  "crypto": true,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "minDeposit": "",
+  "withdrawalLimit": "",
+  "kyc": "",
+  "games": "Sports betting, casino and live casino",
+  "languages": "",
+  "pros": [
+   "Large sportsbook and casino",
+   "Accepts crypto"
+  ],
+  "cons": [
+   "Curaçao licence still under the regulator's assessment",
+   "More than 490 of its domains are on regulators' blocklists",
+   "Listed as unauthorised by 12 national regulators in countries where it isn't licensed"
+  ],
+  "unfairTerms": []
+ },
+ {
+  "slug": "21bit",
+  "name": "21bit",
+  "kind": "casino",
+  "website": "21bit.com",
+  "color": "#F7931A",
+  "owner": "Novatrix S.R.L.",
+  "license": "Anjouan (AOFA) ALSI-202508056-FI2.",
+  "regulator": "anjouan",
+  "size": "small",
+  "est": null,
+  "crypto": true,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "minDeposit": "",
+  "withdrawalLimit": "",
+  "kyc": "",
+  "games": "Casino",
+  "languages": "",
+  "pros": [
+   "Licence number published"
+  ],
+  "cons": [
+   "Offshore Anjouan licence with light player protection",
+   "Novatrix S.R.L. holds the same licence for 63 other brands",
+   "Listed as unauthorised by 6 national regulators in countries where it isn't licensed"
+  ],
+  "unfairTerms": []
+ },
+ {
+  "slug": "21prive",
+  "name": "21Prive",
+  "kind": "casino",
+  "website": "21prive.com",
+  "color": "#1A1A2E",
+  "owner": "White Hat Gaming Ltd",
+  "license": "UK Gambling Commission 052894-R-329546-008; Malta MGA/B2C/370/2017.",
+  "regulator": "ukgc",
+  "size": "medium",
+  "est": null,
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "minDeposit": "",
+  "withdrawalLimit": "",
+  "kyc": "",
+  "games": "Casino and live casino",
+  "languages": "",
+  "pros": [
+   "UK and Malta licences"
+  ],
+  "cons": [
+   "Listed as unauthorised by 7 national regulators in countries where it isn't licensed"
+  ],
+  "unfairTerms": []
+ },
+ {
+  "slug": "24bettle",
+  "name": "24Bettle",
+  "kind": "both",
+  "website": "24bettle.com",
+  "color": "#2E7D32",
+  "owner": "Condor Malta Ltd",
+  "license": "UK Gambling Commission 050094-R-327623-004 (casino and betting).",
+  "regulator": "ukgc",
+  "size": "medium",
+  "est": null,
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "minDeposit": "",
+  "withdrawalLimit": "",
+  "kyc": "",
+  "games": "Casino and sports betting",
+  "languages": "",
+  "pros": [
+   "UK licence"
+  ],
+  "cons": [
+   "Listed as unauthorised by 14 national regulators in countries where it isn't licensed"
+  ],
+  "unfairTerms": []
+ },
+ {
+  "slug": "333-casino",
+  "name": "333 Casino",
+  "kind": "casino",
+  "website": "333casino.com",
+  "color": "#B71C1C",
+  "owner": "Grace Media (Gibraltar) Ltd",
+  "license": "UK Gambling Commission 057869-R-334655-010.",
+  "regulator": "ukgc",
+  "size": "small",
+  "est": null,
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "minDeposit": "",
+  "withdrawalLimit": "",
+  "kyc": "",
+  "games": "Casino and bingo",
+  "languages": "",
+  "pros": [
+   "UK licence"
+  ],
+  "cons": [
+   "Listed as unauthorised by 5 national regulators in countries where it isn't licensed"
+  ],
+  "unfairTerms": []
+ },
+ {
+  "slug": "44aces",
+  "name": "44Aces",
+  "kind": "casino",
+  "website": "44aces.com",
+  "color": "#263238",
+  "owner": "Skill On Net Ltd",
+  "license": "Malta MGA/CRP/171/2009; UK Gambling Commission 039326-R-319358-063; also licensed in Denmark and Sweden.",
+  "regulator": "mga",
+  "size": "medium",
+  "est": null,
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "minDeposit": "",
+  "withdrawalLimit": "",
+  "kyc": "",
+  "games": "Casino",
+  "languages": "",
+  "pros": [
+   "Malta, UK, Danish and Swedish licences"
+  ],
+  "cons": [
+   "Listed as unauthorised by 5 national regulators in countries where it isn't licensed"
+  ],
+  "unfairTerms": []
+ },
+ {
+  "slug": "4rabet",
+  "name": "4RABET",
+  "kind": "both",
+  "website": "4rabet.com",
+  "color": "#7B1FA2",
+  "owner": "3-102-958036 SRL",
+  "license": "Anjouan (AOFA) ALSI-202606046-FI2.",
+  "regulator": "anjouan",
+  "size": "medium",
+  "est": null,
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "minDeposit": "",
+  "withdrawalLimit": "",
+  "kyc": "",
+  "games": "Sports betting and casino",
+  "languages": "",
+  "pros": [
+   "Licence number published"
+  ],
+  "cons": [
+   "Offshore Anjouan licence with light player protection",
+   "Its licensed domain is on the Greek and Cypriot blocklists",
+   "Listed as unauthorised by 4 national regulators in countries where it isn't licensed"
+  ],
+  "unfairTerms": []
+ },
+ {
+  "slug": "777",
+  "name": "777",
+  "kind": "casino",
+  "website": "777.com",
+  "color": "#D4AF37",
+  "owner": "888 UK Ltd (Evoke plc) for 777.com; separate local companies run 777 in Spain, Romania and Ukraine",
+  "license": "UK Gambling Commission 039028-R-319297-014 (888 UK Ltd); Spain DGOJ (777.es); Romania ONJN 326/25.02.2021 (777.ro, Megabet International SRL); Ukraine PlayCity (777.ua, a different company).",
+  "regulator": "ukgc",
+  "size": "large",
+  "est": null,
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "minDeposit": "",
+  "withdrawalLimit": "",
+  "kyc": "",
+  "games": "Casino and live casino",
+  "languages": "",
+  "pros": [
+   "777.com is run by 888 (Evoke plc)",
+   "UK licence"
+  ],
+  "cons": [
+   "The 777 name is used by unrelated companies in some countries",
+   "Listed as unauthorised by 12 national regulators in countries where it isn't licensed"
+  ],
+  "unfairTerms": []
+ },
+ {
+  "slug": "777vault",
+  "name": "777Vault",
+  "kind": "casino",
+  "website": "777vault.com",
+  "color": "#0D47A1",
+  "owner": "Next Global Era Ltd",
+  "license": "Anjouan (AOFA) ALSI-102310002-FI5.",
+  "regulator": "anjouan",
+  "size": "small",
+  "est": null,
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "minDeposit": "",
+  "withdrawalLimit": "",
+  "kyc": "",
+  "games": "Casino",
+  "languages": "",
+  "pros": [
+   "On only one regulator's blocklist"
+  ],
+  "cons": [
+   "Offshore Anjouan licence with light player protection",
+   "Listed as unauthorised by 1 national regulator in countries where it isn't licensed"
+  ],
+  "unfairTerms": []
+ },
+ {
+  "slug": "888starz",
+  "name": "888Starz",
+  "kind": "both",
+  "website": "888starz.com",
+  "color": "#FFB300",
+  "owner": "MDBet Ltd; Starshine Global Services Ltd; Zenit Solutions Ltd (Kenya)",
+  "license": "Anjouan (AOFA) ALSI-042402010-FI4 (888starz.com); Kahnawake Gaming Commission (888starz.bet); Kenya GRA 0001297.",
+  "regulator": "anjouan",
+  "size": "medium",
+  "est": null,
+  "crypto": true,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "minDeposit": "",
+  "withdrawalLimit": "",
+  "kyc": "",
+  "games": "Sports betting and casino",
+  "languages": "",
+  "pros": [
+   "Accepts crypto"
+  ],
+  "cons": [
+   "Offshore Anjouan licence with light player protection",
+   "Not related to 888 / Evoke plc",
+   "59 of its domains are on regulators' blocklists",
+   "Listed as unauthorised by 12 national regulators in countries where it isn't licensed"
+  ],
+  "unfairTerms": []
+ },
+ {
+  "slug": "ace-lucky",
+  "name": "Ace Lucky",
+  "kind": "casino",
+  "website": "acelucky.com",
+  "color": "#C62828",
+  "owner": "ProgressPlay Ltd",
+  "license": "UK Gambling Commission 039335-R-319313-021; Malta MGA/B2C/231/2012.",
+  "regulator": "ukgc",
+  "size": "small",
+  "est": null,
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "minDeposit": "",
+  "withdrawalLimit": "",
+  "kyc": "",
+  "games": "Casino",
+  "languages": "",
+  "pros": [
+   "UK and Malta licences",
+   "On only one regulator's blocklist"
+  ],
+  "cons": [
+   "ProgressPlay Ltd holds the same licence for 100 other brands"
+  ],
+  "unfairTerms": []
+ },
+ {
+  "slug": "allstarzcasino",
+  "name": "AllStarzCasino",
+  "kind": "casino",
+  "website": "allstarzcasino.com",
+  "color": "#5E35B1",
+  "owner": "Starscream Ltd",
+  "license": "Kahnawake Gaming Commission, Client Provider Authorization (Starscream Ltd).",
+  "regulator": "kahnawake",
+  "size": "small",
+  "est": null,
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "minDeposit": "",
+  "withdrawalLimit": "",
+  "kyc": "",
+  "games": "Casino",
+  "languages": "",
+  "pros": [
+   "Kahnawake licence"
+  ],
+  "cons": [
+   "Starscream Ltd holds the same licence for 15 other brands",
+   "Listed as unauthorised by 3 national regulators in countries where it isn't licensed"
+  ],
+  "unfairTerms": []
+ },
+ {
+  "slug": "arcticbet",
+  "name": "ArcticBet",
+  "kind": "both",
+  "website": "arcticbet.com",
+  "color": "#00ACC1",
+  "owner": "Alta Platform Gaming Ltd",
+  "license": "Malta MGA/B2C/1068/2024 (casino and betting).",
+  "regulator": "mga",
+  "size": "small",
+  "est": null,
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "minDeposit": "",
+  "withdrawalLimit": "",
+  "kyc": "",
+  "games": "Casino and sports betting",
+  "languages": "",
+  "pros": [
+   "Malta licence"
+  ],
+  "cons": [
+   "Same company runs Betsmith, Betsolid and NordicAutomaten",
+   "Listed as unauthorised by 4 national regulators in countries where it isn't licensed"
+  ],
+  "unfairTerms": []
+ },
+ {
+  "slug": "aslot",
+  "name": "Aslot",
+  "kind": "casino",
+  "website": "aslot.com",
+  "color": "#EF6C00",
+  "owner": "Rubycode Solution Ltd",
+  "license": "Anjouan (AOFA) ALSI-202505051-FI2 (aslot.com, aslot.io).",
+  "regulator": "anjouan",
+  "size": "small",
+  "est": null,
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "minDeposit": "",
+  "withdrawalLimit": "",
+  "kyc": "",
+  "games": "Casino",
+  "languages": "",
+  "pros": [
+   "Licence number published",
+   "On only one regulator's blocklist"
+  ],
+  "cons": [
+   "Offshore Anjouan licence with light player protection"
+  ],
+  "unfairTerms": []
+ },
+ {
+  "slug": "b-bets",
+  "name": "b-Bets",
+  "kind": "both",
+  "website": "b-bets.com",
+  "color": "#1565C0",
+  "owner": "Condor Malta Ltd",
+  "license": "UK Gambling Commission 050094-R-327623-004 (casino and betting).",
+  "regulator": "ukgc",
+  "size": "small",
+  "est": null,
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "minDeposit": "",
+  "withdrawalLimit": "",
+  "kyc": "",
+  "games": "Casino and sports betting",
+  "languages": "",
+  "pros": [
+   "UK licence"
+  ],
+  "cons": [
+   "Same company runs 24Bettle, Big5 and Rembrandt",
+   "Listed as unauthorised by 14 national regulators in countries where it isn't licensed"
+  ],
+  "unfairTerms": []
+ },
+ {
+  "slug": "b86bet",
+  "name": "b86bet",
+  "kind": "casino",
+  "website": "b86bet.com",
+  "color": "#2E7D32",
+  "owner": "Tetaron Ltd",
+  "license": "Anjouan (AOFA) ALSI-202411073-FI2.",
+  "regulator": "anjouan",
+  "size": "small",
+  "est": null,
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "minDeposit": "",
+  "withdrawalLimit": "",
+  "kyc": "",
+  "games": "Casino",
+  "languages": "",
+  "pros": [
+   "Licence number published",
+   "Not on any regulator's blocklist"
+  ],
+  "cons": [
+   "Offshore Anjouan licence with light player protection",
+   "Same company holds the licence for Azimutbet, Greenbet, Magnatbet and Secretbet"
+  ],
+  "unfairTerms": []
+ },
+ {
+  "slug": "bally-bet",
+  "name": "Bally Bet",
+  "kind": "both",
+  "website": "ballybet.com",
+  "color": "#E31837",
+  "owner": "Bally's Corporation (Bally's Interactive LLC, Bally's Canada Inc. and others)",
+  "license": "US state licences: New Jersey NJIGP 26-011 (Premier Atlantic City LLC), plus Arizona, Iowa, Indiana, Massachusetts, Maryland, Tennessee and Virginia (sports betting); Ontario OPIG1242339 (Bally's Canada Inc.); Alberta.",
+  "regulator": "us",
+  "size": "large",
+  "est": null,
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "minDeposit": "",
+  "withdrawalLimit": "",
+  "kyc": "",
+  "games": "Sports betting, plus online casino in New Jersey and Canada",
+  "languages": "",
+  "pros": [
+   "Owned by Bally's Corporation, a US casino company",
+   "Licensed in eight US states and Ontario"
+  ],
+  "cons": [
+   "Only in the US states and Canadian provinces where it's licensed"
+  ],
+  "unfairTerms": []
+ },
+ {
+  "slug": "bbcasino",
+  "name": "BBCasino",
+  "kind": "casino",
+  "website": "bbcasino.com",
+  "color": "#AD1457",
+  "owner": "ProgressPlay Ltd",
+  "license": "Malta MGA/B2C/231/2012.",
+  "regulator": "mga",
+  "size": "small",
+  "est": null,
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "minDeposit": "",
+  "withdrawalLimit": "",
+  "kyc": "",
+  "games": "Casino",
+  "languages": "",
+  "pros": [
+   "Malta licence"
+  ],
+  "cons": [
+   "ProgressPlay Ltd holds the same licence for 136 other brands",
+   "Listed as unauthorised by 5 national regulators in countries where it isn't licensed"
+  ],
+  "unfairTerms": []
+ },
+ {
+  "slug": "bcasino",
+  "name": "bCasino",
+  "kind": "casino",
+  "website": "bcasino.com",
+  "color": "#0277BD",
+  "owner": "Green Feather Online Ltd",
+  "license": "Malta MGA/B2C/445/2017.",
+  "regulator": "mga",
+  "size": "small",
+  "est": null,
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "minDeposit": "",
+  "withdrawalLimit": "",
+  "kyc": "",
+  "games": "Casino",
+  "languages": "",
+  "pros": [
+   "Malta licence"
+  ],
+  "cons": [
+   "Same company runs Boo Casino, Galactic Wins and Mr Fortune",
+   "Listed as unauthorised by 12 national regulators in countries where it isn't licensed"
+  ],
+  "unfairTerms": []
+ },
+ {
+  "slug": "beazt",
+  "name": "Beazt",
+  "kind": "casino",
+  "website": "beazt.com",
+  "color": "#00897B",
+  "owner": "Granturo Malta Ltd",
+  "license": "Malta MGA/B2C/1079/2025.",
+  "regulator": "mga",
+  "size": "small",
+  "est": null,
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "minDeposit": "",
+  "withdrawalLimit": "",
+  "kyc": "",
+  "games": "Casino",
+  "languages": "",
+  "pros": [
+   "Malta licence",
+   "Not on any regulator's blocklist"
+  ],
+  "cons": [
+   "Same company runs Caxino, Wildz and others"
+  ],
+  "unfairTerms": []
+ },
+ {
+  "slug": "bet99",
+  "name": "BET99",
+  "kind": "both",
+  "website": "bet99.com",
+  "color": "#E10600",
+  "owner": "1000007698 Ontario Ltd; 2786638 Alberta Inc.; Abenaki Council of Wolinak (Kahnawake)",
+  "license": "Ontario OPIG1235604; Alberta iGaming; Kahnawake Gaming Commission (bet99.com).",
+  "regulator": "ontario",
+  "size": "medium",
+  "est": null,
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "minDeposit": "",
+  "withdrawalLimit": "",
+  "kyc": "",
+  "games": "Sports betting, casino and live casino",
+  "languages": "",
+  "pros": [
+   "Licensed in Ontario and Alberta"
+  ],
+  "cons": [
+   "Canada only",
+   "Listed as unauthorised by 2 national regulators in countries where it isn't licensed"
+  ],
+  "unfairTerms": []
+ },
+ {
+  "slug": "betibet",
+  "name": "BetiBet",
+  "kind": "casino",
+  "website": "betibet.com",
+  "color": "#6A1B9A",
+  "owner": "Novatrix S.R.L.",
+  "license": "Anjouan (AOFA) ALSI-202508056-FI2 (betibet.com only).",
+  "regulator": "anjouan",
+  "size": "small",
+  "est": null,
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "minDeposit": "",
+  "withdrawalLimit": "",
+  "kyc": "",
+  "games": "Casino",
+  "languages": "",
+  "pros": [
+   "Licence number published"
+  ],
+  "cons": [
+   "Offshore Anjouan licence with light player protection",
+   "Novatrix S.R.L. holds the same licence for 63 other brands",
+   "Listed as unauthorised by 7 national regulators in countries where it isn't licensed"
+  ],
+  "unfairTerms": []
+ },
+ {
+  "slug": "betterwin",
+  "name": "BetterWin",
+  "kind": "casino",
+  "website": "betterwin.com",
+  "color": "#43A047",
+  "owner": "Two Six Five Enterprises Limitada",
+  "license": "Anjouan (AOFA) ALSI-152312008-FI3.",
+  "regulator": "anjouan",
+  "size": "small",
+  "est": null,
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "minDeposit": "",
+  "withdrawalLimit": "",
+  "kyc": "",
+  "games": "Casino",
+  "languages": "",
+  "pros": [
+   "Licence number published"
+  ],
+  "cons": [
+   "Offshore Anjouan licence with light player protection",
+   "Its licensed domain is on three countries' blocklists",
+   "Listed as unauthorised by 3 national regulators in countries where it isn't licensed"
+  ],
+  "unfairTerms": []
+ }
+]
