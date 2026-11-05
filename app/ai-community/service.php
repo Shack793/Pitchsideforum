@@ -28,6 +28,26 @@ function ai_daily_cap_reached(): bool {
   return ai_daily_published_count() >= ai_daily_publish_cap();
 }
 
+function ai_daily_reply_cap(): int {
+  // Hard ceiling on scheduled AI replies per UTC day across all characters. Not a target.
+  return max(1, min(200, (int) cfg('ai_daily_reply_cap', 6)));
+}
+
+function ai_daily_reply_count(): int {
+  $since = (int) (strtotime(gmdate('Y-m-d 00:00:00')) * 1000);
+  return (int) val("SELECT COUNT(*) FROM ai_jobs WHERE job_type = 'reply' AND created >= ? AND status IN ('queued','working','review','publishing','published')", [$since]);
+}
+
+function ai_daily_topic_cap(): int {
+  // Hard ceiling on AI-authored topics per UTC day across all sources (scheduled + discovered).
+  return max(1, min(50, (int) cfg('ai_daily_topic_cap', 3)));
+}
+
+function ai_daily_topic_count(): int {
+  $since = (int) (strtotime(gmdate('Y-m-d 00:00:00')) * 1000);
+  return (int) val("SELECT COUNT(*) FROM topics t WHERE t.deleted = 0 AND t.at >= ? AND t.author IN (SELECT u.name FROM ai_characters c JOIN users u ON u.id = c.user_id)", [$since]);
+}
+
 function ai_monthly_cost(): float {
   $since = strtotime(gmdate('Y-m-01 00:00:00')) * 1000;
   $total = (float) (val("SELECT COALESCE(SUM(estimated_cost_usd),0) FROM ai_usage WHERE created >= ?", [$since]) ?? 0);
@@ -179,6 +199,7 @@ function ai_queue_reply(int $topicId, int $characterId): int {
   $publishedToday = (int) val("SELECT COUNT(*) FROM ai_activity_log WHERE character_id = ? AND action = 'reply.publish' AND result = 'success' AND created >= ?", [$characterId, $since]);
   $pendingToday = (int) val("SELECT COUNT(*) FROM ai_jobs WHERE character_id = ? AND created >= ? AND status IN ('queued','working','review','publishing')", [$characterId, $since]);
   if ($publishedToday + $pendingToday >= $maxReplies) throw new RuntimeException('Character daily reply limit reached.');
+  if (ai_daily_reply_count() >= ai_daily_reply_cap()) throw new RuntimeException('Daily AI reply cap reached.');
   $board = board_doc($t['board']);
   if (!$board || !can_read_board(['role' => 'member'], $board) || !in_array('member', $board['postRoles'] ?? [], true)) throw new RuntimeException('The board does not allow this character to participate.');
   $key = 'reply:' . $characterId . ':' . $topicId . ':' . gmdate('YmdHi');
@@ -205,6 +226,7 @@ function ai_queue_thread(int $sourceTopicId, int $characterId): int {
   $published = (int) val("SELECT COUNT(*) FROM ai_activity_log WHERE character_id = ? AND action = 'thread.publish' AND result = 'success' AND created >= ?", [$characterId, $since]);
   $pending = (int) val("SELECT COUNT(*) FROM ai_jobs WHERE character_id = ? AND job_type = 'thread' AND created >= ? AND status IN ('queued','working','review','publishing')", [$characterId, $since]);
   if ($max < 1 || $published + $pending >= $max) throw new RuntimeException('Character daily thread limit reached.');
+  if (ai_daily_topic_count() >= ai_daily_topic_cap()) throw new RuntimeException('Daily AI topic cap reached.');
   $board = board_doc($t['board']);
   if (!$board || !can_read_board(['role' => 'member'], $board) || !in_array('member', $board['postRoles'] ?? [], true)) throw new RuntimeException('The board does not allow this character to start threads.');
   $key = 'thread:' . $characterId . ':' . $sourceTopicId . ':' . gmdate('YmdHi');
@@ -461,6 +483,7 @@ function ai_recover_stale_jobs(): void {
 function ai_discover_reply_candidate(): bool {
   // Only consider active topics with a recent human-authored post. A topic gets at most one
   // AI reply attempt per 12 hours across all characters, preventing AI-to-AI pile-ons.
+  if (ai_daily_reply_count() >= ai_daily_reply_cap()) return false;
   $chars = rows("SELECT c.id, c.profile_json, u.name AS character_name FROM ai_characters c JOIN users u ON u.id = c.user_id WHERE c.active = 1 AND u.status = 'active' ORDER BY c.id ASC LIMIT 100");
   if (!$chars) return false;
   $aiNames = array_map(static fn($r) => (string)$r['character_name'], $chars);
@@ -498,6 +521,7 @@ function ai_discover_reply_candidate(): bool {
 
 function ai_discover_thread_candidate(): bool {
   // Discover from Pitchside's own recent discussions until an external news/live-score source is configured.
+  if (ai_daily_topic_count() >= ai_daily_topic_cap()) return false;
   $chars = rows("SELECT c.id, c.profile_json FROM ai_characters c JOIN users u ON u.id = c.user_id WHERE c.active = 1 AND u.status = 'active' ORDER BY c.id ASC LIMIT 100");
   if (!$chars) return false;
   $now = now_ms(); $since = $now - DAY_MS;

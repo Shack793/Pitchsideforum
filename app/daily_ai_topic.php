@@ -5,10 +5,12 @@
 // Cron: 0 8,13,19 * * * /usr/bin/php /var/www/pitchside/app/daily_ai_topic.php
 declare(strict_types=1);
 require __DIR__ . '/lib/api.php';
+require_once __DIR__ . '/ai-community/service.php';
 
 $slot = isset($argv[1]) ? preg_replace('/[^a-z0-9_-]/i', '', (string) $argv[1]) : 'scheduled';
 $board = board_doc('football');
 if (!$board) { error_log("DAILY AI TOPIC: football board not found\n"); exit(1); }
+if (ai_daily_topic_count() >= ai_daily_topic_cap()) { error_log("DAILY AI TOPIC [$slot]: daily AI topic cap reached; skipping\n"); exit(0); }
 
 $prompts = [
     ["Which signing would actually fix your club's biggest weakness?", "Every club has one obvious gap. Put your recruitment hat on: which position is the real problem for your team, and what type of player (not just a name) solves it?\n\nGive us the role, the profile, and why it changes how the team plays."],

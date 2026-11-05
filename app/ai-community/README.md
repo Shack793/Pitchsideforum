@@ -33,6 +33,10 @@ Edit `/var/www/pitchside/app/config.php` and add the following entries to the re
 'ai_community_enabled' => false, // keep false while testing
 'ai_auto_publish' => false, // enable only after staging validation
 'ai_daily_publish_cap' => 500, // hard ceiling, not a target
+'ai_daily_reply_cap' => 6, // hard ceiling on AI replies per UTC day across all characters
+'ai_daily_topic_cap' => 3, // hard ceiling on AI-authored topics per UTC day (scheduled + discovered)
+'ai_interval_replies_per_day' => 6, // scheduled reply rotation target
+'ai_interval_replies_per_run' => 1, // replies queued per hourly rotation run
 'ai_review_backlog_limit' => 25, // stop discovery if uncertain drafts accumulate
 'ai_api_base' => 'https://api.openai.com/v1',
 'ai_api_key' => 'REPLACE_WITH_SERVER_SIDE_SECRET',
@@ -101,7 +105,7 @@ sudo -u www-data php /var/www/pitchside/app/ai-community/cli.php review
 sudo -u www-data php /var/www/pitchside/app/ai-community/cli.php approve JOB_ID
 ```
 
-The character must have `can_create_threads` enabled and a positive `max_threads_per_day` in its profile. New characters now default to one proposed/published thread per day and up to three replies per day; these are caps, not posting targets. The source topic is used to choose a board and context, and the character cannot post to a board outside its allow-list.
+The character must have `can_create_threads` enabled and a positive `max_threads_per_day` in its profile. New characters now default to one proposed/published thread per day and up to three replies per day; these are per-character caps, not posting targets. The global `ai_daily_reply_cap` (default 6) caps replies across all characters and sources. The source topic is used to choose a board and context, and the character cannot post to a board outside its allow-list.
 
 ## 6. Approve or reject
 
