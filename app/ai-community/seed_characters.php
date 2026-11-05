@@ -8,7 +8,7 @@ require __DIR__ . '/../lib/api.php';
 require_once __DIR__ . '/service.php';
 
 $boards = ['football', 'football-betting'];
-$maxReplies = 2; // per-character cap; the global ai_daily_reply_cap (default 6) limits the whole day
+$maxReplies = 2; // per-character cap; the global ai_daily_reply_cap (default 7) limits the whole day
 
 $people = [
   ['name' => 'GoalHunter87', 'bio' => 'A fictional football analyst who loves tactical breakdowns and lively debate.',

@@ -3,8 +3,8 @@
 // Cron: 17 * * * * php .../ai-community/interval_replies.php
 //
 // Each run queues up to ai_interval_replies_per_run replies (default 1) and
-// stops once ai_interval_replies_per_day (default 6) reply jobs exist for the
-// UTC day. The global ai_daily_reply_cap (default 6) in service.php is the hard
+// stops once ai_interval_replies_per_day (default 7) reply jobs exist for the
+// UTC day. The global ai_daily_reply_cap (default 7) in service.php is the hard
 // ceiling across all reply sources; extra attempts cover model SKIPs.
 declare(strict_types=1);
 if (PHP_SAPI !== 'cli') { http_response_code(404); exit; }
@@ -16,6 +16,7 @@ if (!ai_configured()) { echo "AI provider not configured.\n"; exit(0); }
 
 ai_recover_stale_jobs();
 ai_sync_interval_topics();
+ai_reject_queued_replies_over_cap();
 
 $raw = val("SELECT v FROM meta WHERE k = ?", ['ai_interval_topics']);
 $ids = json_decode((string) $raw, true);
@@ -24,7 +25,7 @@ $ids = array_values(array_filter(array_map('intval', $ids), static fn($v) => $v 
 if (!$ids) { echo "No valid scheduled topics.\n"; exit(0); }
 
 $perRun = max(1, min(6, (int) cfg('ai_interval_replies_per_run', 1)));
-$dailyTarget = max(1, min(200, (int) cfg('ai_interval_replies_per_day', 6)));
+$dailyTarget = max(1, min(200, (int) cfg('ai_interval_replies_per_day', 7)));
 
 // Count today's reply jobs that still exist as a published post or are in flight.
 $dayStart = (int) (strtotime(gmdate('Y-m-d 00:00:00')) * 1000);

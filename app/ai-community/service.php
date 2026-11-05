@@ -30,12 +30,23 @@ function ai_daily_cap_reached(): bool {
 
 function ai_daily_reply_cap(): int {
   // Hard ceiling on scheduled AI replies per UTC day across all characters. Not a target.
-  return max(1, min(200, (int) cfg('ai_daily_reply_cap', 6)));
+  return max(1, min(200, (int) cfg('ai_daily_reply_cap', 7)));
 }
 
 function ai_daily_reply_count(): int {
   $since = (int) (strtotime(gmdate('Y-m-d 00:00:00')) * 1000);
   return (int) val("SELECT COUNT(*) FROM ai_jobs WHERE job_type = 'reply' AND created >= ? AND status IN ('queued','working','review','publishing','published')", [$since]);
+}
+
+function ai_daily_reply_published_count(): int {
+  $since = (int) (strtotime(gmdate('Y-m-d 00:00:00')) * 1000);
+  return (int) val("SELECT COUNT(*) FROM ai_activity_log WHERE action = 'reply.publish' AND result = 'success' AND created >= ?", [$since]);
+}
+
+function ai_reject_queued_replies_over_cap(): void {
+  // Drains any reply backlog queued before the cap was reached, so it cannot keep publishing.
+  if (ai_daily_reply_published_count() < ai_daily_reply_cap()) return;
+  q("UPDATE ai_jobs SET status = 'rejected', error_message = 'Daily AI reply cap reached', updated = ? WHERE job_type = 'reply' AND status = 'queued'", [now_ms()]);
 }
 
 function ai_daily_topic_cap(): int {
@@ -332,6 +343,11 @@ function ai_run_one(): bool {
   if ($claim->rowCount() !== 1) return false;
   try {
     if ((int) $job['attempts'] >= 2) throw new RuntimeException('Retry limit reached.');
+    if ($job['job_type'] === 'reply' && ai_daily_reply_published_count() >= ai_daily_reply_cap()) {
+      q("UPDATE ai_jobs SET status = 'rejected', error_message = 'Daily AI reply cap reached', updated = ? WHERE id = ?", [now_ms(), $job['id']]);
+      ai_log((int) $job['id'], (int) $job['character_id'], 'reply.generate', 'skipped', null, ['reason' => 'daily_cap']);
+      return true;
+    }
     $persona = ai_profile((int) $job['character_id']);
     if (!in_array($job['job_type'], ['reply','thread'], true) || empty($job['topic_id'])) throw new RuntimeException('Unsupported job type or missing source topic.');
     $context = ai_thread_context((int) $job['topic_id']);
@@ -416,6 +432,7 @@ function ai_publish_job(int $jobId): int {
   if (ai_daily_cap_reached()) throw new RuntimeException('Daily AI publishing cap reached; no further posts may be published today.');
   $job = row("SELECT * FROM ai_jobs WHERE id = ? AND status = 'review'", [$jobId]);
   if (!$job || trim((string) $job['draft_body']) === '') throw new RuntimeException('Job not found in review, or draft is empty.');
+  if ($job['job_type'] === 'reply' && ai_daily_reply_published_count() >= ai_daily_reply_cap()) throw new RuntimeException('Daily AI reply cap reached; not published.');
   $persona = ai_profile((int) $job['character_id']);
   $u = user_by_id((int) $persona['user_id']);
   if ($job['job_type'] === 'thread') return ai_publish_thread_job($job, $persona, $u);
@@ -603,6 +620,7 @@ function ai_community_cron(): void {
   try {
     ai_recover_stale_jobs();
     ai_sync_interval_topics();
+    ai_reject_queued_replies_over_cap();
     // Review items do not block discovery forever. Keep a bounded manual-review backlog when auto-publish is off.
     $active = (int)val("SELECT COUNT(*) FROM ai_jobs WHERE status IN ('queued','working','publishing')");
     $reviewBacklog = (int)val("SELECT COUNT(*) FROM ai_jobs WHERE status = 'review'");
