@@ -183,6 +183,8 @@ if (!meta_get('featured:2026-10-28')) {
   meta_set('featured:2026-10-28', '1');
   if ($done) { audit(null, 'Commercial setting', implode(', ', $done), 'featured toggled', 'off', 'on'); $say('Featured ' . implode(' and ', $done) . ' as Top picks on the casino list (change in Admin → Businesses).'); }
 }
+// Bug Reports board with statuses (New, Investigating, Confirmed, Fixed, Closed) and a pinned "How to report a bug" guide
+if (function_exists('bugs_install')) { $d = bugs_install(); if ($d) $say('Bug Reports board: ' . implode(' ', $d)); }
 // Forum rep (likes received) and post counts (which set each member's rank) from visible posts only
 $n = forum_rep_sync(); if ($n) $say("Forum rep and post counts worked out for $n member" . ($n > 1 ? 's' : '') . '.');
 $phase = (int) (meta_get('phase', '1'));
