@@ -7,6 +7,9 @@ declare(strict_types=1);
 require __DIR__ . '/lib/api.php';
 require_once __DIR__ . '/ai-community/service.php';
 
+// The AI community can be switched off in app/config.php (ai_community_enabled = false).
+if (!cfg('ai_community_enabled', false)) { error_log("DAILY AI TOPIC: AI community is switched off; skipping\n"); exit(0); }
+
 $slot = isset($argv[1]) ? preg_replace('/[^a-z0-9_-]/i', '', (string) $argv[1]) : 'scheduled';
 $board = board_doc('football');
 if (!$board) { error_log("DAILY AI TOPIC: football board not found\n"); exit(1); }

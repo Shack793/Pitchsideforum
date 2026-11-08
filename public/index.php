@@ -69,7 +69,7 @@ try {
     if (!$r) { $status = 404; $index = false; }
     else { $o = jdec($r['data'], []); $n = (int) val("SELECT COUNT(*) FROM reviews WHERE op = ? AND status <> 'removed'", [$seg[1]]);
       $title = "{$o['name']} review: payouts, complaints, Safety Index | $site"; $desc = "Member reviews ($n), complaints and licence details for {$o['name']}. " . ($o['license'] ?? '');
-      $body = '<h1>' . $h($o['name']) . '</h1><p>' . $h($o['license'] ?? '') . '</p>'; }
+      $body = '<h1>' . $h($o['name']) . '</h1><p>' . $h($o['license'] ?? '') . '</p>'; if (function_exists('op_seo')) [$title, $desc, $body] = op_seo($o, $seg[1], $title, $desc, $body, $h); }
   } elseif (($seg[0] ?? '') === 'raffle' && !isset($seg[1])) {
     $title = "Weekly raffle: free to enter, win USDT | $site"; $desc = 'Free weekly prize draw for Pitchside members. Join, start a topic and post in the community to qualify. 18+ only.';
     $body = '<h1>Weekly raffle</h1><p>' . $h($desc) . '</p>';
@@ -113,7 +113,7 @@ try {
 
   $shell = file_get_contents(APP_DIR . '/shell.html');
   $canonical = site_url($path === '/' ? '/' : rtrim($path, '/'));
-  $head = '<title>' . $h($title) . '</title>
+  $head = ($GLOBALS['PS_EXTRA_HEAD'] ?? '') . '<title>' . $h($title) . '</title>
 <meta name="description" content="' . $h($desc) . '">
 <link rel="canonical" href="' . $h($canonical) . '">
 <meta name="robots" content="' . ($index && $status === 200 ? 'index, follow' : 'noindex') . '">

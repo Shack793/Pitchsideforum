@@ -185,6 +185,91 @@ if (!meta_get('featured:2026-10-28')) {
 }
 // Bug Reports board with statuses (New, Investigating, Confirmed, Fixed, Closed) and a pinned "How to report a bug" guide
 if (function_exists('bugs_install')) { $d = bugs_install(); if ($d) $say('Bug Reports board: ' . implode(' ', $d)); }
+
+/* ---------- Updates, 5–8 November 2026 ---------- */
+// AI moderator and visitor-count tables (created once; safe to run again)
+if (function_exists('am_install_tables')) am_install_tables();
+if (function_exists('vis_install_tables')) vis_install_tables();
+// Pinned policy topics: complaints policy, review guidelines and marketplace rules (posted once)
+function install_pin_policy(string $board, string $title, string $flag, string $file, string $auditNote): void {
+  global $say;
+  if (!board_doc($board)) return;
+  $done = meta_get($flag);
+  if ($done) {
+    $t = row("SELECT id, pinned FROM topics WHERE id = ? AND deleted = 0", [(int) $done]);
+    if ($t) { if (!$t['pinned']) q("UPDATE topics SET pinned = 1, updated = ? WHERE id = ?", [now_ms(), (int) $t['id']]); return; }
+  }
+  $same = row("SELECT id FROM topics WHERE board = ? AND title = ? AND deleted = 0 ORDER BY id LIMIT 1", [$board, $title]);
+  if ($same) { q("UPDATE topics SET pinned = 1, updated = ? WHERE id = ?", [now_ms(), (int) $same['id']]); meta_set($flag, (string) $same['id']); return; }
+  $body = trim((string) @file_get_contents(__DIR__ . '/seed/policies/' . $file));
+  if ($body === '') return;
+  $u = row("SELECT * FROM users WHERE role = 'super_admin' AND status = 'active' ORDER BY id LIMIT 1") ?: row("SELECT * FROM users WHERE role = 'admin' AND status = 'active' ORDER BY id LIMIT 1");
+  if (!$u) return;
+  $now = now_ms();
+  $id = tx(function () use ($board, $title, $u, $now, $body) {
+    $id = insert('topics', ['board' => $board, 'title' => $title, 'author' => $u['name'], 'at' => $now, 'last_at' => $now, 'tags' => '[]', 'teams' => '[]', 'league' => null, 'poll' => null, 'pinned' => 1, 'updated' => $now]);
+    insert('posts', ['topic_id' => $id, 'author' => $u['name'], 'body' => $body, 'at' => $now, 'hidden' => 0, 'revisions' => '[]']);
+    count_post($u, true);
+    return $id;
+  });
+  meta_set($flag, (string) $id);
+  audit($u, 'Pin topic', "topic $id", $auditNote, 'Not pinned', 'Pinned');
+  $say("Pinned: $title (/topic/$id)");
+}
+// Pinned topic titles: drop a leading "Pitchside Forum – " (from the marketplace rules update)
+foreach (rows("SELECT id, title FROM topics WHERE pinned = 1 AND deleted = 0 AND title LIKE 'Pitchside Forum%'") as $t) {
+  $newT = preg_replace('/^\s*Pitchside\s+Forum\s*[-–—:|]\s*/u', '', (string) $t['title']);
+  if ($newT !== $t['title'] && mb_strlen(trim($newT)) >= 8) q("UPDATE topics SET title = ?, updated = ? WHERE id = ?", [trim($newT), now_ms(), (int) $t['id']]);
+}
+// The $1,000 raffle draw moves to 31 December 2026 (midnight, Los Angeles time) from 1 or 24 December
+if (!meta_get('raffle:2026-12-31')) {
+  try {
+    $tz = new DateTimeZone('America/Los_Angeles');
+    $ms = fn(string $d) => (new DateTimeImmutable("$d 00:00:00", $tz))->getTimestamp() * 1000;
+    $olds = [$ms('2026-12-01'), $ms('2026-12-24')]; $new = $ms('2026-12-31');
+    $fixDate = function (string $s): string {
+      $s = preg_replace('/\b(1|24)(st|th)? December\b/', '31st December', $s) ?? $s;
+      $s = preg_replace('/\bDecember (1|24)(st|th)?\b(?!\d)/', 'December 31st', $s) ?? $s;
+      $s = preg_replace('/\b(1|24)(st|th)? Dec\b/', '31 Dec', $s) ?? $s;
+      $s = preg_replace('/\bDec\.? (1|24)(st|th)?\b(?!\d)/', 'Dec 31', $s) ?? $s;
+      return str_replace(['2026-12-01', '2026-12-24'], '2026-12-31', $s);
+    };
+    $moved = 0;
+    foreach (rows("SELECT * FROM raffle_rounds") as $r) {
+      $set = []; $hit = false;
+      foreach ($r as $col => $v) {
+        if ($col === 'id' || $v === null) continue;
+        if (is_numeric($v)) { $n = (int) $v;
+          if (in_array($n, $olds, true)) { $set[$col] = $new; $hit = true; }
+          elseif (in_array($n * 1000, $olds, true)) { $set[$col] = intdiv($new, 1000); $hit = true; }
+        } elseif (is_string($v)) { $f = $fixDate($v); if ($f !== $v) $set[$col] = $f; }
+      }
+      if (!$hit) continue;
+      if (array_key_exists('updated', $r)) $set['updated'] = now_ms();
+      $cols = array_keys($set);
+      q("UPDATE raffle_rounds SET " . implode(', ', array_map(fn($c) => "$c = ?", $cols)) . " WHERE id = ?", array_merge(array_values($set), [$r['id']]));
+      audit(null, 'Raffle draw date changed', "raffle round #{$r['id']}", 'Draw moved to 31 December 2026', 'earlier date', '31 Dec 2026 00:00 PT');
+      $moved++;
+    }
+    foreach (rows("SELECT k, v FROM config") as $cc) {
+      $d = jdec((string) $cc['v'], null); if (!is_array($d)) continue;
+      $texts = 0;
+      $walk = function ($x) use (&$walk, $fixDate, &$texts) {
+        if (is_array($x)) { foreach ($x as $k => $v) $x[$k] = $walk($v); return $x; }
+        if (is_string($x) && stripos($x, 'raffle') !== false) { $f = $fixDate($x); if ($f !== $x) { $texts++; return $f; } }
+        return $x;
+      };
+      $nd = $walk($d);
+      if ($texts > 0) save_doc((string) $cc['k'], $nd);
+    }
+    foreach (rows("SELECT p.id, p.body FROM posts p JOIN topics t ON t.id = p.topic_id WHERE t.deleted = 0 AND (t.title LIKE '%raffle%' OR t.title LIKE '%Raffle%') AND p.author IN (SELECT name FROM users WHERE role IN ('super_admin','admin'))") as $p) {
+      $f = $fixDate((string) $p['body']); if ($f !== $p['body']) q("UPDATE posts SET body = ? WHERE id = ?", [$f, $p['id']]);
+    }
+    if ($moved) $say("Raffle: the \$1,000 draw is now 31 December 2026.");
+    meta_set('raffle:2026-12-31', (string) now_ms());
+  } catch (Throwable $e) { $say('Raffle date update skipped: ' . $e->getMessage()); }
+}
+
 // Forum rep (likes received) and post counts (which set each member's rank) from visible posts only
 $n = forum_rep_sync(); if ($n) $say("Forum rep and post counts worked out for $n member" . ($n > 1 ? 's' : '') . '.');
 $phase = (int) (meta_get('phase', '1'));
@@ -206,6 +291,11 @@ if (!val("SELECT 1 FROM users WHERE role = 'super_admin'")) {
     'joined' => $now, 'posts' => 0, 'topics' => 0, 'likes' => 0, 'profile' => jenc($profile), 'totp_on' => 0, 'last_seen' => 0, 'updated' => $now]);
   $say("Created Super Admin: $name");
 } else $say('Super Admin already exists; left as is.');
+// Pinned policy topics (posted as the site owner, so this runs after the first Super Admin exists)
+install_pin_policy('complaint-talk', 'Casino Complaints & Dispute Resolution Policy', 'post:complaints-policy-2026-11', 'complaints.txt', 'Posted and pinned the complaints policy');
+install_pin_policy('casino-reviews', 'Casino & Sportsbook Review Guidelines', 'post:review-guidelines-2026-11:casino-reviews', 'review-guidelines.txt', 'Posted and pinned the review guidelines');
+install_pin_policy('sportsbook-reviews', 'Casino & Sportsbook Review Guidelines', 'post:review-guidelines-2026-11:sportsbook-reviews', 'review-guidelines.txt', 'Posted and pinned the review guidelines');
+install_pin_policy('marketplace-talk', 'Marketplace Rules & Trading Safety', 'post:marketplace-rules-2026-11:marketplace-talk', 'marketplace-rules.txt', 'Posted and pinned the marketplace rules');
 
 /* ---------- 4. Sample content for a staging site (optional) ---------- */
 if (isset($opt['demo'])) {
