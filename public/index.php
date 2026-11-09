@@ -111,6 +111,7 @@ try {
       . '<div class="panel flush">' . ($rowsHtml ? '<ul class="tlist">' . $rowsHtml . '</ul>' : '<div class="empty">No topics yet.</div>') . '</div></section></div><aside class="stack"></aside></div></div>';
   }
 
+  if (function_exists('seo_extend')) [$title, $desc, $body] = seo_extend($seg, $path, $title, $desc, $body, $status, $h);
   $shell = file_get_contents(APP_DIR . '/shell.html');
   $canonical = site_url($path === '/' ? '/' : rtrim($path, '/'));
   $head = ($GLOBALS['PS_EXTRA_HEAD'] ?? '') . '<title>' . $h($title) . '</title>
