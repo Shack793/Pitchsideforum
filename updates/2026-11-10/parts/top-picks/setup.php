@@ -5,7 +5,7 @@ declare(strict_types=1);
 $app = rtrim($argv[1] ?? '/var/www/pitchside', '/');
 require $app . '/app/lib/api.php';
 $now = now_ms();
-$base = ['countries' => [], 'fiat' => false, 'poker' => false, 'kyc' => 'Not stated', 'claimed' => false, 'verified' => false, 'reps' => [], 'affiliate' => false, 'featured' => true,
+$base = ['countries' => [], 'fiat' => false, 'poker' => false, 'kyc' => 'Not stated', 'claimed' => false, 'verified' => false, 'reps' => [], 'affiliate' => false, 'featured' => false,
   'warning' => null, 'size' => 'small', 'est' => null, 'minDeposit' => 'Not published', 'withdrawalLimit' => 'Not published', 'languages' => 'English', 'unfairTerms' => [], 'blacklist' => null, 'pendingClaim' => null];
 $new = [
   ['slug' => 'flush', 'type' => 'casino', 'name' => 'Flush', 'website' => 'flush.com', 'owner' => 'Purple Dragon Ltd',
@@ -42,12 +42,10 @@ foreach ($wanted as [$label, $keys]) {
   $hit = null;
   foreach ($ops as $x) {
     $cands = [$norm($x['slug']), $norm((string) ($x['d']['name'] ?? '')), $norm(preg_replace('/\.(com|io|net|bet|games|casino|co)$/', '', (string) ($x['d']['website'] ?? '')))];
-    if ($label === 'just.bet' && $norm((string) ($x['d']['website'] ?? '')) !== 'justbet') continue;   // not the Australian Justbet
+    if ($label === 'just.bet' && $x['slug'] !== 'justbet' && $norm((string) ($x['d']['website'] ?? '')) !== 'justbet' && stripos((string) ($x['d']['games'] ?? ''), 'WINR') === false) continue;   // not the Australian Justbet
     foreach ($keys as $k) if (in_array($k, $cands, true)) { $hit = $x['slug']; break 2; }
   }
   if ($hit) $picks[] = $hit; else $missing[] = $label;
 }
-$lay = tp_layout(); $keep = array_values(array_filter((array) ($lay['topPicks'] ?? []), fn($s) => !in_array($s, $picks, true)));
-$saved = tp_save(array_merge($picks, $keep), null);
-foreach ($picks as $s) { $r = row("SELECT data FROM operators WHERE slug = ?", [$s]); $d = jdec((string) $r['data'], []); if (empty($d['featured'])) { $d['featured'] = true; q("UPDATE operators SET data = ?, updated = ? WHERE slug = ?", [jenc($d), now_ms(), $s]); } }
+$saved = tp_save($picks, null);
 echo "ADDED " . (implode(', ', $added) ?: '-') . "\nPICKS " . implode(', ', $saved) . "\nMISSING " . (implode(', ', $missing) ?: '-') . "\n";

@@ -1,7 +1,7 @@
 /* Pitchside Forum: every step in the page trail ("Home › Forum › Gambling › Casino Reviews") is a working link.
    The section names (Sports, Gambling, Crypto, Marketplace, Community) used to be plain text on board pages,
    and "Tags" had no page. This links them, and adds a /tags page listing every tag. On the Forum page, the section
-   headings (Sports, Gambling…) open their section too. It only wraps app functions. */
+   headings (Sports, Gambling…) open their section too, and so do the section names in the home page's Boards box. It only wraps app functions. */
 (function () {
   if (typeof render !== "function" || typeof CATEGORIES === "undefined") return;
   const PATH = {sports: "/sports", gambling: "/gambling", crypto: "/crypto", market: "/marketplace", community: "/community"};
@@ -39,6 +39,19 @@
       CATEGORIES.forEach(c => {
         const p = PATH[c.id] || null; if (!p) return;
         out = out.split(`<h2 class="sec">${esc(c.name)}`).join(`<h2 class="sec">${link(p, esc(c.name), "lk-sec")}<span class="lk-go" aria-hidden="true">›</span>`);
+      });
+      return out;
+    };
+  }
+  // Home page "Boards" box: the section names (Sports, Gambling, Crypto, Marketplace, Community) open their section
+  if (typeof vHome === "function") {
+    const baseHome = vHome;
+    vHome = function () {
+      let out = baseHome.apply(this, arguments);
+      if (typeof out !== "string") return out;
+      CATEGORIES.forEach(c => {
+        const p = PATH[c.id] || null; if (!p) return;
+        out = out.split(`<div style="margin-bottom:10px"><strong>${esc(c.name)}</strong>`).join(`<div style="margin-bottom:10px"><strong>${link(p, esc(c.name), "lk-sec")}</strong>`);
       });
       return out;
     };
