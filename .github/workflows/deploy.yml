@@ -41,7 +41,7 @@ jobs:
           test -f app/install.php || (echo "app/install.php missing" && exit 1)
           test -f app/schema.sql || (echo "app/schema.sql missing" && exit 1)
           test -f deploy/nginx.conf || (echo "deploy/nginx.conf missing" && exit 1)
-          test -f updates/2026-11-09/apply.sh || (echo "9 Nov update installer missing" && exit 1)
+          test -f updates/2026-11-10/apply.sh || (echo "10 Nov update installer missing" && exit 1)
           du -sh app/ public/
 
       - name: Copy files to VPS
@@ -51,7 +51,7 @@ jobs:
           username: ${{ secrets.SSH_USER }}
           port: ${{ secrets.SSH_PORT }}
           key: ${{ secrets.SSH_KEY }}
-          source: "app,public,backup.sh,update.sh,deploy,updates/2026-11-09"
+          source: "app,public,backup.sh,update.sh,deploy,updates/2026-11-10"
           target: "/home/deploy/pitchside-release/"
           overwrite: true
 
@@ -90,8 +90,8 @@ jobs:
             # DB migrate (adds new tables/settings only) + self-test
             sudo -u $WEBUSER php "$APP/app/install.php" || sudo php "$APP/app/install.php"
             sudo -u $WEBUSER php "$APP/app/selftest.php" || sudo php "$APP/app/selftest.php" || echo "!! self-test reported a problem — check output above"
-            # Apply the bundled, idempotent 9 Nov feature and data updates.
-            sudo /usr/bin/bash "$REL/updates/2026-11-09/apply.sh"
+            # Apply the bundled, idempotent 10 Nov feature and data updates.
+            sudo /usr/bin/bash "$REL/updates/2026-11-10/apply.sh"
             PHPV=$(php -r 'echo PHP_MAJOR_VERSION.".".PHP_MINOR_VERSION;' 2>/dev/null || echo "")
             if [ -n "$PHPV" ]; then sudo /usr/bin/systemctl reload "php$PHPV-fpm" 2>/dev/null || sudo /usr/bin/systemctl reload php-fpm 2>/dev/null || true; fi
             sudo /usr/sbin/nginx -t
