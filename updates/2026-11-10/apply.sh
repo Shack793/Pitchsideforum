@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Pitchside Forum: installs every update from 5–9 November in one go.
+# Pitchside Forum: installs every update from 5–10 November in one go.
 #   sudo bash apply.sh
 # Safe to run again: anything already installed is left as it is.
 set -uo pipefail
@@ -20,6 +20,7 @@ PARTS=(
   "visitors|Visitor counts by country (Admin → Visitors)"
   "bugs|Bug Reports board with statuses"
   "links|Section links: page trails, Forum page headings and a Tags page"
+  "top-picks|Top picks: partner casinos first on the Casinos & Sportsbooks page (Admin → Top picks)"
   "policy-placement|Complaints policy on the Complaints page, review guidelines on the casino and sportsbook pages"
   "raffle-dec31|Raffle draw on 31 December"
 )
