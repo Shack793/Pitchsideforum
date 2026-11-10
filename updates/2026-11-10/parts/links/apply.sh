@@ -12,8 +12,8 @@ mkdir -p "$BK/app" && cp -a "$SHELL_HTML" "$BK/app/shell.html" || { echo "Couldn
 OWN=$(stat -c '%U:%G' "$APP/public/assets")
 install -m 644 -o "${OWN%%:*}" -g "${OWN##*:}" public/assets/links.2.js "$APP/public/assets/links.2.js"
 sed -i '\#/assets/links\.1\.js#d' "$SHELL_HTML"
-grep -q 'links.2.js' "$SHELL_HTML" || sed -i 's#</body>#<script src="/assets/links.2.js"></script>\n</body>#' "$SHELL_HTML"
-if [[ $(grep -c 'links.2.js' "$SHELL_HTML") -ne 1 ]]; then cp -a "$BK/app/shell.html" "$SHELL_HTML"; rm -f "$APP/public/assets/links.2.js"; echo "Couldn't add the page script. Nothing was changed."; exit 1; fi
+grep -q 'src="/assets/links.2.js"' "$SHELL_HTML" || sed -i 's#</body>#<script src="/assets/links.2.js"></script>\n</body>#' "$SHELL_HTML"
+if [[ $(grep -c 'src="/assets/links.2.js"' "$SHELL_HTML") -ne 1 ]]; then cp -a "$BK/app/shell.html" "$SHELL_HTML"; rm -f "$APP/public/assets/links.2.js"; echo "Couldn't add the page script. Nothing was changed."; exit 1; fi
 command -v restorecon >/dev/null 2>&1 && restorecon "$APP/public/assets/links.2.js" "$SHELL_HTML" 2>/dev/null || true
 rm -f "$APP"/app/storage/cache/*.json 2>/dev/null || true
 echo "Done. Every page-trail step and Forum section heading is a working link."
