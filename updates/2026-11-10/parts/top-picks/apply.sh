@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Pitchside Forum: Top picks (partner casinos first on the Casinos & Sportsbooks page) with Admin → Top picks to change them.
+# Pitchside Forum: Top picks (featured casinos first on the Casinos & Sportsbooks page) with Admin → Top picks to change them.
 set -uo pipefail
 if [[ $EUID -ne 0 ]]; then echo "Please run with sudo:  sudo bash apply.sh"; exit 1; fi
 cd "$(dirname "$0")"
@@ -10,10 +10,12 @@ STAMP=$(date +%Y%m%d-%H%M%S); BK="/var/backups/pitchside/update-$STAMP-$$"
 mkdir -p "$BK/app" && cp -a "$SHELL_HTML" "$BK/app/shell.html" || { echo "Couldn't make a backup. Nothing was changed."; exit 1; }
 OWN=$(stat -c '%U:%G' "$APP/app/ops"); OWNA=$(stat -c '%U:%G' "$APP/public/assets")
 install -m 644 -o "${OWN%%:*}" -g "${OWN##*:}" app/ops/zz-toppicks.php "$APP/app/ops/zz-toppicks.php"
-install -m 644 -o "${OWNA%%:*}" -g "${OWNA##*:}" public/assets/toppicks.1.js "$APP/public/assets/toppicks.1.js"
-grep -q 'toppicks.1.js' "$SHELL_HTML" || sed -i 's#</body>#<script src="/assets/toppicks.1.js"></script>\n</body>#' "$SHELL_HTML"
-if [[ $(grep -c 'toppicks.1.js' "$SHELL_HTML") -ne 1 ]]; then cp -a "$BK/app/shell.html" "$SHELL_HTML"; rm -f "$APP/app/ops/zz-toppicks.php" "$APP/public/assets/toppicks.1.js"; echo "Couldn't add the page script. Nothing was changed."; exit 1; fi
-command -v restorecon >/dev/null 2>&1 && restorecon "$APP/app/ops/zz-toppicks.php" "$APP/public/assets/toppicks.1.js" "$SHELL_HTML" 2>/dev/null || true
+install -m 644 -o "${OWNA%%:*}" -g "${OWNA##*:}" public/assets/toppicks.2.js "$APP/public/assets/toppicks.2.js"
+sed -i '\#/assets/toppicks\.1\.js#d' "$SHELL_HTML"
+grep -q 'toppicks.2.js' "$SHELL_HTML" || sed -i 's#</body>#<script src="/assets/toppicks.2.js"></script>\n</body>#' "$SHELL_HTML"
+if [[ $(grep -c 'toppicks.2.js' "$SHELL_HTML") -ne 1 ]]; then cp -a "$BK/app/shell.html" "$SHELL_HTML"; echo "Couldn't add the page script. Nothing was changed."; exit 1; fi
+rm -f "$APP/public/assets/toppicks.1.js"
+command -v restorecon >/dev/null 2>&1 && restorecon "$APP/app/ops/zz-toppicks.php" "$APP/public/assets/toppicks.2.js" "$SHELL_HTML" 2>/dev/null || true
 OWNER=$(stat -c '%U' "$APP/app/storage" 2>/dev/null || echo root)
 RUN=(php); if [[ "$OWNER" != "root" ]] && id "$OWNER" >/dev/null 2>&1; then RUN=(runuser -u "$OWNER" -- php); fi
 WORK=$(mktemp -d); cp setup.php "$WORK/"; chmod -R a+rX "$WORK"

@@ -1,16 +1,23 @@
-/* Pitchside Forum: Top picks. Partner casinos and sportsbooks shown first on the Casinos & Sportsbooks page, in the
-   order set in Admin → Top picks, using the normal casino cards (rating, Safety Index, complaints, Visit button).
-   Clearly labelled as partners, as the review guidelines require. It only wraps app functions. */
+/* Pitchside Forum: Top picks v2. A neat row of compact tiles at the top of the Casinos & Sportsbooks page, in the
+   order set in Admin → Top picks. A small "About featured listings" link opens the disclosure page. It only wraps app functions. */
 (function () {
   if (typeof vHub !== "function" || typeof OPERATORS === "undefined") return;
   const picks = () => ((typeof LAYOUT === "object" && LAYOUT && Array.isArray(LAYOUT.topPicks)) ? LAYOUT.topPicks : [])
     .map(s => OPERATORS.find(o => o.slug === s)).filter(o => o && !o.blacklist);
+  function tile(o, i) {
+    const fb = typeof feedbackLabel === "function" ? feedbackLabel(o) : {n: 0};
+    const lic = (typeof LICENCE === "object" && LICENCE[o.regulator] && LICENCE[o.regulator].label || o.license || "").split(" (")[0];
+    const aff = typeof affLinkFor === "function" && affLinkFor(o.slug);
+    return `<article class="panel tp-tile"><div class="tp-top"><span class="tp-rank">${i + 1}</span>${opCrest(o, 40)}
+      <div class="tp-name"><strong>${link(opPath(o), esc(o.name))}</strong><span class="muted">${o.type === "casino" ? "Casino" : o.type === "both" ? "Casino &amp; sportsbook" : "Sportsbook"}${lic ? ` · ${esc(lic)}` : ""}</span></div>
+      ${typeof safetyBadge === "function" ? safetyBadge(o, "sm") : ""}</div>
+      <div class="tp-foot"><div class="tp-rate">${fb.n ? `<span class="stars">${stars(fb.avg)}</span> <strong>${fb.avg.toFixed(1)}</strong> <span class="muted">(${fb.n})</span>` : `<span class="muted">No reviews yet</span>`}</div>
+      <div class="tp-btns">${link(opPath(o), "Read review", aff ? "btn small" : "btn small primary")}${aff ? affButton(aff, "top-picks", "Visit", "btn small primary") : ""}</div></div></article>`;
+  }
   function block() {
-    const list = picks(); if (!list.length || typeof opCard !== "function") return "";
-    return `<section class="tp-wrap" aria-labelledby="tp-h"><div class="tp-head"><h2 class="sec" id="tp-h" style="margin:0">Top picks</h2><span class="pill solid">Our partners</span></div>
-      <p class="muted tp-note">Casinos and sportsbooks we partner with. Pitchside may earn a commission when you sign up through them. Their member ratings, complaints and Safety Index are exactly the same as for every other operator: partners can't buy a better score.</p>
-      <div class="tp-list">${list.map((o, i) => opCard(o, i + 1)).join("")}</div>
-      <h2 class="sec tp-all">All casinos and sportsbooks</h2></section>`;
+    const list = picks(); if (!list.length || typeof opCrest !== "function") return "";
+    return `<section class="tp-wrap" aria-labelledby="tp-h"><div class="tp-head"><h2 class="sec" id="tp-h">Top picks</h2>${link("/page/disclosures", "About featured listings", "tp-about")}</div>
+      <div class="tp-grid">${list.map(tile).join("")}</div></section>`;
   }
   function afterHead(html, n) {
     if (!n || typeof html !== "string") return html;
@@ -34,7 +41,7 @@
       const list = cur(), name = s => (OPERATORS.find(o => o.slug === s) || {}).name || s;
       const others = OPERATORS.filter(o => !list.includes(o.slug)).sort((a, b) => a.name.localeCompare(b.name));
       return `<section class="panel"><h3 class="ph">Top picks</h3>
-        <p class="muted" style="margin-top:0">These show first on the Casinos &amp; Sportsbooks page, in this order, labelled as partners. Set each partner's tracking link in the affiliate links section so their Visit button earns you the commission.</p>
+        <p class="muted" style="margin-top:0">These show first on the Casinos &amp; Sportsbooks page, in this order, with a small &ldquo;About featured listings&rdquo; link. Set each partner's tracking link in the affiliate links section so their Visit button earns you the commission.</p>
         ${list.length ? `<ol class="tp-ed">${list.map((s, i) => `<li><span class="tp-n">${i + 1}</span><strong>${esc(name(s))}</strong>
           <span class="row" style="gap:6px;margin-left:auto"><button class="btn small" type="button" data-act="tpMove" data-i="${i}" data-d="-1"${i === 0 ? " disabled" : ""} aria-label="Move ${esc(name(s))} up">▲</button>
           <button class="btn small" type="button" data-act="tpMove" data-i="${i}" data-d="1"${i === list.length - 1 ? " disabled" : ""} aria-label="Move ${esc(name(s))} down">▼</button>
@@ -59,9 +66,18 @@
       draft = null; toast("Top picks saved."); render(); }).catch(e => toast(e.message));
   }
   const st = document.createElement("style");
-  st.textContent = `.tp-wrap{margin:0 0 8px}.tp-head{display:flex;align-items:center;gap:10px;flex-wrap:wrap}.tp-note{margin:6px 0 12px;font-size:.88rem;line-height:1.5}
-.tp-list{display:flex;flex-direction:column;gap:14px;margin-bottom:18px}.tp-all{margin:6px 0 10px}
-.tp-ed{list-style:none;margin:0;padding:0}.tp-ed li{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:8px 0;border-bottom:1px solid var(--line)}.tp-n{width:24px;color:var(--muted);font-weight:700}`;
+  st.textContent = `.tp-wrap{margin:0 0 18px;padding-bottom:16px;border-bottom:1px solid var(--line)}
+.tp-head{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin:0 0 10px}.tp-head h2{margin:0}
+.tp-about{font-size:.78rem;color:var(--muted);text-decoration:underline;text-underline-offset:2px;white-space:nowrap}
+.tp-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px}
+.tp-tile{display:flex;flex-direction:column;gap:10px;padding:14px;margin:0;min-width:0}
+.tp-top{display:flex;align-items:center;gap:10px;min-width:0}.tp-rank{font-weight:800;color:var(--muted);font-size:.9rem;width:14px;text-align:center;flex:none}
+.tp-top .crest{flex:none}.tp-name{display:flex;flex-direction:column;min-width:0;flex:1;line-height:1.3}
+.tp-name strong,.tp-name .muted{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.tp-name .muted{font-size:.8rem}
+.tp-top .si{flex:none}.tp-foot{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:auto}
+.tp-rate{font-size:.85rem;white-space:nowrap}.tp-btns{display:flex;gap:6px;flex:none}
+.tp-ed{list-style:none;margin:0;padding:0}.tp-ed li{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:8px 0;border-bottom:1px solid var(--line)}.tp-n{width:24px;color:var(--muted);font-weight:700}
+@media (max-width:560px){.tp-grid{grid-template-columns:1fr;gap:8px}.tp-tile{padding:10px 12px;gap:8px}}`;
   document.head.appendChild(st);
   try { render(); } catch (e) {}
 })();
