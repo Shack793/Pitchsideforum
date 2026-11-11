@@ -26,7 +26,7 @@ command -v restorecon >/dev/null 2>&1 && restorecon "$APP/app/ops/zz-automod.php
 # Database tables (as the account that owns the site's storage)
 OWNER=$(stat -c '%U' "$APP/app/storage" 2>/dev/null || echo root)
 RUN=(php); if [[ "$OWNER" != "root" ]] && id "$OWNER" >/dev/null 2>&1; then RUN=(runuser -u "$OWNER" -- php); fi
-OUT=$(cd "$APP" && "${RUN[@]}" -r 'require "app/lib/api.php"; am_install_tables(); echo am_ready() ? "TABLES OK" : "TABLES MISSING";' 2>&1)
+OUT=$(cd "$APP" && "${RUN[@]}" -r 'require "app/lib/api.php"; am_install_tables(); if (cfg("db_driver") !== "sqlite") q("ALTER TABLE meta MODIFY v MEDIUMTEXT NOT NULL"); echo am_ready() ? "TABLES OK" : "TABLES MISSING";' 2>&1)
 if ! grep -q 'TABLES OK' <<<"$OUT"; then echo "$OUT" | tail -5; undo "The database tables couldn't be created."; fi
 echo "==> Database tables ready"
 

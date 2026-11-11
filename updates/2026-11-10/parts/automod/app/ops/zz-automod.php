@@ -41,7 +41,13 @@ function am_cfg(bool $fresh = false): array {
   if ($c === null || $fresh) { $s = jdec((string) meta_get('automod:config', '{}'), []); $c = array_merge(am_defaults(), is_array($s) ? $s : []); }
   return $c;
 }
-function am_key(): string { $k = (string) (meta_get('automod:key', '') ?? ''); return $k !== '' ? $k : (string) (cfg('automod_api_key') ?? ''); }
+function am_key(): string {
+  $k = trim((string) (meta_get('automod:key', '') ?? ''));
+  if ($k !== '') return $k;
+  $k = trim((string) (cfg('automod_api_key') ?? ''));
+  if ($k !== '') return $k;
+  return trim((string) (cfg('ai_api_key') ?? ''));   // reuse the existing AI key (the old token)
+}
 function am_ai_ready(): bool { $c = am_cfg(); return $c['ai'] && am_key() !== '' && ($c['provider'] === 'anthropic' || trim((string) $c['model']) !== ''); }
 
 /* ---------- Tables (apply.sh creates them; safe to run again) ---------- */
