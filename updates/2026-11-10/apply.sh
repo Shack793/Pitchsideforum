@@ -26,7 +26,9 @@ PARTS=(
   "ads-fix|Ads: homepage banner and side ads always show while on and live"
   "weights|Safety Index weights: licence 15%, member reviews 25%"
   "gif-ads|Animated GIF banners and ads"
+  "casino-tiles|Casino tiles: Play and Read review buttons line up"
   "admin-rating|Site admin rating: 26% of the Safety Index, set in Admin → Reviews"
+  "admin-tabs|Admin tabs in alphabetical order"
 )
 ok=0; bad=0; echo
 for p in "${PARTS[@]}"; do
