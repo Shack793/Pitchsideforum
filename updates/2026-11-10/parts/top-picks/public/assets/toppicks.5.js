@@ -4,28 +4,41 @@
    the pinned review-guidelines card (or the page title). */
 (function () {
   if (typeof OPERATORS === "undefined") return;
-  // Move the site's own "Top picks" section to the top of the Casinos & Sportsbooks page
+  // Move the site's own "Top picks" section to the top of the Casinos & Sportsbooks pages (computer and phone)
   function moveTopPicks() {
-    if (!/^\/(casinos|sportsbooks)\/?$/.test(location.pathname)) return;
+    if (!/casino|sportsbook/i.test(location.pathname)) return;
     const head = document.querySelector(".phead"); if (!head || !head.parentElement) return;
     const top = head.parentElement;
-    const h = [...top.querySelectorAll("h1,h2,h3,h4,strong,.ph,.sec")].find(el => /^top picks$/i.test(el.textContent.trim()) && !el.closest(".phead"));
-    if (!h || h.closest("[data-tp-moved]")) return;
-    let box = h.closest("section, .panel, article");
-    if (!box || box.contains(head) || box === top) {
-      // heading without its own box: take the heading and what follows it, up to the next heading
-      const parts = [h]; let n = h.nextElementSibling;
-      while (n && !/^H[1-4]$/.test(n.tagName)) { parts.push(n); n = n.nextElementSibling; }
+    // the heading: any text that just says "Top picks" (any tag, any case, emoji allowed)
+    let h = null; const w = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+    while (w.nextNode()) { const el = w.currentNode.parentElement;
+      if (el && /^[^a-z0-9]*top picks?[^a-z0-9]*$/i.test(w.currentNode.nodeValue.trim()) && !el.closest(".phead, header, nav, footer, script, style, option, [data-tp-moved], .tabs")) { h = el; break; } }
+    if (!h) return;
+    // the smallest box around the heading that also holds its list, without holding the page title
+    let box = h, n = h;
+    while (n.parentElement && n.parentElement !== top && !n.parentElement.contains(head) && n.parentElement !== document.body) {
+      n = n.parentElement; box = n;
+      if (box.matches("section, .panel, article, aside > *, .card") && box.querySelectorAll("a").length) break;
+    }
+    if (box === h) {
+      // a bare heading: take it and what follows, up to the next heading
+      const parts = [h]; let s = h.nextElementSibling;
+      while (s && !/^H[1-5]$/.test(s.tagName)) { parts.push(s); s = s.nextElementSibling; }
       box = document.createElement("div"); h.parentElement.insertBefore(box, h); parts.forEach(p => box.appendChild(p));
     }
+    if (box.contains(head)) return;
     box.setAttribute("data-tp-moved", "1"); box.classList.add("tp-moved");
-    let after = head; const pin = top.querySelector(":scope > .pp-card"); if (pin) after = pin;
-    after.insertAdjacentElement("afterend", box);
+    const pin = top.querySelector(":scope > .pp-card"); const after = pin || head;
+    if (after.nextElementSibling !== box) after.insertAdjacentElement("afterend", box);
   }
   if (typeof render === "function") {
     const baseRender = render;
     render = function () { const r = baseRender.apply(this, arguments); try { moveTopPicks(); } catch (e) {} return r; };
   }
+  // sections drawn after the page (loaded later) are moved too
+  let busy = false;
+  new MutationObserver(() => { if (busy) return; busy = true; requestAnimationFrame(() => { try { moveTopPicks(); } catch (e) {} busy = false; }); })
+    .observe(document.body, {childList: true, subtree: true});
   // Admin → Top picks
   if (typeof vAdmin === "function" && typeof ADMIN_TABS !== "undefined") {
     if (!ADMIN_TABS.some(t => t[0] === "toppicks")) { const i = ADMIN_TABS.findIndex(t => t[0] === "operators" || t[0] === "casinos"); ADMIN_TABS.splice(i < 0 ? ADMIN_TABS.length : i + 1, 0, ["toppicks", "Top picks"]); }

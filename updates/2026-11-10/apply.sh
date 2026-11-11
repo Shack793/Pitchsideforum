@@ -20,9 +20,10 @@ PARTS=(
   "visitors|Visitor counts by country (Admin → Visitors)"
   "bugs|Bug Reports board with statuses"
   "links|Section links: page trails, Forum page headings and a Tags page"
-  "top-picks|Top picks: partner casinos first on the Casinos & Sportsbooks page (Admin → Top picks)"
+  "top-picks|Top picks: your six casinos, section moved to the top (Admin → Top picks)"
   "policy-placement|Complaints policy on the Complaints page, review guidelines on the casino and sportsbook pages"
   "raffle-dec31|Raffle draw on 31 December"
+  "ads-fix|Ads: homepage banner and side ads always show while on and live"
 )
 ok=0; bad=0; echo
 for p in "${PARTS[@]}"; do
