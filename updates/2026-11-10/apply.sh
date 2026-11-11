@@ -24,6 +24,9 @@ PARTS=(
   "policy-placement|Complaints policy on the Complaints page, review guidelines on the casino and sportsbook pages"
   "raffle-dec31|Raffle draw on 31 December"
   "ads-fix|Ads: homepage banner and side ads always show while on and live"
+  "weights|Safety Index weights: licence 15%, member reviews 25%"
+  "gif-ads|Animated GIF banners and ads"
+  "admin-rating|Site admin rating: 26% of the Safety Index, set in Admin → Reviews"
 )
 ok=0; bad=0; echo
 for p in "${PARTS[@]}"; do

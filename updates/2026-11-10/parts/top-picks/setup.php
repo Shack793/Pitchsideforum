@@ -35,6 +35,21 @@ foreach ($new as $o) {
   insert('operators', ['slug' => $o['slug'], 'data' => jenc($base + $o), 'created' => $now, 'updated' => $now]);
   $added[] = $o['name'];
 }
+// Correction (Nov 2026): Crypto.Games shows a Curaçao Gaming Control Board licence on its site
+// (MuchGaming B.V., OGL/2024/1336/1047), also listed by Casino Guru, so its listing is updated to match.
+foreach ($all() as $x) {
+  $n = $norm((string) ($x['d']['name'] ?? '')); $w = $norm((string) ($x['d']['website'] ?? ''));
+  if ($x['slug'] !== 'crypto-games' && $n !== 'cryptogames' && $w !== 'cryptogames') continue;
+  $d = $x['d'];
+  if (($d['regulator'] ?? '') === 'curacao') continue;
+  $d['regulator'] = 'curacao';
+  $d['license'] = 'Curaçao Gaming Control Board, licence OGL/2024/1336/1047, held by MuchGaming B.V. (Willemstad, Curaçao).';
+  $d['owner'] = 'MuchGaming B.V.';
+  $d['cons'] = array_values(array_filter((array) ($d['cons'] ?? []), fn($c) => stripos((string) $c, 'licence') === false));
+  $d['pros'] = array_values(array_unique(array_merge((array) ($d['pros'] ?? []), ['Curaçao GCB licence number published'])));
+  q("UPDATE operators SET data = ?, updated = ? WHERE slug = ?", [jenc($d), now_ms(), $x['slug']]);
+  $added[] = 'Crypto.Games licence corrected';
+}
 // The top picks, in order; matched by slug, name or website
 $wanted = [['1xBet', ['1xbet']], ['Flush', ['flush']], ['BetWinner', ['betwinner']], ['Crypto.Games', ['cryptogames']], ['CoinoRoyale', ['coinoroyale', 'coinsroyale', 'coinroyale']], ['just.bet', ['justbet']]];
 $ops = $all(); $picks = []; $missing = [];
