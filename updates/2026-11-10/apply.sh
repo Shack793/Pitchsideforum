@@ -33,6 +33,8 @@ PARTS=(
   "no-promotions|Promotions & bonuses page removed"
   "new-listings|New casinos: BiggerZ and Bets.io (not blacklisted)"
   "fast-start|Loading placeholder clears as soon as the page shows"
+  "remember-me|Keep me signed in tick box at sign-in"
+  "logos|Casino logos, trimmed and centred"
   "admin-tabs|Admin tabs in alphabetical order"
 )
 ok=0; bad=0; echo
