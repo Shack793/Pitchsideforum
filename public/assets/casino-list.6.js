@@ -1,4 +1,4 @@
-/* Pitchside Forum (v5: Play and Read review buttons line up across tiles): Casinos & Sportsbooks list as small tiles, in the style of AskGamblers.
+/* Pitchside Forum (v6: Play and Read review buttons line up across tiles; "Read review" under Play is easy to read; logos sit centred, with the box filled in the logo's own background colour): Casinos & Sportsbooks list as small tiles, in the style of AskGamblers.
    - Each tile: logo, name, type, Safety Index, "Read review", and a "Play" button with "18+ · T&Cs apply" once the
      casino has an active affiliate link (Admin → Affiliate links). Never for blacklisted casinos, ones with a
      warning, or a Safety Index under 5.0. Clicking anywhere else on a tile opens the review.
@@ -28,8 +28,8 @@
       <span class="ct-si si-${s.tone}" title="Safety Index ${s.score.toFixed(1)} of 10: ${esc(s.label)}"><b>${s.score.toFixed(1)}</b>${esc(s.label)}</span>
       ${warnBadge(o)}
       <div class="ct-act">${aff
-        ? `${affButton(aff, "casino-list", "Play", "btn primary ct-play")}<span class="ct-sub">${link(opPath(o), "Read review", "ct-rev")} · 18+ · T&amp;Cs apply</span>`
-        : `${link(opPath(o), "Read review", "btn primary ct-play")}<span class="ct-sub" aria-hidden="true">&nbsp;</span>`}</div>
+        ? `${affButton(aff, "casino-list", "Play", "btn primary ct-play")}<span class="ct-sub">${link(opPath(o), "Read review", "ct-rev")}<span class="ct-tc">18+ · T&amp;Cs apply</span></span>`
+        : `${link(opPath(o), "Read review", "btn primary ct-play")}<span class="ct-sub" aria-hidden="true"><span class="ct-rev">&nbsp;</span><span class="ct-tc">&nbsp;</span></span>`}</div>
     </article>`;
   }
   const row = (id, title, list, n, open) => `<section class="ct-sec" aria-labelledby="${id}">
@@ -86,7 +86,29 @@
     const a = c.querySelector("a.ct-hit"); if (a) a.click();
   });
   try { render(); } catch (e) {}
+  // Logos: fill the box with the logo's own edge colour, so logos with a coloured background don't show white bars
+  function logoBg(img) {
+    if (img.dataset.bgDone) return; img.dataset.bgDone = "1";
+    try {
+      const w = img.naturalWidth, h = img.naturalHeight; if (!w || !h) return;
+      const c = document.createElement("canvas"); c.width = w; c.height = h;
+      const g = c.getContext("2d"); g.drawImage(img, 0, 0);
+      const pts = [[1, 1], [w - 2, 1], [1, h - 2], [w - 2, h - 2], [Math.floor(w / 2), 1], [Math.floor(w / 2), h - 2]];
+      const px = pts.map(([x, y]) => g.getImageData(x, y, 1, 1).data);
+      if (px.some(p => p[3] < 200)) return;                       // transparent edges: keep the white box
+      const avg = [0, 1, 2].map(i => Math.round(px.reduce((n, p) => n + p[i], 0) / px.length));
+      const spread = Math.max(...[0, 1, 2].map(i => Math.max(...px.map(p => p[i])) - Math.min(...px.map(p => p[i]))));
+      if (spread > 40) return;                                    // edges aren't one colour
+      if (avg.every(v => v > 235)) return;                        // already white
+      const box = img.closest(".ct-logo"); if (box) { box.style.background = `rgb(${avg.join(",")})`; box.style.borderColor = "transparent"; }
+    } catch (e) {}
+  }
+  function fixLogos() {
+    document.querySelectorAll(".ct-logo img").forEach(img => { if (img.complete && img.naturalWidth) logoBg(img); else img.addEventListener("load", () => logoBg(img), {once: true}); });
+  }
+  { const baseR = render; render = function () { const r = baseR.apply(this, arguments); try { fixLogos(); } catch (e) {} return r; }; }
+  try { fixLogos(); } catch (e) {}
   { const st = document.createElement("style");
-    st.textContent = `.ct-sub{display:block;font-size:.7rem;line-height:1.3;color:var(--muted);min-height:1.3em;white-space:nowrap}.ct-sub .ct-rev{font-size:inherit}`;
+    st.textContent = `.ct-sub{display:flex;flex-direction:column;align-items:center;gap:2px;line-height:1.3}.ct-sub .ct-rev{display:block;font-size:.9rem;font-weight:700;min-height:1.3em}.ct-sub .ct-tc{display:block;font-size:.72rem;color:var(--muted);min-height:1.3em;white-space:nowrap}.ct-logo{display:flex!important;align-items:center;justify-content:center;padding:8px;box-sizing:border-box}.ct-logo img{display:block;width:auto!important;height:auto!important;max-width:100%;max-height:100%;padding:0!important;object-fit:contain;margin:auto}.ct-logo:has(.ct-init){padding:0}.ct-logo:has(.ct-init){width:100%;max-width:150px}.ct-init{border-radius:inherit}`;
     document.head.appendChild(st); }
 })();

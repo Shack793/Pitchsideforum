@@ -28,6 +28,11 @@ PARTS=(
   "gif-ads|Animated GIF banners and ads"
   "casino-tiles|Casino tiles: Play and Read review buttons line up"
   "admin-rating|Site admin rating: 26% of the Safety Index, set in Admin → Reviews"
+  "member-privacy|Member list and staff list kept out of Google (profiles still findable)"
+  "aff-quiet|Affiliate badges and commission notes removed (18+ stays)"
+  "no-promotions|Promotions & bonuses page removed"
+  "new-listings|New casinos: BiggerZ and Bets.io (not blacklisted)"
+  "fast-start|Loading placeholder clears as soon as the page shows"
   "admin-tabs|Admin tabs in alphabetical order"
 )
 ok=0; bad=0; echo

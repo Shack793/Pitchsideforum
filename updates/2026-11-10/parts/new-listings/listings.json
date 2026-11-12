@@ -1,0 +1,20 @@
+[
+ {"slug": "biggerz", "name": "BiggerZ", "kind": "both", "website": "biggerz.com", "color": "#F59E0B",
+  "owner": "CDK Play Inc SRL (Costa Rica, reg. 3-102-919705)",
+  "license": "Anjouan licence ALSI-202504023-FI1, shown on the site (CDK Play Inc SRL).", "regulator": "anjouan",
+  "size": "small", "est": 2025, "crypto": true, "fiat": true, "poker": false,
+  "withdrawals": ["BTC", "ETH", "USDT", "USDC", "SOL", "LTC", "TRX", "XRP", "DOGE", "ADA", "BCH", "Skrill", "Neteller", "MiFinity", "Interac"],
+  "minDeposit": "5 USDT", "withdrawalLimit": "No cap stated", "kyc": "ID, proof of address and a selfie may be requested",
+  "games": "Casino, live casino, sportsbook with esports, and prediction markets", "languages": "English",
+  "pros": ["Licence number published", "Crypto plus some local payment methods", "Casino, sportsbook and prediction markets in one account"],
+  "cons": ["Offshore Anjouan licence with light player protection", "Some players report slow withdrawals and closed accounts"], "unfairTerms": []},
+ {"slug": "bets-io", "name": "Bets.io", "kind": "both", "website": "bets.io", "color": "#7C3AED",
+  "owner": "Bets Entertainment N.V. (as named by review sites)",
+  "license": "Review sites cite a Curaçao licence (Bets Entertainment N.V.), but the site shows no licence number and it isn't confirmed on the Curaçao register.", "regulator": "none",
+  "size": "small", "est": 2021, "crypto": true, "fiat": false, "poker": false,
+  "withdrawals": ["BTC", "ETH", "USDT", "USDC", "SOL", "XRP", "LTC", "DOGE", "TRX", "ADA", "BNB", "BCH"],
+  "minDeposit": "20 USDT to claim bonuses", "withdrawalLimit": "€30,000 a day, €60,000 a week, €100,000 a month (casino)", "kyc": "Verification may be requested",
+  "games": "10,000+ casino games, live casino, and a sportsbook with esports", "languages": "English",
+  "pros": ["Large game library", "Withdrawal limits clearly stated"],
+  "cons": ["No licence number shown on the site", "Licence not confirmed on the Curaçao register"], "unfairTerms": []}
+]
