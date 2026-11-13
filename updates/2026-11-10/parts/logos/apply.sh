@@ -8,10 +8,11 @@ if [[ ! -f "$APP/app/lib/api.php" ]]; then echo "Couldn't find the site in $APP.
 OWNER=$(stat -c '%U' "$APP/app/storage" 2>/dev/null || echo root)
 RUN=(php); if [[ "$OWNER" != "root" ]] && id "$OWNER" >/dev/null 2>&1; then RUN=(runuser -u "$OWNER" -- php); fi
 mkdir -p "$APP/public/uploads/media" && chown "$(stat -c '%U:%G' "$APP/public/uploads")" "$APP/public/uploads/media" 2>/dev/null || true
-WORK=$(mktemp -d); cp -r setup.php logos "$WORK/"; chmod -R a+rX "$WORK"
+WORK=$(mktemp -d); cp -r setup.php logos names.json "$WORK/"; chmod -R a+rX "$WORK"
 OUT=$("${RUN[@]}" "$WORK/setup.php" "$APP" "$WORK/logos" 2>&1); RC=$?; rm -rf "$WORK"
 [[ $RC -eq 0 ]] || { echo "The logos couldn't be added: $(echo "$OUT" | tail -1)"; exit 1; }
 command -v restorecon >/dev/null 2>&1 && restorecon -R "$APP/public/uploads/media" 2>/dev/null || true
 rm -f "$APP"/app/storage/cache/*.json 2>/dev/null || true
 L=$(awk '/^LOGOS/{sub(/^LOGOS /,""); print}' <<<"$OUT"); M=$(awk '/^MISSING/{sub(/^MISSING /,""); print}' <<<"$OUT")
-echo "Done. New logos: $L.$([[ "$M" != "-" ]] && echo " Not in the directory, skipped: $M.")"
+R=$(awk '/^RENAMED/{sub(/^RENAMED /,""); print}' <<<"$OUT")
+echo "Done. New logos: $L.$([[ "$R" != "-" ]] && echo " Renamed: $R.")$([[ "$M" != "-" ]] && echo " Not in the directory, skipped: $M.")"
