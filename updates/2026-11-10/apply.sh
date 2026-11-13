@@ -36,6 +36,10 @@ PARTS=(
   "remember-me|Keep me signed in tick box at sign-in"
   "logos|Casino logos, trimmed and centred"
   "admin-tabs|Admin tabs in alphabetical order"
+  "casino-load|Casinos & Sportsbooks pages open fully built, no NaN scores"
+  "ad-speed|Homepage banner and side ads load straight away"
+  "lighter-pages|Lighter pages: shorter post previews and casino details loaded only where needed"
+  "http2|Web server uses HTTP/2 (all page files download at once)"
 )
 ok=0; bad=0; echo
 for p in "${PARTS[@]}"; do

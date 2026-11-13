@@ -1,0 +1,4 @@
+.ps-js.ps-hold #view>*{display:none!important}
+.ps-js.ps-hold footer,.ps-js.ps-hold .ticker{visibility:hidden}
+.ps-js.ps-hold #view{min-height:calc(100vh - 96px)}
+.ps-js.ps-hold #view::before{content:"";display:block!important;margin-top:24px;height:360px;border-radius:12px;background:linear-gradient(var(--line,#e3e8ee) 0 0) 0 0/38% 30px no-repeat,linear-gradient(var(--line,#e3e8ee) 0 0) 0 48px/62% 14px no-repeat,linear-gradient(var(--surface,#fff) 0 0) 0 92px/100% 110px no-repeat,linear-gradient(var(--surface,#fff) 0 0) 0 218px/100% 110px no-repeat;animation:psLoad 1.1s ease-in-out infinite alternate}

@@ -21,6 +21,10 @@ document.documentElement.classList.add("ps-js");setTimeout(function(){var d=docu
   animation:psLoad 1.1s ease-in-out infinite alternate}
 @keyframes psLoad{from{opacity:.55}to{opacity:1}}
 @media (prefers-reduced-motion:reduce){.ps-js:not(.ps-ready) #view::before{animation:none}}
+.ps-js.ps-hold #view>*{display:none!important}
+.ps-js.ps-hold footer,.ps-js.ps-hold .ticker{visibility:hidden}
+.ps-js.ps-hold #view{min-height:calc(100vh - 96px)}
+.ps-js.ps-hold #view::before{content:"";display:block!important;margin-top:24px;height:360px;border-radius:12px;background:linear-gradient(var(--line,#e3e8ee) 0 0) 0 0/38% 30px no-repeat,linear-gradient(var(--line,#e3e8ee) 0 0) 0 48px/62% 14px no-repeat,linear-gradient(var(--surface,#fff) 0 0) 0 92px/100% 110px no-repeat,linear-gradient(var(--surface,#fff) 0 0) 0 218px/100% 110px no-repeat;animation:psLoad 1.1s ease-in-out infinite alternate}
 </style>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" href="/assets/app.895e02db9d15.js" as="script">
@@ -942,11 +946,13 @@ details.spoiler>div{margin-top:6px;white-space:pre-wrap}
 <div class="toast" id="toast" hidden role="status"></div>
 
 <!--PS_BOOT-->
+<script id="ps-op-fill">(function(){var b=window.PS_BOOT;if(!b||!b.opSlim||!b.operators)return;var arr={pros:1,cons:1,withdrawals:1,countries:1,images:1};b.operators.forEach(function(o){b.opSlim.forEach(function(k){if(!(k in o))o[k]=arr[k]?[]:"";});});})();</script>
 <script src="/assets/app.895e02db9d15.js"></script>
 <script id="ps-early-ready">(function(){var d=document.documentElement,v=document.getElementById("view");function ok(){if(v&&!v.querySelector(".ssr-copy")&&v.children.length){d.classList.add("ps-ready");return true}return false}if(!ok()&&v&&window.MutationObserver){var m=new MutationObserver(function(){if(ok())m.disconnect()});m.observe(v,{childList:true});}})();</script>
+<script id="ps-hold">(function(){var d=document.documentElement;if(/^\/(casinos|sportsbooks|gambling|complaints|blacklist)(\/|$)/.test(location.pathname))d.classList.add("ps-hold");if(typeof safety==="function"){var b=safety;safety=function(o){var r=b.apply(this,arguments);if(r&&isNaN(r.score)&&typeof SAFETY_W==="object"){var w=0,n=0;for(var k in SAFETY_W){var x=+SAFETY_W[k]||0,p=r.parts?+r.parts[k]:NaN;if(isNaN(p))p=50;n+=p*x;w+=x}r.score=Math.round(n/(w||1))/10;if(typeof safetyLabel==="function")r.label=safetyLabel(r.score);r.tone=r.score>=8?"good":r.score>=5?"mid":"bad"}return r}}})();</script>
 <script src="/assets/scores-links.2.js"></script>
 <script src="/assets/ads-tweaks.3.js"></script>
-<script src="/assets/full-banners.2.js"></script>
+<script src="/assets/full-banners.3.js"></script>
 <script src="/assets/ads-images.2.js"></script>
 <script src="/assets/topic-stats.2.js"></script>
 <script src="/assets/raffle.4.js"></script>
@@ -979,6 +985,8 @@ details.spoiler>div{margin-top:6px;white-space:pre-wrap}
 <script src="/assets/admin-tabs.1.js"></script>
 <script src="/assets/aff-quiet.1.js"></script>
 <script src="/assets/remember-me.1.js"></script>
+<script src="/assets/lighter-pages.2.js"></script>
 <script>(function(){var d=document.documentElement;if(document.querySelector("#view .ssr-copy"))d.classList.remove("ps-js");else d.classList.add("ps-ready");})();</script>
+<script id="ps-hold-release">document.documentElement.classList.remove("ps-hold");</script>
 </body>
 </html>

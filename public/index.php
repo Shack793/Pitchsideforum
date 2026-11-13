@@ -38,6 +38,7 @@ try {
   $topicLi = fn(array $t) => '<li><a href="/topic/' . (int) $t['id'] . '">' . $h($t['title']) . '</a>' . ($showReplies ? ' <small>' . (count($t['posts']) - 1) . ' replies</small>' : '') . '</li>';
   foreach (doc('SEO') as $s) if (($s['path'] ?? '') === $path) { $title = $s['title'] ?: $title; $desc = $s['desc'] ?: $desc; if (empty($s['index'])) $index = false; }
 
+  if (function_exists('boot_trim')) $boot = boot_trim($boot, $u);   // lighter pages (app/ops/zz-boot-trim.php)
   if (($seg[0] ?? '') === 'topic' && isset($seg[1])) {
     $t = row("SELECT * FROM topics WHERE id = ?", [(int) $seg[1]]);
     $out = $t ? topics_out([$t], $u) : [];
@@ -50,7 +51,7 @@ try {
       foreach (array_slice(array_filter($t['posts'], fn($p) => !$p['hidden']), 0, 30) as $p)
         $body .= '<section><p><strong>' . $h($p['author']) . '</strong> · ' . gmdate('j M Y', intdiv($p['at'], 1000)) . '</p><div>' . $postHtml($p['body']) . '</div></section>';
       $body .= '</article>';
-      if (empty($boot['topics']) || !in_array($t['id'], array_column($boot['topics'], 'id'), true)) $boot['topics'][] = $t;
+      $ti = array_search($t['id'], array_column($boot['topics'] ?? [], 'id'), true); if ($ti === false) $boot['topics'][] = $t; else $boot['topics'][$ti] = $t;   // the opened topic always in full
     }
   } elseif (($seg[0] ?? '') === 'forum' && isset($seg[1])) {
     $b = board_doc($seg[1]);
