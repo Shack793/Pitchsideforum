@@ -71,3 +71,4 @@ echo
 if [[ $bad -eq 0 ]]; then echo "All done: $ok of $ok installed."; else echo "$ok installed, $bad didn't. Send me the file $LOG and I'll fix it."; fi
 [[ "$MK" == "off" ]] && echo "Note: your marketplace is switched off, so Marketplace Talk and its rules stay hidden until you turn it on (Admin → System)."
 echo "Reload the site with Ctrl+F5 (Cmd+Shift+R on a Mac) to see everything."
+if [[ $bad -gt 0 ]]; then exit 1; fi

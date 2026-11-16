@@ -9,6 +9,10 @@ if (!is_array($w) || !$w) $w = ['licence' => 25, 'complaints' => 35, 'fairness' 
 $prev = $w;
 $w['licence'] = 15; $w['feedback'] = 25;
 $sum = array_sum(array_map('intval', $w));
+if ($sum > 100 && isset($w['complaints'])) {
+  $w['complaints'] = max(0, (int) $w['complaints'] - ($sum - 100));
+  $sum = array_sum(array_map('intval', $w));
+}
 if ($sum !== 100) { echo "SUM $sum " . jenc($w) . "\n"; exit(3); }
 if ($w != $prev) {
   save_doc('SAFETY_W', $w);
