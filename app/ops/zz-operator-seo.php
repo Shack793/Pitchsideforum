@@ -30,8 +30,19 @@ function op_seo(array $o, string $slug, string $title, string $desc, string $bod
     $bits = [];
     if ($n) $bits[] = "Rated " . number_format($avg, 1) . "/5 by $n member" . ($n === 1 ? '' : 's');
     $bits[] = $cn ? "$cn complaint" . ($cn === 1 ? '' : 's') . ($open ? " ($open open)" : '') : 'no complaints filed';
-    if (!empty($o['license'])) $bits[] = 'licence: ' . mb_substr(preg_replace('/\s+/', ' ', (string) $o['license']), 0, 90);
-    $desc = "$name: " . implode('; ', $bits) . '. Read player reviews, payouts and complaints before you deposit.';
+    // licence in a few plain words (search results cut long text mid-sentence)
+    $reg = ['ukgc' => 'by the UK Gambling Commission', 'mga' => 'by the Malta Gaming Authority', 'gib' => 'in Gibraltar', 'alderney' => 'in Alderney', 'iom' => 'in the Isle of Man',
+      'ksa' => 'in the Netherlands', 'sga' => 'in Sweden', 'dgoj' => 'in Spain', 'adm' => 'in Italy', 'srij' => 'in Portugal', 'onjn' => 'in Romania',
+      'be' => 'in Belgium', 'ee' => 'in Estonia', 'br' => 'in Brazil', 'ie' => 'in Ireland', 'de' => 'in Germany', 'lv' => 'in Latvia', 'ua' => 'in Ukraine', 'bg' => 'in Bulgaria',
+      'ontario' => 'in Ontario', 'au' => 'in Australia', 'us' => 'by a US state regulator', 'kahnawake' => 'in Kahnawake', 'curacao' => 'in Curaçao', 'anjouan' => 'in Anjouan',
+      'africa' => 'in its African markets'][(string) ($o['regulator'] ?? '')] ?? null;
+    if (!empty($o['blacklist'])) $bits[] = 'on the Pitchside blacklist';
+    elseif (!empty($o['warning'])) $bits[] = 'carries a Pitchside warning';
+    if ($reg) $bits[] = 'licensed ' . $reg;
+    elseif (($o['regulator'] ?? '') === 'unchecked') $bits[] = 'licence not checked yet';
+    elseif (($o['regulator'] ?? '') === 'none') $bits[] = 'no licence confirmed';
+    $kind = !empty($o['casino']) && !empty($o['sportsbook']) ? 'casino and sportsbook' : (!empty($o['sportsbook']) && empty($o['casino']) ? 'sportsbook' : 'online casino');
+    $desc = "Is $name safe? Pitchside's review of this $kind: " . implode('; ', $bits) . '. Safety Index, player reviews and complaints before you deposit.';
 
     // Page content
     $out = '<article><h1>' . $h($name) . ' review</h1>';

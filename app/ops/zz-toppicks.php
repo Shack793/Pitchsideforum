@@ -8,7 +8,7 @@ function tp_layout(): array { $v = val("SELECT v FROM config WHERE k = 'LAYOUT'"
 function tp_save(array $slugs, ?array $u): array {
   $ok = [];
   foreach ($slugs as $s) { $s = (string) $s; if ($s !== '' && !in_array($s, $ok, true) && val("SELECT 1 FROM operators WHERE slug = ?", [$s])) $ok[] = $s; }
-  $ok = array_slice($ok, 0, 12);
+  $ok = array_slice($ok, 0, 60);
   $lay = tp_layout(); $prev = $lay['topPicks'] ?? [];
   $lay['topPicks'] = $ok; save_doc('LAYOUT', $lay, $u['name'] ?? 'installer');
   $now = now_ms();
