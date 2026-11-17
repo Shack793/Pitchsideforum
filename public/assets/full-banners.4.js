@@ -1,4 +1,5 @@
-/* Pitchside Forum (v3: homepage banner and side ad pictures load straight away, not lazily; v2: GIFs stay animated): full-image banners for the ad spaces.
+/* Pitchside Forum (v4: ad pictures wait until the page itself has finished loading, so big animated banners never slow
+   the page down; their space is kept meanwhile. v2: GIFs stay animated): full-image banners for the ad spaces.
    Each ad can have an optional "full banner" picture that fills its space instead of the text layout:
      Homepage banner:  computers 2340 × 164 (shows about 1170 × 82), phones 716 × 252 (shows about 358 × 126)
      Side ad:          320 × 1200 (shows at 160 × 600; side ads only appear on wide screens)
@@ -14,7 +15,20 @@
     postAdEdit: {list: () => POST_ADS, d: "2240 × 280", m: "716 × 300", shows: "about 1120 × 140 on computers, 358 × 150 on phones"}
   };
   const label = a => `<span class="fb-label">${a.house ? "From Pitchside Forum" : `Sponsored · ${esc(a.advertiser || "")}`}</span>`;
-  const pic = (a, cls) => `<picture class="fb-pic ${cls}">${a.fullM ? `<source media="(max-width: 640px)" srcset="${esc(a.fullM)}">` : ""}<img src="${esc(a.full)}" alt="${esc(a.headline || a.advertiser || "Advertisement")}" ${cls === "fb-post" ? `loading="lazy" decoding="async"` : `fetchpriority="high"`}></picture>`;
+  // Ad pictures start downloading only once the page has fully loaded (window "load"), so a heavy animated banner
+  // never competes with the page's own files. Until then the img has no src; its space is kept by the ps-ad-ph styles.
+  let pageReady = document.readyState === "complete";
+  const pic = (a, cls) => {
+    const alt = esc(a.headline || a.advertiser || "Advertisement");
+    if (pageReady) return `<picture class="fb-pic ${cls}">${a.fullM ? `<source media="(max-width: 640px)" srcset="${esc(a.fullM)}">` : ""}<img src="${esc(a.full)}" alt="${alt}" decoding="async"></picture>`;
+    return `<picture class="fb-pic ${cls}">${a.fullM ? `<source media="(max-width: 640px)" data-fbsrcset="${esc(a.fullM)}">` : ""}<img data-fbsrc="${esc(a.full)}" data-fbalt="${alt}" alt="" decoding="async"></picture>`;
+  };
+  function wake() {
+    pageReady = true;
+    document.querySelectorAll("source[data-fbsrcset]").forEach(s => { s.srcset = s.dataset.fbsrcset; s.removeAttribute("data-fbsrcset"); });
+    document.querySelectorAll("img[data-fbsrc]").forEach(i => { i.alt = i.dataset.fbalt || ""; i.src = i.dataset.fbsrc; i.removeAttribute("data-fbsrc"); });
+  }
+  if (!pageReady) { addEventListener("load", () => setTimeout(wake, 50)); setTimeout(wake, 15000); }
 
   // Homepage banner: swap a slide's text layout for its picture
   const baseBanner = adBanner;

@@ -37,7 +37,7 @@ PARTS=(
   "logos|Casino logos, trimmed and centred"
   "admin-tabs|Admin tabs in alphabetical order"
   "casino-load|Casinos & Sportsbooks pages open fully built, no NaN scores"
-  "ad-speed|Homepage banner and side ads load straight away"
+  "ad-speed|Ad pictures load after the page, never slowing it down"
   "lighter-pages|Lighter pages: shorter post previews and casino details loaded only where needed"
   "http2|Web server uses HTTP/2 (all page files download at once)"
   "score-penalty|Penalty points: admins can take points off a casino's Safety Index"
@@ -47,6 +47,8 @@ PARTS=(
   "top-picks-more|Top picks: your top 6, SportyBet 7th, then the new bookmakers"
   "more-casinos|188 more casinos and bookmakers (directory past 500)"
   "cryptogames-ads|Crypto.Games animated banners (side slot and under the first post)"
+  "avatar-placeholder|Avatars show an outline while the picture loads"
+  "ad-placeholder|Ad pictures keep their space while they load"
 )
 ok=0; bad=0; echo
 for p in "${PARTS[@]}"; do

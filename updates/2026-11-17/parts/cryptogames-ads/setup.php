@@ -7,12 +7,12 @@ $app = rtrim($argv[1] ?? '/var/www/pitchside', '/'); $img = $argv[2];
 require $app . '/app/lib/api.php';
 $folder = PUBLIC_DIR . '/uploads/media'; if (!is_dir($folder)) mkdir($folder, 0755, true);
 $put = function (string $f) use ($folder, $img) {
-  $bin = (string) file_get_contents("$img/$f"); if (substr($bin, 0, 3) !== 'GIF') throw new RuntimeException("$f isn't a GIF");
-  $name = 'cryptogames-' . substr(hash('sha256', $bin), 0, 12) . '.gif';
+  $bin = (string) file_get_contents("$img/$f"); if (substr($bin, 0, 4) !== 'RIFF' || substr($bin, 8, 4) !== 'WEBP') throw new RuntimeException("$f isn't a WebP picture");
+  $name = 'cryptogames-' . substr(hash('sha256', $bin), 0, 12) . '.webp';   // animated WebP: same animation, about a third of the GIF's size
   if (!is_file("$folder/$name")) file_put_contents("$folder/$name", $bin);
   return "/uploads/media/$name";
 };
-$side = $put('cryptogames-side-320x960.gif'); $pc = $put('cryptogames-inpost-computer-1120x70.gif'); $ph = $put('cryptogames-inpost-phone-320x50.gif');
+$side = $put('cryptogames-side-320x960.webp'); $pc = $put('cryptogames-inpost-computer-1120x70.webp'); $ph = $put('cryptogames-inpost-phone-320x50.webp');
 $now = now_ms(); $done = [];
 $base = ['advertiser' => 'Crypto.Games', 'headline' => 'Crypto.Games: Bitcoin and altcoin casino', 'text' => 'Fast withdrawals, provably fair games, low house edge.',
   'cta' => 'Play now', 'dest' => 'https://crypto.games/', 'aff' => null, 'bg' => '#1D252A', 'fg' => '#FFFFFF', 'accent' => '#F7931A', 'gambling' => true];
