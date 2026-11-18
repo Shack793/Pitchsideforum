@@ -1,0 +1,3762 @@
+[
+ {
+  "slug": "paf",
+  "name": "Paf",
+  "kind": "casino",
+  "website": "paf.ee",
+  "color": "#334155",
+  "owner": "Aktsiaselts PAFER",
+  "license": "Estonian licence held by Aktsiaselts PAFER, on the Estonian Tax and Customs Board's list of legal gambling operators (checked November 2026).",
+  "regulator": "ee",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Estonia"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "speedybet",
+  "name": "Speedybet",
+  "kind": "both",
+  "website": "speedybet.ee",
+  "color": "#334155",
+  "owner": "Aktsiaselts PAFER",
+  "license": "Estonian licence held by Aktsiaselts PAFER, on the Estonian Tax and Customs Board's list of legal gambling operators (checked November 2026).",
+  "regulator": "ee",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Estonia"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "x3000",
+  "name": "X3000",
+  "kind": "casino",
+  "website": "x3000.ee",
+  "color": "#334155",
+  "owner": "Aktsiaselts PAFER",
+  "license": "Estonian licence held by Aktsiaselts PAFER, on the Estonian Tax and Customs Board's list of legal gambling operators (checked November 2026).",
+  "regulator": "ee",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Estonia"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "grandx",
+  "name": "GrandX",
+  "kind": "casino",
+  "website": "grandx.com",
+  "color": "#334155",
+  "owner": "Alpache OÜ",
+  "license": "Estonian licence held by Alpache OÜ, on the Estonian Tax and Customs Board's list of legal gambling operators (checked November 2026).",
+  "regulator": "ee",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Estonia"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "winsly",
+  "name": "Winsly",
+  "kind": "casino",
+  "website": "winsly.com",
+  "color": "#334155",
+  "owner": "Frenwall Limited",
+  "license": "Estonian licence held by Frenwall Limited, on the Estonian Tax and Customs Board's list of legal gambling operators (checked November 2026).",
+  "regulator": "ee",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Estonia"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "madrush",
+  "name": "MadRush",
+  "kind": "casino",
+  "website": "madrush.com",
+  "color": "#334155",
+  "owner": "Frenwall Limited",
+  "license": "Estonian licence held by Frenwall Limited, on the Estonian Tax and Customs Board's list of legal gambling operators (checked November 2026).",
+  "regulator": "ee",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Estonia"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "slotowl",
+  "name": "SlotOwl",
+  "kind": "casino",
+  "website": "slotowl.com",
+  "color": "#334155",
+  "owner": "Frenwall Limited",
+  "license": "Estonian licence held by Frenwall Limited, on the Estonian Tax and Customs Board's list of legal gambling operators (checked November 2026).",
+  "regulator": "ee",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Estonia"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "reko-casino",
+  "name": "Reko Casino",
+  "kind": "casino",
+  "website": "rekocasino.com",
+  "color": "#334155",
+  "owner": "Frenwall Limited",
+  "license": "Estonian licence held by Frenwall Limited, on the Estonian Tax and Customs Board's list of legal gambling operators (checked November 2026).",
+  "regulator": "ee",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Estonia"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "slotcloud",
+  "name": "SlotCloud",
+  "kind": "casino",
+  "website": "slotcloud.com",
+  "color": "#334155",
+  "owner": "Frenwall Limited",
+  "license": "Estonian licence held by Frenwall Limited, on the Estonian Tax and Customs Board's list of legal gambling operators (checked November 2026).",
+  "regulator": "ee",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Estonia"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "jackpotcow",
+  "name": "JackpotCow",
+  "kind": "casino",
+  "website": "jackpotcow.com",
+  "color": "#334155",
+  "owner": "Frenwall Limited",
+  "license": "Estonian licence held by Frenwall Limited, on the Estonian Tax and Customs Board's list of legal gambling operators (checked November 2026).",
+  "regulator": "ee",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Estonia"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "dicewise",
+  "name": "DiceWise",
+  "kind": "casino",
+  "website": "dicewise.com",
+  "color": "#334155",
+  "owner": "Frenwall Limited",
+  "license": "Estonian licence held by Frenwall Limited, on the Estonian Tax and Customs Board's list of legal gambling operators (checked November 2026).",
+  "regulator": "ee",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Estonia"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "slotwish",
+  "name": "SlotWish",
+  "kind": "casino",
+  "website": "slotwish.com",
+  "color": "#334155",
+  "owner": "Frenwall Limited",
+  "license": "Estonian licence held by Frenwall Limited, on the Estonian Tax and Customs Board's list of legal gambling operators (checked November 2026).",
+  "regulator": "ee",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Estonia"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "wizzspin",
+  "name": "WizzSpin",
+  "kind": "casino",
+  "website": "wizzspin.com",
+  "color": "#334155",
+  "owner": "Frenwall Limited",
+  "license": "Estonian licence held by Frenwall Limited, on the Estonian Tax and Customs Board's list of legal gambling operators (checked November 2026).",
+  "regulator": "ee",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Estonia"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "djack",
+  "name": "DJack",
+  "kind": "casino",
+  "website": "djack.com",
+  "color": "#334155",
+  "owner": "Frenwall Limited",
+  "license": "Estonian licence held by Frenwall Limited, on the Estonian Tax and Customs Board's list of legal gambling operators (checked November 2026).",
+  "regulator": "ee",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Estonia"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "highroller",
+  "name": "HighRoller",
+  "kind": "casino",
+  "website": "highroller.com",
+  "color": "#334155",
+  "owner": "Happy Hour Solutions Limited",
+  "license": "Estonian licence held by Happy Hour Solutions Limited, on the Estonian Tax and Customs Board's list of legal gambling operators (checked November 2026).",
+  "regulator": "ee",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Estonia"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "fruta",
+  "name": "Fruta",
+  "kind": "casino",
+  "website": "fruta.com",
+  "color": "#334155",
+  "owner": "Happy Hour Solutions Limited",
+  "license": "Estonian licence held by Happy Hour Solutions Limited, on the Estonian Tax and Customs Board's list of legal gambling operators (checked November 2026).",
+  "regulator": "ee",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Estonia"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "kassu",
+  "name": "Kassu",
+  "kind": "casino",
+  "website": "kassuuu.com",
+  "color": "#334155",
+  "owner": "Happy Hour Solutions Limited",
+  "license": "Estonian licence held by Happy Hour Solutions Limited, on the Estonian Tax and Customs Board's list of legal gambling operators (checked November 2026).",
+  "regulator": "ee",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Estonia"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "winnerz",
+  "name": "Winnerz",
+  "kind": "casino",
+  "website": "winnerz.com",
+  "color": "#334155",
+  "owner": "Hitz Gaming OÜ",
+  "license": "Estonian licence held by Hitz Gaming OÜ, on the Estonian Tax and Customs Board's list of legal gambling operators (checked November 2026).",
+  "regulator": "ee",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Estonia"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "wisho",
+  "name": "Wisho",
+  "kind": "casino",
+  "website": "wisho.com",
+  "color": "#334155",
+  "owner": "Hitz Gaming OÜ",
+  "license": "Estonian licence held by Hitz Gaming OÜ, on the Estonian Tax and Customs Board's list of legal gambling operators (checked November 2026).",
+  "regulator": "ee",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Estonia"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "trickz",
+  "name": "Trickz",
+  "kind": "casino",
+  "website": "trickz.com",
+  "color": "#334155",
+  "owner": "Hitz Gaming OÜ",
+  "license": "Estonian licence held by Hitz Gaming OÜ, on the Estonian Tax and Customs Board's list of legal gambling operators (checked November 2026).",
+  "regulator": "ee",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Estonia"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "hype-kasino",
+  "name": "Hype Kasino",
+  "kind": "casino",
+  "website": "hypekasino.com",
+  "color": "#334155",
+  "owner": "Hitz Gaming OÜ",
+  "license": "Estonian licence held by Hitz Gaming OÜ, on the Estonian Tax and Customs Board's list of legal gambling operators (checked November 2026).",
+  "regulator": "ee",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Estonia"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "20bet",
+  "name": "20Bet",
+  "kind": "both",
+  "website": "20bet.com",
+  "color": "#334155",
+  "owner": "Moon Technologies OÜ",
+  "license": "Estonian licence held by Moon Technologies OÜ, on the Estonian Tax and Customs Board's list of legal gambling operators (checked November 2026).",
+  "regulator": "ee",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Estonia"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "bizzo-casino",
+  "name": "Bizzo Casino",
+  "kind": "casino",
+  "website": "bizzocasino.com",
+  "color": "#334155",
+  "owner": "Moon Technologies OÜ",
+  "license": "Estonian licence held by Moon Technologies OÜ, on the Estonian Tax and Customs Board's list of legal gambling operators (checked November 2026).",
+  "regulator": "ee",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Estonia"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "national-casino",
+  "name": "National Casino",
+  "kind": "casino",
+  "website": "nationalcasino.com",
+  "color": "#334155",
+  "owner": "Moon Technologies OÜ",
+  "license": "Estonian licence held by Moon Technologies OÜ, on the Estonian Tax and Customs Board's list of legal gambling operators (checked November 2026).",
+  "regulator": "ee",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Estonia"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "olybet",
+  "name": "OlyBet",
+  "kind": "both",
+  "website": "olybet.eu",
+  "color": "#334155",
+  "owner": "OB Holding 1 OÜ",
+  "license": "Estonian licence held by OB Holding 1 OÜ, on the Estonian Tax and Customs Board's list of legal gambling operators (checked November 2026).",
+  "regulator": "ee",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Estonia"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "optibet",
+  "name": "Optibet",
+  "kind": "both",
+  "website": "optibet.ee",
+  "color": "#334155",
+  "owner": "Optiwin OÜ",
+  "license": "Estonian licence held by Optiwin OÜ, on the Estonian Tax and Customs Board's list of legal gambling operators (checked November 2026).",
+  "regulator": "ee",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Estonia"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "tonybet",
+  "name": "TonyBet",
+  "kind": "both",
+  "website": "tonybet.com",
+  "color": "#334155",
+  "owner": "Osaühing Tonybet",
+  "license": "Estonian licence held by Osaühing Tonybet, on the Estonian Tax and Customs Board's list of legal gambling operators (checked November 2026).",
+  "regulator": "ee",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Estonia"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "fenixbet",
+  "name": "Fenixbet",
+  "kind": "both",
+  "website": "fenixbet.ee",
+  "color": "#334155",
+  "owner": "OÜ Novoloto",
+  "license": "Estonian licence held by OÜ Novoloto, on the Estonian Tax and Customs Board's list of legal gambling operators (checked November 2026).",
+  "regulator": "ee",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Estonia"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "fenix-casino",
+  "name": "Fenix Casino",
+  "kind": "casino",
+  "website": "fenixcasino.ee",
+  "color": "#334155",
+  "owner": "OÜ Novoloto",
+  "license": "Estonian licence held by OÜ Novoloto, on the Estonian Tax and Customs Board's list of legal gambling operators (checked November 2026).",
+  "regulator": "ee",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Estonia"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "vivatbet",
+  "name": "VivatBet",
+  "kind": "both",
+  "website": "vivatbet.com",
+  "color": "#334155",
+  "owner": "P.H. Primary OÜ",
+  "license": "Estonian licence held by P.H. Primary OÜ, on the Estonian Tax and Customs Board's list of legal gambling operators (checked November 2026).",
+  "regulator": "ee",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Estonia"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "buusti-kasino",
+  "name": "Buusti Kasino",
+  "kind": "casino",
+  "website": "buustikasino.com",
+  "color": "#334155",
+  "owner": "Play Well Media Limited",
+  "license": "Estonian licence held by Play Well Media Limited, on the Estonian Tax and Customs Board's list of legal gambling operators (checked November 2026).",
+  "regulator": "ee",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Estonia"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "pokerstars",
+  "name": "PokerStars",
+  "kind": "casino",
+  "website": "pokerstars.ee",
+  "color": "#334155",
+  "owner": "REEL Estonia Limited",
+  "license": "Estonian licence held by REEL Estonia Limited, on the Estonian Tax and Customs Board's list of legal gambling operators (checked November 2026).",
+  "regulator": "ee",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Estonia"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "coolbet",
+  "name": "Coolbet",
+  "kind": "both",
+  "website": "coolbet.com",
+  "color": "#334155",
+  "owner": "StayCool OÜ",
+  "license": "Estonian licence held by StayCool OÜ, on the Estonian Tax and Customs Board's list of legal gambling operators (checked November 2026).",
+  "regulator": "ee",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Estonia"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "jalla-casino",
+  "name": "Jalla Casino",
+  "kind": "casino",
+  "website": "jallacasino.ee",
+  "color": "#334155",
+  "owner": "Triogames OÜ",
+  "license": "Estonian licence held by Triogames OÜ, on the Estonian Tax and Customs Board's list of legal gambling operators (checked November 2026).",
+  "regulator": "ee",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Estonia"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "lataamo",
+  "name": "Lataamo",
+  "kind": "casino",
+  "website": "lataamo.com",
+  "color": "#334155",
+  "owner": "Vana Lauri OÜ",
+  "license": "Estonian licence held by Vana Lauri OÜ, on the Estonian Tax and Customs Board's list of legal gambling operators (checked November 2026).",
+  "regulator": "ee",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Estonia"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "nubet",
+  "name": "Nubet",
+  "kind": "both",
+  "website": "nubet.com",
+  "color": "#334155",
+  "owner": "Vana Lauri OÜ",
+  "license": "Estonian licence held by Vana Lauri OÜ, on the Estonian Tax and Customs Board's list of legal gambling operators (checked November 2026).",
+  "regulator": "ee",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Estonia"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "jokeri",
+  "name": "Jokeri",
+  "kind": "casino",
+  "website": "jokeri.com",
+  "color": "#334155",
+  "owner": "Vana Lauri OÜ",
+  "license": "Estonian licence held by Vana Lauri OÜ, on the Estonian Tax and Customs Board's list of legal gambling operators (checked November 2026).",
+  "regulator": "ee",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Estonia"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "lapland-casino",
+  "name": "Lapland Casino",
+  "kind": "casino",
+  "website": "lapland.com",
+  "color": "#334155",
+  "owner": "Vana Lauri OÜ",
+  "license": "Estonian licence held by Vana Lauri OÜ, on the Estonian Tax and Customs Board's list of legal gambling operators (checked November 2026).",
+  "regulator": "ee",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Estonia"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "raju",
+  "name": "Raju",
+  "kind": "casino",
+  "website": "raju.com",
+  "color": "#334155",
+  "owner": "Vana Lauri OÜ",
+  "license": "Estonian licence held by Vana Lauri OÜ, on the Estonian Tax and Customs Board's list of legal gambling operators (checked November 2026).",
+  "regulator": "ee",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Estonia"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "amppari",
+  "name": "Amppari",
+  "kind": "casino",
+  "website": "amppari.com",
+  "color": "#334155",
+  "owner": "Vana Lauri OÜ",
+  "license": "Estonian licence held by Vana Lauri OÜ, on the Estonian Tax and Customs Board's list of legal gambling operators (checked November 2026).",
+  "regulator": "ee",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Estonia"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "kasarmi",
+  "name": "Kasarmi",
+  "kind": "casino",
+  "website": "kasarmi.com",
+  "color": "#334155",
+  "owner": "Vana Lauri OÜ",
+  "license": "Estonian licence held by Vana Lauri OÜ, on the Estonian Tax and Customs Board's list of legal gambling operators (checked November 2026).",
+  "regulator": "ee",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Estonia"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "buumi",
+  "name": "Buumi",
+  "kind": "casino",
+  "website": "buumi.com",
+  "color": "#334155",
+  "owner": "Njord Vantage Services LTD",
+  "license": "Estonian licence held by Njord Vantage Services LTD, on the Estonian Tax and Customs Board's list of legal gambling operators (checked November 2026).",
+  "regulator": "ee",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Estonia"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "koi-casino",
+  "name": "Koi Casino",
+  "kind": "casino",
+  "website": "koicasino.com",
+  "color": "#334155",
+  "owner": "Njord Vantage Services LTD",
+  "license": "Estonian licence held by Njord Vantage Services LTD, on the Estonian Tax and Customs Board's list of legal gambling operators (checked November 2026).",
+  "regulator": "ee",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Estonia"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "nopein",
+  "name": "Nopein",
+  "kind": "casino",
+  "website": "nopein.com",
+  "color": "#334155",
+  "owner": "Njord Vantage Services LTD",
+  "license": "Estonian licence held by Njord Vantage Services LTD, on the Estonian Tax and Customs Board's list of legal gambling operators (checked November 2026).",
+  "regulator": "ee",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Estonia"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "joker-io",
+  "name": "Joker.io",
+  "kind": "casino",
+  "website": "joker.io",
+  "color": "#334155",
+  "owner": "Njord Vantage Services LTD",
+  "license": "Estonian licence held by Njord Vantage Services LTD, on the Estonian Tax and Customs Board's list of legal gambling operators (checked November 2026).",
+  "regulator": "ee",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Estonia"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "firespin",
+  "name": "FireSpin",
+  "kind": "casino",
+  "website": "firespin.com",
+  "color": "#334155",
+  "owner": "Njord Vantage Services LTD",
+  "license": "Estonian licence held by Njord Vantage Services LTD, on the Estonian Tax and Customs Board's list of legal gambling operators (checked November 2026).",
+  "regulator": "ee",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Estonia"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "hillo",
+  "name": "Hillo",
+  "kind": "casino",
+  "website": "hillo.com",
+  "color": "#334155",
+  "owner": "Njord Vantage Services LTD",
+  "license": "Estonian licence held by Njord Vantage Services LTD, on the Estonian Tax and Customs Board's list of legal gambling operators (checked November 2026).",
+  "regulator": "ee",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Estonia"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "slotti",
+  "name": "Slotti",
+  "kind": "casino",
+  "website": "slotti.com",
+  "color": "#334155",
+  "owner": "Njord Vantage Services LTD",
+  "license": "Estonian licence held by Njord Vantage Services LTD, on the Estonian Tax and Customs Board's list of legal gambling operators (checked November 2026).",
+  "regulator": "ee",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Estonia"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "lysti",
+  "name": "Lysti",
+  "kind": "casino",
+  "website": "lysti.com",
+  "color": "#334155",
+  "owner": "Njord Vantage Services LTD",
+  "license": "Estonian licence held by Njord Vantage Services LTD, on the Estonian Tax and Customs Board's list of legal gambling operators (checked November 2026).",
+  "regulator": "ee",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Estonia"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "possu",
+  "name": "Possu",
+  "kind": "casino",
+  "website": "possu.com",
+  "color": "#334155",
+  "owner": "Njord Vantage Services LTD",
+  "license": "Estonian licence held by Njord Vantage Services LTD, on the Estonian Tax and Customs Board's list of legal gambling operators (checked November 2026).",
+  "regulator": "ee",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Estonia"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "kruuna",
+  "name": "Kruuna",
+  "kind": "casino",
+  "website": "kruuna.com",
+  "color": "#334155",
+  "owner": "Njord Vantage Services LTD",
+  "license": "Estonian licence held by Njord Vantage Services LTD, on the Estonian Tax and Customs Board's list of legal gambling operators (checked November 2026).",
+  "regulator": "ee",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Estonia"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "pommi",
+  "name": "Pommi",
+  "kind": "casino",
+  "website": "pommi.com",
+  "color": "#334155",
+  "owner": "Njord Vantage Services LTD",
+  "license": "Estonian licence held by Njord Vantage Services LTD, on the Estonian Tax and Customs Board's list of legal gambling operators (checked November 2026).",
+  "regulator": "ee",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Estonia"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "shokki",
+  "name": "Shokki",
+  "kind": "casino",
+  "website": "shokki.com",
+  "color": "#334155",
+  "owner": "Njord Vantage Services LTD",
+  "license": "Estonian licence held by Njord Vantage Services LTD, on the Estonian Tax and Customs Board's list of legal gambling operators (checked November 2026).",
+  "regulator": "ee",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Estonia"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "bombay-casino",
+  "name": "Bombay Casino",
+  "kind": "casino",
+  "website": "bombaycasino.com",
+  "color": "#334155",
+  "owner": "Bombay Club and Resort OÜ",
+  "license": "Estonian licence held by Bombay Club and Resort OÜ, on the Estonian Tax and Customs Board's list of legal gambling operators (checked November 2026).",
+  "regulator": "ee",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Estonia"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "yolo-casino",
+  "name": "Yolo Casino",
+  "kind": "casino",
+  "website": "yolo.com",
+  "color": "#334155",
+  "owner": "Bombay Club and Resort OÜ",
+  "license": "Estonian licence held by Bombay Club and Resort OÜ, on the Estonian Tax and Customs Board's list of legal gambling operators (checked November 2026).",
+  "regulator": "ee",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Estonia"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "chesterfield-poker",
+  "name": "Chesterfield Poker",
+  "kind": "casino",
+  "website": "chesterfieldpoker.com",
+  "color": "#334155",
+  "owner": "Bombay Club and Resort OÜ",
+  "license": "Estonian licence held by Bombay Club and Resort OÜ, on the Estonian Tax and Customs Board's list of legal gambling operators (checked November 2026).",
+  "regulator": "ee",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Estonia"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "golden-star-casino",
+  "name": "Golden Star Casino",
+  "kind": "casino",
+  "website": "goldenstar-casino.com",
+  "color": "#334155",
+  "owner": "Befuria GO OÜ",
+  "license": "Estonian licence held by Befuria GO OÜ, on the Estonian Tax and Customs Board's list of legal gambling operators (checked November 2026).",
+  "regulator": "ee",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Estonia"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "winz-io",
+  "name": "Winz.io",
+  "kind": "casino",
+  "website": "winz.io",
+  "color": "#334155",
+  "owner": "Befuria GO OÜ",
+  "license": "Estonian licence held by Befuria GO OÜ, on the Estonian Tax and Customs Board's list of legal gambling operators (checked November 2026).",
+  "regulator": "ee",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Estonia"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "24casino",
+  "name": "24Casino",
+  "kind": "casino",
+  "website": "24casino.com",
+  "color": "#334155",
+  "owner": "Befuria GO OÜ",
+  "license": "Estonian licence held by Befuria GO OÜ, on the Estonian Tax and Customs Board's list of legal gambling operators (checked November 2026).",
+  "regulator": "ee",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Estonia"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "jackpoty",
+  "name": "Jackpoty",
+  "kind": "casino",
+  "website": "jackpoty.com",
+  "color": "#334155",
+  "owner": "Befuria GO OÜ",
+  "license": "Estonian licence held by Befuria GO OÜ, on the Estonian Tax and Customs Board's list of legal gambling operators (checked November 2026).",
+  "regulator": "ee",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Estonia"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "rooli",
+  "name": "Rooli",
+  "kind": "casino",
+  "website": "rooli.com",
+  "color": "#334155",
+  "owner": "Befuria GO OÜ",
+  "license": "Estonian licence held by Befuria GO OÜ, on the Estonian Tax and Customs Board's list of legal gambling operators (checked November 2026).",
+  "regulator": "ee",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Estonia"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "the-clubhouse-casino",
+  "name": "The Clubhouse Casino",
+  "kind": "casino",
+  "website": "theclubhousecasino.com",
+  "color": "#334155",
+  "owner": "Befuria GO OÜ",
+  "license": "Estonian licence held by Befuria GO OÜ, on the Estonian Tax and Customs Board's list of legal gambling operators (checked November 2026).",
+  "regulator": "ee",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Estonia"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "ninja-sports",
+  "name": "Ninja Sports",
+  "kind": "both",
+  "website": "ninjasports.ee",
+  "color": "#334155",
+  "owner": "Ninja Global OÜ",
+  "license": "Estonian licence held by Ninja Global OÜ, on the Estonian Tax and Customs Board's list of legal gambling operators (checked November 2026).",
+  "regulator": "ee",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Estonia"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "respin",
+  "name": "Respin",
+  "kind": "casino",
+  "website": "respin.com",
+  "color": "#334155",
+  "owner": "Ducks In A Row OÜ",
+  "license": "Estonian licence held by Ducks In A Row OÜ, on the Estonian Tax and Customs Board's list of legal gambling operators (checked November 2026).",
+  "regulator": "ee",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Estonia"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "epicbet",
+  "name": "Epicbet",
+  "kind": "both",
+  "website": "epicbet.com",
+  "color": "#334155",
+  "owner": "Ducks In A Row OÜ",
+  "license": "Estonian licence held by Ducks In A Row OÜ, on the Estonian Tax and Customs Board's list of legal gambling operators (checked November 2026).",
+  "regulator": "ee",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Estonia"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "shokker",
+  "name": "Shokker",
+  "kind": "casino",
+  "website": "shokker.com",
+  "color": "#334155",
+  "owner": "Ducks In A Row OÜ",
+  "license": "Estonian licence held by Ducks In A Row OÜ, on the Estonian Tax and Customs Board's list of legal gambling operators (checked November 2026).",
+  "regulator": "ee",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Estonia"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "slotbox",
+  "name": "Slotbox",
+  "kind": "casino",
+  "website": "slotbox.com",
+  "color": "#334155",
+  "owner": "Slotbox Limited",
+  "license": "Estonian licence held by Slotbox Limited, on the Estonian Tax and Customs Board's list of legal gambling operators (checked November 2026).",
+  "regulator": "ee",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Estonia"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "betmaster",
+  "name": "Betmaster",
+  "kind": "both",
+  "website": "betmaster.ee",
+  "color": "#334155",
+  "owner": "BM Baltics Ltd",
+  "license": "Estonian licence held by BM Baltics Ltd, on the Estonian Tax and Customs Board's list of legal gambling operators (checked November 2026).",
+  "regulator": "ee",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Estonia"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "casinoin",
+  "name": "CasinoIn",
+  "kind": "casino",
+  "website": "casinoin.ee",
+  "color": "#334155",
+  "owner": "BM Baltics Ltd",
+  "license": "Estonian licence held by BM Baltics Ltd, on the Estonian Tax and Customs Board's list of legal gambling operators (checked November 2026).",
+  "regulator": "ee",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Estonia"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "iviwin",
+  "name": "Iviwin",
+  "kind": "casino",
+  "website": "iviwin.net",
+  "color": "#334155",
+  "owner": "Spaceship Technologies OÜ",
+  "license": "Estonian licence held by Spaceship Technologies OÜ, on the Estonian Tax and Customs Board's list of legal gambling operators (checked November 2026).",
+  "regulator": "ee",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Estonia"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "hellwinz",
+  "name": "Hellwinz",
+  "kind": "casino",
+  "website": "hellwinz.net",
+  "color": "#334155",
+  "owner": "Spaceship Technologies OÜ",
+  "license": "Estonian licence held by Spaceship Technologies OÜ, on the Estonian Tax and Customs Board's list of legal gambling operators (checked November 2026).",
+  "regulator": "ee",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Estonia"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "shotz",
+  "name": "Shotz",
+  "kind": "casino",
+  "website": "shotz.com",
+  "color": "#334155",
+  "owner": "Far Up Services Limited",
+  "license": "Estonian licence held by Far Up Services Limited, on the Estonian Tax and Customs Board's list of legal gambling operators (checked November 2026).",
+  "regulator": "ee",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Estonia"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "pelipeto",
+  "name": "Pelipeto",
+  "kind": "casino",
+  "website": "pelipeto.com",
+  "color": "#334155",
+  "owner": "Far Up Services Limited",
+  "license": "Estonian licence held by Far Up Services Limited, on the Estonian Tax and Customs Board's list of legal gambling operators (checked November 2026).",
+  "regulator": "ee",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Estonia"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "pelikaani",
+  "name": "Pelikaani",
+  "kind": "casino",
+  "website": "pelikaani.com",
+  "color": "#334155",
+  "owner": "MagicPoro Limited",
+  "license": "Estonian licence held by MagicPoro Limited, on the Estonian Tax and Customs Board's list of legal gambling operators (checked November 2026).",
+  "regulator": "ee",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Estonia"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "pelikioski",
+  "name": "Pelikioski",
+  "kind": "casino",
+  "website": "pelikioski.com",
+  "color": "#334155",
+  "owner": "MagicPoro Limited",
+  "license": "Estonian licence held by MagicPoro Limited, on the Estonian Tax and Customs Board's list of legal gambling operators (checked November 2026).",
+  "regulator": "ee",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Estonia"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "bigwin",
+  "name": "BigWin",
+  "kind": "casino",
+  "website": "bigwin.com",
+  "color": "#334155",
+  "owner": "MagicPoro Limited",
+  "license": "Estonian licence held by MagicPoro Limited, on the Estonian Tax and Customs Board's list of legal gambling operators (checked November 2026).",
+  "regulator": "ee",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Estonia"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "pottila",
+  "name": "Pottila",
+  "kind": "casino",
+  "website": "pottila.com",
+  "color": "#334155",
+  "owner": "MagicPoro Limited",
+  "license": "Estonian licence held by MagicPoro Limited, on the Estonian Tax and Customs Board's list of legal gambling operators (checked November 2026).",
+  "regulator": "ee",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Estonia"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "spinokkio",
+  "name": "Spinokkio",
+  "kind": "casino",
+  "website": "spinokkio.com",
+  "color": "#334155",
+  "owner": "MagicPoro Limited",
+  "license": "Estonian licence held by MagicPoro Limited, on the Estonian Tax and Customs Board's list of legal gambling operators (checked November 2026).",
+  "regulator": "ee",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Estonia"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "svenbet",
+  "name": "SvenBet",
+  "kind": "both",
+  "website": "svenbet.com",
+  "color": "#334155",
+  "owner": "Campeon Interactive EE Limited",
+  "license": "Estonian licence held by Campeon Interactive EE Limited, on the Estonian Tax and Customs Board's list of legal gambling operators (checked November 2026).",
+  "regulator": "ee",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Estonia"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "betsamigo",
+  "name": "BetsAmigo",
+  "kind": "both",
+  "website": "betsamigo.ee",
+  "color": "#334155",
+  "owner": "Campeon Interactive EE Limited",
+  "license": "Estonian licence held by Campeon Interactive EE Limited, on the Estonian Tax and Customs Board's list of legal gambling operators (checked November 2026).",
+  "regulator": "ee",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Estonia"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "wallacebet",
+  "name": "WallaceBet",
+  "kind": "both",
+  "website": "wallacebet.ee",
+  "color": "#334155",
+  "owner": "Campeon Interactive EE Limited",
+  "license": "Estonian licence held by Campeon Interactive EE Limited, on the Estonian Tax and Customs Board's list of legal gambling operators (checked November 2026).",
+  "regulator": "ee",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Estonia"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "svenplay",
+  "name": "SvenPlay",
+  "kind": "casino",
+  "website": "svenplay.ee",
+  "color": "#334155",
+  "owner": "Campeon Interactive EE Limited",
+  "license": "Estonian licence held by Campeon Interactive EE Limited, on the Estonian Tax and Customs Board's list of legal gambling operators (checked November 2026).",
+  "regulator": "ee",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Estonia"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "nalu-casino",
+  "name": "Nalu Casino",
+  "kind": "casino",
+  "website": "nalucasino.com",
+  "color": "#334155",
+  "owner": "Campeon Interactive EE Limited",
+  "license": "Estonian licence held by Campeon Interactive EE Limited, on the Estonian Tax and Customs Board's list of legal gambling operators (checked November 2026).",
+  "regulator": "ee",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Estonia"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "sombrero-spins",
+  "name": "Sombrero Spins",
+  "kind": "casino",
+  "website": "sombrerospins.com",
+  "color": "#334155",
+  "owner": "Campeon Interactive EE Limited",
+  "license": "Estonian licence held by Campeon Interactive EE Limited, on the Estonian Tax and Customs Board's list of legal gambling operators (checked November 2026).",
+  "regulator": "ee",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Estonia"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "r-casino",
+  "name": "R Casino",
+  "kind": "casino",
+  "website": "rcasino.ee",
+  "color": "#334155",
+  "owner": "Campeon Interactive EE Limited",
+  "license": "Estonian licence held by Campeon Interactive EE Limited, on the Estonian Tax and Customs Board's list of legal gambling operators (checked November 2026).",
+  "regulator": "ee",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Estonia"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "bonus-casino",
+  "name": "Bonus Casino",
+  "kind": "casino",
+  "website": "bonuscasino.ee",
+  "color": "#334155",
+  "owner": "Campeon Interactive EE Limited",
+  "license": "Estonian licence held by Campeon Interactive EE Limited, on the Estonian Tax and Customs Board's list of legal gambling operators (checked November 2026).",
+  "regulator": "ee",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Estonia"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "lonkero-kasino",
+  "name": "Lonkero Kasino",
+  "kind": "casino",
+  "website": "lonkerokasino.com",
+  "color": "#334155",
+  "owner": "Blixx Gaming Limited",
+  "license": "Estonian licence held by Blixx Gaming Limited, on the Estonian Tax and Customs Board's list of legal gambling operators (checked November 2026).",
+  "regulator": "ee",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Estonia"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "fyffe",
+  "name": "Fyffe",
+  "kind": "casino",
+  "website": "fyffe.com",
+  "color": "#334155",
+  "owner": "Blixx Gaming Limited",
+  "license": "Estonian licence held by Blixx Gaming Limited, on the Estonian Tax and Customs Board's list of legal gambling operators (checked November 2026).",
+  "regulator": "ee",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Estonia"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "astrabull",
+  "name": "AstraBull",
+  "kind": "casino",
+  "website": "astrabull.com",
+  "color": "#334155",
+  "owner": "Uxone Online OÜ",
+  "license": "Estonian licence held by Uxone Online OÜ, on the Estonian Tax and Customs Board's list of legal gambling operators (checked November 2026).",
+  "regulator": "ee",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Estonia"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "onerush",
+  "name": "OneRush",
+  "kind": "casino",
+  "website": "onerush.com",
+  "color": "#334155",
+  "owner": "Hylas Limited",
+  "license": "Estonian licence held by Hylas Limited, on the Estonian Tax and Customs Board's list of legal gambling operators (checked November 2026).",
+  "regulator": "ee",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Estonia"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "voom-casino",
+  "name": "Voom Casino",
+  "kind": "casino",
+  "website": "voomcasino.com",
+  "color": "#334155",
+  "owner": "Tard Games OÜ",
+  "license": "Estonian licence held by Tard Games OÜ, on the Estonian Tax and Customs Board's list of legal gambling operators (checked November 2026).",
+  "regulator": "ee",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Estonia"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "hupi-slots",
+  "name": "Hupi Slots",
+  "kind": "casino",
+  "website": "hupislots.com",
+  "color": "#334155",
+  "owner": "Palmirico Online OÜ",
+  "license": "Estonian licence held by Palmirico Online OÜ, on the Estonian Tax and Customs Board's list of legal gambling operators (checked November 2026).",
+  "regulator": "ee",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Estonia"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "betistan",
+  "name": "Betistan",
+  "kind": "both",
+  "website": "betistan.com",
+  "color": "#334155",
+  "owner": "Sautera Limited",
+  "license": "Estonian licence held by Sautera Limited, on the Estonian Tax and Customs Board's list of legal gambling operators (checked November 2026).",
+  "regulator": "ee",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Estonia"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "budsino",
+  "name": "Budsino",
+  "kind": "casino",
+  "website": "budsino.com",
+  "color": "#334155",
+  "owner": "Northvale Limited",
+  "license": "Estonian licence held by Northvale Limited, on the Estonian Tax and Customs Board's list of legal gambling operators (checked November 2026).",
+  "regulator": "ee",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Estonia"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "casinobud",
+  "name": "CasinoBud",
+  "kind": "casino",
+  "website": "casinobud.com",
+  "color": "#334155",
+  "owner": "Northvale Limited",
+  "license": "Estonian licence held by Northvale Limited, on the Estonian Tax and Customs Board's list of legal gambling operators (checked November 2026).",
+  "regulator": "ee",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Estonia"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "luckybet",
+  "name": "Luckybet",
+  "kind": "both",
+  "website": "luckybet.ee",
+  "color": "#334155",
+  "owner": "SIA Luckybet.ee",
+  "license": "Estonian licence held by SIA Luckybet.ee, on the Estonian Tax and Customs Board's list of legal gambling operators (checked November 2026).",
+  "regulator": "ee",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Estonia"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "kaahaus",
+  "name": "Kaahaus",
+  "kind": "casino",
+  "website": "kaahaus.com",
+  "color": "#334155",
+  "owner": "PRIME ENTERTAINMENT LIMITED",
+  "license": "Estonian licence held by PRIME ENTERTAINMENT LIMITED, on the Estonian Tax and Customs Board's list of legal gambling operators (checked November 2026).",
+  "regulator": "ee",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Estonia"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "kaista",
+  "name": "Kaista",
+  "kind": "casino",
+  "website": "kaista.com",
+  "color": "#334155",
+  "owner": "Project Vanir Limited",
+  "license": "Estonian licence held by Project Vanir Limited, on the Estonian Tax and Customs Board's list of legal gambling operators (checked November 2026).",
+  "regulator": "ee",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Estonia"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "zlots",
+  "name": "Zlots",
+  "kind": "casino",
+  "website": "zlots.com",
+  "color": "#334155",
+  "owner": "Project Vanir Limited",
+  "license": "Estonian licence held by Project Vanir Limited, on the Estonian Tax and Customs Board's list of legal gambling operators (checked November 2026).",
+  "regulator": "ee",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Estonia"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "rulikk",
+  "name": "Rulikk",
+  "kind": "casino",
+  "website": "rulikk.com",
+  "color": "#334155",
+  "owner": "InterGames OÜ",
+  "license": "Estonian licence held by InterGames OÜ, on the Estonian Tax and Customs Board's list of legal gambling operators (checked November 2026).",
+  "regulator": "ee",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Estonia"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "mr-pacho",
+  "name": "Mr Pacho",
+  "kind": "casino",
+  "website": "mrpacho.ee",
+  "color": "#334155",
+  "owner": "Estolio Limited",
+  "license": "Estonian licence held by Estolio Limited, on the Estonian Tax and Customs Board's list of legal gambling operators (checked November 2026).",
+  "regulator": "ee",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Estonia"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "poseidonwin",
+  "name": "PoseidonWin",
+  "kind": "casino",
+  "website": "poseidonwin.com",
+  "color": "#334155",
+  "owner": "BetTarx OÜ",
+  "license": "Estonian licence held by BetTarx OÜ, on the Estonian Tax and Customs Board's list of legal gambling operators (checked November 2026).",
+  "regulator": "ee",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Estonia"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "olympic-casino",
+  "name": "Olympic Casino",
+  "kind": "casino",
+  "website": "olympic-casino.ee",
+  "color": "#334155",
+  "owner": "OLYMPIC ENTERTAINMENT GROUP AS",
+  "license": "Estonian licence held by OLYMPIC ENTERTAINMENT GROUP AS, on the Estonian Tax and Customs Board's list of legal gambling operators (checked November 2026).",
+  "regulator": "ee",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Estonia"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "city-casino",
+  "name": "City Casino",
+  "kind": "casino",
+  "website": "citycasino.ee",
+  "color": "#334155",
+  "owner": "OÜ Best4U",
+  "license": "Estonian licence held by OÜ Best4U, on the Estonian Tax and Customs Board's list of legal gambling operators (checked November 2026).",
+  "regulator": "ee",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Estonia"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "bally-s-estonia",
+  "name": "Bally's Estonia",
+  "kind": "casino",
+  "website": "ballys.ee",
+  "color": "#334155",
+  "owner": "OÜ Best4U",
+  "license": "Estonian licence held by OÜ Best4U, on the Estonian Tax and Customs Board's list of legal gambling operators (checked November 2026).",
+  "regulator": "ee",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Estonia"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "privabet",
+  "name": "Privabet",
+  "kind": "both",
+  "website": "privabet.com",
+  "color": "#334155",
+  "owner": "Brettspill OÜ",
+  "license": "Estonian licence held by Brettspill OÜ, on the Estonian Tax and Customs Board's list of legal gambling operators (checked November 2026).",
+  "regulator": "ee",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Estonia"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "frank-casino",
+  "name": "Frank Casino",
+  "kind": "casino",
+  "website": "frankcasino.com",
+  "color": "#334155",
+  "owner": "Avento MT Limited",
+  "license": "Swedish licence (Spelinspektionen) held by Avento MT Limited, per gambling.com's list of Swedish licence holders (checked November 2026).",
+  "regulator": "sga",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Sweden"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "slotv",
+  "name": "SlotV",
+  "kind": "casino",
+  "website": "slotv.com",
+  "color": "#334155",
+  "owner": "Avento MT Limited",
+  "license": "Swedish licence (Spelinspektionen) held by Avento MT Limited, per gambling.com's list of Swedish licence holders (checked November 2026).",
+  "regulator": "sga",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Sweden"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "hyper-casino",
+  "name": "Hyper Casino",
+  "kind": "casino",
+  "website": "hypercasino.com",
+  "color": "#334155",
+  "owner": "L&L Europe Limited",
+  "license": "Swedish licence (Spelinspektionen) held by L&L Europe Limited, per gambling.com's list of Swedish licence holders (checked November 2026).",
+  "regulator": "sga",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Sweden"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "race-casino",
+  "name": "Race Casino",
+  "kind": "casino",
+  "website": "racecasino.com",
+  "color": "#334155",
+  "owner": "L&L Europe Limited",
+  "license": "Swedish licence (Spelinspektionen) held by L&L Europe Limited, per gambling.com's list of Swedish licence holders (checked November 2026).",
+  "regulator": "sga",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Sweden"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "karl-casino",
+  "name": "Karl Casino",
+  "kind": "casino",
+  "website": "karlcasino.com",
+  "color": "#334155",
+  "owner": "L&L Europe Limited",
+  "license": "Swedish licence (Spelinspektionen) held by L&L Europe Limited, per gambling.com's list of Swedish licence holders (checked November 2026).",
+  "regulator": "sga",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Sweden"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "nobonus-casino",
+  "name": "NoBonus Casino",
+  "kind": "casino",
+  "website": "nobonuscasino.com",
+  "color": "#334155",
+  "owner": "L&L Europe Limited",
+  "license": "Swedish licence (Spelinspektionen) held by L&L Europe Limited, per gambling.com's list of Swedish licence holders (checked November 2026).",
+  "regulator": "sga",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Sweden"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "yako-casino",
+  "name": "Yako Casino",
+  "kind": "casino",
+  "website": "yakocasino.com",
+  "color": "#334155",
+  "owner": "L&L Europe Limited",
+  "license": "Swedish licence (Spelinspektionen) held by L&L Europe Limited, per gambling.com's list of Swedish licence holders (checked November 2026).",
+  "regulator": "sga",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Sweden"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "yeti-casino",
+  "name": "Yeti Casino",
+  "kind": "casino",
+  "website": "yeticasino.com",
+  "color": "#334155",
+  "owner": "L&L Europe Limited",
+  "license": "Swedish licence (Spelinspektionen) held by L&L Europe Limited, per gambling.com's list of Swedish licence holders (checked November 2026).",
+  "regulator": "sga",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Sweden"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "1x2",
+  "name": "1x2",
+  "kind": "casino",
+  "website": "1x2.se",
+  "color": "#334155",
+  "owner": "PAF MT Limited",
+  "license": "Swedish licence (Spelinspektionen) held by PAF MT Limited, per gambling.com's list of Swedish licence holders (checked November 2026).",
+  "regulator": "sga",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Sweden"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "golden-bull",
+  "name": "Golden Bull",
+  "kind": "casino",
+  "website": "goldenbull.se",
+  "color": "#334155",
+  "owner": "PAF New Tech Limited",
+  "license": "Swedish licence (Spelinspektionen) held by PAF New Tech Limited, per gambling.com's list of Swedish licence holders (checked November 2026).",
+  "regulator": "sga",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Sweden"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "fastbet",
+  "name": "FastBet",
+  "kind": "both",
+  "website": "fastbet.com",
+  "color": "#334155",
+  "owner": "Prozone Limited",
+  "license": "Swedish licence (Spelinspektionen) held by Prozone Limited, per gambling.com's list of Swedish licence holders (checked November 2026).",
+  "regulator": "sga",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Sweden"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "turbo-vegas",
+  "name": "Turbo Vegas",
+  "kind": "casino",
+  "website": "turbovegas.com",
+  "color": "#334155",
+  "owner": "Prozone Limited",
+  "license": "Swedish licence (Spelinspektionen) held by Prozone Limited, per gambling.com's list of Swedish licence holders (checked November 2026).",
+  "regulator": "sga",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Sweden"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "casino-and-friends",
+  "name": "Casino and Friends",
+  "kind": "casino",
+  "website": "casinoandfriends.com",
+  "color": "#334155",
+  "owner": "Skill On Net Ltd",
+  "license": "Swedish licence (Spelinspektionen) held by Skill On Net Ltd, per gambling.com's list of Swedish licence holders (checked November 2026).",
+  "regulator": "sga",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Sweden"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "eu-casino",
+  "name": "EU Casino",
+  "kind": "casino",
+  "website": "eucasino.com",
+  "color": "#334155",
+  "owner": "Skill On Net Ltd",
+  "license": "Swedish licence (Spelinspektionen) held by Skill On Net Ltd, per gambling.com's list of Swedish licence holders (checked November 2026).",
+  "regulator": "sga",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Sweden"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "knight-slots",
+  "name": "Knight Slots",
+  "kind": "casino",
+  "website": "knightslots.com",
+  "color": "#334155",
+  "owner": "Skill On Net Ltd",
+  "license": "Swedish licence (Spelinspektionen) held by Skill On Net Ltd, per gambling.com's list of Swedish licence holders (checked November 2026).",
+  "regulator": "sga",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Sweden"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "luna-casino",
+  "name": "Luna Casino",
+  "kind": "casino",
+  "website": "lunacasino.com",
+  "color": "#334155",
+  "owner": "Skill On Net Ltd",
+  "license": "Swedish licence (Spelinspektionen) held by Skill On Net Ltd, per gambling.com's list of Swedish licence holders (checked November 2026).",
+  "regulator": "sga",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Sweden"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "megaways-casino",
+  "name": "Megaways Casino",
+  "kind": "casino",
+  "website": "megawayscasino.com",
+  "color": "#334155",
+  "owner": "Skill On Net Ltd",
+  "license": "Swedish licence (Spelinspektionen) held by Skill On Net Ltd, per gambling.com's list of Swedish licence holders (checked November 2026).",
+  "regulator": "sga",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Sweden"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "play-jango",
+  "name": "Play Jango",
+  "kind": "casino",
+  "website": "playjango.com",
+  "color": "#334155",
+  "owner": "Skill On Net Ltd",
+  "license": "Swedish licence (Spelinspektionen) held by Skill On Net Ltd, per gambling.com's list of Swedish licence holders (checked November 2026).",
+  "regulator": "sga",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Sweden"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "playkasino",
+  "name": "PlayKasino",
+  "kind": "casino",
+  "website": "playkasino.com",
+  "color": "#334155",
+  "owner": "Skill On Net Ltd",
+  "license": "Swedish licence (Spelinspektionen) held by Skill On Net Ltd, per gambling.com's list of Swedish licence holders (checked November 2026).",
+  "regulator": "sga",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Sweden"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "playojo",
+  "name": "PlayOJO",
+  "kind": "casino",
+  "website": "playojo.com",
+  "color": "#334155",
+  "owner": "Skill On Net Ltd",
+  "license": "Swedish licence (Spelinspektionen) held by Skill On Net Ltd, per gambling.com's list of Swedish licence holders (checked November 2026).",
+  "regulator": "sga",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Sweden"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "slotstars",
+  "name": "SlotStars",
+  "kind": "casino",
+  "website": "slotstars.com",
+  "color": "#334155",
+  "owner": "Skill On Net Ltd",
+  "license": "Swedish licence (Spelinspektionen) held by Skill On Net Ltd, per gambling.com's list of Swedish licence holders (checked November 2026).",
+  "regulator": "sga",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Sweden"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "swift-casino",
+  "name": "Swift Casino",
+  "kind": "casino",
+  "website": "swiftcasino.com",
+  "color": "#334155",
+  "owner": "Skill On Net Ltd",
+  "license": "Swedish licence (Spelinspektionen) held by Skill On Net Ltd, per gambling.com's list of Swedish licence holders (checked November 2026).",
+  "regulator": "sga",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Sweden"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "slots-magic",
+  "name": "Slots Magic",
+  "kind": "casino",
+  "website": "slotsmagic.com",
+  "color": "#334155",
+  "owner": "Skill On Net Ltd",
+  "license": "Swedish licence (Spelinspektionen) held by Skill On Net Ltd, per gambling.com's list of Swedish licence holders (checked November 2026).",
+  "regulator": "sga",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Sweden"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "regency-casino",
+  "name": "Regency Casino",
+  "kind": "casino",
+  "website": "regencycasino.se",
+  "color": "#334155",
+  "owner": "Skill On Net Ltd",
+  "license": "Swedish licence (Spelinspektionen) held by Skill On Net Ltd, per gambling.com's list of Swedish licence holders (checked November 2026).",
+  "regulator": "sga",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Sweden"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "spin-genie",
+  "name": "Spin Genie",
+  "kind": "casino",
+  "website": "spingenie.com",
+  "color": "#334155",
+  "owner": "Skill On Net Ltd",
+  "license": "Swedish licence (Spelinspektionen) held by Skill On Net Ltd, per gambling.com's list of Swedish licence holders (checked November 2026).",
+  "regulator": "sga",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Sweden"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "slingo",
+  "name": "Slingo",
+  "kind": "casino",
+  "website": "slingo.com",
+  "color": "#334155",
+  "owner": "Skill On Net Ltd",
+  "license": "Swedish licence (Spelinspektionen) held by Skill On Net Ltd, per gambling.com's list of Swedish licence holders (checked November 2026).",
+  "regulator": "sga",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Sweden"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "lucky-me-slots",
+  "name": "Lucky Me Slots",
+  "kind": "casino",
+  "website": "luckymeslots.com",
+  "color": "#334155",
+  "owner": "Skill On Net Ltd",
+  "license": "Swedish licence (Spelinspektionen) held by Skill On Net Ltd, per gambling.com's list of Swedish licence holders (checked November 2026).",
+  "regulator": "sga",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Sweden"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "mega-casino",
+  "name": "Mega Casino",
+  "kind": "casino",
+  "website": "megacasino.com",
+  "color": "#334155",
+  "owner": "Skill On Net Ltd",
+  "license": "Swedish licence (Spelinspektionen) held by Skill On Net Ltd, per gambling.com's list of Swedish licence holders (checked November 2026).",
+  "regulator": "sga",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Sweden"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "prime-casino",
+  "name": "Prime Casino",
+  "kind": "casino",
+  "website": "primecasino.com",
+  "color": "#334155",
+  "owner": "Skill On Net Ltd",
+  "license": "Swedish licence (Spelinspektionen) held by Skill On Net Ltd, per gambling.com's list of Swedish licence holders (checked November 2026).",
+  "regulator": "sga",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Sweden"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "simba-games",
+  "name": "Simba Games",
+  "kind": "casino",
+  "website": "simbagames.com",
+  "color": "#334155",
+  "owner": "Skill On Net Ltd",
+  "license": "Swedish licence (Spelinspektionen) held by Skill On Net Ltd, per gambling.com's list of Swedish licence holders (checked November 2026).",
+  "regulator": "sga",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Sweden"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "winlandia",
+  "name": "Winlandia",
+  "kind": "casino",
+  "website": "winlandia.com",
+  "color": "#334155",
+  "owner": "Skill On Net Ltd",
+  "license": "Swedish licence (Spelinspektionen) held by Skill On Net Ltd, per gambling.com's list of Swedish licence holders (checked November 2026).",
+  "regulator": "sga",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Sweden"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "winning-kings",
+  "name": "Winning Kings",
+  "kind": "casino",
+  "website": "winningkings.com",
+  "color": "#334155",
+  "owner": "Skill On Net Ltd",
+  "license": "Swedish licence (Spelinspektionen) held by Skill On Net Ltd, per gambling.com's list of Swedish licence holders (checked November 2026).",
+  "regulator": "sga",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Sweden"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "zebra-wins",
+  "name": "Zebra Wins",
+  "kind": "casino",
+  "website": "zebrawins.com",
+  "color": "#334155",
+  "owner": "Skill On Net Ltd",
+  "license": "Swedish licence (Spelinspektionen) held by Skill On Net Ltd, per gambling.com's list of Swedish licence holders (checked November 2026).",
+  "regulator": "sga",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Sweden"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "vegas-winner",
+  "name": "Vegas Winner",
+  "kind": "casino",
+  "website": "vegaswinner.com",
+  "color": "#334155",
+  "owner": "Skill On Net Ltd",
+  "license": "Swedish licence (Spelinspektionen) held by Skill On Net Ltd, per gambling.com's list of Swedish licence holders (checked November 2026).",
+  "regulator": "sga",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Sweden"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "turbonino",
+  "name": "Turbonino",
+  "kind": "casino",
+  "website": "turbonino.com",
+  "color": "#334155",
+  "owner": "Skill On Net Ltd",
+  "license": "Swedish licence (Spelinspektionen) held by Skill On Net Ltd, per gambling.com's list of Swedish licence holders (checked November 2026).",
+  "regulator": "sga",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Sweden"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "playtoro",
+  "name": "PlayToro",
+  "kind": "casino",
+  "website": "playtoro.com",
+  "color": "#334155",
+  "owner": "Skill On Net Ltd",
+  "license": "Swedish licence (Spelinspektionen) held by Skill On Net Ltd, per gambling.com's list of Swedish licence holders (checked November 2026).",
+  "regulator": "sga",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Sweden"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "playuzu",
+  "name": "PlayUZU",
+  "kind": "casino",
+  "website": "playuzu.com",
+  "color": "#334155",
+  "owner": "Skill On Net Ltd",
+  "license": "Swedish licence (Spelinspektionen) held by Skill On Net Ltd, per gambling.com's list of Swedish licence holders (checked November 2026).",
+  "regulator": "sga",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Sweden"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "paris-vegas-club",
+  "name": "Paris Vegas Club",
+  "kind": "casino",
+  "website": "parisvegasclub.com",
+  "color": "#334155",
+  "owner": "Skill On Net Ltd",
+  "license": "Swedish licence (Spelinspektionen) held by Skill On Net Ltd, per gambling.com's list of Swedish licence holders (checked November 2026).",
+  "regulator": "sga",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Sweden"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "lord-ping",
+  "name": "Lord Ping",
+  "kind": "casino",
+  "website": "lordping.se",
+  "color": "#334155",
+  "owner": "Skill On Net Ltd",
+  "license": "Swedish licence (Spelinspektionen) held by Skill On Net Ltd, per gambling.com's list of Swedish licence holders (checked November 2026).",
+  "regulator": "sga",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Sweden"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "jackpot-star",
+  "name": "Jackpot Star",
+  "kind": "casino",
+  "website": "jackpotstar.com",
+  "color": "#334155",
+  "owner": "Skill On Net Ltd",
+  "license": "Swedish licence (Spelinspektionen) held by Skill On Net Ltd, per gambling.com's list of Swedish licence holders (checked November 2026).",
+  "regulator": "sga",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Sweden"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "gecko-play",
+  "name": "Gecko Play",
+  "kind": "casino",
+  "website": "geckoplay.se",
+  "color": "#334155",
+  "owner": "Skill On Net Ltd",
+  "license": "Swedish licence (Spelinspektionen) held by Skill On Net Ltd, per gambling.com's list of Swedish licence holders (checked November 2026).",
+  "regulator": "sga",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Sweden"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "genting-casino",
+  "name": "Genting Casino",
+  "kind": "casino",
+  "website": "gentingcasino.se",
+  "color": "#334155",
+  "owner": "Skill On Net Ltd",
+  "license": "Swedish licence (Spelinspektionen) held by Skill On Net Ltd, per gambling.com's list of Swedish licence holders (checked November 2026).",
+  "regulator": "sga",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Sweden"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "finlandia-casino",
+  "name": "Finlandia Casino",
+  "kind": "casino",
+  "website": "finlandiacasino.com",
+  "color": "#334155",
+  "owner": "Skill On Net Ltd",
+  "license": "Swedish licence (Spelinspektionen) held by Skill On Net Ltd, per gambling.com's list of Swedish licence holders (checked November 2026).",
+  "regulator": "sga",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Sweden"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "euromania",
+  "name": "Euromania",
+  "kind": "casino",
+  "website": "euromania.com",
+  "color": "#334155",
+  "owner": "Skill On Net Ltd",
+  "license": "Swedish licence (Spelinspektionen) held by Skill On Net Ltd, per gambling.com's list of Swedish licence holders (checked November 2026).",
+  "regulator": "sga",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Sweden"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "euroking-club",
+  "name": "EuroKing Club",
+  "kind": "casino",
+  "website": "eurokingclub.com",
+  "color": "#334155",
+  "owner": "Skill On Net Ltd",
+  "license": "Swedish licence (Spelinspektionen) held by Skill On Net Ltd, per gambling.com's list of Swedish licence holders (checked November 2026).",
+  "regulator": "sga",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Sweden"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "dr-ckgl-ck",
+  "name": "DrückGlück",
+  "kind": "casino",
+  "website": "drueckglueck.com",
+  "color": "#334155",
+  "owner": "Skill On Net Ltd",
+  "license": "Swedish licence (Spelinspektionen) held by Skill On Net Ltd, per gambling.com's list of Swedish licence holders (checked November 2026).",
+  "regulator": "sga",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Sweden"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "clemens-spillehal",
+  "name": "Clemens Spillehal",
+  "kind": "casino",
+  "website": "clemensspillehal.com",
+  "color": "#334155",
+  "owner": "Skill On Net Ltd",
+  "license": "Swedish licence (Spelinspektionen) held by Skill On Net Ltd, per gambling.com's list of Swedish licence holders (checked November 2026).",
+  "regulator": "sga",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Sweden"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "bacana-play",
+  "name": "Bacana Play",
+  "kind": "casino",
+  "website": "bacanaplay.com",
+  "color": "#334155",
+  "owner": "Skill On Net Ltd",
+  "license": "Swedish licence (Spelinspektionen) held by Skill On Net Ltd, per gambling.com's list of Swedish licence holders (checked November 2026).",
+  "regulator": "sga",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Sweden"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "ahti-games",
+  "name": "Ahti Games",
+  "kind": "casino",
+  "website": "ahtigames.com",
+  "color": "#334155",
+  "owner": "Skill On Net Ltd",
+  "license": "Swedish licence (Spelinspektionen) held by Skill On Net Ltd, per gambling.com's list of Swedish licence holders (checked November 2026).",
+  "regulator": "sga",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Sweden"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "snurr",
+  "name": "Snurr",
+  "kind": "casino",
+  "website": "snurrcasino.se",
+  "color": "#334155",
+  "owner": "Speedy Ltd",
+  "license": "Swedish licence (Spelinspektionen) held by Speedy Ltd, per gambling.com's list of Swedish licence holders (checked November 2026).",
+  "regulator": "sga",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Sweden"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "duelz",
+  "name": "Duelz",
+  "kind": "casino",
+  "website": "duelz.com",
+  "color": "#334155",
+  "owner": "SuprPlay Limited",
+  "license": "Swedish licence (Spelinspektionen) held by SuprPlay Limited, per gambling.com's list of Swedish licence holders (checked November 2026).",
+  "regulator": "sga",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Sweden"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "ny-spins",
+  "name": "NY Spins",
+  "kind": "both",
+  "website": "nyspins.bet",
+  "color": "#334155",
+  "owner": "SuprPlay Limited",
+  "license": "Swedish licence (Spelinspektionen) held by SuprPlay Limited, per gambling.com's list of Swedish licence holders (checked November 2026).",
+  "regulator": "sga",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Sweden"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "voodoo-dreams",
+  "name": "Voodoo Dreams",
+  "kind": "casino",
+  "website": "voodoodreams.com",
+  "color": "#334155",
+  "owner": "SuprPlay Limited",
+  "license": "Swedish licence (Spelinspektionen) held by SuprPlay Limited, per gambling.com's list of Swedish licence holders (checked November 2026).",
+  "regulator": "sga",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Sweden"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "byt-casino",
+  "name": "Byt Casino",
+  "kind": "casino",
+  "website": "bytcasino.com",
+  "color": "#334155",
+  "owner": "SuprPlay Limited",
+  "license": "Swedish licence (Spelinspektionen) held by SuprPlay Limited, per gambling.com's list of Swedish licence holders (checked November 2026).",
+  "regulator": "sga",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Sweden"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "los-vegas",
+  "name": "Los Vegas",
+  "kind": "both",
+  "website": "losvegas.bet",
+  "color": "#334155",
+  "owner": "SuprPlay Limited",
+  "license": "Swedish licence (Spelinspektionen) held by SuprPlay Limited, per gambling.com's list of Swedish licence holders (checked November 2026).",
+  "regulator": "sga",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Sweden"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "svenska-spel",
+  "name": "Svenska Spel",
+  "kind": "casino",
+  "website": "svenskaspel.se",
+  "color": "#334155",
+  "owner": "AB Svenska Spel",
+  "license": "Swedish licence (Spelinspektionen) held by AB Svenska Spel, per gambling.com's list of Swedish licence holders (checked November 2026).",
+  "regulator": "sga",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Sweden"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "bethard",
+  "name": "Bethard",
+  "kind": "both",
+  "website": "bethard.com",
+  "color": "#334155",
+  "owner": "Bethard Sweden Ltd",
+  "license": "Swedish licence (Spelinspektionen) held by Bethard Sweden Ltd, per gambling.com's list of Swedish licence holders (checked November 2026).",
+  "regulator": "sga",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Sweden"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "casinostugan",
+  "name": "Casinostugan",
+  "kind": "casino",
+  "website": "casinostugan.com",
+  "color": "#334155",
+  "owner": "Casinostugan Ltd",
+  "license": "Swedish licence (Spelinspektionen) held by Casinostugan Ltd, per gambling.com's list of Swedish licence holders (checked November 2026).",
+  "regulator": "sga",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Sweden"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "jubla",
+  "name": "Jubla",
+  "kind": "casino",
+  "website": "jubla.com",
+  "color": "#334155",
+  "owner": "CoinToss Limited",
+  "license": "Swedish licence (Spelinspektionen) held by CoinToss Limited, per gambling.com's list of Swedish licence holders (checked November 2026).",
+  "regulator": "sga",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Sweden"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "gogocasino",
+  "name": "GoGoCasino",
+  "kind": "casino",
+  "website": "gogocasino.com",
+  "color": "#334155",
+  "owner": "Gazelle Co. Limited",
+  "license": "Swedish licence (Spelinspektionen) held by Gazelle Co. Limited, per gambling.com's list of Swedish licence holders (checked November 2026).",
+  "regulator": "sga",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Sweden"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "flax-casino",
+  "name": "Flax Casino",
+  "kind": "casino",
+  "website": "flaxcasino.com",
+  "color": "#334155",
+  "owner": "Glitstar Limited",
+  "license": "Swedish licence (Spelinspektionen) held by Glitstar Limited, per gambling.com's list of Swedish licence holders (checked November 2026).",
+  "regulator": "sga",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Sweden"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "storspelare",
+  "name": "Storspelare",
+  "kind": "casino",
+  "website": "storspelare.com",
+  "color": "#334155",
+  "owner": "Greven Limited",
+  "license": "Swedish licence (Spelinspektionen) held by Greven Limited, per gambling.com's list of Swedish licence holders (checked November 2026).",
+  "regulator": "sga",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Sweden"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "otto-casino",
+  "name": "Otto Casino",
+  "kind": "casino",
+  "website": "ottocasino.com",
+  "color": "#334155",
+  "owner": "Gullviva Services Limited",
+  "license": "Swedish licence (Spelinspektionen) held by Gullviva Services Limited, per gambling.com's list of Swedish licence holders (checked November 2026).",
+  "regulator": "sga",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Sweden"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "hajper",
+  "name": "Hajper",
+  "kind": "casino",
+  "website": "hajper.com",
+  "color": "#334155",
+  "owner": "Hajper Ltd",
+  "license": "Swedish licence (Spelinspektionen) held by Hajper Ltd, per gambling.com's list of Swedish licence holders (checked November 2026).",
+  "regulator": "sga",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Sweden"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "kungaslottet",
+  "name": "Kungaslottet",
+  "kind": "casino",
+  "website": "kungaslottet.se",
+  "color": "#334155",
+  "owner": "Kungaslottet Ltd",
+  "license": "Swedish licence (Spelinspektionen) held by Kungaslottet Ltd, per gambling.com's list of Swedish licence holders (checked November 2026).",
+  "regulator": "sga",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Sweden"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "mega-fortune",
+  "name": "Mega Fortune",
+  "kind": "casino",
+  "website": "megafortune.com",
+  "color": "#334155",
+  "owner": "Megafortune Ltd",
+  "license": "Swedish licence (Spelinspektionen) held by Megafortune Ltd, per gambling.com's list of Swedish licence holders (checked November 2026).",
+  "regulator": "sga",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Sweden"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "mega-riches",
+  "name": "Mega Riches",
+  "kind": "casino",
+  "website": "megariches.com",
+  "color": "#334155",
+  "owner": "Megariches Ltd",
+  "license": "Swedish licence (Spelinspektionen) held by Megariches Ltd, per gambling.com's list of Swedish licence holders (checked November 2026).",
+  "regulator": "sga",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Sweden"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "betmgm-sweden",
+  "name": "BetMGM Sweden",
+  "kind": "both",
+  "website": "betmgm.se",
+  "color": "#334155",
+  "owner": "MGMNordic Ltd",
+  "license": "Swedish licence (Spelinspektionen) held by MGMNordic Ltd, per gambling.com's list of Swedish licence holders (checked November 2026).",
+  "regulator": "sga",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Sweden"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "lyllo-casino",
+  "name": "Lyllo Casino",
+  "kind": "casino",
+  "website": "lyllocasino.com",
+  "color": "#334155",
+  "owner": "MOA Gaming Sweden Ltd",
+  "license": "Swedish licence (Spelinspektionen) held by MOA Gaming Sweden Ltd, per gambling.com's list of Swedish licence holders (checked November 2026).",
+  "regulator": "sga",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Sweden"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "mr-vegas",
+  "name": "Mr Vegas",
+  "kind": "casino",
+  "website": "mrvegas.com",
+  "color": "#334155",
+  "owner": "Mr Vegas Ltd",
+  "license": "Swedish licence (Spelinspektionen) held by Mr Vegas Ltd, per gambling.com's list of Swedish licence holders (checked November 2026).",
+  "regulator": "sga",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Sweden"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "pop-casino",
+  "name": "Pop Casino",
+  "kind": "casino",
+  "website": "popcasino.com",
+  "color": "#334155",
+  "owner": "Roi Roger Limited",
+  "license": "Swedish licence (Spelinspektionen) held by Roi Roger Limited, per gambling.com's list of Swedish licence holders (checked November 2026).",
+  "regulator": "sga",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Sweden"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "betinia",
+  "name": "Betinia",
+  "kind": "both",
+  "website": "betinia.com",
+  "color": "#334155",
+  "owner": "Scandix Limited",
+  "license": "Swedish licence (Spelinspektionen) held by Scandix Limited, per gambling.com's list of Swedish licence holders (checked November 2026).",
+  "regulator": "sga",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Sweden"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "snabbare",
+  "name": "Snabbare",
+  "kind": "casino",
+  "website": "snabbare.com",
+  "color": "#334155",
+  "owner": "Snabbare Ltd",
+  "license": "Swedish licence (Spelinspektionen) held by Snabbare Ltd, per gambling.com's list of Swedish licence holders (checked November 2026).",
+  "regulator": "sga",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Sweden"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "spelklubben",
+  "name": "Spelklubben",
+  "kind": "casino",
+  "website": "spelklubben.se",
+  "color": "#334155",
+  "owner": "SverigeCasino Limited",
+  "license": "Swedish licence (Spelinspektionen) held by SverigeCasino Limited, per gambling.com's list of Swedish licence holders (checked November 2026).",
+  "regulator": "sga",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Sweden"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "quick-casino",
+  "name": "Quick Casino",
+  "kind": "casino",
+  "website": "quickcasino.com",
+  "color": "#334155",
+  "owner": "Swedix Limited",
+  "license": "Swedish licence (Spelinspektionen) held by Swedix Limited, per gambling.com's list of Swedish licence holders (checked November 2026).",
+  "regulator": "sga",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Sweden"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "videoslots",
+  "name": "Videoslots",
+  "kind": "casino",
+  "website": "videoslots.com",
+  "color": "#334155",
+  "owner": "Videoslots Ltd",
+  "license": "Swedish licence (Spelinspektionen) held by Videoslots Ltd, per gambling.com's list of Swedish licence holders (checked November 2026).",
+  "regulator": "sga",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Sweden"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ },
+ {
+  "slug": "magnetic-slots",
+  "name": "Magnetic Slots",
+  "kind": "casino",
+  "website": "magneticslots.com",
+  "color": "#7F1D1D",
+  "owner": "Not checked yet",
+  "license": "Licence not checked yet by Pitchside.",
+  "regulator": "unchecked",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [],
+  "cons": [
+   "Three of its domains were blocked by Belgium's Gaming Commission in May 2026 for offering gambling without a Belgian licence"
+  ],
+  "unfairTerms": []
+ },
+ {
+  "slug": "stone-vegas",
+  "name": "Stone Vegas",
+  "kind": "casino",
+  "website": "stonevegas.com",
+  "color": "#7F1D1D",
+  "owner": "Not checked yet",
+  "license": "Licence not checked yet by Pitchside.",
+  "regulator": "unchecked",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [],
+  "cons": [
+   "Two of its domains were blocked by Belgium's Gaming Commission in May 2026 for offering gambling without a Belgian licence"
+  ],
+  "unfairTerms": []
+ },
+ {
+  "slug": "westace",
+  "name": "Westace",
+  "kind": "casino",
+  "website": "westace.com",
+  "color": "#7F1D1D",
+  "owner": "Not checked yet",
+  "license": "Licence not checked yet by Pitchside.",
+  "regulator": "unchecked",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [],
+  "cons": [
+   "Two of its domains were blocked by Belgium's Gaming Commission in May 2026 for offering gambling without a Belgian licence"
+  ],
+  "unfairTerms": []
+ },
+ {
+  "slug": "n1bet",
+  "name": "N1Bet",
+  "kind": "both",
+  "website": "n1bet.com",
+  "color": "#7F1D1D",
+  "owner": "Not checked yet",
+  "license": "Licence not checked yet by Pitchside.",
+  "regulator": "unchecked",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [],
+  "cons": [
+   "Named on Lagos State's list of illegal gaming operators (September 2026)"
+  ],
+  "unfairTerms": []
+ },
+ {
+  "slug": "helabet",
+  "name": "Helabet",
+  "kind": "both",
+  "website": "helabet.com",
+  "color": "#7F1D1D",
+  "owner": "Not checked yet",
+  "license": "Licence not checked yet by Pitchside.",
+  "regulator": "unchecked",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [],
+  "cons": [
+   "Named on Lagos State's list of illegal gaming operators (September 2026)"
+  ],
+  "unfairTerms": []
+ },
+ {
+  "slug": "toto-ee",
+  "name": "Toto (Estonia)",
+  "kind": "sportsbook",
+  "website": "toto.ee",
+  "color": "#334155",
+  "owner": "Aktsiaselts Totalisaator",
+  "license": "Estonian licence held by Aktsiaselts Totalisaator, on the Estonian Tax and Customs Board's list of legal gambling operators (checked November 2026).",
+  "regulator": "ee",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed in Estonia"
+  ],
+  "cons": [],
+  "unfairTerms": []
+ }
+]

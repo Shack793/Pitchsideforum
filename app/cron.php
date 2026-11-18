@@ -66,9 +66,9 @@ q("UPDATE topics SET pinned = 0, updated = ? WHERE auto = 1 AND pinned = 1 AND a
 /* ---------- 2b. Complaints: operators get 7 days to answer ---------- */
 if (function_exists('set_case_status')) foreach (rows("SELECT * FROM complaints WHERE status = 'Awaiting Business' AND deadline IS NOT NULL AND deadline < ?", [$now]) as $c) {
   try {
-    case_msg($c['id'], 'system', 'No operator response in 7 days. A specialist will decide the case.', 'system');
-    set_case_status($c, 'Under Investigation', null, 'Operator missed the 7-day deadline');
-    insert('reports', ['queue' => 'complaints', 'kind' => 'complaint', 'target' => jenc(['complaint' => $c['id']]), 'board' => null, 'reason' => 'Operator missed the 7-day deadline: record an outcome (No Response?)', 'by_user' => 'system', 'at' => $now, 'status' => 'open', 'updated' => $now]);
+    case_msg($c['id'], 'system', 'No operator response before the deadline. A specialist will decide the case.', 'system');
+    set_case_status($c, 'Under Investigation', null, 'Operator missed the response deadline');
+    insert('reports', ['queue' => 'complaints', 'kind' => 'complaint', 'target' => jenc(['complaint' => $c['id']]), 'board' => null, 'reason' => 'Operator missed the response deadline: record an outcome (No Response?)', 'by_user' => 'system', 'at' => $now, 'status' => 'open', 'updated' => $now]);
     $log("complaint {$c['id']}: operator deadline passed");
   } catch (Throwable $x) { $log('complaint deadline failed: ' . $x->getMessage()); }
 }

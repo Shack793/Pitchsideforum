@@ -1,0 +1,737 @@
+[
+ {
+  "slug": "betway",
+  "name": "Betway",
+  "kind": "both",
+  "website": "betway.com",
+  "color": "#00A826",
+  "owner": "Super Group (SGHC) Ltd",
+  "license": "Malta Gaming Authority and UK Gambling Commission licences (Betway Ltd), plus national licences in several markets.",
+  "regulator": "mga",
+  "size": "large",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Licensed by the MGA and the UK Gambling Commission",
+   "Large, well-established sportsbook"
+  ],
+  "cons": [],
+  "unfairTerms": [],
+  "est": 2006
+ },
+ {
+  "slug": "bwin",
+  "name": "bwin",
+  "kind": "both",
+  "website": "bwin.com",
+  "color": "#FFCC00",
+  "owner": "Entain plc",
+  "license": "Gibraltar licence (ElectraWorks Ltd) and UK Gambling Commission licence, plus national licences in several European markets.",
+  "regulator": "gib",
+  "size": "large",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Owned by Entain, a listed company",
+   "Gibraltar and UK licences"
+  ],
+  "cons": [],
+  "unfairTerms": [],
+  "est": 1997
+ },
+ {
+  "slug": "dafabet",
+  "name": "Dafabet",
+  "kind": "both",
+  "website": "dafabet.com",
+  "color": "#E30613",
+  "owner": "Asian-facing operator (licence holder not confirmed)",
+  "license": "Its site cites a Philippines licence; we couldn't confirm the licence holder or number. Not licensed in the UK.",
+  "regulator": "none",
+  "size": "large",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Big Asian-facing sportsbook with long history"
+  ],
+  "cons": [
+   "Licence not confirmed",
+   "Not licensed in the UK"
+  ],
+  "unfairTerms": [],
+  "est": 2004
+ },
+ {
+  "slug": "fonbet",
+  "name": "Fonbet",
+  "kind": "sportsbook",
+  "website": "fon.bet",
+  "color": "#E2001A",
+  "owner": "Fonbet (Russia)",
+  "license": "Licensed in Russia for Russian players. The licence behind its international sites isn't confirmed.",
+  "regulator": "none",
+  "size": "large",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "One of Russia's largest bookmakers"
+  ],
+  "cons": [
+   "No international licence confirmed",
+   "Investigations have questioned its ownership history"
+  ],
+  "unfairTerms": [],
+  "est": 1994
+ },
+ {
+  "slug": "everygame",
+  "name": "Everygame (formerly Intertops)",
+  "kind": "both",
+  "website": "everygame.eu",
+  "color": "#1E88E5",
+  "owner": "Everygame (formerly Intertops)",
+  "license": "Intertops rebranded as Everygame in 2021-22. Curaçao licence.",
+  "regulator": "curacao",
+  "size": "medium",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Running since 1983 under the Intertops name"
+  ],
+  "cons": [
+   "Offshore Curaçao licence with light player protection"
+  ],
+  "unfairTerms": [],
+  "est": 1983
+ },
+ {
+  "slug": "interwetten",
+  "name": "Interwetten",
+  "kind": "both",
+  "website": "interwetten.com",
+  "color": "#FFD400",
+  "owner": "Interwetten (Austria)",
+  "license": "Malta Gaming Authority licence (Interwetten Gaming Ltd) and a German (GGL) licence.",
+  "regulator": "mga",
+  "size": "medium",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "MGA and German licences",
+   "Running since 1990"
+  ],
+  "cons": [],
+  "unfairTerms": [],
+  "est": 1990
+ },
+ {
+  "slug": "ladbrokes",
+  "name": "Ladbrokes",
+  "kind": "both",
+  "website": "ladbrokes.com",
+  "color": "#E31B23",
+  "owner": "Entain plc",
+  "license": "UK Gambling Commission licence (LC International Ltd) and Gibraltar licence.",
+  "regulator": "ukgc",
+  "size": "large",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "UK Gambling Commission licence",
+   "Household name, owned by Entain"
+  ],
+  "cons": [],
+  "unfairTerms": [],
+  "est": 1886
+ },
+ {
+  "slug": "marathonbet",
+  "name": "Marathonbet",
+  "kind": "both",
+  "website": "marathonbet.com",
+  "color": "#0B2A55",
+  "owner": "Marathonbet group",
+  "license": "Brand companies hold licences in Spain, Italy, Denmark, Alderney and Curaçao; which one covers marathonbet.com isn't confirmed. Left the UK in 2022.",
+  "regulator": "curacao",
+  "size": "large",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Long-running sportsbook known for low margins"
+  ],
+  "cons": [
+   "Left the UK market in 2022",
+   "Licence for the .com site not confirmed"
+  ],
+  "unfairTerms": [],
+  "est": 1997
+ },
+ {
+  "slug": "matchbook",
+  "name": "Matchbook",
+  "kind": "sportsbook",
+  "website": "matchbook.com",
+  "color": "#E64A19",
+  "owner": "Triplebet Ltd",
+  "license": "UK Gambling Commission licence (Triplebet Ltd).",
+  "regulator": "ukgc",
+  "size": "medium",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Betting exchange with low commission",
+   "UK Gambling Commission licence"
+  ],
+  "cons": [],
+  "unfairTerms": [],
+  "est": 2004
+ },
+ {
+  "slug": "mybet",
+  "name": "mybet",
+  "kind": "sportsbook",
+  "website": "mybet.com",
+  "color": "#D50000",
+  "owner": "mybet (Germany)",
+  "license": "The original mybet Holding went insolvent in 2018; the brand was relaunched in Germany in 2019. Its current licence isn't confirmed.",
+  "regulator": "none",
+  "size": "small",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [],
+  "cons": [
+   "Former owner went insolvent in 2018",
+   "Current licence not confirmed"
+  ],
+  "unfairTerms": []
+ },
+ {
+  "slug": "netbet",
+  "name": "NetBet",
+  "kind": "both",
+  "website": "netbet.com",
+  "color": "#E4002B",
+  "owner": "NetBet Enterprises Ltd (Cosmo Gaming)",
+  "license": "Malta Gaming Authority licence and UK Gambling Commission licence.",
+  "regulator": "mga",
+  "size": "medium",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "MGA and UK licences"
+  ],
+  "cons": [],
+  "unfairTerms": [],
+  "est": 2001
+ },
+ {
+  "slug": "nordicbet",
+  "name": "NordicBet",
+  "kind": "both",
+  "website": "nordicbet.com",
+  "color": "#002B5C",
+  "owner": "Betsson AB",
+  "license": "Malta Gaming Authority licence (BML Group Ltd), part of the Betsson group.",
+  "regulator": "mga",
+  "size": "large",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Part of the listed Betsson group",
+   "MGA licence"
+  ],
+  "cons": [],
+  "unfairTerms": [],
+  "est": 2002
+ },
+ {
+  "slug": "paddy-power",
+  "name": "Paddy Power",
+  "kind": "both",
+  "website": "paddypower.com",
+  "color": "#004833",
+  "owner": "Flutter Entertainment plc",
+  "license": "UK Gambling Commission licence and Irish Revenue bookmaker licence.",
+  "regulator": "ukgc",
+  "size": "large",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Owned by Flutter, the world's largest betting group",
+   "UK and Irish licences"
+  ],
+  "cons": [],
+  "unfairTerms": [],
+  "est": 1988
+ },
+ {
+  "slug": "sbobet",
+  "name": "SBOBET",
+  "kind": "both",
+  "website": "sbobet.com",
+  "color": "#1A237E",
+  "owner": "Celton Manx Ltd (former Isle of Man operator)",
+  "license": "Surrendered its Isle of Man licence in 2025 after a near £4 million anti-money-laundering fine. Now relies on an Asian licence that we couldn't confirm.",
+  "regulator": "none",
+  "size": "large",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Major Asian-facing sportsbook"
+  ],
+  "cons": [
+   "Gave up its Isle of Man licence in 2025",
+   "Fined nearly £4m for anti-money-laundering failures"
+  ],
+  "unfairTerms": [],
+  "est": 2004
+ },
+ {
+  "slug": "sportingbet",
+  "name": "Sportingbet",
+  "kind": "both",
+  "website": "sportingbet.com",
+  "color": "#0055A4",
+  "owner": "Entain plc",
+  "license": "Entain brand. Gibraltar licence (ElectraWorks Ltd) and national licences such as Brazil and Greece.",
+  "regulator": "gib",
+  "size": "large",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Owned by Entain"
+  ],
+  "cons": [],
+  "unfairTerms": [],
+  "est": 1997
+ },
+ {
+  "slug": "sportsbet",
+  "name": "Sportsbet",
+  "kind": "sportsbook",
+  "website": "sportsbet.com.au",
+  "color": "#0066CC",
+  "owner": "Flutter Entertainment plc",
+  "license": "Licensed wagering provider in Australia (Northern Territory). For Australian players only.",
+  "regulator": "au",
+  "size": "large",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Australia's largest online bookmaker",
+   "Australian licence"
+  ],
+  "cons": [
+   "Australian players only"
+  ],
+  "unfairTerms": [],
+  "est": 1993
+ },
+ {
+  "slug": "superbet",
+  "name": "Superbet",
+  "kind": "both",
+  "website": "superbet.com",
+  "color": "#E30613",
+  "owner": "Superbet Group (Romania)",
+  "license": "Licensed in Romania (ONJN) and Poland, among other markets.",
+  "regulator": "onjn",
+  "size": "large",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Large regulated European bookmaker"
+  ],
+  "cons": [],
+  "unfairTerms": [],
+  "est": 2008
+ },
+ {
+  "slug": "tipico",
+  "name": "Tipico",
+  "kind": "both",
+  "website": "tipico.com",
+  "color": "#C8102E",
+  "owner": "Tipico Group",
+  "license": "German (GGL) licence and Malta Gaming Authority licence.",
+  "regulator": "de",
+  "size": "large",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "German and MGA licences"
+  ],
+  "cons": [],
+  "unfairTerms": [],
+  "est": 2004
+ },
+ {
+  "slug": "unibet",
+  "name": "Unibet",
+  "kind": "both",
+  "website": "unibet.com",
+  "color": "#147B45",
+  "owner": "Kindred Group (FDJ United)",
+  "license": "Malta Gaming Authority licence and UK Gambling Commission licence, plus national licences.",
+  "regulator": "mga",
+  "size": "large",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "MGA and UK licences",
+   "Part of FDJ United"
+  ],
+  "cons": [],
+  "unfairTerms": [],
+  "est": 1997
+ },
+ {
+  "slug": "william-hill",
+  "name": "William Hill",
+  "kind": "both",
+  "website": "williamhill.com",
+  "color": "#00143C",
+  "owner": "Evoke plc",
+  "license": "UK Gambling Commission licence and Gibraltar licence.",
+  "regulator": "ukgc",
+  "size": "large",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "UK Gambling Commission licence",
+   "Household name"
+  ],
+  "cons": [],
+  "unfairTerms": [],
+  "est": 1934
+ },
+ {
+  "slug": "winline",
+  "name": "Winline",
+  "kind": "sportsbook",
+  "website": "winline.ru",
+  "color": "#FF6B00",
+  "owner": "Winline (Russia)",
+  "license": "Licensed in Russia for Russian players only. No international licence confirmed.",
+  "regulator": "none",
+  "size": "large",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Large Russian bookmaker"
+  ],
+  "cons": [
+   "Russian players only",
+   "No international licence"
+  ],
+  "unfairTerms": []
+ },
+ {
+  "slug": "10bet",
+  "name": "10Bet",
+  "kind": "both",
+  "website": "10bet.com",
+  "color": "#00AEEF",
+  "owner": "10bet group",
+  "license": "Licence for the international site not confirmed. Local licences are reported in South Africa and Kenya.",
+  "regulator": "none",
+  "size": "medium",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [],
+  "cons": [
+   "International licence not confirmed"
+  ],
+  "unfairTerms": [],
+  "est": 2003
+ },
+ {
+  "slug": "188bet",
+  "name": "188BET",
+  "kind": "both",
+  "website": "188bet.com",
+  "color": "#FF6600",
+  "owner": "188BET (formerly Cube Limited, Isle of Man)",
+  "license": "Moved its licence and operations from the Isle of Man to the Philippines in 2024; the new licence isn't confirmed.",
+  "regulator": "none",
+  "size": "large",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Long-running Asian-facing sportsbook"
+  ],
+  "cons": [
+   "Left the Isle of Man in 2024",
+   "Current licence not confirmed"
+  ],
+  "unfairTerms": [],
+  "est": 2006
+ },
+ {
+  "slug": "888sport",
+  "name": "888sport",
+  "kind": "sportsbook",
+  "website": "888sport.com",
+  "color": "#FF7F00",
+  "owner": "Evoke plc (888 Holdings)",
+  "license": "Gibraltar licence and UK Gambling Commission licence.",
+  "regulator": "gib",
+  "size": "large",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Gibraltar and UK licences",
+   "Owned by a listed company"
+  ],
+  "cons": [],
+  "unfairTerms": [],
+  "est": 2008
+ },
+ {
+  "slug": "bet-at-home",
+  "name": "bet-at-home",
+  "kind": "both",
+  "website": "bet-at-home.com",
+  "color": "#E2001A",
+  "owner": "bet-at-home.com AG (Betclic Everest group)",
+  "license": "German (GGL) licence. Closed its Malta business and left the UK.",
+  "regulator": "de",
+  "size": "medium",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "German licence",
+   "Listed company"
+  ],
+  "cons": [
+   "Has left several markets"
+  ],
+  "unfairTerms": [],
+  "est": 1999
+ },
+ {
+  "slug": "bet365",
+  "name": "bet365",
+  "kind": "both",
+  "website": "bet365.com",
+  "color": "#027B5B",
+  "owner": "Hillside (bet365 Group)",
+  "license": "UK Gambling Commission licence (Hillside), plus Malta and Gibraltar licences and many national licences.",
+  "regulator": "ukgc",
+  "size": "large",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "UK Gambling Commission licence",
+   "One of the largest online bookmakers"
+  ],
+  "cons": [],
+  "unfairTerms": [],
+  "est": 2000
+ },
+ {
+  "slug": "betano",
+  "name": "Betano",
+  "kind": "both",
+  "website": "betano.com",
+  "color": "#FF6A13",
+  "owner": "Kaizen Gaming",
+  "license": "National licences in Portugal, Greece, Germany, Romania, Brazil and other markets.",
+  "regulator": "srij",
+  "size": "large",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Many national licences"
+  ],
+  "cons": [],
+  "unfairTerms": [],
+  "est": 2012
+ },
+ {
+  "slug": "betcris",
+  "name": "BetCRIS",
+  "kind": "both",
+  "website": "betcris.com",
+  "color": "#C8102E",
+  "owner": "BetCRIS (Costa Rica)",
+  "license": "Licensed in Arizona (2025) for its US site, and in Poland and Mexico. The licence behind betcris.com isn't confirmed.",
+  "regulator": "none",
+  "size": "medium",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Running since the 1980s",
+   "Now licensed in Arizona"
+  ],
+  "cons": [
+   "International site's licence not confirmed"
+  ],
+  "unfairTerms": [],
+  "est": 1985
+ },
+ {
+  "slug": "betfair",
+  "name": "Betfair",
+  "kind": "both",
+  "website": "betfair.com",
+  "color": "#FFB80C",
+  "owner": "Flutter Entertainment plc",
+  "license": "UK Gambling Commission licence and Malta Gaming Authority licence.",
+  "regulator": "ukgc",
+  "size": "large",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "World's largest betting exchange",
+   "UK and MGA licences"
+  ],
+  "cons": [],
+  "unfairTerms": [],
+  "est": 2000
+ },
+ {
+  "slug": "betfred",
+  "name": "Betfred",
+  "kind": "both",
+  "website": "betfred.com",
+  "color": "#003399",
+  "owner": "Done Brothers (Betfred)",
+  "license": "UK Gambling Commission licence.",
+  "regulator": "ukgc",
+  "size": "large",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "UK Gambling Commission licence"
+  ],
+  "cons": [],
+  "unfairTerms": [],
+  "est": 1967
+ },
+ {
+  "slug": "betsafe",
+  "name": "Betsafe",
+  "kind": "both",
+  "website": "betsafe.com",
+  "color": "#000000",
+  "owner": "Betsson AB",
+  "license": "Malta Gaming Authority licence, part of the Betsson group.",
+  "regulator": "mga",
+  "size": "large",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Part of the listed Betsson group",
+   "MGA licence"
+  ],
+  "cons": [],
+  "unfairTerms": [],
+  "est": 2006
+ },
+ {
+  "slug": "betsson",
+  "name": "Betsson",
+  "kind": "both",
+  "website": "betsson.com",
+  "color": "#FF6600",
+  "owner": "Betsson AB",
+  "license": "Malta Gaming Authority licence, plus national licences.",
+  "regulator": "mga",
+  "size": "large",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Listed company",
+   "MGA licence"
+  ],
+  "cons": [],
+  "unfairTerms": [],
+  "est": 2001
+ },
+ {
+  "slug": "betvictor",
+  "name": "BetVictor",
+  "kind": "both",
+  "website": "betvictor.com",
+  "color": "#E30613",
+  "owner": "BetVictor Ltd",
+  "license": "Gibraltar licence and UK Gambling Commission licence.",
+  "regulator": "gib",
+  "size": "large",
+  "crypto": false,
+  "fiat": true,
+  "poker": false,
+  "withdrawals": [],
+  "pros": [
+   "Gibraltar and UK licences"
+  ],
+  "cons": [],
+  "unfairTerms": [],
+  "est": 1946
+ }
+]

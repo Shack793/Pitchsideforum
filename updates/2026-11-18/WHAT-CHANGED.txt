@@ -1,0 +1,42 @@
+11 November 2026 update (already merged into this copy of the code; database changes happen when apply.sh runs)
+
+- Animated GIF ads: GIFs in homepage banners, full banners, side ads and in-post ads stay animated
+  (ads-tweaks.3.js, ads-images.2.js, full-banners.2.js, app/ops/zz-gifads.php).
+- Member list and staff list kept out of search engines; individual member profiles can be found (app/ops/zz-member-privacy.php).
+- Affiliate badges and commission notes removed from public pages; 18+ · T&Cs apply stays (aff-quiet.1.js).
+- Promotions & bonuses page removed; /promotions redirects to /gambling (app/ops/zz-no-promotions.php; menu entry removed by apply.sh).
+- BiggerZ and Bets.io added to the directory (done in the database by apply.sh). Not blacklisted.
+- Loading placeholder clears as soon as the page is drawn, instead of after every script has loaded (app/shell.html).
+- "Keep me signed in" tick box at sign-in: unticked ends when the browser closes or after 12 idle hours; ticked lasts 30 days (remember-me.1.js, app/ops/zz-remember.php).
+- Casino logos (parts/logos): JustBet, trimmed and centred; added to the listing by apply.sh.
+- Admin tabs in alphabetical order, Overview first (admin-tabs.1.js).
+- Casino tiles: the Play button lines up with the Read review buttons, with a larger Read review link under it; logos centred and fully visible, boxes filled with the logo colour (casino-list.6.js).
+- Site admin rating: an admin-set part of the Safety Index, set per casino in Admin → Reviews
+  (admin-rating.1.js, app/ops/zz-adminrating.php).
+- Safety Index weights: site admin rating 26%, complaints 25%, member reviews 21%, licence 11%,
+  fair terms 11%, size 6% (set by the weights and admin-rating steps of apply.sh).
+- Top picks: 1xBet, Flush, BetWinner, Crypto.Games, CoinRoyale, JustBet are the featured listings;
+  Crypto.Games listing corrected to its Curaçao licence (OGL/2024/1336/1047, MuchGaming B.V.).
+
+To install on the server: upload this folder and run  sudo bash apply.sh
+
+13 Nov (later): Casinos & Sportsbooks pages open fully built (no half-built list, no "NaN" scores while loading). Part: casino-load.
+13 Nov (later): homepage banner and side ads load straight away (zz-adpreload.php, full-banners.3.js). Part: ad-speed.
+13 Nov (later): lighter pages: long posts arrive as a short preview in the first page download; a topic loads its full posts when opened (zz-boot-trim.php, lighter-pages.1.js, 2 lines in public/index.php). Part: lighter-pages.
+13 Nov (later): lighter pages v2: pages outside the gambling section get casinos without long details (pros/cons, licence text, owner, payments, countries, gallery); full details load in the background (ops.full) and gambling pages wait for them. Part: lighter-pages. Also: HTTP/2 on the https listen lines (part: http2, changes /etc/nginx only).
+16 Nov: email setup (parts/email-setup, interactive; runs at the end of apply.sh when smtp_host is empty).
+16 Nov: penalty points (zz-penalty.php op oppenalty.set, penalty.1.js after admin-rating.1.js; fields data.penalty / data.penaltyReason). Part: score-penalty.
+16 Nov: complaint tools (zz-complaint-tools.php: complaint.timer, complaint.hideText, complaint.hideMsg, complaint.evApprove, complaint.evPending; wraps complaint.create/reply/evidence/evidenceToggle; complaint-tools.1.js; cron wording). Part: complaint-tools.
+16 Nov: complaint-tools v2: "Reject complaint" button (uses complaint.outcome with Rejected); script is now complaint-tools.2.js.
+16 Nov: tidy Move topic list (move-boards.1.js). Part: move-boards.
+16 Nov: 33 bookmakers added (parts/bookmakers/listings.json; existing listings skipped by slug, name or website).
+16 Nov: Top picks follow the Admin order and show all (casino-list.7.js); up to 60 picks (zz-toppicks.php); SportyBet added; picks set once (meta tp-bookmakers-2026-11); top-picks setup no longer overwrites existing picks. Parts: top-picks, top-picks-more.
+16 Nov: 188 more listings (parts/more-casinos: Estonian EMTA list and Swedish licence holders; 5 regulator-flagged sites with regulator "unchecked"); casino-list.7.js knows "africa" and "unchecked" licence codes.
+16 Nov: casino page search descriptions: "Is X safe?" + type + short licence wording instead of a cut-off licence sentence (zz-operator-seo.php).
+16 Nov: Crypto.Games founding year 2014 (top-picks setup).
+17 Nov: Crypto.Games animated banners added to SIDE_ADS and POST_ADS (parts/cryptogames-ads).
+17 Nov: avatar placeholder outline while pictures load (style ps-avatar-ph in shell.html).
+17 Nov: ad pictures reserve their size while loading (style ps-ad-ph in shell.html).
+17 Nov: ad pictures load after window load (full-banners.4.js); zz-adpreload.php emptied; Crypto.Games banners now animated WebP (~1.3 MB total instead of ~3.4 MB).
+18 Nov: Recommended by Pitchside box on every listing (zz-recommended.php op recommended.set, LAYOUT.recommended; recommended.1.js). Part: recommended.
+18 Nov: banners stay a plain dark box until their picture has loaded, then fade in; no broken-picture icon or lone Sponsored label (style ps-ad-ld + script ps-ad-ld-js in shell.html). Part: ad-loading.
