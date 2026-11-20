@@ -10,7 +10,7 @@ if (setting('siteIndexing')) {
   $public = [];
   foreach (doc('BOARDS') as $b) if (can_read_board(null, $b)) { $public[] = $b['slug']; echo $url('/forum/' . $b['slug']); }
   foreach (doc('LEAGUES') as $l) echo $url('/leagues/' . $l['slug']);
-  foreach (doc('TEAMS') as $t) echo $url('/teams/' . $t['slug']);
+  foreach (doc('TEAMS') as $t) if (!function_exists('sports_team_listed') || sports_team_listed($t)) echo $url('/teams/' . $t['slug']);
   if (feature_on('casinos')) { foreach (rows("SELECT slug, data, updated FROM operators") as $o) { $d = json_decode($o['data'], true); echo $url((($d['type'] ?? '') === 'casino' ? '/casinos/' : '/sportsbooks/') . $o['slug'], (int) $o['updated']); } echo $url('/casinos') . $url('/blacklist') . $url('/promotions') . $url('/raffle'); }
   if (feature_on('complaints')) { echo $url('/complaints'); foreach (rows("SELECT id, updated FROM complaints ORDER BY seq DESC LIMIT 5000") as $c) echo $url('/complaints/' . $c['id'], (int) $c['updated']); }
   if ($public) foreach (rows("SELECT id, last_at FROM topics WHERE deleted = 0 AND board IN (" . in_list($public) . ") ORDER BY last_at DESC LIMIT 45000", $public) as $t) echo $url('/topic/' . $t['id'], (int) $t['last_at']);

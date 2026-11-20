@@ -221,7 +221,7 @@ function seo_club(string $kind, string $slug, string $title, string $desc, strin
     $clubs = array_filter($teams, fn($x) => ($x['league'] ?? null) === $slug || in_array($slug, (array) ($x['also'] ?? []), true));
     $topics = $q("t.league = ?" . (!empty($L['board']) ? " OR t.board = ?" : ''), !empty($L['board']) ? [$slug, $L['board']] : [$slug]);
     $title = "$name forum: match threads, predictions and fan talk | " . SEO_SITE;
-    $desc = "$name discussion on Pitchside: live match threads, predictions, betting tips and fan talk" . ($clubs ? ' for ' . count($clubs) . ' clubs' : '') . ($L['season'] ?? '' ? ", {$L['season']} season" : '') . '.';
+    $desc = "$name discussion on Pitchside: live match threads, predictions and fan talk" . ($clubs ? ' for ' . count($clubs) . ' clubs' : '') . ($L['season'] ?? '' ? ", {$L['season']} season" : '') . '.';
     $body = '<h1>' . $h($name) . ' forum</h1><p>' . $h("$name" . (!empty($L['region']) ? " ({$L['region']})" : '') . (!empty($L['season']) ? ", {$L['season']} season" : '') . ". Match threads open before every game, plus predictions, team news and fan talk.") . '</p>'
       . ($topics ? '<h2>Latest ' . $h($name) . ' topics</h2><ul>' . implode('', array_map($topicLi, $topics)) . '</ul>' : '')
       . ($clubs ? '<h2>Clubs</h2><ul>' . implode('', array_map(fn($x) => '<li><a href="/teams/' . $h($x['slug']) . '">' . $h($x['name']) . ' fans forum</a></li>', $clubs)) . '</ul>' : '');

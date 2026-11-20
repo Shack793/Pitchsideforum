@@ -1,0 +1,39 @@
+19 November 2026 update (install with:  sudo bash apply.sh  from inside this folder)
+
+New in this update:
+
+- Tidier review pages: pros and cons move under the Safety Index card in two columns, the repeated
+  score badge is removed from that card, and phones stack the lists. Part: review-tidy.
+- Sports simplified:
+  * "FIFA World Cup" is now "International" (league and board; same address).
+  * League pages lose the Teams and Betting tabs; team pages lose Betting; match pages lose the
+    "Betting discussion" box.
+  * Football has no team pages: one section per league; old club links go to their league, and
+    football clubs are left out of the sitemap.
+  * The prediction leaderboard no longer shows sample member names.
+  Part: sports-tidy.
+- Crypto section in three boards: Cryptocurrency Discussion, Crypto Casinos & Sportsbooks and
+  Crypto Trading & Investments. Topics from the old coin boards move to Cryptocurrency Discussion,
+  and old coin-board addresses forward there. Board moderators are kept. Part: crypto-boards.
+- Marketplace removed from the site: menu link hidden, section switched off, escrow off, and the
+  Marketplace boards closed so only admins can still see old posts. Nothing is deleted (the old
+  settings are kept in MARKET_REMOVED). Part: market-remove.
+- Tennis in one place: one "Tennis" board with sub-boards for ATP Tour, WTA Tour, Grand Slams, ITF
+  and Davis Cup & Billie Jean King Cup, and one Tennis entry on the Sports page. Old /leagues/atp
+  and /leagues/wta addresses forward to /leagues/tennis; topics, follows and match links move with
+  them. Part: tennis.
+- SEO check-up:
+  * Pages that don't exist answer 404 (with noindex) instead of an indexable copy of the homepage
+    (unknown addresses, leagues, teams, tags, closed boards and sections).
+  * Real search titles and descriptions for /sports, /crypto, /gambling, /community, /forum,
+    /blacklist, the info pages and the tag pages (added in Admin -> SEO only where missing).
+  * One address per page: casinos/sportsbooks at the address the site links to, /teams and /leagues
+    -> /sports, /reviews -> /gambling, no trailing "/" copies.
+  * Sports league descriptions no longer say "betting tips".
+  Part: seo-check.
+- Safety Index weights safety fix: licence 15% and member reviews 25% are still set, but if the
+  weights were changed since (for example the admin rating share) the existing weights are kept
+  instead of being reset. Part: weights.
+
+The installer still runs every earlier part first, so it is safe to run on a site that has any of
+the earlier updates missing. Anything already installed is left as it is.
