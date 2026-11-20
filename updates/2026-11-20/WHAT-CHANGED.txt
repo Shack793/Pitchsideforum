@@ -1,0 +1,17 @@
+20 November 2026 update (install with:  sudo bash apply.sh  from inside this folder)
+
+New in this update:
+
+- Faster page start: every page now tells the browser to download its scripts at the same time as the
+  page itself, instead of only after the whole page (with its data) has arrived. The list of scripts is
+  read from the page, so it always matches whatever is installed. Part: script-preload
+  (app/ops/zz-script-preload.php; loaded automatically with the other app/ops files).
+- Sports page organised by sport: /sports shows Football first with its competitions grouped by region,
+  then a compact directory of the other sports (basketball, American football, tennis, cricket, rugby,
+  baseball, ice hockey, motorsport, combat sports). Each sport has its own page at /sports/<sport> with
+  tidy competition cards (name first; type, sport, country and season small) and the latest discussion.
+  Bare counts and the "Players and fighters..." line are gone. Part: sports-dir
+  (public/assets/sports-dir.1.js, loaded from app/shell.html after league-boards.1.js).
+
+Everything from the earlier updates is included in this installer too, so it is safe to run on a site
+that has any of the earlier updates missing. Anything already installed is left as it is.
